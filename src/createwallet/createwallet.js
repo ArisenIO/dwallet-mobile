@@ -24,6 +24,7 @@ export default class Createwallet extends Component {
     }
 
     createBtn = () => {
+        Actions.AddAccount();
     }
 
     restoreBtn = () => {

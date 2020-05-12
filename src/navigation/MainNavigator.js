@@ -10,6 +10,8 @@ import splash from '../Splash/splash';
 import Createwallet from '../createwallet/createwallet';
 import Homepage from '../Homepage/homepage';
 import RegisterScreen from '../register/RegisterScreen';
+import AddAccount from '../AddAccount/AddAccount';
+
 
 const Scenes = Actions.create(
     <Scene key='root' >
@@ -28,6 +30,11 @@ const Scenes = Actions.create(
 
         <Scene key="homepage"
             component={Homepage}
+            hideNavBar={true}
+        />
+
+        <Scene key="AddAccount"
+            component={AddAccount}
             hideNavBar={true}
         />
 

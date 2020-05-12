@@ -95,10 +95,10 @@ export default class RegisterScreen extends Component {
                         checkedColor="#0f15a8"
                         checked={this.state.checked}
                         onIconPress={this.iconpress}
-                        containerStyle={{ marginLeft: '3%', marginBottom: '2%' }}
+                        containerStyle={{}}
 
                     />
-                    <Text style={{ color: 'black', fontSize: 18, justifyContent: 'center', alignSelf: 'center' }}>Specify your own keys</Text>
+                    <Text style={{ color: 'black', fontSize: 18, marginTop: '2%' }}>Specify your own keys</Text>
                 </View>
             </View>
 
