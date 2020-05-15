@@ -85,6 +85,29 @@ export default class RegisterScreen extends Component {
             })
             .catch(error => console.log(error)) //to catch the errors if any
     }
+    _proceed=()=>{
+        fetch("http://51.15.78.253:3001/avote/account/lookup",{
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                newAccountName:this.state.AccountName
+            })
+        })
+            .then(response => response.json())
+            .then((response) => {
+                console.log("resp_for_check_api", response)
+               if(response.success==true){
+                   this.setState({Proceed:true})
+               }
+               else{
+                   alert("Please enter the account name")
+               }
+            })
+            .catch(error => console.log(error)) //to catch the errors if any
+    }
 
 
     render() {
@@ -185,8 +208,12 @@ export default class RegisterScreen extends Component {
                 {
                     this.state.Proceed == true
                         ?
-                        <View style={{ justifyContent: 'center', alignItems: 'center', width: wp('100%'), height: hp('15%'), }}>
-                            <TouchableOpacity style={{ height: hp('5%'), width: wp('40%'), borderRadius: 10, backgroundColor: '#000000', justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', width: wp('100%'), 
+                        height: hp('15%'), }}>
+                            <TouchableOpacity style={{ height: hp('5%'), width: wp('40%'), borderRadius: 10,
+                              backgroundColor: '#491f92', justifyContent: 'center', alignItems: 'center' }}
+                              onPress={()=>{this._proceed()}}
+                              >
                                 <Text style={{ color: '#fff', }}>
                                     Proceed
                     </Text>
