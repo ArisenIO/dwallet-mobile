@@ -6,28 +6,34 @@ import { Provider, connect } from 'react-redux';
 import { createStore } from 'redux';
 import { Actions, Router, Scene } from 'react-native-router-flux';
 import { appReducer } from '../Reducers/index';
-import splash from '../Splash/splash';
+import Splash from '../Splash/splash';
 import Createwallet from '../createwallet/createwallet';
 import Homepage from '../Homepage/homepage';
 import RegisterScreen from '../register/RegisterScreen';
 import AddAccount from '../AddAccount/AddAccount';
+import AppIntro from '../slider/slider' 
 
 
 const Scenes = Actions.create(
     <Scene key='root' >
 
-        <Scene key="splash"
+        <Scene key="Splash"
             initial={true}
             hideNavBar={true}
-            component={splash}
+            component={Splash}
         />
-        <Scene
-            key="createwallet"
+         <Scene key="AppIntro"
+            initial={false}
+            hideNavBar={true}
+            component={AppIntro}
+        />
+          <Scene
+            key="Createwallet"
             initial={false}
             hideNavBar={true}
             component={Createwallet}
         />
-
+       
         <Scene key="homepage"
             component={Homepage}
             hideNavBar={true}
@@ -42,6 +48,7 @@ const Scenes = Actions.create(
             component={RegisterScreen}
             hideNavBar={true}
         />
+       
 
     </Scene>
 )
