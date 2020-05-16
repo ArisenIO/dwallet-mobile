@@ -3,13 +3,17 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, TextInput,
-    Text, Image, TouchableOpacity
+    Text, Image, TouchableOpacity ,Keyboard
 } from "react-native";
+import Clipboard from '@react-native-community/clipboard'
 import { Button, CheckBox } from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
 import image from '../../assets/leftArrow.png';
 import { validation_reg } from '../../src/Validation/validation'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import Dialog from "react-native-dialog";
+import Toast from 'react-native-simple-toast';
+
 
 
 export default class RegisterScreen extends Component {
@@ -21,6 +25,12 @@ export default class RegisterScreen extends Component {
             AccountName_error: '',
             accountStatus: false,
             checked: false,
+            dialogVisible: false,
+            owner_private_keys:'',
+            owner_public_keys:'',
+            active_private_keys:'',
+            active_public_keys:'',
+            loader_visible: false
         };
         console.disableYellowBox = true;
     }
@@ -34,12 +44,19 @@ export default class RegisterScreen extends Component {
         }
     }
     getEmail(AccountName) {
-        this.setState({ AccountName: AccountName });
-        this.state.AccountName_error = validation_reg(AccountName).error;
-        this.state.accountStatus = validation_reg(AccountName).status;
+
+        this.setState({Proceed: false})
+
+        var x = this.alphanumeric(AccountName);
+        if(x){
+            this.setState({ AccountName: AccountName });
+        }
+        else{
+            alert("Not a valid character to enter");
+        }
     }
     _genrate = () => {
-        // alert('ok')
+        this.setState({ Proceed: false })
         fetch("http://51.15.78.253:3001/avote/random/word", {
             method: 'GET'
         })
@@ -47,14 +64,16 @@ export default class RegisterScreen extends Component {
             .then((response) => {
                 console.log("resp_genrate_page__", response.account)
                 this.setState({
-
                     AccountName: response.account
                 }, () => { console.log("resp_in_for_account_token", this.state.AccountName) })
             })
             .catch(error => console.log(error)) //to catch the errors if any
     }
     _checkloop = () => {
-        // alert('ok')
+
+        var accountname = this.state.AccountName;
+        if(accountname.length==12)
+        {        Keyboard.dismiss();
         fetch("http://51.15.78.253:3001/avote/account/lookup", {
             method: 'POST',
             headers: {
@@ -69,16 +88,22 @@ export default class RegisterScreen extends Component {
             .then((response) => {
                 console.log("resp_for_check_api", response)
                 if (response.success == true) {
+
                     this.setState({ Proceed: true })
                 }
                 else {
-                    alert("Please enter the account name")
+                    this.setState({ Proceed: false })
+                    alert(response.message)
                 }
             })
             .catch(error => console.log(error)) //to catch the errors if any
+        }
+        else{
+            alert("Account Name must be of 12 characters")
+        }
     }
     _proceed = () => {
-        fetch("http://51.15.78.253:3001/avote/account/lookup", {
+        fetch("http://51.15.78.253:3001/avote/account/keys", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -91,15 +116,112 @@ export default class RegisterScreen extends Component {
             .then(response => response.json())
             .then((response) => {
                 console.log("resp_for_check_api", response)
+
+                //{"account": "loveaffair11", "active_private": "5J9dikvJnK3SmEHcoottXogsonjfBsDzQggYJDLmHFPGUve9vcB", 
+                //"active_public": "RSN75W8mipfTk4oSamxLWiBFQgUnHPvdwbbaRcNPDifhYd4YLGhJd",
+                // "owner_private": "5Ka2buLz2U39ae8Xe9PgAvq1hHhUdgXb5nvKxvawby39LUo2JEt", 
+                //"owner_public": "RSN7pjSWUaBSkv1J3ZJi5tbzuZWC8feTHbhtKt6ua5EqmsAGTaVdh"}
+
                 if (response.success == true) {
-                    this.setState({ Proceed: true })
+
+
+                    this.setState({owner_private_keys: response.owner_private,
+                        owner_public_keys:response.owner_public,
+                        active_private_keys:response.active_private,
+                        active_public_keys:response.active_public,
+                        AccountName:response.account
+                                    })
+                    this.showDialog();
+
                 }
                 else {
-                    alert("Please enter the account name")
+                    alert("Please enter valid Account Name")
                 }
             })
             .catch(error => console.log(error)) //to catch the errors if any
     }
+
+        alphanumeric(inputtxt)
+        { 
+            var txt = inputtxt.trim();
+            var letters = /^[1-5a-z]+$/;
+            if(txt == ""){
+                this.setState({ AccountName: "" });
+                return false;
+            }
+            if(letters.test(inputtxt))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        showDialog = () => {
+            this.setState({ dialogVisible: true });
+          };
+         
+        //   handleCancel = () => {
+        //     this.setState({ dialogVisible: false });
+        //   };
+         
+          handleCopy = () => {
+            // The user has pressed the "Delete" button, so here you can do your own logic.
+            // ...Your logic
+            this.writeToClipboard();
+            this.setState({ dialogVisible: false });
+          };
+
+          writeToClipboard = async () => {
+            //To copy the text to clipboard
+
+          //  this.setState({loader_visible:true})
+
+            var copied_data = {
+                "Account_name":this.state.AccountName,
+                "owner_public_keys":this.state.owner_public_keys,
+                "owner_private_keys":this.state.owner_private_keys,
+                "active_public_keys":this.state.active_public_keys,
+                "active_private_keys":this.state.active_private_keys
+
+            };
+            await Clipboard.setString(JSON.stringify(copied_data));
+
+            Toast.show('Copied',Toast.SHORT);
+
+
+
+            fetch("http://51.15.78.253:3001/avote/register", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                newAccountName: this.state.AccountName,
+                ownerPubKey:this.state.owner_public_keys,
+                activePubKey:this.state.active_public_keys
+            })
+              })
+            .then(response => response.json())
+            .then((response) => {
+                if(response.success){
+                    Toast.show("Registered successfully on Blockchain",Toast.LONG);
+                    AsyncStorage.setItem(
+                          'creds',
+                          JSON.stringify(copied_data));
+                        Actions.homepage();
+                }
+                else{
+                    Toast.show("Not Registered try later",Toast.LONG);
+                }
+
+            })
+            .catch(error => console.log(error))          
+          };
+
     render() {
         return (
             <View style={styles.container}>
@@ -124,9 +246,9 @@ export default class RegisterScreen extends Component {
                             value={this.state.AccountName}
                             placeholder="Enter 12 Letter unique name"
                             placeholderTextColor='#2D5E86'
-                            value={this.state.AccountName}
                             autoCapitalize="none"
                             maxLength={12}
+                            minLength={12}
                             // editable={false}
                             onChangeText={(text) => { this.getEmail(text) }}
                             maxLength={12}
@@ -153,6 +275,9 @@ export default class RegisterScreen extends Component {
                     </View>
 
                 </View>
+                <View>
+                    <Text>*Account name can contain numbers from 1-5 and letters from a-z (small case),There shouldn't be any special characters present in the account name</Text>
+                </View>
                 <View style={{}}>
                     <Text style={{ color: 'red', marginLeft: wp('5%') }}>{this.state.AccountName_error} </Text>
                 </View>
@@ -174,6 +299,11 @@ export default class RegisterScreen extends Component {
                             justifyContent: 'center', alignItems: 'center', width: wp('100%'),
                             height: hp('15%'),
                         }}>
+                            <View>
+                                <Text>
+                                Account Name is Available &#128512; please press proceed
+                                </Text>
+                            </View>
                             <TouchableOpacity style={{
                                 height: hp('5%'), width: wp('40%'), borderRadius: 10,
                                 backgroundColor: '#2D5E86', justifyContent: 'center', alignItems: 'center'
@@ -188,7 +318,44 @@ export default class RegisterScreen extends Component {
                         :
                         null
                 }
-            </View>
+           
+
+                <View>
+                <Dialog.Container visible={this.state.dialogVisible}>
+                <Dialog.Title>Keys Generated</Dialog.Title>
+                <Dialog.Description>
+                    Please keep your private and public keys safe somewhere it help you to restore your account.
+                </Dialog.Description>
+
+                <View>
+                    <Text>
+                        Owner keys:
+                    </Text>
+                    <Text>
+                        Public keys: {this.state.owner_public_keys}
+                    </Text>
+                    <Text>
+                        Private Keys : {this.state.owner_private_keys}
+                    </Text>
+                </View>
+                <View>
+                <Text>
+                        Active keys:
+                    </Text>
+                    <Text>
+                        Public keys: {this.state.active_public_keys}
+                    </Text>
+                    <Text>
+                        Private Keys : {this.state.active_private_keys}
+                    </Text>
+                </View>
+                <Dialog.Button label="Copy and Register" onPress={this.handleCopy} />
+                </Dialog.Container>
+                </View>         
+
+                </View>
+
+                
         );
     }
 }

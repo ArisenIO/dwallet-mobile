@@ -4,9 +4,9 @@ export function validation_reg(email) {
    if (email == "" || email == undefined || email == null) {
        return { status: false, error: "*please enter the account name." };
    }
-   else if (!emailRegex.test(email)) {
-       return { status: false, error: "*please enter valid account name." };
-   }
+//    else if (!emailRegex.test(email)) {
+//        return { status: false, error: "*please enter valid account name." };
+//    }
    else {
        return { status: true, error: '' };
    }
