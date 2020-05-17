@@ -57,7 +57,7 @@ export default class RegisterScreen extends Component {
     }
     _genrate = () => {
         this.setState({ Proceed: false })
-        fetch("http://51.15.78.253:3001/avote/random/word", {
+        fetch("https://dmobileapi.arisen.network/avote/random/word", {
             method: 'GET'
         })
             .then(response => response.json())
@@ -74,7 +74,7 @@ export default class RegisterScreen extends Component {
         var accountname = this.state.AccountName;
         if(accountname.length==12)
         {        Keyboard.dismiss();
-        fetch("http://51.15.78.253:3001/avote/account/lookup", {
+        fetch("https://dmobileapi.arisen.network/avote/account/lookup", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -103,7 +103,7 @@ export default class RegisterScreen extends Component {
         }
     }
     _proceed = () => {
-        fetch("http://51.15.78.253:3001/avote/account/keys", {
+        fetch("https://dmobileapi.arisen.network/avote/account/keys", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -193,7 +193,7 @@ export default class RegisterScreen extends Component {
 
 
 
-            fetch("http://51.15.78.253:3001/avote/register", {
+            fetch("https://dmobileapi.arisen.network/avote/register", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
