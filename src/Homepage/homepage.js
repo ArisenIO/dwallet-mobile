@@ -78,39 +78,6 @@ export default class Homepage extends Component {
     };
     _transferFunds = () => {
         Actions.Send_money();
-
-        // // axios.post(`http://51.15.78.253:3001/avote/transfer`,{
-        // //     from:from,
-        // //     to:to,
-        // //     quantity:quantity,
-        // //     memo:memo,
-        // //     private_key:private_key
-        // //   })
-
-        // fetch("https://dmobileapi.arisen.network/avote/transfer", {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         // from: this.state.AccountName,
-        //         // to : "shikhar",
-        //         // quantity:"0.001",
-        //         // memo:"hello",
-        //         // private_key:this.state.active_private_key
-        //         from: "shikhar",
-        //         to: "stopstruggle",
-        //         quantity: "0.001",
-        //         memo: "hello",
-        //         private_key: "5KYBQRonbjy7bcXhQLG4RWJxvNLEmuiALfeeQtwmA9b368nvdgh"
-        //     })
-        // })
-        //     .then(response => response.json())
-        //     .then((response) => {
-        //         console.log("resp_for_check_api", response)
-        //     })
-        //     .catch(error => console.log(error)) //to catch the errors if any
     }
     recieve_RIX = () => {
         Actions.Recieve();

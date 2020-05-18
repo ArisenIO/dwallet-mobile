@@ -45,7 +45,7 @@ export default class RegisterScreen extends Component {
             this.setState({ checked: true })
         }
     }
-    getEmail(AccountName) {
+    getAccountName(AccountName) {
 
         this.setState({Proceed: false})
 
@@ -252,18 +252,13 @@ export default class RegisterScreen extends Component {
                             <Text style={{ color: '#2D5E86', fontSize: 15, paddingRight: '1%' }}> Account Name</Text>
                         </View>
                         <TextInput
-                            // style={{ backgroundColor: 'red' }}
                             value={this.state.AccountName}
                             placeholder="Enter 12 Letter unique name"
                             placeholderTextColor='#2D5E86'
                             autoCapitalize="none"
-                            maxLength={12}
                             minLength={12}
-                            // editable={false}
-                            onChangeText={(text) => { this.getEmail(text) }}
+                            onChangeText={(text) => { this.getAccountName(text) }}
                             maxLength={12}
-                            autoCapitalize='none'
-                            // onChangeText={(AccountName) => { this.getAccountName(AccountName) }}
                             inputStyle={{
                                 color: '#2D5E86', fontSize: 15, justifyContent: 'center', alignSelf: 'center'
                             }}>

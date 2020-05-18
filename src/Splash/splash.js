@@ -42,8 +42,23 @@ export default class Splash extends Component {
             }
         })
         setTimeout(() => {
+            //Actions.AppIntro();
+
             console.log("inside set timeout");
-            Actions.AppIntro();
+
+            AsyncStorage.getItem('creds').then((value) =>{
+
+                if(value){
+                    Actions.homepage()
+                }
+                else{
+                    Actions.AppIntro();
+                }
+             }).catch((errr)=>{
+                console.log("error in retri",errr);
+    
+             });
+
         }, 3000);
         //     console.log("inside set timeout");
 
