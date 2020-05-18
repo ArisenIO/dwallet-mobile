@@ -3,5 +3,7 @@ export default Images ={
     First_Silder:require('./Image/Firstslider.png'),
     Second_Silder:require('./Image/Secondslider.png'),
     Third_Slider:require('./Image/thirdslider.png'),
-    App_logo:require('./Image/AppLogo.png')
+    App_logo:require('./Image/AppLogo.png'),
+    // Loader:require('./Image/loader.gif')
 }
+export const Loader1=require('./Image/loader.gif')

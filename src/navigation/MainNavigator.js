@@ -11,7 +11,9 @@ import Createwallet from '../createwallet/createwallet';
 import Homepage from '../Homepage/homepage';
 import RegisterScreen from '../register/RegisterScreen';
 import AddAccount from '../AddAccount/AddAccount';
-import AppIntro from '../slider/slider' 
+import AppIntro from '../slider/slider'
+import Recieve from '../Recieved/recieve'
+import Send_money from '../Send/Send_money' 
 
 
 const Scenes = Actions.create(
@@ -48,8 +50,18 @@ const Scenes = Actions.create(
             component={RegisterScreen}
             hideNavBar={true}
         />
+          <Scene key="Recieve"
+            initial={false}
+            hideNavBar={true}
+            component={Recieve}
+        />
        
 
+       <Scene key="Send_money"
+            initial={false}
+            hideNavBar={true}
+            component={Send_money}
+        />
     </Scene>
 )
 

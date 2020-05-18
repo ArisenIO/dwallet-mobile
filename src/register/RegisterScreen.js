@@ -13,7 +13,8 @@ import { validation_reg } from '../../src/Validation/validation'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Dialog from "react-native-dialog";
 import Toast from 'react-native-simple-toast';
-
+import Loader1 from '../assets/Loader'
+//wait reg on blockchain
 
 
 export default class RegisterScreen extends Component {
@@ -30,7 +31,8 @@ export default class RegisterScreen extends Component {
             owner_public_keys:'',
             active_private_keys:'',
             active_public_keys:'',
-            loader_visible: false
+            loader_visible: false,
+            isLoading:false
         };
         console.disableYellowBox = true;
     }
@@ -56,7 +58,7 @@ export default class RegisterScreen extends Component {
         }
     }
     _genrate = () => {
-        this.setState({ Proceed: false })
+        this.setState({ Proceed: false ,isLoading:true})
         fetch("https://dmobileapi.arisen.network/avote/random/word", {
             method: 'GET'
         })
@@ -64,12 +66,13 @@ export default class RegisterScreen extends Component {
             .then((response) => {
                 console.log("resp_genrate_page__", response.account)
                 this.setState({
-                    AccountName: response.account
+                    AccountName: response.account,isLoading:false
                 }, () => { console.log("resp_in_for_account_token", this.state.AccountName) })
             })
             .catch(error => console.log(error)) //to catch the errors if any
     }
     _checkloop = () => {
+        this.setState({isLoading:true})
 
         var accountname = this.state.AccountName;
         if(accountname.length==12)
@@ -89,7 +92,7 @@ export default class RegisterScreen extends Component {
                 console.log("resp_for_check_api", response)
                 if (response.success == true) {
 
-                    this.setState({ Proceed: true })
+                    this.setState({ Proceed: true,isLoading:false })
                 }
                 else {
                     this.setState({ Proceed: false })
@@ -103,6 +106,7 @@ export default class RegisterScreen extends Component {
         }
     }
     _proceed = () => {
+        this.setState({isLoading:false})
         fetch("https://dmobileapi.arisen.network/avote/account/keys", {
             method: 'POST',
             headers: {
@@ -129,7 +133,8 @@ export default class RegisterScreen extends Component {
                         owner_public_keys:response.owner_public,
                         active_private_keys:response.active_private,
                         active_public_keys:response.active_public,
-                        AccountName:response.account
+                        AccountName:response.account,
+                        isLoading:false
                                     })
                     this.showDialog();
 
@@ -223,6 +228,11 @@ export default class RegisterScreen extends Component {
           };
 
     render() {
+        if(this.state.isLoading){
+            return(
+            <Loader1/>
+            )
+          }
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
