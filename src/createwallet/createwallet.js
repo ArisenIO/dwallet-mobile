@@ -56,7 +56,7 @@ export default class Createwallet extends Component {
                         <TouchableOpacity
                             onPress={this.createBtn}
                             style={{
-                                backgroundColor:'#2D5E86', width: wp('90%'), height: hp('5%'),
+                                backgroundColor:'#1976D2', width: wp('90%'), height: hp('5%'),
                                 justifyContent: 'center', alignItems: 'center', borderRadius: 5
                             }}
                         >
@@ -72,7 +72,7 @@ export default class Createwallet extends Component {
                             onPress={this.restoreBtn}
                             style={{
                                 // backgroundColor: '#81d594',
-                                backgroundColor:'#2D5E86',
+                                backgroundColor:'#1976D2',
                                 width: wp('90%'), height: hp('5%'),
                                 justifyContent: 'center', alignItems: 'center', borderRadius: 5
                             }}

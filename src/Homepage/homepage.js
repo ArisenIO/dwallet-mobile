@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-community/async-storage';
+import Loader1 from '../assets/Loader'
+
 export default class Homepage extends Component {
     constructor(props) {
         super(props);
@@ -20,7 +22,8 @@ export default class Homepage extends Component {
             owner_privte_key: '',
             active_private_key: '',
             owner_public_key: '',
-            active_public_key: ''
+            active_public_key: '',
+            isLoading:true,
         };
         console.disableYellowBox = true;
     }
@@ -51,6 +54,7 @@ export default class Homepage extends Component {
                     .then((response) => {
                         console.log("resp_for_check_api", response.account.account_name)
                         if (response.success == true) {
+                            this.setState({isLoading:false})
                             if (response.account.core_liquid_balance) {
                                 this.setState({ core_liquid_balance: response.account.core_liquid_balance })
                             }
@@ -83,6 +87,11 @@ export default class Homepage extends Component {
         Actions.Recieve();
     }
     render() {
+        if(this.state.isLoading){
+            return(
+            <Loader1/>
+            )
+          }
         return (
             <View style={styles.container}>
                 <View style={styles.account_name_container}>
@@ -173,7 +182,7 @@ const styles = StyleSheet.create({
         height: hp('5%'),
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2D5E86',
+        backgroundColor: '#1976D2',
     },
 
 account_name_blnce:
@@ -182,7 +191,7 @@ account_name_blnce:
 },
     account_name: {
         fontSize: 18,
-        color:'#2D5E86',
+        color:'#1976D2',
        
     },
     blac_cntr: {
@@ -211,7 +220,7 @@ account_name_blnce:
         alignItems: 'center'
     },
     balance_name: {
-        color: '#2D5E86',
+        color: '#1976D2',
         fontWeight: '700'
     },
     balance_amount: {
@@ -236,7 +245,7 @@ account_name_blnce:
         alignItems: 'center'
     },
     TouchableOpacity: {
-        backgroundColor: '#2D5E86',
+        backgroundColor: '#1976D2',
         width: wp('90%'),
         height: hp('5%'),
         justifyContent: 'center',
