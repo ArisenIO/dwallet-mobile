@@ -9,7 +9,7 @@ import Clipboard from '@react-native-community/clipboard'
 import { Button, CheckBox } from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
 import image from '../../assets/leftArrow.png';
-import { validation_quantity } from '../../src/Validation/validation'
+import { validation_quantity,validateName } from '../../src/Validation/validation'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Dialog from "react-native-dialog";
 import Toast from 'react-native-simple-toast';
@@ -42,13 +42,20 @@ class Send_money extends Component {
 
     }
 
-    set_to_account_name = (txt) => {
-        if (this.state.to_account_name == null) {
-            this.setState({ AccountName_status: false, AccountName_error: "*please enter your name." })
-        }
-        else {
-            this.setState({ AccountName_status: true, to_account_name: txt, AccountName_error: "" })
-        }
+    // set_to_account_name = (txt) => {
+    //     if (this.state.to_account_name == null) {
+    //         this.setState({ AccountName_status: false, AccountName_error: "*please enter your name." })
+    //     }
+    //     else {
+    //         this.setState({ AccountName_status: true, to_account_name: txt, AccountName_error: "" })
+    //     }
+
+    // }
+
+    set_to_account_name(txt) {
+        this.setState({ to_account_name: txt });
+        this.state.AccountName_error = validateName(txt).error;
+        this.state.AccountName_status = validateName(txt).status;
 
     }
     set_to_quantity(txt) {
@@ -58,13 +65,9 @@ class Send_money extends Component {
 
     }
 
-    // set_to_quantity = (txt) => {
-    //     this.setState({ quantity: txt });
-    // }
-
     _transfer = () => {
-        if (this.state.AccountName_status == true) {
-            if (this.state.txtStatus == true) {
+        if (this.state.AccountName_status) {
+            if (this.state.txtStatus) {
                 this.setState({ isLoading: true })
                 var to_name = this.state.to_account_name;
                 var quantity_ = parseFloat(this.state.quantity).toFixed(4);
@@ -98,11 +101,10 @@ class Send_money extends Component {
 
                     })
                     .catch(error => console.log(error)) //to catch the errors if any
-            }
-            else {
-                // alert("Please fill your ammont correctly..!")
-                this.setState({ txtStatus: false, txtErrorMessage: "*Please Provide valid quantity no." })
-            }
+                }
+                else{
+                    this.setState({txtStatus:false, txtErrorMessage:'*please enter quantity.'})
+                }
         }
 
         else {

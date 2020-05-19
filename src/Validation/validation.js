@@ -11,7 +11,24 @@ export function validation_reg(email) {
        return { status: true, error: '' };
    }
 }
-
+//Name validation
+export function validateName(name) {
+    var nameRegex = /^[a-zA-Z ]+$/;
+    var name = name.trim();
+    if (name == "" || name == undefined || name == null) {
+        return { status: false, error: "*please enter your name."};
+    }
+    else if (!nameRegex.test(name)) {
+        return { status: false, error: "*please enter valid name." };
+    }
+    else if (name.length < 1) {
+        return { status: false, error: "*please enter atleast 1 characters." }
+    }
+    else {
+        return { status: true, error: '' };
+    }
+}
+//quantity validation
 export function validation_quantity(email) {
     var emailRegex =/^\d+(\.\d{1,4})?$/;
    email = email.trim();
