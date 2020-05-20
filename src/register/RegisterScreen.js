@@ -217,6 +217,14 @@ export default class RegisterScreen extends Component {
                     AsyncStorage.setItem(
                           'creds',
                           JSON.stringify(copied_data));
+
+                          AsyncStorage.setItem(
+                            'active_keys',this.state.active_private_keys
+                            );
+                            AsyncStorage.setItem(
+                                'new_wallet',"1"
+                                );
+
                         Actions.homepage();
                 }
                 else{

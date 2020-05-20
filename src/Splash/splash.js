@@ -49,10 +49,10 @@ export default class Splash extends Component {
             AsyncStorage.getItem('creds').then((value) =>{
 
                 if(value){
-                    Actions.homepage()
+                    Actions.replace('homepage')
                 }
                 else{
-                    Actions.AppIntro();
+                    Actions.replace('AppIntro');
                 }
              }).catch((errr)=>{
                 console.log("error in retri",errr);
