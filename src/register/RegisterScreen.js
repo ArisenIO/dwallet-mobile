@@ -38,6 +38,10 @@ export default class RegisterScreen extends Component {
     }
     componentDidMount() {
     }
+    goback=()=>{
+        Actions.Createwallet();
+        // alert("ok")
+    }
     iconpress = () => {
         if (this.state.checked == true) {
             this.setState({ checked: false })
@@ -214,16 +218,28 @@ export default class RegisterScreen extends Component {
             .then((response) => {
                 if(response.success){
                     Toast.show("Registered successfully on Blockchain",Toast.LONG);
-                    AsyncStorage.setItem(
-                          'creds',
-                          JSON.stringify(copied_data));
+                    // AsyncStorage.setItem(
+                    //       'creds',
+                    //       JSON.stringify(copied_data));
+
+                    var items = {
+                        'accountName':this.state.AccountName,
+                        'active_keys':this.state.active_private_keys,
+                        'new_wallet':"1"
+
+
+                    }
 
                           AsyncStorage.setItem(
-                            'active_keys',this.state.active_private_keys
-                            );
-                            AsyncStorage.setItem(
-                                'new_wallet',"1"
-                                );
+                            'items',JSON.stringify({items})
+                            ); 
+
+                        //   AsyncStorage.setItem(
+                        //     'active_keys',this.state.active_private_keys
+                        //     );
+                        //     AsyncStorage.setItem(
+                        //         'new_wallet',"1"
+                        //         );
 
                         Actions.homepage();
                 }
@@ -244,7 +260,11 @@ export default class RegisterScreen extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
+                    <TouchableOpacity
+                    style={{justifyContent:'center'}}
+                    onPress={()=>{this.goback()}}>
                     <Image source={image} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
+                    </TouchableOpacity>
                     <Text style={{
                         fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold',
                         justifyContent: 'center', alignSelf: 'center', marginStart: '2%'
@@ -253,22 +273,22 @@ export default class RegisterScreen extends Component {
                 <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: '8%' }}>
                     <View style={{
                         flex: 1, flexDirection: 'row',
-                        borderColor: '#2D5E86', borderWidth: 1, marginLeft: '4%',
+                        borderColor: '#1976D2', borderWidth: 1, marginLeft: '4%',
                         marginRight: '4%', borderRadius: 5, height: 70, width: '60%'
                     }}>
                         <View style={{ position: 'absolute', backgroundColor: '#FFF', top: -16, left: 25, padding: 5, zIndex: 50 }}>
-                            <Text style={{ color: '#2D5E86', fontSize: 15, paddingRight: '1%' }}> Account Name</Text>
+                            <Text style={{ color: '#1976D2', fontSize: 15, paddingRight: '1%' }}> Account Name</Text>
                         </View>
                         <TextInput
                             value={this.state.AccountName}
                             placeholder="Enter 12 Letter unique name"
-                            placeholderTextColor='#2D5E86'
+                            placeholderTextColor='#1976D2'
                             autoCapitalize="none"
                             minLength={12}
                             onChangeText={(text) => { this.getAccountName(text) }}
                             maxLength={12}
                             inputStyle={{
-                                color: '#2D5E86', fontSize: 15, justifyContent: 'center', alignSelf: 'center'
+                                color: '#1976D2', fontSize: 15, justifyContent: 'center', alignSelf: 'center'
                             }}>
                         </TextInput>
                     </View>
@@ -278,7 +298,7 @@ export default class RegisterScreen extends Component {
                         >
                             <View style={{
                                 borderRadius: 80, width: 70, height: 40, alignItems: 'center', justifyContent: 'center',
-                                backgroundColor: '#2D5E86',
+                                backgroundColor: '#1976D2',
                                 borderRadius: 10
                             }}
                             >
@@ -298,7 +318,7 @@ export default class RegisterScreen extends Component {
                     <TouchableOpacity onPress={() => { this._checkloop() }}
                         style={{
                             height: hp('5%'), width: wp('20%'), borderRadius: 10,
-                            backgroundColor: '#2D5E86', justifyContent: 'center', alignItems: 'center'
+                            backgroundColor: '#1976D2', justifyContent: 'center', alignItems: 'center'
                         }}>
                         <Text style={{ color: '#fff', }}>
                             Checkup
@@ -319,7 +339,7 @@ export default class RegisterScreen extends Component {
                             </View>
                             <TouchableOpacity style={{
                                 height: hp('5%'), width: wp('40%'), borderRadius: 10,
-                                backgroundColor: '#2D5E86', justifyContent: 'center', alignItems: 'center'
+                                backgroundColor: '#1976D2', justifyContent: 'center', alignItems: 'center'
                             }}
                                 onPress={() => { this._proceed() }}
                             >
@@ -378,7 +398,7 @@ const styles = StyleSheet.create({
     },
     header: {
         flexDirection: 'row',
-        backgroundColor: '#2D5E86',
+        backgroundColor: '#1976D2',
         height: 60
     }
 });

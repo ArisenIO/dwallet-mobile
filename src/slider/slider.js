@@ -5,6 +5,7 @@ import Onboarding from 'react-native-onboarding-swiper';
 import { Actions } from 'react-native-router-flux';
 import AsyncStorage from '@react-native-community/async-storage';
 import Createwallet from '../createwallet/createwallet'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 class AppIntro extends Component {
   constructor(props) {
@@ -14,9 +15,9 @@ class AppIntro extends Component {
     }
   }
   componentDidMount() {
-    AsyncStorage.getItem('first_time').then((value) => {
-      this.setState({ showRealApp: !!value, loading: false });
-    });
+    // AsyncStorage.getItem('first_time').then((value) => {
+    //   this.setState({ showRealApp: !!value, loading: false });
+    // });
   }
   _onDone = () => {
     AsyncStorage.setItem('first_time', 'true').then(() => {
@@ -45,21 +46,30 @@ class AppIntro extends Component {
           pages={[
             {
               backgroundColor: '#fff',
-              image: <Image source={Images.First_Silder} />,
-              title: 'Onboarding',
-              subtitle: 'Done with React Native Onboarding Swiper',
+              image: <Image 
+              style={{width:wp('100%'),height:hp('110%'),}}
+              resizeMode='contain'
+              source={Images.First_Silder} />,
+              // title: 'Onboarding',
+              // subtitle: 'Done with React Native Onboarding Swiper',
             },
             {
               backgroundColor: '#fe6e58',
-              image: <Image source={Images.First_Silder} />,
-              title: 'The Title',
-              subtitle: 'This is the subtitle that sumplements the title.',
+              image: <Image 
+              style={{width:wp('100%'),height:hp('110%'),}}
+              resizeMode='contain'
+              source={Images.Second_Silder} />,
+              // title: 'The Title',
+              // subtitle: 'This is the subtitle that sumplements the title.',
             },
             {
               backgroundColor: '#999',
-              image: <Image source={Images.First_Silder} />,
-              title: 'Triangle',
-              subtitle: "Beautiful, isn't it?",
+              image: <Image 
+              style={{width:wp('100%'),height:hp('110%'),}}
+              resizeMode='contain'
+              source={Images.Third_Slider} />,
+              // title: 'Triangle',
+              // subtitle: "Beautiful, isn't it?",
             },
           ]}
         />

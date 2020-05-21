@@ -33,12 +33,16 @@ export default class Homepage extends Component {
     _retrieveData = () => {
         console.log("retrirve");
         try {
-            AsyncStorage.getItem('creds').then((value) => {
+
+            
+    
+
+            AsyncStorage.getItem('items').then((value) => {
                 var parsed_value = JSON.parse(value);
                 console.log("async storage data", parsed_value);
                 this.setState({
-                    AccountName: parsed_value.Account_name,
-                    active_private_key: parsed_value.active_private_keys
+                    AccountName: parsed_value.accountName,
+                    active_private_key: parsed_value.active_keys
                 })
                 fetch("https://dmobileapi.arisen.network/avote/search", {
                     method: 'POST',

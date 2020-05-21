@@ -79,9 +79,10 @@ export default class Splash extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={{ width: wp('90%'), height: hp('60%'), justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ width: wp('50%'), height: hp('50%'), justifyContent: 'center', alignItems: 'center' }}>
                    <Image
-                   source={Icon.App_logo}
+                   style={{ width: wp('50%'), height: hp('30%'), }}
+                   source={Icon.App_logo1}
                    resizeMode="contain"
                    />
                 </View>
@@ -102,7 +103,7 @@ export default class Splash extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#1976D2',
+        backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center'
     },

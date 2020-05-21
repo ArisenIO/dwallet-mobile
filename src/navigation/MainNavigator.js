@@ -42,6 +42,7 @@ const Scenes = Actions.create(
         />
 
         <Scene key="AddAccount"
+        initial={false}
             component={AddAccount}
             hideNavBar={true}
         />
