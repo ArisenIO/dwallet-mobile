@@ -93,7 +93,7 @@ export default class Splash extends Component {
                         alignItems: 'center', marginTop: hp('5%')
                     }}>
                         <Text style={{ fontWeight: '700', fontSize: 35, color: '#356B97' }}>
-                            D-Wallet</Text></View>
+                          dWallet App</Text></View>
                 </View>
 
             </View>

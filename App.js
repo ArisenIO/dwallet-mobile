@@ -6,6 +6,7 @@ import MainNavigator from './src/navigation/MainNavigator';
 // import Slider from './src/slider/slider'
 // import AddAccount from './src/AddAccount/AddAccount'
 // import CustomButton from './src/Component/custom_Button'
+// import Send_money from './src/Send/Send_money'
 export default class App extends React.Component {
   render() {
     return (
