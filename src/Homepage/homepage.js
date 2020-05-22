@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
-    Animated,
     View, Text,
     TouchableOpacity
 } from "react-native";
@@ -33,10 +32,6 @@ export default class Homepage extends Component {
     _retrieveData = () => {
         console.log("retrirve");
         try {
-
-            
-    
-
             AsyncStorage.getItem('items').then((value) => {
                 var parsed_value = JSON.parse(value);
                 console.log("async storage data", parsed_value);

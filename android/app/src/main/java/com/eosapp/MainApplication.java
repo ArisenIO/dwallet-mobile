@@ -1,4 +1,4 @@
-package com.eosapp;
+package com.dwallet.android.arisen.wallet;
 
 import android.app.Application;
 import android.content.Context;
