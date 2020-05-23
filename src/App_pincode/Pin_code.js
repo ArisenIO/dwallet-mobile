@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Icon from '../assets/Icon'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { ButtonGroup } from 'react-native-elements';
+import { Actions } from 'react-native-router-flux';
 
 
 class Pin_Code extends Component {
@@ -12,35 +13,66 @@ class Pin_Code extends Component {
         super(props);
         this.state = {
             password: '',
-            btn: false
+            btn: false,
+            myData: [],
+            myData_status: false,
+            reset_text: false
         }
     }
-    componentDidMount() {
-        AsyncStorage.getItem('pin_code').then((value) => {
-            var get_pin_code_ = JSON.parse(value);
-            console.log("__Pincode_in_componentDidmount__", get_pin_code_)
+    async componentDidMount() {
+        try {
+            this.fetchData()
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    fetchData = () => {
+        AsyncStorage.getItem('pin_code').then(resp => {
+            console.log("after getting data", resp)
+            if (resp != null) {
+                this.setState({ myData: JSON.parse(resp), myData_status: true })
+            }
+            else {
+                this.setState({ myData_status: false })
+            }
+            console.log("__get__", this.state.myData)
         })
     }
-    check_pin = (get_pin_code_) => {
-        var pin_code = {
-            "pin_code": this.state.password
+
+    check_pin = () => {
+        if (this.state.myData_status == true) {
+            if (this.state.myData.pin_code === this.state.password) {
+                Actions.Createwallet();
+            }
+            else {
+                alert("Please enter correct pin.")
+            }
         }
-        console.log("___pin_code_in_ayncstorage", pin_code)
-        AsyncStorage.setItem(
-            'pin_code', JSON.stringify(pin_code)
-        );
-        if (get_pin_code_ == this.state.password) {
-            alert("ok")
+        else {
+            var pin_code = {
+                "pin_code": this.state.password
+            }
+            console.log("___pin_code_in_ayncstorage", pin_code)
+            AsyncStorage.setItem(
+                'pin_code', JSON.stringify(pin_code)
+            );
+            Actions.Createwallet();
         }
     }
+    //  _removeData =()=>{
+    //     this.setState({ reset_text: true })
+    //     // AsyncStorage.removeItem('pin_code',JSON.stringify(this.state.myData))
+    //          AsyncStorage.removeItem('pin_code',JSON.stringify(this.state.myData),()=>{this.check_pin()})
+    // }
     render() {
         { console.log("__value", this.state.password) }
         return (
-            <View style={{ flex: 1,backgroundColor:'white', }}>
-                <View style={{  marginTop:50,width: wp('100%'), height: hp('30%'), justifyContent: 'center', alignItems: 'center',
-                  }}>
+            <View style={{ flex: 1, backgroundColor: 'white', }}>
+                <View style={{
+                    marginTop: 50, width: wp('100%'), height: hp('30%'), justifyContent: 'center', alignItems: 'center',
+                }}>
                     <Image
-            
                         source={Icon.App_logo1}
                         style={{ width: wp('80%'), height: hp('25%') }}
                     />
@@ -51,6 +83,15 @@ class Pin_Code extends Component {
                     </Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
+                    {/* {
+                        this.state.reset_text == true ?
+                            <View style={{justifyContent:'center', alignItems:'center',marginVertical:hp('2%')}}> 
+                                <Text style={{ color: '#1976D2', fontSize: 20 }}>Change your pin</Text>
+
+                            </View>
+                            :
+                            null
+                    } */}
                     <SmoothPinCodeInput
                         containerDefault={
                             { backgroundColor: 'red' }
@@ -61,28 +102,39 @@ class Pin_Code extends Component {
                         value={this.state.password}
                         onFulfill={() => { this.setState({ btn: true }) }}
                         onTextChange={password => this.setState({ password })} />
-                    {/* {
-                    this.state.btn==true ? */}
-                    <View style={{  justifyContent: 'center', alignItems: 'center', width: wp('100%'),
-                     height: hp('15%') }}>
+                    {
+                        this.state.btn == true ?
+                    <View style={{
+                        justifyContent: 'center', alignItems: 'center', width: wp('100%'),
+                        height: hp('15%'), justifyContent: 'space-between', marginVertical: hp('5%')
+                    }}>
                         <TouchableOpacity
-                            style={{ backgroundColor: '#1976D2', borderRadius: 10, borderWidth: wp('0.2%'),
-                             width: wp('40%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center' }}
+                            style={{
+                                backgroundColor: '#1976D2', borderRadius: 10, borderWidth: wp('0.2%'),
+                                width: wp('40%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center'
+                            }}
                             onPress={() => { this.check_pin() }}
                         >
-                            <Text style={{color:'white'}}>Done</Text>
+                            <Text style={{ color: 'white' }}>Done</Text>
                         </TouchableOpacity>
+
+                        {/* <TouchableOpacity
+                            style={{
+                                backgroundColor: '#1976D2', borderRadius: 10, borderWidth: wp('0.2%'),
+                                width: wp('40%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center'
+                            }}
+                            onPress={() => { this._removeData() }}
+                        >
+                            <Text style={{ color: 'white' }}>Reset Pin</Text>
+                        </TouchableOpacity> */}
+
                     </View>
-
-                    {/* :
-                        null
-                } */}
+                     :
+                            null
+                    } 
                 </View>
-
             </View>
-
         );
     }
 }
-
 export default Pin_Code;

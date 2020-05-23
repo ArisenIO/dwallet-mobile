@@ -14,6 +14,7 @@ import AddAccount from '../AddAccount/AddAccount';
 import AppIntro from '../slider/slider'
 import Recieve from '../Recieved/recieve'
 import Send_money from '../Send/Send_money' 
+import Pin_Code from '../App_pincode/Pin_code'
 
 
 const Scenes = Actions.create(
@@ -28,6 +29,11 @@ const Scenes = Actions.create(
             initial={false}
             hideNavBar={true}
             component={AppIntro}
+        />
+        <Scene key="Pin_Code"
+            initial={false}
+            hideNavBar={true}
+            component={Pin_Code}
         />
           <Scene
             key="Createwallet"

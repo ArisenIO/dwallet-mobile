@@ -4,7 +4,8 @@ import Images from '../assets/Icon'
 import Onboarding from 'react-native-onboarding-swiper';
 import { Actions } from 'react-native-router-flux';
 import AsyncStorage from '@react-native-community/async-storage';
-import Createwallet from '../createwallet/createwallet'
+// import Createwallet from '../createwallet/createwallet'
+import Pin_Code from '../App_pincode/Pin_code'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 class AppIntro extends Component {
@@ -22,13 +23,13 @@ class AppIntro extends Component {
   _onDone = () => {
     AsyncStorage.setItem('first_time', 'true').then(() => {
       this.setState({ showRealApp: true });
-      Actions.Createwallet();
+      Actions.Pin_Code();
     });
   };
   _onSkip = () => {
     AsyncStorage.setItem('first_time', 'true').then(() => {
       this.setState({ showRealApp: true });
-      Actions.Createwallet();
+      Actions.Pin_Code();
     });
   };
   render() {
@@ -36,7 +37,7 @@ class AppIntro extends Component {
 
     if (this.state.showRealApp) {
          return (
-        <Createwallet />
+        <Pin_Code />
       );
     }
     else {
