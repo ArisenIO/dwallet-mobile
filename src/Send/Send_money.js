@@ -9,11 +9,12 @@ import Clipboard from '@react-native-community/clipboard'
 import { Button, CheckBox } from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
 import image from '../../assets/leftArrow.png';
-import { validation_quantity,validateName } from '../../src/Validation/validation'
+import { validation_quantity, validateName } from '../../src/Validation/validation'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Dialog from "react-native-dialog";
 import Toast from 'react-native-simple-toast';
 import Loader1 from '../assets/Loader'
+import Icon from '../assets/Icon'
 
 class Send_money extends Component {
     constructor(props) {
@@ -101,10 +102,10 @@ class Send_money extends Component {
 
                     })
                     .catch(error => console.log(error)) //to catch the errors if any
-                }
-                else{
-                    this.setState({txtStatus:false, txtErrorMessage:'*please enter quantity.'})
-                }
+            }
+            else {
+                this.setState({ txtStatus: false, txtErrorMessage: '*please enter quantity.' })
+            }
         }
 
         else {
@@ -129,75 +130,51 @@ class Send_money extends Component {
                         justifyContent: 'center', alignSelf: 'center', marginStart: '2%'
                     }}>Transfer RIX</Text>
                 </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: '8%' }}>
-                    <View style={{
-                        flex: 1, flexDirection: 'row',
-                        borderColor: '#1976D2', borderWidth: 1, marginLeft: '4%',
-                        marginRight: '4%', borderRadius: 5, height: 70, width: '60%'
-                    }}>
-                        <View style={{ position: 'absolute', backgroundColor: '#FFF', top: -16, left: 25, padding: 5, zIndex: 50 }}>
-                            <Text style={{ color: '#1976D2', fontSize: 15, paddingRight: '1%' }}> To Name</Text>
-                        </View>
-                        <TextInput
-                            value={this.state.to_account_name}
-                            placeholder="To account name"
-                            placeholderTextColor='#1976D2'
-                            autoCapitalize="none"
-                            minLength={12}
-                            onChangeText={(text) => { this.set_to_account_name(text) }}
-                            maxLength={12}
-                            inputStyle={{
-                                color: '#1976D2', fontSize: 15, justifyContent: 'center', alignSelf: 'center'
-                            }}>
-                        </TextInput>
-                    </View>
-
+                <View style={{
+                    width: wp('100%'), height: hp('5%'),
+                    justifyContent: 'center', alignItems: 'center', marginTop: hp('5%')
+                }}>
+                    <TextInput
+                        style={{ width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18, borderColor: 'gray', height: hp('5%') }}
+                        value={this.state.to_account_name}
+                        placeholder="To Name"
+                        autoCapitalize="none"
+                        minLength={12}
+                        onChangeText={(text) => { this.set_to_account_name(text) }}
+                        maxLength={12}
+                    />
                 </View>
                 <View style={{ marginLeft: 15 }}>
                     <Text style={{ color: 'red' }}>{this.state.AccountName_error} </Text>
                 </View>
-
-                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: '8%' }}>
-                    <View style={{
-                        flex: 1, flexDirection: 'row',
-                        borderColor: '#1976D2', borderWidth: 1, marginLeft: '4%',
-                        marginRight: '4%', borderRadius: 5, height: 70, width: '60%'
-                    }}>
-                        <View style={{ position: 'absolute', backgroundColor: '#FFF', top: -16, left: 25, padding: 5, zIndex: 50 }}>
-                            <Text style={{ color: '#1976D2', fontSize: 15, paddingRight: '1%' }}> Quantity</Text>
-                        </View>
-                        <TextInput
-                            value={this.state.quantity}
-                            placeholder="Quantity"
-                            placeholderTextColor='#1976D2'
-                            autoCapitalize="none"
-                            keyboardType='number-pad'
-                            minLength={12}
-                            onChangeText={(text) => { this.set_to_quantity(text) }}
-
-                            inputStyle={{
-                                color: '#1976D2', fontSize: 15, justifyContent: 'center', alignSelf: 'center'
-                            }}>
-                        </TextInput>
-
-                    </View>
+                <View style={{
+                    width: wp('100%'), height: hp('5%'),
+                    justifyContent: 'center', alignItems: 'center', marginTop: hp('5%')
+                }}>
+                    <TextInput
+                        style={{ width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18, borderColor: 'gray', height: hp('5%') }}
+                        value={this.state.quantity}
+                        placeholder="Quantity"
+                        autoCapitalize="none"
+                        keyboardType='number-pad'
+                        minLength={12}
+                        onChangeText={(text) => { this.set_to_quantity(text) }}
+                    />
                 </View>
                 <View style={{ marginLeft: 15 }}>
                     <Text style={{ color: 'red' }}>{this.state.txtErrorMessage} </Text>
                 </View>
-
-                <View style={{ justifyContent: 'flex-end', alignItems: 'center', width: wp('100%'), height: hp('50%'), }}>
-                    <TouchableOpacity onPress={() => { this._transfer() }}
-                        style={{
-                            height: hp('5%'), width: wp('90%'), borderRadius: 10,
-                            backgroundColor: '#1976D2', justifyContent: 'center', alignItems: 'center'
-                        }}>
-                        <Text style={{ color: '#fff', }}>
-                            Send
-                </Text>
+                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                    <TouchableOpacity
+                        onPress={() => { this._transfer() }}
+                    >
+                        <Image
+                            resizeMode="contain"
+                            source={Icon.Send_btn}
+                            style={{ width: wp('40%'), }}
+                        />
                     </TouchableOpacity>
                 </View>
-
             </View>
         );
     }
@@ -211,7 +188,7 @@ const styles = StyleSheet.create({
     },
     header: {
         flexDirection: 'row',
-        backgroundColor: '#2D5E86',
+        backgroundColor: '#4383fc',
         height: 60
     }
 })

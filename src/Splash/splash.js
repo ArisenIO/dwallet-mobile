@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     Animated,
-    View, Text,Image
+    View, Text,Image, ImageBackground
 } from "react-native";
 import AsyncStorage from '@react-native-community/async-storage';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -79,7 +79,12 @@ export default class Splash extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={{ width: wp('50%'), height: hp('50%'), justifyContent: 'center', alignItems: 'center' }}>
+                <Image
+                style={{width:wp('100%'), height:hp('110%')}}
+                resizeMode="contain"
+                source={Icon.Splash_Icon}
+                />            
+                  {/* <View style={{ width: wp('50%'), height: hp('50%'), justifyContent: 'center', alignItems: 'center' }}>
                    <Image
                    style={{ width: wp('50%'), height: hp('30%'), }}
                    source={Icon.App_logo1}
@@ -94,7 +99,7 @@ export default class Splash extends Component {
                     }}>
                         <Text style={{ fontWeight: '700', fontSize: 35, color: '#356B97' }}>
                           dWallet App</Text></View>
-                </View>
+                </View> */}
 
             </View>
         );
@@ -103,8 +108,6 @@ export default class Splash extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white',
-        justifyContent: 'center',
-        alignItems: 'center'
+       
     },
 });

@@ -51,8 +51,6 @@ class AppIntro extends Component {
               style={{width:wp('100%'),height:hp('110%'),}}
               resizeMode='contain'
               source={Images.First_Silder} />,
-              // title: 'Onboarding',
-              // subtitle: 'Done with React Native Onboarding Swiper',
             },
             {
               backgroundColor: '#fff',
@@ -60,18 +58,6 @@ class AppIntro extends Component {
               style={{width:wp('100%'),height:hp('110%'),}}
               resizeMode='contain'
               source={Images.Second_Silder} />,
-              // title: 'The Title',
-              // subtitle: 'This is the subtitle that sumplements the title.',
-            },
-            {
-              backgroundColor: '#fff',
-              image: <Image 
-              style={{width:wp('80%'),height:hp('50%'),}}
-              resizeMode='contain'
-              source={Images.App_logo1} />,
-              title: 'Welcome to dWallet App',
-             
-              // subtitle: "Beautiful, isn't it?",
             },
           ]}
         />

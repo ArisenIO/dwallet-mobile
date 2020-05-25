@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View,Text, Image, StyleSheet,TouchableOpacity} from 'react-native'
+import {View,Text, Image, StyleSheet,TouchableOpacity, ImageBackground} from 'react-native'
 import Icon from '../assets/Icon'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import image from '../../assets/leftArrow.png';
@@ -24,10 +24,13 @@ class Recieve extends Component {
                     }}>Home</Text>
                 </View>
                 <View style={{justifyContent:'center', alignItems:'center', marginVertical:hp('5%')}}>
-                <Text style={{fontSize:20}}>Scan your QR Code.</Text>
+                <Text style={{fontSize:20,color:'#a8a9ae'}}>Scan your QR Code.</Text>
                 </View>
                 <View style={{justifyContent:'center', alignItems:'center'}}>
-                <View style={{borderWidth:wp('1%'),
+                <ImageBackground
+                resizeMode="contain"
+                source={Icon.QR_code_frame}
+                style={{
                 height:hp('30%'), 
                 justifyContent:'center',
                  alignItems:'center',
@@ -35,11 +38,11 @@ class Recieve extends Component {
                  borderColor:'black'
                  }}>
                     <Image
-
+                    style={{width:wp('40%'), height:hp('20%')}}
                     source={Icon.Qr_code}
                     resizeMode="contain"
                     />
-                </View>
+                </ImageBackground>
                 </View>
                 
             </View>
@@ -57,7 +60,7 @@ container:{
 },
 header: {
     flexDirection: 'row',
-    backgroundColor: '#1976D2',
+    backgroundColor: '#4383fc',
     height: 60
 }
 })
