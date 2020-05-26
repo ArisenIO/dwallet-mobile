@@ -12,7 +12,7 @@ class Pin_Code extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            password: '',
+            confirm_password: '',
             btn: false,
             myData: [],
             myData_status: false,
@@ -41,8 +41,9 @@ class Pin_Code extends Component {
     }
 
     check_pin = () => {
+        if(this.state.password===this.state.confirm){  
         if (this.state.myData_status == true) {
-            if (this.state.myData.pin_code === this.state.password) {
+            if (this.state.myData.pin_code === this.state.confirm_password) {
                 Actions.Createwallet();
             }
             else {
@@ -51,7 +52,7 @@ class Pin_Code extends Component {
         }
         else {
             var pin_code = {
-                "pin_code": this.state.password
+                "pin_code": this.state.confirm_password
             }
             console.log("___pin_code_in_ayncstorage", pin_code)
             AsyncStorage.setItem(
@@ -60,13 +61,17 @@ class Pin_Code extends Component {
             Actions.Createwallet();
         }
     }
+    else{
+        alert("please enter correct pass")
+    }
+    }
     //  _removeData =()=>{
     //     this.setState({ reset_text: true })
     //     // AsyncStorage.removeItem('pin_code',JSON.stringify(this.state.myData))
     //          AsyncStorage.removeItem('pin_code',JSON.stringify(this.state.myData),()=>{this.check_pin()})
     // }
     render() {
-        { console.log("__value", this.state.password) }
+        { console.log("__value", this.state.confirm_password) }
         return (
             <View style={{ flex: 1, backgroundColor: 'white', }}>
                 <View style={{
@@ -78,7 +83,7 @@ class Pin_Code extends Component {
                     />
                 </View>
                 <View style={{ marginTop: 20, width: wp("100%"), height: hp('5%'), justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ color: '#1976D2', fontSize: 20, fontWeight: '700' }}>
+                    <Text style={{ color: '#379aff', fontSize: 20, fontWeight: '700' }}>
                         Enter your security pin code
                     </Text>
                 </View>
@@ -92,7 +97,8 @@ class Pin_Code extends Component {
                             :
                             null
                     } */}
-                    <SmoothPinCodeInput
+
+                        <SmoothPinCodeInput
                         containerDefault={
                             { backgroundColor: 'red' }
                         }
@@ -100,8 +106,29 @@ class Pin_Code extends Component {
                         cellSize={36}
                         codeLength={4}
                         value={this.state.password}
-                        onFulfill={() => { this.setState({ btn: true }) }}
+                        onFulfill={() => { this.setState({ confirm: true }) }}
                         onTextChange={password => this.setState({ password })} />
+                        {
+                            this.state.confirm==true ?
+                        <View >
+                            <View style={{marginVertical:10}}>
+                            <Text style={{color:'#379aff'}}>Confirm your password</Text>
+                            </View>
+                        
+                    <SmoothPinCodeInput
+                        containerDefault={
+                            { backgroundColor: 'red' }
+                        }
+                        password mask="﹡"
+                        cellSize={36}
+                        codeLength={4}
+                        value={this.state.confirm_password}
+                        onFulfill={() => { this.setState({ btn: true }) }}
+                        onTextChange={confirm_password => this.setState({ confirm_password })} />
+                        </View>
+                        :
+                        null
+                    }
                     {
                         this.state.btn == true ?
                     <View style={{

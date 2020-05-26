@@ -151,7 +151,7 @@ export default class AddAccount extends Component {
                         <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold', justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Add Account</Text>
                     </View>
 
-                    <V
+                    <View
                     iew style={{
                         width: wp('100%'), height: hp('5%'),
                         justifyContent: 'center', alignItems: 'center', marginTop: hp('5%')
