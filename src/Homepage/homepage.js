@@ -3,11 +3,12 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, Text,
-    TouchableOpacity
+    TouchableOpacity, Image
 } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-community/async-storage';
 import Loader1 from '../assets/Loader'
+import Icon from '../assets/Icon'
 
 export default class Homepage extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ export default class Homepage extends Component {
             active_private_key: '',
             owner_public_key: '',
             active_public_key: '',
-            isLoading:true,
+            isLoading: true,
         };
         console.disableYellowBox = true;
     }
@@ -53,7 +54,7 @@ export default class Homepage extends Component {
                     .then((response) => {
                         console.log("resp_for_check_api", response.account.account_name)
                         if (response.success == true) {
-                            this.setState({isLoading:false})
+                            this.setState({ isLoading: false })
                             if (response.account.core_liquid_balance) {
                                 this.setState({ core_liquid_balance: response.account.core_liquid_balance })
                             }
@@ -86,14 +87,101 @@ export default class Homepage extends Component {
         Actions.Recieve();
     }
     render() {
-        if(this.state.isLoading){
-            return(
-            <Loader1/>
-            )
-          }
+        // if(this.state.isLoading){
+        //     return(
+        //     <Loader1/>
+        //     )
+        //   }
         return (
             <View style={styles.container}>
-                <View style={styles.account_name_container}>
+                <View style={{ backgroundColor: '#4383fc', height: hp('35%'), width: wp('100%'), justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ width: wp('75%'), height: hp('15%'), justifyContent: 'space-between', flexDirection: 'row' }}>
+                        <Image
+                            resizeMode="contain"
+                            source={Icon.Profile_pic}
+                            style={{ height: hp('10%'), width: wp('20%'), borderRadius: 75 }}
+                        />
+
+                        <View style={{ height: hp('12%'), width: wp('50%'), justifyContent: 'space-between' }}>
+                            <View style={{ height: hp('6%'), justifyContent: 'space-between' }}>
+                                <Text style={{ color: '#ffffff', }}>Your Account Name is</Text>
+                                <Text style={{ color: '#ffffff', fontWeight: '700' }}>
+                                    Avinesh Singh
+                                    {/* {this.state.AccountName} */}
+                                    </Text>
+                            </View>
+                            <Text style={{ color: '#ffffff', }}>Balance Statement -></Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={{ backgroundColor: '#4383fc' }}>
+                    <View style={{
+                        backgroundColor: '#e6e8e9', height: hp('65%'), width: wp('100%'), borderTopLeftRadius: 40,
+                        justifyContent: 'center', alignItems: 'center', borderTopRightRadius: 40
+                    }}>
+                        <View style={{
+                            backgroundColor: '#ffffff', height: hp('10%'), width: wp('90%'),
+                            flexDirection: 'row', justifyContent: 'center', alignItems: 'center',borderRadius:15, marginVertical:hp("2%")
+                        }}>
+                            <View style={{flexDirection:'row', justifyContent:'space-between',height: hp('3%'), width: wp('75%') }}>
+                                    <Text style={{color:'#75767b'}}>Liquid Balance</Text>
+                                    <Text style={{color:'#101217', fontWeight:'700'}}>
+                                        2000 RIX
+                                        {/* {this.state.core_liquid_balance} */}
+                                        </Text>
+                            </View>
+                        </View>
+
+                        <View style={{
+                            backgroundColor: '#ffffff', height: hp('10%'), width: wp('90%'),
+                            flexDirection: 'row', justifyContent: 'center', alignItems: 'center',borderRadius:15, marginVertical:hp("2%")
+                        }}>
+                            <View style={{flexDirection:'row', justifyContent:'space-between',height: hp('3%'), width: wp('75%') }}>
+                                    <Text style={{color:'#75767b'}}>Staked S]to Self</Text>
+                                    <Text style={{color:'#101217', fontWeight:'700'}}>
+                                        200 RIX
+                                        {/* {this.state.staked_to_self} */}
+                                        </Text>
+                            </View>
+                        </View>
+
+                        <View style={{
+                            backgroundColor: '#ffffff', height: hp('10%'), width: wp('90%'),
+                            flexDirection: 'row', justifyContent: 'center', alignItems: 'center',borderRadius:15, marginVertical:hp("2%")
+                        }}>
+                            <View style={{flexDirection:'row', justifyContent:'space-between',height: hp('3%'), width: wp('75%') }}>
+                                    <Text style={{color:'#75767b'}}>Total Balance</Text>
+                                    <Text style={{color:'#101217', fontWeight:'700'}}>
+                                        20 RIX
+                                        {/* {this.state.total_balance} */}
+                                        </Text>
+                            </View>
+                        </View>
+
+                        <View style={{ flexDirection:'row', width:wp('90%'), justifyContent:'space-between'}}> 
+                        <TouchableOpacity 
+                         onPress={() => { this._transferFunds() }}
+                        style={{justifyContent:'center', alignItems:'center', width:wp('42%'),height:hp('6%'),
+                        borderRadius:15, borderWidth:wp('0.2%'), borderColor:'#101217'}}
+                        > 
+                           <Text style={{color:'#101217', fontWeight:'700'}}>Send</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity 
+                         onPress={() => { this.recieve_RIX() }}
+                        style={{justifyContent:'center', alignItems:'center', width:wp('42%'),height:hp('6%'),
+                        borderRadius:15,backgroundColor:'#2dd5c9'}}
+                        >
+                           <Text style={{color:'#ffffff', fontWeight:'700'}}>Recieve</Text>
+                        </TouchableOpacity>
+                            
+                        </View>
+
+                        
+                    </View>
+                </View>
+
+                {/* <View style={styles.account_name_container}>
                     <Text style={styles.account_name}>
                         Your Account Name </Text>
                     <Text style={styles.account_name}>
@@ -157,7 +245,7 @@ export default class Homepage extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                </View>
+                </View> */}
             </View >
         );
     }
@@ -165,7 +253,7 @@ export default class Homepage extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 50,
+
 
     },
     account_name_container: {
@@ -184,14 +272,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#1976D2',
     },
 
-account_name_blnce:
-{
-    color: 'white'
-},
+    account_name_blnce:
+    {
+        color: 'white'
+    },
     account_name: {
         fontSize: 18,
-        color:'#1976D2',
-       
+        color: '#1976D2',
+
     },
     blac_cntr: {
         justifyContent: 'center',

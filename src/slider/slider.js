@@ -44,6 +44,7 @@ class AppIntro extends Component {
            return (
         <Onboarding
           onDone={() => { this._onDone() }}
+          onSkip={() => { this._onSkip()}}
           pages={[
             {
               backgroundColor: '#fff',

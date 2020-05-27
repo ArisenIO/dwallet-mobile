@@ -11,7 +11,8 @@ export default Images ={
     Send_btn:require('./Image/Sendbtn.png'),
     Generate_btn:require('./Image/Generate.png'),
     Checkip_btn:require('./Image/Checkup.png'),
-    QR_code_frame:require('./Image/QRcodeframe.png')
+    QR_code_frame:require('./Image/QRcodeframe.png'),
+    Profile_pic:require('./Image/profile.png')
     // Loader:require('./Image/loader.gif')
 }
 export const Loader1=require('./Image/loader.gif')
