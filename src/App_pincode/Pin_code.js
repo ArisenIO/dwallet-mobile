@@ -41,7 +41,7 @@ class Pin_Code extends Component {
     }
 
     check_pin = () => {
-        if(this.state.password===this.state.confirm){  
+        if(this.state.password===this.state.confirm_password){  
         if (this.state.myData_status == true) {
             if (this.state.myData.pin_code === this.state.confirm_password) {
                 Actions.Createwallet();
