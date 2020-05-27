@@ -1,8 +1,7 @@
 import React from 'react';
-import {useEffect} from 'react-native'
-// import MainNavigator from './src/navigation/MainNavigator';
+import MainNavigator from './src/navigation/MainNavigator';
 // import Homepage from './src/Homepage/homepage'
-import Recieve from './src/Recieved/recieve'
+// import Recieve from './src/Recieved/recieve'
 // import Splash from './src/Splash/splash'
 // import Slider from './src/slider/slider'
 // import AddAccount from './src/AddAccount/AddAccount'
@@ -12,17 +11,10 @@ import Recieve from './src/Recieved/recieve'
 // import Createwallet from './src/createwallet/createwallet'
 // import Recieve from './src/Recieved/recieve'
 // import RegisterScreen from './src/register/RegisterScreen'
-// import HelloWorld from './src/dummy/test'
-import SplashScreen from 'react-native-splash-screen' 
 export default class App extends React.Component {
-  componentDidMount()
-  {
-    SplashScreen.hide()
-  }
   render() {
-    
     return (
-      <Recieve />
+      <MainNavigator />
     )
   }
 }

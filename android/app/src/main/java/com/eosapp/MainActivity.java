@@ -1,10 +1,6 @@
 package com.dwallet.android.arisen.wallet;
 
-import android.os.Bundle;
-
 import com.facebook.react.ReactActivity;
-import org.devio.rn.splashscreen.SplashScreen; // Import this.
-
 
 public class MainActivity extends ReactActivity {
 
@@ -16,10 +12,4 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "dWallet";
   }
-  @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        SplashScreen.show(this);
-        super.onCreate(savedInstanceState);
-    }
-
 }
