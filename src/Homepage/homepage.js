@@ -3,12 +3,13 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, Text,
-    TouchableOpacity, Image
+    TouchableOpacity, Image,ScrollView
 } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-community/async-storage';
 import Loader1 from '../assets/Loader'
 import Icon from '../assets/Icon'
+import image from '../../assets/leftArrow.png';
 
 export default class Homepage extends Component {
     constructor(props) {
@@ -87,13 +88,23 @@ export default class Homepage extends Component {
         Actions.Recieve();
     }
     render() {
-        // if(this.state.isLoading){
-        //     return(
-        //     <Loader1/>
-        //     )
-        //   }
+        if(this.state.isLoading){
+            return(
+            <Loader1/>
+            )
+          }
         return (
             <View style={styles.container}>
+                 <View style={styles.header}>
+                        <TouchableOpacity
+                            onPress={() => { this.goback() }}
+                            style={{ justifyContent: 'center' }}>
+                            <Image source={image} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
+
+                        </TouchableOpacity>
+                        <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold', justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Add Account</Text>
+                    </View>
+                <ScrollView>
                 <View style={{ backgroundColor: '#4383fc', height: hp('35%'), width: wp('100%'), 
                 justifyContent: 'center', alignItems: 'center' }}>
                     <View style={{ width: wp('75%'),height: hp('15%'),
@@ -108,8 +119,8 @@ export default class Homepage extends Component {
                             <View style={{ height: hp('6%'), justifyContent: 'space-between' }}>
                                 <Text style={{ color: '#ffffff', }}>Your Account Name is</Text>
                                 <Text style={{ color: '#ffffff', fontWeight: '700',marginTop:15, fontSize:25 }}>
-                                    Avinesh Kumar Singh
-                                    {/* {this.state.AccountName} */}
+                                    {/* Avinesh Kumar Singh */}
+                                    {this.state.AccountName}
                                     </Text>
                             </View>
                             {/* <Text style={{ color: '#ffffff', }}>Balance Statement -></Text> */}
@@ -123,7 +134,7 @@ export default class Homepage extends Component {
                 
                 <View style={{ backgroundColor: '#4383fc' }}>
                     <View style={{
-                        backgroundColor: '#e6e8e9', height: hp('65%'), width: wp('100%'), borderTopLeftRadius: 40,
+                        backgroundColor: '#e6e8e9', height: hp('55%'), width: wp('100%'), borderTopLeftRadius: 40,
                         justifyContent: 'center', alignItems: 'center', borderTopRightRadius: 40
                     }}>
                         <View style={{
@@ -133,8 +144,8 @@ export default class Homepage extends Component {
                             <View style={{flexDirection:'row', justifyContent:'space-between',height: hp('3%'), width: wp('75%') }}>
                                     <Text style={{color:'#75767b'}}>Liquid Balance</Text>
                                     <Text style={{color:'#101217', fontWeight:'700'}}>
-                                        2000 RIX
-                                        {/* {this.state.core_liquid_balance} */}
+                                        {/* 2000 RIX */}
+                                        {this.state.core_liquid_balance}
                                         </Text>
                             </View>
                         </View>
@@ -146,8 +157,8 @@ export default class Homepage extends Component {
                             <View style={{flexDirection:'row', justifyContent:'space-between',height: hp('3%'), width: wp('75%') }}>
                                     <Text style={{color:'#75767b'}}>Staked S]to Self</Text>
                                     <Text style={{color:'#101217', fontWeight:'700'}}>
-                                        200 RIX
-                                        {/* {this.state.staked_to_self} */}
+                                        {/* 200 RIX */}
+                                        {this.state.staked_to_self}
                                         </Text>
                             </View>
                         </View>
@@ -159,8 +170,8 @@ export default class Homepage extends Component {
                             <View style={{flexDirection:'row', justifyContent:'space-between',height: hp('3%'), width: wp('75%') }}>
                                     <Text style={{color:'#75767b'}}>Total Balance</Text>
                                     <Text style={{color:'#101217', fontWeight:'700'}}>
-                                        20 RIX
-                                        {/* {this.state.total_balance} */}
+                                        {/* 20 RIX */}
+                                        {this.state.total_balance}
                                         </Text>
                             </View>
                         </View>
@@ -253,6 +264,7 @@ export default class Homepage extends Component {
                         </View>
                     </View>
                 </View> */}
+                </ScrollView>
             </View >
         );
     }
@@ -262,6 +274,11 @@ const styles = StyleSheet.create({
         flex: 1,
 
 
+    },
+    header: {
+        flexDirection: 'row',
+        backgroundColor: '#4383fc',
+        height: 60
     },
     account_name_container: {
         width: wp('100%'),

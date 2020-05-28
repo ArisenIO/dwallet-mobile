@@ -36,21 +36,12 @@ class Pin_Code extends Component {
             else {
                 this.setState({ myData_status: false })
             }
-            console.log("__get__", this.state.myData)
         })
     }
 
     check_pin = () => {
-        if(this.state.password===this.state.confirm_password){  
-        if (this.state.myData_status == true) {
-            if (this.state.myData.pin_code === this.state.confirm_password) {
-                Actions.Createwallet();
-            }
-            else {
-                alert("Please enter correct pin.")
-            }
-        }
-        else {
+
+        if (this.state.password === this.state.confirm_password) {
             var pin_code = {
                 "pin_code": this.state.confirm_password
             }
@@ -60,10 +51,18 @@ class Pin_Code extends Component {
             );
             Actions.Createwallet();
         }
-    }
-    else{
-        alert("please enter correct pass")
-    }
+        else if (this.state.myData_status == true) {
+            if (this.state.myData.pin_code === this.state.confirm_password) {
+                Actions.Createwallet();
+                // alert("theek hai")
+            }
+            else {
+                alert("Please enter correct pin code.")
+            }
+        }
+        else {
+            alert("please enter correct pin code.")
+        }
     }
     //  _removeData =()=>{
     //     this.setState({ reset_text: true })
@@ -74,11 +73,12 @@ class Pin_Code extends Component {
         { console.log("__value", this.state.confirm_password) }
         return (
             <View style={{ flex: 1, backgroundColor: 'white', }}>
-                <View style={{justifyContent:'center', alignItems:'center',marginTop: 30, width: wp('100%'), height: hp('5%')}}> 
-                    <Text style={{fontSize:40,fontWeight:'700', color: '#379aff'}}>dWallet</Text>
+
+                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 30, width: wp('100%'), height: hp('5%') }}>
+                    <Text style={{ fontSize: 40, fontWeight: '700', color: '#379aff' }}>dWallet</Text>
                 </View>
                 <View style={{
-                     width: wp('100%'), height: hp('30%'), justifyContent: 'center', alignItems: 'center',
+                    width: wp('100%'), height: hp('30%'), justifyContent: 'center', alignItems: 'center',
                 }}>
                     <Image
                         source={Icon.App_logo1}
@@ -100,57 +100,64 @@ class Pin_Code extends Component {
                             :
                             null
                     } */}
+                    {
+                        this.state.myData_status == false ?
+                            <View>
+                                <SmoothPinCodeInput
+                                    autoFocus={true}
+                                    containerDefault={
+                                        { backgroundColor: 'red' }
+                                    }
+                                    password mask="﹡"
+                                    cellSize={36}
+                                    codeLength={4}
+                                    value={this.state.password}
+                                    // onFulfill={() => { this.setState({ confirm: true }) }}
+                                    onTextChange={password => this.setState({ password })} />
 
-                        <SmoothPinCodeInput
-                        autoFocus={true}
-                        containerDefault={
-                            { backgroundColor: 'red' }
-                        }
-                        password mask="﹡"
-                        cellSize={36}
-                        codeLength={4}
-                        value={this.state.password}
-                        // onFulfill={() => { this.setState({ confirm: true }) }}
-                        onTextChange={password => this.setState({ password })} />
-                        {/* {
+                                {/* {
                             this.state.confirm==true ? */}
-                        <View >
-                            <View style={{marginVertical:10}}>
-                            <Text style={{color:'#379aff'}}>Confirm your password</Text>
+
+                                <View style={{ marginVertical: 10 }}>
+                                    <Text style={{ color: '#379aff' }}>Confirm your password</Text>
+                                </View>
                             </View>
-                        
-                    <SmoothPinCodeInput
-                        containerDefault={
-                            { backgroundColor: 'red' }
-                        }
-                        password mask="﹡"
-                        cellSize={36}
-                        codeLength={4}
-                        value={this.state.confirm_password}
-                    
-                        onFulfill={() => { this.setState({ btn: true }) }}
-                        onTextChange={confirm_password => this.setState({ confirm_password })} />
-                        </View>
-                        {/* :
+                            :
+                            null
+                    }
+                    <View >
+                        <SmoothPinCodeInput
+                            containerDefault={
+                                { backgroundColor: 'red' }
+                            }
+                            password mask="﹡"
+                            cellSize={36}
+                            codeLength={4}
+                            value={this.state.confirm_password}
+
+                            onFulfill={() => { this.setState({ btn: true }) }}
+                            onTextChange={confirm_password => this.setState({ confirm_password })} />
+                    </View>
+                    {/* :
                         null
                     } */}
                     {
                         this.state.btn == true ?
-                    <View style={{
-                        justifyContent: 'center', alignItems: 'center', width: wp('100%'),
-                        height: hp('15%'), justifyContent: 'space-between', marginVertical: hp('5%')
-                    }}>
-                        <TouchableOpacity
-                            style={{
-                                backgroundColor: '#1976D2', borderRadius: 10, borderWidth: wp('0.2%'),
-                                width: wp('40%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center'
-                            }}
-                            onPress={() => { this.check_pin() }}
-                        >
-                            <Text style={{ color: 'white' }}>Done</Text>
-                        </TouchableOpacity>
+                            <View style={{
+                                justifyContent: 'center', alignItems: 'center', width: wp('100%'),
+                                height: hp('15%'), justifyContent: 'space-between', marginVertical: hp('2%')
+                            }}>
+                                <TouchableOpacity
+                                    style={{
+                                        backgroundColor: '#1976D2', borderRadius: 10, borderWidth: wp('0.2%'),
+                                        width: wp('40%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center'
+                                    }}
+                                    onPress={() => { this.check_pin() }}
+                                >
+                                    <Text style={{ color: 'white' }}>Done</Text>
+                                </TouchableOpacity>
 
-                        {/* <TouchableOpacity
+                                {/* <TouchableOpacity
                             style={{
                                 backgroundColor: '#1976D2', borderRadius: 10, borderWidth: wp('0.2%'),
                                 width: wp('40%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center'
@@ -160,10 +167,10 @@ class Pin_Code extends Component {
                             <Text style={{ color: 'white' }}>Reset Pin</Text>
                         </TouchableOpacity> */}
 
-                    </View>
-                     :
+                            </View>
+                            :
                             null
-                    } 
+                    }
                 </View>
             </View>
         );

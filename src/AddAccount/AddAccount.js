@@ -158,7 +158,7 @@ export default class AddAccount extends Component {
                         <TextInput
                             style={{ width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18, 
                             borderColor: 'gray', height: hp('8%') }}
-                            placeholder="To Name"
+                            placeholder="Enter your name"
                             value={this.state.to_account_name}
                             autoCapitalize="none"
                             minLength={12}
@@ -178,7 +178,7 @@ export default class AddAccount extends Component {
                             placeholder="Private Key"
                             value={this.state.private_key}
                             autoCapitalize="none"
-                            keyboardType='number-pad'
+                            keyboardType="default"
                             minLength={12}
                             onChangeText={(text) => { this.set_to_quantity(text) }}
                         />
