@@ -1,3 +1,5 @@
+'use strict';
+
 import React, { Component } from 'react';
 import {View,Text, Image, StyleSheet,TouchableOpacity, ImageBackground,BackHandler,Alert} from 'react-native'
 import Icon from '../assets/Icon'
@@ -6,6 +8,8 @@ import image from '../../assets/leftArrow.png';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import { Actions } from 'react-native-router-flux';
+import QRCode from 'react-native-qrcode-svg';
+
 
 
 class Recieve extends Component {
@@ -90,6 +94,11 @@ componentWillUnmount() {
                  borderColor:'black'
                  }}>
                    
+                   <QRCode
+                    value={this.state.AccountName}
+                    size={200}
+                    bgColor='#000000'
+                    fgColor='#FFFFFF'/>
 
                 </ImageBackground>
                 </View>
