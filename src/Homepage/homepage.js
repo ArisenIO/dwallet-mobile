@@ -10,6 +10,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Loader1 from '../assets/Loader'
 import Icon from '../assets/Icon'
 import image from '../../assets/leftArrow.png';
+import Modal from 'react-native-modal';
+
 
 export default class Homepage extends Component {
     constructor(props) {
@@ -39,15 +41,15 @@ export default class Homepage extends Component {
         BackHandler.removeEventListener("hardwareBackPress", this.backAction);
       }
       backAction = () => {
-          Actions.pop()
-        // Alert.alert("Hold on!", "Are you sure you want to go back?", [
-        //   {
-        //     text: "Cancel",
-        //     onPress: () => null,
-        //     style: "cancel"
-        //   },
-        //   { text: "YES", onPress: () => BackHandler.exitApp() }
-        // ]);
+         // Actions.pop()
+        Alert.alert("Hold on!", "Are you sure you want to go back?", [
+          {
+            text: "Cancel",
+            onPress: () => null,
+            style: "cancel"
+          },
+          { text: "YES", onPress: () => BackHandler.exitApp() }
+        ]);
         return true;
       };
     _retrieveData = () => {
@@ -56,9 +58,13 @@ export default class Homepage extends Component {
             AsyncStorage.getItem('items').then((value) => {
                 var parsed_value = JSON.parse(value);
                 console.log("async storage data", parsed_value);
+
+                var account_name = parsed_value.items.accountName;
+
+                console.log("Account Name",account_name);
                 this.setState({
-                    AccountName: parsed_value.accountName,
-                    active_private_key: parsed_value.active_keys
+                    AccountName: parsed_value.items.accountName,
+                    active_private_key: parsed_value.items.active_keys
                 })
                 fetch("https://dmobileapi.arisen.network/avote/search", {
                     method: 'POST',
@@ -72,7 +78,7 @@ export default class Homepage extends Component {
                 })
                     .then(response => response.json())
                     .then((response) => {
-                        console.log("resp_for_check_api", response.account.account_name)
+                        console.log("resp_for_check_api", response)
                         if (response.success == true) {
                             this.setState({ isLoading: false })
                             if (response.account.core_liquid_balance) {
@@ -121,13 +127,13 @@ export default class Homepage extends Component {
             <View style={styles.container}>
                  <View style={styles.header}>
                         <TouchableOpacity
-                            onPress={() => { this.goback() }}
+                            onPress={() => { this.backAction() }}
                             style={{ justifyContent: 'center' }}>
                             <Image source={image} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
 
                         </TouchableOpacity>
                         <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold', 
-                        justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Add Account</Text>
+                        justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Your Account Details</Text>
                     </View>
                 <ScrollView>
                 <View style={{ backgroundColor: '#4383fc', height: hp('35%'), width: wp('100%'), 

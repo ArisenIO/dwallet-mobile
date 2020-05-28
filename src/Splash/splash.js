@@ -46,7 +46,7 @@ export default class Splash extends Component {
 
             console.log("inside set timeout");
 
-            AsyncStorage.getItem('creds').then((value) =>{
+            AsyncStorage.getItem('items').then((value) =>{
 
                 if(value){
                     Actions.replace('homepage')

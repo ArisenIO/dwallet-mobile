@@ -12,6 +12,8 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.10.0",
     "@react-native-community/clipboard": "^1.2.2",
+    "css-select": "^2.1.0",
+    "css-tree": "^1.0.0-alpha.39",
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-native-dialog": "^5.6.0",
@@ -21,6 +23,7 @@
     "react-native-lock-screen": "^1.0.1",
     "react-native-modal": "^11.5.6",
     "react-native-onboarding-swiper": "^1.1.1",
+    "react-native-qrcode-svg": "^6.0.6",
     "react-native-reanimated": "^1.8.0",
     "react-native-responsive-screen": "^1.4.1",
     "react-native-router-flux": "^4.2.0",

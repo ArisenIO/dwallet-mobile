@@ -195,6 +195,10 @@ export default class RegisterScreen extends Component {
         this.setState({ dialogVisible: true });
     };
 
+    hideDialog = () => {
+        this.setState({ isLoading: false });
+    };
+
     //   handleCancel = () => {
     //     this.setState({ dialogVisible: false });
     //   };
@@ -239,6 +243,9 @@ export default class RegisterScreen extends Component {
         })
             .then(response => response.json())
             .then((response) => {
+
+                this.hideDialog();
+
                 if (response.success) {
                     Toast.show("Registered successfully on Blockchain", Toast.LONG);
                     // AsyncStorage.setItem(
@@ -264,7 +271,9 @@ export default class RegisterScreen extends Component {
                     //         'new_wallet',"1"
                     //         );
 
-                    Actions.homepage();
+                    
+
+                    Actions.replace('homepage');
                 }
                 else {
                     Toast.show("Not Registered try later", Toast.LONG);

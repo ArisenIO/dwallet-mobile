@@ -3,6 +3,10 @@ import {View,Text, Image, StyleSheet,TouchableOpacity, ImageBackground,BackHandl
 import Icon from '../assets/Icon'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import image from '../../assets/leftArrow.png';
+import AsyncStorage from '@react-native-community/async-storage';
+
+import { Actions } from 'react-native-router-flux';
+
 
 class Recieve extends Component {
     constructor(props) {
@@ -13,9 +17,35 @@ class Recieve extends Component {
     }
 
     componentDidMount(){
+        this._retrieveData();
     BackHandler.addEventListener("hardwareBackPress", this.backAction);
 
 }
+
+_retrieveData = () => {
+    console.log("retrirve");
+    try {
+        AsyncStorage.getItem('items').then((value) => {
+            var parsed_value = JSON.parse(value);
+            console.log("async storage data", parsed_value);
+
+            var account_name = parsed_value.items.accountName;
+
+            console.log("Account Name",account_name);
+            this.setState({
+                AccountName: parsed_value.items.accountName,
+            })
+
+        }).catch((errr) => {
+            console.log("error in retri", errr);
+        });
+    } catch (error) {
+        // Error retrieving data
+        console.log("error in retri", error);
+
+    }
+};
+
 componentWillUnmount() {
     BackHandler.removeEventListener("hardwareBackPress", this.backAction);
   }
@@ -37,7 +67,7 @@ componentWillUnmount() {
                 <View style={Styles.header}>
                     <TouchableOpacity
                     style={{justifyContent:'center'}}
-                    onPress={()=>{this.goback()}}>
+                    onPress={()=>{this.backAction()}}>
                     <Image source={image} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
                     </TouchableOpacity>
                     <Text style={{
@@ -59,16 +89,13 @@ componentWillUnmount() {
                  width:wp('60%'),
                  borderColor:'black'
                  }}>
-                    <Image
-                    style={{width:wp('40%'), height:hp('20%')}}
-                    source={Icon.Qr_code}
-                    resizeMode="contain"
-                    />
+                   
+
                 </ImageBackground>
                 </View>
                 <View style={{marginVertical:25, justifyContent:'center', alignItems:'center', fontSize:20, fontWeight:'700'}}>
                     <Text>
-                        Avinesh Kumar Singh
+                        {this.state.AccountName}
                     </Text>
                 </View>
                 
