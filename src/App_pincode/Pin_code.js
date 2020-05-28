@@ -74,12 +74,15 @@ class Pin_Code extends Component {
         { console.log("__value", this.state.confirm_password) }
         return (
             <View style={{ flex: 1, backgroundColor: 'white', }}>
+                <View style={{justifyContent:'center', alignItems:'center',marginTop: 30, width: wp('100%'), height: hp('5%')}}> 
+                    <Text style={{fontSize:40,fontWeight:'700', color: '#379aff'}}>dWallet</Text>
+                </View>
                 <View style={{
-                    marginTop: 50, width: wp('100%'), height: hp('30%'), justifyContent: 'center', alignItems: 'center',
+                     width: wp('100%'), height: hp('30%'), justifyContent: 'center', alignItems: 'center',
                 }}>
                     <Image
                         source={Icon.App_logo1}
-                        style={{ width: wp('80%'), height: hp('25%') }}
+                        style={{ width: wp('50%'), height: hp('25%') }}
                     />
                 </View>
                 <View style={{ marginTop: 20, width: wp("100%"), height: hp('5%'), justifyContent: 'center', alignItems: 'center' }}>
@@ -99,6 +102,7 @@ class Pin_Code extends Component {
                     } */}
 
                         <SmoothPinCodeInput
+                        autoFocus={true}
                         containerDefault={
                             { backgroundColor: 'red' }
                         }
@@ -106,10 +110,10 @@ class Pin_Code extends Component {
                         cellSize={36}
                         codeLength={4}
                         value={this.state.password}
-                        onFulfill={() => { this.setState({ confirm: true }) }}
+                        // onFulfill={() => { this.setState({ confirm: true }) }}
                         onTextChange={password => this.setState({ password })} />
-                        {
-                            this.state.confirm==true ?
+                        {/* {
+                            this.state.confirm==true ? */}
                         <View >
                             <View style={{marginVertical:10}}>
                             <Text style={{color:'#379aff'}}>Confirm your password</Text>
@@ -123,12 +127,13 @@ class Pin_Code extends Component {
                         cellSize={36}
                         codeLength={4}
                         value={this.state.confirm_password}
+                    
                         onFulfill={() => { this.setState({ btn: true }) }}
                         onTextChange={confirm_password => this.setState({ confirm_password })} />
                         </View>
-                        :
+                        {/* :
                         null
-                    }
+                    } */}
                     {
                         this.state.btn == true ?
                     <View style={{

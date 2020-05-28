@@ -150,14 +150,14 @@ export default class AddAccount extends Component {
                         </TouchableOpacity>
                         <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold', justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Add Account</Text>
                     </View>
-
                     <View
-                    iew style={{
-                        width: wp('100%'), height: hp('5%'),
+                    style={{
+                        width: wp('100%'), height: hp('8%'),
                         justifyContent: 'center', alignItems: 'center', marginTop: hp('5%')
                     }}>
                         <TextInput
-                            style={{ width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18, borderColor: 'gray', height: hp('5%') }}
+                            style={{ width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18, 
+                            borderColor: 'gray', height: hp('8%') }}
                             placeholder="To Name"
                             value={this.state.to_account_name}
                             autoCapitalize="none"
@@ -169,11 +169,12 @@ export default class AddAccount extends Component {
                         <Text style={{ color: 'red' }}>{this.state.AccountName_error} </Text>
                     </View>
                     <View style={{
-                        width: wp('100%'), height: hp('5%'),
+                        width: wp('100%'), height: hp('8%'),
                         justifyContent: 'center', alignItems: 'center', marginTop: hp('5%')
                     }}>
                         <TextInput
-                            style={{ width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18, borderColor: 'gray', height: hp('5%') }}
+                            style={{ width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18, 
+                            borderColor: 'gray', height: hp('8%') }}
                             placeholder="Private Key"
                             value={this.state.private_key}
                             autoCapitalize="none"

@@ -94,26 +94,33 @@ export default class Homepage extends Component {
         //   }
         return (
             <View style={styles.container}>
-                <View style={{ backgroundColor: '#4383fc', height: hp('35%'), width: wp('100%'), justifyContent: 'center', alignItems: 'center' }}>
-                    <View style={{ width: wp('75%'), height: hp('15%'), justifyContent: 'space-between', flexDirection: 'row' }}>
-                        <Image
+                <View style={{ backgroundColor: '#4383fc', height: hp('35%'), width: wp('100%'), 
+                justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ width: wp('75%'),height: hp('15%'),
+                     justifyContent: 'center', alignItems:'center',flexDirection: 'row' }}>
+                        {/* <Image
                             resizeMode="contain"
                             source={Icon.Profile_pic}
                             style={{ height: hp('10%'), width: wp('20%'), borderRadius: 75 }}
-                        />
+                        /> */}
 
-                        <View style={{ height: hp('12%'), width: wp('50%'), justifyContent: 'space-between' }}>
+                        <View style={{ height: hp('12%'), width: wp('100%'), justifyContent: 'center', alignItems:'center' }}>
                             <View style={{ height: hp('6%'), justifyContent: 'space-between' }}>
                                 <Text style={{ color: '#ffffff', }}>Your Account Name is</Text>
-                                <Text style={{ color: '#ffffff', fontWeight: '700' }}>
-                                    Avinesh Singh
+                                <Text style={{ color: '#ffffff', fontWeight: '700',marginTop:15, fontSize:25 }}>
+                                    Avinesh Kumar Singh
                                     {/* {this.state.AccountName} */}
                                     </Text>
                             </View>
-                            <Text style={{ color: '#ffffff', }}>Balance Statement -></Text>
+                            {/* <Text style={{ color: '#ffffff', }}>Balance Statement -></Text> */}
                         </View>
                     </View>
+                    
                 </View>
+                <View style={{backgroundColor: '#4383fc', }}>
+                <Text style={{ color: '#ffffff',marginLeft:30, fontWeight: '700',fontSize:20, marginVertical:5 }}>Balance Statement -></Text>
+                </View>
+                
                 <View style={{ backgroundColor: '#4383fc' }}>
                     <View style={{
                         backgroundColor: '#e6e8e9', height: hp('65%'), width: wp('100%'), borderTopLeftRadius: 40,

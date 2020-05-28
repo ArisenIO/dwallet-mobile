@@ -44,6 +44,11 @@ class Recieve extends Component {
                     />
                 </ImageBackground>
                 </View>
+                <View style={{marginVertical:25, justifyContent:'center', alignItems:'center', fontSize:20, fontWeight:'700'}}>
+                    <Text>
+                        Avinesh Kumar Singh
+                    </Text>
+                </View>
                 
             </View>
          );

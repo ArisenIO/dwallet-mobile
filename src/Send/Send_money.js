@@ -131,11 +131,12 @@ class Send_money extends Component {
                     }}>Transfer RIX</Text>
                 </View>
                 <View style={{
-                    width: wp('100%'), height: hp('5%'),
+                    width: wp('100%'), height: hp('8%'),
                     justifyContent: 'center', alignItems: 'center', marginTop: hp('5%')
                 }}>
                     <TextInput
-                        style={{ width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18, borderColor: 'gray', height: hp('5%') }}
+                        style={{ width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18, 
+                        borderColor: 'gray', height: hp('8%') }}
                         value={this.state.to_account_name}
                         placeholder="To Name"
                         autoCapitalize="none"
@@ -148,11 +149,12 @@ class Send_money extends Component {
                     <Text style={{ color: 'red' }}>{this.state.AccountName_error} </Text>
                 </View>
                 <View style={{
-                    width: wp('100%'), height: hp('5%'),
+                    width: wp('100%'), height: hp('8%'),
                     justifyContent: 'center', alignItems: 'center', marginTop: hp('5%')
                 }}>
                     <TextInput
-                        style={{ width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18, borderColor: 'gray', height: hp('5%') }}
+                        style={{ width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                         borderColor: 'gray', height: hp('8%') }}
                         value={this.state.quantity}
                         placeholder="Quantity"
                         autoCapitalize="none"
