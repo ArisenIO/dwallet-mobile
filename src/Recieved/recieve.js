@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View,Text, Image, StyleSheet,TouchableOpacity, ImageBackground} from 'react-native'
+import {View,Text, Image, StyleSheet,TouchableOpacity, ImageBackground,BackHandler,Alert} from 'react-native'
 import Icon from '../assets/Icon'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import image from '../../assets/leftArrow.png';
@@ -8,7 +8,29 @@ class Recieve extends Component {
     constructor(props) {
         super(props);
         this.state = {  }
+        this.backAction=this.backAction.bind(this);
+
     }
+
+    componentDidMount(){
+    BackHandler.addEventListener("hardwareBackPress", this.backAction);
+
+}
+componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+  }
+  backAction = () => {
+      Actions.pop()
+    // Alert.alert("Hold on!", "Are you sure you want to go back?", [
+    //   {
+    //     text: "Cancel",
+    //     onPress: () => null,
+    //     style: "cancel"
+    //   },
+    //   { text: "YES", onPress: () => BackHandler.exitApp() }
+    // ]);
+    return true;
+  };
     render() { 
         return ( 
             <View style={Styles.container}>

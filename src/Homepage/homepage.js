@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, Text,
-    TouchableOpacity, Image,ScrollView
+    TouchableOpacity, Image,ScrollView,BackHandler,Alert
 } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -26,11 +26,30 @@ export default class Homepage extends Component {
             active_public_key: '',
             isLoading: true,
         };
+        this.backAction=this.backAction.bind(this);
+
         console.disableYellowBox = true;
     }
     componentDidMount() {
         this._retrieveData();
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
+
     }
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+      }
+      backAction = () => {
+          Actions.pop()
+        // Alert.alert("Hold on!", "Are you sure you want to go back?", [
+        //   {
+        //     text: "Cancel",
+        //     onPress: () => null,
+        //     style: "cancel"
+        //   },
+        //   { text: "YES", onPress: () => BackHandler.exitApp() }
+        // ]);
+        return true;
+      };
     _retrieveData = () => {
         console.log("retrirve");
         try {
@@ -70,7 +89,9 @@ export default class Homepage extends Component {
                             this.setState({ total_balance: totalBalance })
                         }
                         else {
-                            alert(response.message)
+                            // alert(response.message)
+                            this.setState({error_msg:response.message})
+                            this.toggleModal()
                         }
                     })
                     .catch(error => console.log(error)) //to catch the errors if any
@@ -80,6 +101,9 @@ export default class Homepage extends Component {
         } catch (error) {
             // Error retrieving data
         }
+    };
+    toggleModal = () => {
+        this.setState({ isModalVisible: !this.state.isModalVisible });
     };
     _transferFunds = () => {
         Actions.Send_money();
@@ -102,7 +126,8 @@ export default class Homepage extends Component {
                             <Image source={image} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
 
                         </TouchableOpacity>
-                        <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold', justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Add Account</Text>
+                        <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold', 
+                        justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Add Account</Text>
                     </View>
                 <ScrollView>
                 <View style={{ backgroundColor: '#4383fc', height: hp('35%'), width: wp('100%'), 
@@ -197,6 +222,26 @@ export default class Homepage extends Component {
 
                         
                     </View>
+                      {/* Modal 1 Start */}
+                 <Modal isVisible={this.state.isModalVisible} style={{ backgroundColor:'white',
+                 marginTop: 250, borderRadius: 10, width: 350, maxHeight: 150, justifyContent: 'center',
+                  alignItems: 'center' }}>
+                    <View style={{ }}>
+                        <View style={{ height:50,ustifyContent:'center', alignItems:'center'}}>
+                        <Text style={{fontSize:20}}>
+                       {this.state.error_msg}
+                        </Text>
+                        </View>
+                    </View>                    
+                    <TouchableOpacity
+                    style={{  width:100, borderWidth:1,backgroundColor:'#4383fc',
+                    borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
+                    onPress={()=>this.toggleModal()}
+                    >
+                        <Text>OK</Text>
+                    </TouchableOpacity>
+                </Modal>
+                {/* Modal 1 End */}
                 </View>
 
                 {/* <View style={styles.account_name_container}>

@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, TextInput,
-    Text, Image, TouchableOpacity, Keyboard
+    Text, Image, TouchableOpacity, Keyboard,BackHandler,Alert
 } from "react-native";
 import Clipboard from '@react-native-community/clipboard'
 import { Button, CheckBox } from 'react-native-elements';
@@ -29,6 +29,8 @@ class Send_money extends Component {
             isLoading: false
 
         }
+        this.backAction=this.backAction.bind(this);
+
     }
 
     componentDidMount() {
@@ -40,8 +42,24 @@ class Send_money extends Component {
                 active_private_key: parsed_value.active_private_keys
             })
         })
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);   
 
     }
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+      }
+      backAction = () => {
+          Actions.pop()
+        // Alert.alert("Hold on!", "Are you sure you want to go back?", [
+        //   {
+        //     text: "Cancel",
+        //     onPress: () => null,
+        //     style: "cancel"
+        //   },
+        //   { text: "YES", onPress: () => BackHandler.exitApp() }
+        // ]);
+        return true;
+      };
 
     // set_to_account_name = (txt) => {
     //     if (this.state.to_account_name == null) {
@@ -97,7 +115,9 @@ class Send_money extends Component {
                         else {
                             var error = JSON.parse(response.error);
                             var err = error.error.details[0].message + " You Dont have Liquid Balance to Send";
-                            alert(err)
+                            // alert(err)
+                            this.setState({error_msg:err})
+                            this.toggleModal()
                         }
 
                     })
@@ -113,6 +133,9 @@ class Send_money extends Component {
         }
 
     }
+    toggleModal = () => {
+        this.setState({ isModalVisible: !this.state.isModalVisible });
+    };
 
 
     render() {
@@ -177,6 +200,26 @@ class Send_money extends Component {
                         />
                     </TouchableOpacity>
                 </View>
+                 {/* Modal 1 Start */}
+                 <Modal isVisible={this.state.isModalVisible} style={{ backgroundColor:'white',
+                 marginTop: 250, borderRadius: 10, width: 350, maxHeight: 150, justifyContent: 'center',
+                  alignItems: 'center' }}>
+                    <View style={{ }}>
+                        <View style={{ height:50,ustifyContent:'center', alignItems:'center'}}>
+                        <Text style={{fontSize:18}}>
+                       {this.state.error_msg}
+                        </Text>
+                        </View>
+                    </View>                    
+                    <TouchableOpacity
+                    style={{  width:100, borderWidth:1,backgroundColor:'#4383fc',
+                    borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
+                    onPress={()=>this.toggleModal()}
+                    >
+                        <Text>OK</Text>
+                    </TouchableOpacity>
+                </Modal>
+                {/* Modal 1 End */}
             </View>
         );
     }

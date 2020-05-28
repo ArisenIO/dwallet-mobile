@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { View, Text, Image, TouchableOpacity, Alert } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Alert ,ScrollView,BackHandler,} from 'react-native'
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input'
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from '../assets/Icon'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { ButtonGroup } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
+import Modal from 'react-native-modal';
 
 
 class Pin_Code extends Component {
@@ -16,8 +17,10 @@ class Pin_Code extends Component {
             btn: false,
             myData: [],
             myData_status: false,
-            reset_text: false
+            reset_text: false,
+            isModalVisible: false,
         }
+        this.backAction=this.backAction.bind(this);
     }
     async componentDidMount() {
         try {
@@ -25,7 +28,24 @@ class Pin_Code extends Component {
         } catch (e) {
             console.log(e);
         }
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
     }
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+      }
+      backAction = () => {
+        this.setState({ isModalVisible: !this.state.isModalVisible });
+        //   Actions.pop()
+        // Alert.alert("Hold on!", "Are you sure you want to go back?", [
+        //   {
+        //     text: "Cancel",
+        //     onPress: () => null,
+        //     style: "cancel"
+        //   },
+        //   { text: "YES", onPress: () => BackHandler.exitApp() }
+        // ]);
+        return true;
+      };
 
     fetchData = () => {
         AsyncStorage.getItem('pin_code').then(resp => {
@@ -73,6 +93,7 @@ class Pin_Code extends Component {
         { console.log("__value", this.state.confirm_password) }
         return (
             <View style={{ flex: 1, backgroundColor: 'white', }}>
+                <ScrollView>
 
                 <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 30, width: wp('100%'), height: hp('5%') }}>
                     <Text style={{ fontSize: 40, fontWeight: '700', color: '#379aff' }}>dWallet</Text>
@@ -172,6 +193,38 @@ class Pin_Code extends Component {
                             null
                     }
                 </View>
+                </ScrollView>
+                {/* Modal Start */}
+                <Modal isVisible={this.state.isModalVisible} style={{ backgroundColor:'white',
+                 marginTop: 250, borderRadius: 10, width: 350, maxHeight: 200, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ }}>
+                        <View style={{ height:100,}}>
+                        <Text style={{fontSize:20}}>Are you sure you want to exit app?</Text>
+                        </View>
+                        {/* <Button title="Hide modal" onPress={this.toggleModal} /> */}
+                       <View style={{flexDirection:'row', 
+                       justifyContent:'space-between', height:50,borderTopWidth:1}}>
+                       <TouchableOpacity
+                       style={{justifyContent:'center', alignItems:'center', width:150}}
+                            onPress={()=>{this.setState({isModalVisible:false})}}
+                        >
+                            <Text>Cancel</Text>
+                        </TouchableOpacity>
+                        <View style={{borderLeftWidth:1}}>
+
+                        </View>
+                        <TouchableOpacity
+                       style={{justifyContent:'center', alignItems:'center', width:150}}
+
+                            onPress={() => BackHandler.exitApp()}
+                        >
+                            <Text>Ok</Text>
+                        </TouchableOpacity>
+                       </View>
+                        
+                    </View>
+                </Modal>
+                {/* Modal end */}
             </View>
         );
     }

@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, TextInput, TouchableOpacity,
-    Text, ScrollView, Image
+    Text, ScrollView, Image,BackHandler,Alert
 } from "react-native";
 import { validation_quantity, validateName } from '../../src/Validation/validation'
 // import { Button, Input, Icon } from 'react-native-elements';
@@ -13,6 +13,7 @@ import eye from '../../assets/eye.png';
 import Toast from 'react-native-simple-toast';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Icon from '../assets/Icon'
+import Modal from 'react-native-modal';
 
 export default class AddAccount extends Component {
     constructor(props) {
@@ -23,13 +24,31 @@ export default class AddAccount extends Component {
             confirmpvtkey: '',
             btnState: false
         };
+        this.backAction=this.backAction.bind(this);
+
         console.disableYellowBox = true;
     }
 
 
     componentDidMount() {
-
+        // this._retrieveData();
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
     }
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+      }
+      backAction = () => {
+          Actions.pop()
+        // Alert.alert("Hold on!", "Are you sure you want to go back?", [
+        //   {
+        //     text: "Cancel",
+        //     onPress: () => null,
+        //     style: "cancel"
+        //   },
+        //   { text: "YES", onPress: () => BackHandler.exitApp() }
+        // ]);
+        return true;
+      };
 
     showPvtKeybtn = () => {
         if (this.state.showPvtkey == true) {
@@ -82,8 +101,11 @@ export default class AddAccount extends Component {
 
                             Actions.replace('homepage')
                         }
-                        else if (response.success.message) {
-                            alert(response.success.message)
+                        else if (response.success==false) {
+                            this.setState({error_msg:response.message})
+                            // alert(response.success.message)
+                            this.toggleModal3()
+                            console.log("error_msg_in_addAcount_", response.message)
                         }
 
                         //{"account": "loveaffair11", "active_private": "5J9dikvJnK3SmEHcoottXogsonjfBsDzQggYJDLmHFPGUve9vcB", 
@@ -112,31 +134,39 @@ export default class AddAccount extends Component {
             }
             else {
                 this.setState({ txtStatus: false })
-                alert("Please enter private key.")
+                // alert("Please enter private key.")
+                this.toggleModal2()
             }
         }
         else {
             this.setState({ AccountName_status: false })
-            alert("Please enter account name.")
+            // alert("Please enter account name.")
+            this.toggleModal()
         }
     }
     set_to_account_name(txt) {
         this.setState({ account: txt });
         this.state.AccountName_error = validateName(txt).error;
         this.state.AccountName_status = validateName(txt).status;
-
     }
     set_to_quantity(txt) {
         this.setState({ private_key: txt });
         this.state.txtErrorMessage = validation_quantity(txt).error;
         this.state.txtStatus = validation_quantity(txt).status;
-
     }
     goback = () => {
         Actions.Createwallet();
         // alert("ok")
     }
-
+    toggleModal = () => {
+        this.setState({ isModalVisible: !this.state.isModalVisible });
+    };
+    toggleModal2 = () => {
+        this.setState({ isModalVisible2: !this.state.isModalVisible2 });
+    };
+    toggleModal3 = () => {
+        this.setState({ isModalVisible3: !this.state.isModalVisible3 });
+    };
     render() {
         return (
             <ScrollView>
@@ -199,6 +229,62 @@ export default class AddAccount extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
+                {/* Modal 1 Start */}
+                <Modal isVisible={this.state.isModalVisible} style={{ backgroundColor:'white',
+                 marginTop: 250, borderRadius: 10, width: 350, maxHeight: 100, justifyContent: 'center',
+                  alignItems: 'center' }}>
+                    <View style={{ }}>
+                        <View style={{ height:50,}}>
+                        <Text style={{fontSize:20}}>Please enter your name.</Text>
+                        </View>
+                    </View>                    
+                    <TouchableOpacity
+                    style={{  width:100, borderWidth:1,backgroundColor:'#4383fc',
+                    borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
+                    onPress={()=>this.toggleModal()}
+                    >
+                        <Text>OK</Text>
+                    </TouchableOpacity>
+                </Modal>
+                {/* Modal 1 End */}
+                {/* Modal 2  Start */}
+                <Modal isVisible={this.state.isModalVisible2} style={{ backgroundColor:'white',
+                 marginTop: 250, borderRadius: 10, width: 350, maxHeight: 100, justifyContent: 'center',
+                  alignItems: 'center' }}>
+                    <View style={{ }}>
+                        <View style={{ height:50,}}>
+                        <Text style={{fontSize:20}}>Please enter your private key.</Text>
+                        </View>
+                    </View>                    
+                    <TouchableOpacity
+                    style={{  width:100, borderWidth:1,backgroundColor:'#4383fc',
+                    borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
+                    onPress={()=>this.toggleModal2()}
+                    >
+                        <Text>OK</Text>
+                    </TouchableOpacity>
+                </Modal>
+                {/* Modal 2 End */}
+                {/* Modal 3 Start */}
+                <Modal isVisible={this.state.isModalVisible3} style={{ backgroundColor:'white',
+                 marginTop: 250, borderRadius: 10, width: 350, maxHeight: 150, justifyContent: 'center',
+                  alignItems: 'center' }}>
+                    <View style={{ }}>
+                        <View style={{ height:50,ustifyContent:'center', alignItems:'center'}}>
+                        <Text style={{fontSize:20}}>
+                            {this.state.error_msg}
+                        </Text>
+                        </View>
+                    </View>                    
+                    <TouchableOpacity
+                    style={{  width:100, borderWidth:1,backgroundColor:'#4383fc',
+                    borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
+                    onPress={()=>this.toggleModal3()}
+                    >
+                        <Text>OK</Text>
+                    </TouchableOpacity>
+                </Modal>
+                {/* Modal 3 End */}
             </ScrollView>
         );
     }

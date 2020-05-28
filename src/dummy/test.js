@@ -1,174 +1,45 @@
-import React, { Component } from 'react'
-import { View, Text, Image, TouchableOpacity, Alert } from 'react-native'
-import SmoothPinCodeInput from 'react-native-smooth-pincode-input'
-import AsyncStorage from '@react-native-community/async-storage';
-import Icon from '../assets/Icon'
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { ButtonGroup } from 'react-native-elements';
-import { Actions } from 'react-native-router-flux';
+import React, { Component } from 'react';
+import { Button, Text, View, TouchableOpacity } from 'react-native';
+import Modal from 'react-native-modal';
+// import { TouchableOpacity } from 'react-native-gesture-handler';
 
+export default class ModalTester extends Component {
+    state = {
+        isModalVisible: false,
+    };
 
-class Pin_Code extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            confirm_password: '',
-            btn: false,
-            myData: [],
-            myData_status: false,
-            reset_text: false
-        }
-    }
-    async componentDidMount() {
-        try {
-            this.fetchData()
-        } catch (e) {
-            console.log(e);
-        }
-    }
+    toggleModal = () => {
+        this.setState({ isModalVisible: !this.state.isModalVisible });
+    };
 
-    fetchData = () => {
-        AsyncStorage.getItem('pin_code').then(resp => {
-            console.log("after getting data", resp)
-            if (resp != null) {
-                this.setState({ myData: JSON.parse(resp), myData_status: true })
-            }
-            else {
-                this.setState({ myData_status: false })
-            }
-            console.log("__get__", this.state.myData)
-        })
-    }
-
-    check_pin = () => {
-        
-        if(this.state.password===this.state.confirm_password){  
-        if (this.state.myData_status == true) {
-            if (this.state.myData.pin_code === this.state.confirm_password) {
-                Actions.Createwallet();
-            }
-            else {
-                alert("Please enter correct pin code.")
-            }
-        }
-        else {
-            var pin_code = {
-                "pin_code": this.state.confirm_password
-            }
-            console.log("___pin_code_in_ayncstorage", pin_code)
-            AsyncStorage.setItem(
-                'pin_code', JSON.stringify(pin_code)
-            );
-            Actions.Createwallet();
-        }
-    }
-    else{
-        alert("please enter correct pin code.")
-    }
-    }
-    //  _removeData =()=>{
-    //     this.setState({ reset_text: true })
-    //     // AsyncStorage.removeItem('pin_code',JSON.stringify(this.state.myData))
-    //          AsyncStorage.removeItem('pin_code',JSON.stringify(this.state.myData),()=>{this.check_pin()})
-    // }
     render() {
-        { console.log("__value", this.state.confirm_password) }
         return (
-            <View style={{ flex: 1, backgroundColor: 'white', }}>
-
-                <View style={{justifyContent:'center', alignItems:'center',marginTop: 30, width: wp('100%'), height: hp('5%')}}> 
-                    <Text style={{fontSize:40,fontWeight:'700', color: '#379aff'}}>dWallet</Text>
-                </View>
-                <View style={{
-                     width: wp('100%'), height: hp('30%'), justifyContent: 'center', alignItems: 'center',
-                }}>
-                    <Image
-                        source={Icon.App_logo1}
-                        style={{ width: wp('50%'), height: hp('25%') }}
-                    />
-                </View>
-                <View style={{ marginTop: 20, width: wp("100%"), height: hp('5%'), justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ color: '#379aff', fontSize: 20, fontWeight: '700' }}>
-                        Enter your security pin code
-                    </Text>
-                </View>
-                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
-                    {/* {
-                        this.state.reset_text == true ?
-                            <View style={{justifyContent:'center', alignItems:'center',marginVertical:hp('2%')}}> 
-                                <Text style={{ color: '#1976D2', fontSize: 20 }}>Change your pin</Text>
-
-                            </View>
-                            :
-                            null
-                    } */}
-
-                        <SmoothPinCodeInput
-                        autoFocus={true}
-                        containerDefault={
-                            { backgroundColor: 'red' }
-                        }
-                        password mask="﹡"
-                        cellSize={36}
-                        codeLength={4}
-                        value={this.state.password}
-                        // onFulfill={() => { this.setState({ confirm: true }) }}
-                        onTextChange={password => this.setState({ password })} />
-                        {/* {
-                            this.state.confirm==true ? */}
-                        <View >
-                            <View style={{marginVertical:10}}>
-                            <Text style={{color:'#379aff'}}>Confirm your password</Text>
-                            </View>
-                        
-                    <SmoothPinCodeInput
-                        containerDefault={
-                            { backgroundColor: 'red' }
-                        }
-                        password mask="﹡"
-                        cellSize={36}
-                        codeLength={4}
-                        value={this.state.confirm_password}
-                    
-                        onFulfill={() => { this.setState({ btn: true }) }}
-                        onTextChange={confirm_password => this.setState({ confirm_password })} />
+            <View style={{ flex: 1 }}>
+                {/* <Button title="Show modal" onPress={this.toggleModal} /> */}
+                <TouchableOpacity
+                    onPress={this.toggleModal}
+                >
+                <Text>Show Modal</Text>
+                </TouchableOpacity>
+                <Modal isVisible={this.state.isModalVisible} style={{ backgroundColor:'white',
+                 marginTop: 250, borderRadius: 10, width: 350, maxHeight: 150, justifyContent: 'center',
+                  alignItems: 'center' }}>
+                    <View style={{backgroundColor:'red' }}>
+                        <View style={{ height:50,backgroundColor:"green", justifyContent:'center', alignItems:'center'}}>
+                        <Text style={{fontSize:20}}>
+                            {this.state.error_msg}ehfduihdguhdu
+                        </Text>
                         </View>
-                        {/* :
-                        null
-                    } */}
-                    {
-                        this.state.btn == true ?
-                    <View style={{
-                        justifyContent: 'center', alignItems: 'center', width: wp('100%'),
-                        height: hp('15%'), justifyContent: 'space-between', marginVertical: hp('5%')
-                    }}>
-                        <TouchableOpacity
-                            style={{
-                                backgroundColor: '#1976D2', borderRadius: 10, borderWidth: wp('0.2%'),
-                                width: wp('40%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center'
-                            }}
-                            onPress={() => { this.check_pin() }}
-                        >
-                            <Text style={{ color: 'white' }}>Done</Text>
-                        </TouchableOpacity>
-
-                        {/* <TouchableOpacity
-                            style={{
-                                backgroundColor: '#1976D2', borderRadius: 10, borderWidth: wp('0.2%'),
-                                width: wp('40%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center'
-                            }}
-                            onPress={() => { this._removeData() }}
-                        >
-                            <Text style={{ color: 'white' }}>Reset Pin</Text>
-                        </TouchableOpacity> */}
-
-                    </View>
-                     :
-                            null
-                    } 
-                </View>
+                    </View>                    
+                    <TouchableOpacity
+                    style={{  width:100, borderWidth:1,backgroundColor:'#4383fc',
+                    borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
+                    onPress={()=>this.toggleModal()}
+                    >
+                        <Text>OK</Text>
+                    </TouchableOpacity>
+                </Modal>
             </View>
         );
     }
 }
-export default Pin_Code;
