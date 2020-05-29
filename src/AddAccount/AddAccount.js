@@ -173,7 +173,7 @@ export default class AddAccount extends Component {
                 <View style={styles.container}>
                     <View style={styles.header}>
                         <TouchableOpacity
-                            onPress={() => { this.goback() }}
+                            onPress={() => { this.backAction() }}
                             style={{ justifyContent: 'center' }}>
                             <Image source={image} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
 
@@ -239,7 +239,7 @@ export default class AddAccount extends Component {
                         </View>
                     </View>                    
                     <TouchableOpacity
-                    style={{  width:100, borderWidth:1,backgroundColor:'#4383fc',
+                    style={{  width:100, borderWidth:1,backgroundColor:'#2dd5c9',
                     borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
                     onPress={()=>this.toggleModal()}
                     >
@@ -257,7 +257,7 @@ export default class AddAccount extends Component {
                         </View>
                     </View>                    
                     <TouchableOpacity
-                    style={{  width:100, borderWidth:1,backgroundColor:'#4383fc',
+                    style={{  width:100, borderWidth:1,backgroundColor:'#2dd5c9',
                     borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
                     onPress={()=>this.toggleModal2()}
                     >
@@ -277,7 +277,7 @@ export default class AddAccount extends Component {
                         </View>
                     </View>                    
                     <TouchableOpacity
-                    style={{  width:100, borderWidth:1,backgroundColor:'#4383fc',
+                    style={{  width:100, borderWidth:1,backgroundColor:'#2dd5c9',
                     borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
                     onPress={()=>this.toggleModal3()}
                     >

@@ -305,7 +305,7 @@ export default class RegisterScreen extends Component {
                 <View style={styles.header}>
                     <TouchableOpacity
                         style={{ justifyContent: 'center' }}
-                        onPress={() => { this.goback() }}>
+                        onPress={() => { this.backAction() }}>
                         <Image source={image} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
                     </TouchableOpacity>
                     <Text style={{
@@ -435,7 +435,7 @@ export default class RegisterScreen extends Component {
                         </View>
                     </View>                    
                     <TouchableOpacity
-                    style={{  width:100, borderWidth:1,backgroundColor:'#4383fc',
+                    style={{  width:100, borderWidth:1,backgroundColor:'#2dd5c9',
                     borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
                     onPress={()=>this.toggleModal()}
                     >
@@ -456,7 +456,7 @@ export default class RegisterScreen extends Component {
                         </View>
                     </View>                    
                     <TouchableOpacity
-                    style={{  width:100, borderWidth:1,backgroundColor:'#4383fc',
+                    style={{  width:100, borderWidth:1,backgroundColor:'#2dd5c9',
                     borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
                     onPress={()=>this.toggleModal2()}
                     >
@@ -477,7 +477,7 @@ export default class RegisterScreen extends Component {
                         </View>
                     </View>                    
                     <TouchableOpacity
-                    style={{  width:100, borderWidth:1,backgroundColor:'#4383fc',
+                    style={{  width:100, borderWidth:1,backgroundColor:'#2dd5c9',
                     borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
                     onPress={()=>this.toggleModal3()}
                     >
@@ -498,7 +498,7 @@ export default class RegisterScreen extends Component {
                         </View>
                     </View>                    
                     <TouchableOpacity
-                    style={{  width:100, borderWidth:1,backgroundColor:'#4383fc',
+                    style={{  width:100, borderWidth:1,backgroundColor:'#2dd5c9',
                     borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
                     onPress={()=>this.toggleModal4()}
                     >

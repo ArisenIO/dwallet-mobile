@@ -19,25 +19,41 @@ export default class ModalTester extends Component {
                 <TouchableOpacity
                     onPress={this.toggleModal}
                 >
-                <Text>Show Modal</Text>
+                    <Text>Show Modal</Text>
                 </TouchableOpacity>
-                <Modal isVisible={this.state.isModalVisible} style={{ backgroundColor:'white',
-                 marginTop: 250, borderRadius: 10, width: 350, maxHeight: 150, justifyContent: 'center',
-                  alignItems: 'center' }}>
-                    <View style={{backgroundColor:'red' }}>
-                        <View style={{ height:50,backgroundColor:"green", justifyContent:'center', alignItems:'center'}}>
-                        <Text style={{fontSize:20}}>
-                            {this.state.error_msg}ehfduihdguhdu
-                        </Text>
+                <Modal isVisible={this.state.isModalVisible} style={{
+                    backgroundColor: 'white',
+                    marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <View style={{ height: 240 }}>
+                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Exit?</Text>
                         </View>
-                    </View>                    
-                    <TouchableOpacity
-                    style={{  width:100, borderWidth:1,backgroundColor:'#4383fc',
-                    borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
-                    onPress={()=>this.toggleModal()}
-                    >
-                        <Text>OK</Text>
-                    </TouchableOpacity>
+                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 20 }}>Are you sure you want to exit app?</Text>
+                        </View>
+                        <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-between', height: 50, marginTop: 20
+                        }}>
+                            <TouchableOpacity
+                                style={{ justifyContent: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, alignItems: 'center', width: 150 }}
+                                onPress={() => { this.setState({ isModalVisible: false }) }}
+                            >
+                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Cancel</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.toggleModal }}
+                            >
+                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Ok</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    </View>
                 </Modal>
             </View>
         );

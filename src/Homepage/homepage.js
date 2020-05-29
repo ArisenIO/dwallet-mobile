@@ -41,7 +41,7 @@ export default class Homepage extends Component {
         BackHandler.removeEventListener("hardwareBackPress", this.backAction);
       }
       backAction = () => {
-         // Actions.pop()
+        //  Actions.pop()
         Alert.alert("Hold on!", "Are you sure you want to go back?", [
           {
             text: "Cancel",
@@ -136,7 +136,7 @@ export default class Homepage extends Component {
                         justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Your Account Details</Text>
                     </View>
                 <ScrollView>
-                <View style={{ backgroundColor: '#4383fc', height: hp('35%'), width: wp('100%'), 
+                <View style={{ backgroundColor: '#4383fc', height: hp('22%'), width: wp('100%'), 
                 justifyContent: 'center', alignItems: 'center' }}>
                     <View style={{ width: wp('75%'),height: hp('15%'),
                      justifyContent: 'center', alignItems:'center',flexDirection: 'row' }}>
@@ -146,12 +146,13 @@ export default class Homepage extends Component {
                             style={{ height: hp('10%'), width: wp('20%'), borderRadius: 75 }}
                         /> */}
 
-                        <View style={{ height: hp('12%'), width: wp('100%'), justifyContent: 'center', alignItems:'center' }}>
+                        <View style={{ height: hp('8%'), width: wp('100%'), justifyContent: 'center',
+                         alignItems:'center' }}>
                             <View style={{ height: hp('6%'), justifyContent: 'space-between' }}>
                                 <Text style={{ color: '#ffffff', }}>Your Account Name is</Text>
                                 <Text style={{ color: '#ffffff', fontWeight: '700',marginTop:15, fontSize:25 }}>
-                                    {/* Avinesh Kumar Singh */}
-                                    {this.state.AccountName}
+                                    Avinesh Kumar Singh
+                                    {/* {this.state.AccountName} */}
                                     </Text>
                             </View>
                             {/* <Text style={{ color: '#ffffff', }}>Balance Statement -></Text> */}
@@ -186,7 +187,7 @@ export default class Homepage extends Component {
                             flexDirection: 'row', justifyContent: 'center', alignItems: 'center',borderRadius:15, marginVertical:hp("2%")
                         }}>
                             <View style={{flexDirection:'row', justifyContent:'space-between',height: hp('3%'), width: wp('75%') }}>
-                                    <Text style={{color:'#75767b'}}>Staked S]to Self</Text>
+                                    <Text style={{color:'#75767b'}}>Staked to Self</Text>
                                     <Text style={{color:'#101217', fontWeight:'700'}}>
                                         {/* 200 RIX */}
                                         {this.state.staked_to_self}
@@ -240,7 +241,7 @@ export default class Homepage extends Component {
                         </View>
                     </View>                    
                     <TouchableOpacity
-                    style={{  width:100, borderWidth:1,backgroundColor:'#4383fc',
+                    style={{  width:100, borderWidth:1,backgroundColor:'#2dd5c9',
                     borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
                     onPress={()=>this.toggleModal()}
                     >
@@ -249,6 +250,10 @@ export default class Homepage extends Component {
                 </Modal>
                 {/* Modal 1 End */}
                 </View>
+                <View style={{backgroundColor: '#e6e8e9',width:wp('100%'), height:hp('12%')}}>
+
+                </View>
+
 
                 {/* <View style={styles.account_name_container}>
                     <Text style={styles.account_name}>
