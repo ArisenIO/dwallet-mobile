@@ -15,6 +15,7 @@ import Dialog from "react-native-dialog";
 import Toast from 'react-native-simple-toast';
 import Loader1 from '../assets/Loader'
 import Icon from '../assets/Icon'
+import Modal from 'react-native-modal';
 
 class Send_money extends Component {
     constructor(props) {

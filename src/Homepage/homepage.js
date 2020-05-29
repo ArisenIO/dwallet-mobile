@@ -113,16 +113,17 @@ export default class Homepage extends Component {
     };
     _transferFunds = () => {
         Actions.Send_money();
+        // alert("ok")
     }
     recieve_RIX = () => {
         Actions.Recieve();
     }
     render() {
-        // if(this.state.isLoading){
-        //     return(
-        //     <Loader1/>
-        //     )
-        //   }
+        if(this.state.isLoading){
+            return(
+            <Loader1/>
+            )
+          }
         return (
             <View style={styles.container}>
                  <View style={styles.header}>
@@ -151,8 +152,8 @@ export default class Homepage extends Component {
                             <View style={{ height: hp('6%'), justifyContent: 'space-between' }}>
                                 <Text style={{ color: '#ffffff', }}>Your Account Name is</Text>
                                 <Text style={{ color: '#ffffff', fontWeight: '700',marginTop:15, fontSize:25 }}>
-                                    Avinesh Kumar Singh
-                                    {/* {this.state.AccountName} */}
+                                    {/* Avinesh Kumar Singh */}
+                                    {this.state.AccountName}
                                     </Text>
                             </View>
                             {/* <Text style={{ color: '#ffffff', }}>Balance Statement -></Text> */}
@@ -208,7 +209,7 @@ export default class Homepage extends Component {
                             </View>
                         </View>
 
-                        <View style={{ flexDirection:'row', width:wp('90%'), justifyContent:'space-between'}}> 
+                        <View style={{ flexDirection:'row', width:wp('90%'),marginTop:45, justifyContent:'space-between'}}> 
                         <TouchableOpacity 
                          onPress={() => { this._transferFunds() }}
                         style={{justifyContent:'center', alignItems:'center', width:wp('42%'),height:hp('6%'),
