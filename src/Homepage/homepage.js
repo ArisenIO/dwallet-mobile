@@ -41,15 +41,15 @@ export default class Homepage extends Component {
         BackHandler.removeEventListener("hardwareBackPress", this.backAction);
       }
       backAction = () => {
-        //  Actions.pop()
-        Alert.alert("Hold on!", "Are you sure you want to go back?", [
-          {
-            text: "Cancel",
-            onPress: () => null,
-            style: "cancel"
-          },
-          { text: "YES", onPress: () => BackHandler.exitApp() }
-        ]);
+        this.setState({ isModalVisible: !this.state.isModalVisible });
+        // Alert.alert("Hold on!", "Are you sure you want to go back?", [
+        //   {
+        //     text: "Cancel",
+        //     onPress: () => null,
+        //     style: "cancel"
+        //   },
+        //   { text: "YES", onPress: () => BackHandler.exitApp() }
+        // ]);
         return true;
       };
     _retrieveData = () => {
@@ -118,11 +118,11 @@ export default class Homepage extends Component {
         Actions.Recieve();
     }
     render() {
-        if(this.state.isLoading){
-            return(
-            <Loader1/>
-            )
-          }
+        // if(this.state.isLoading){
+        //     return(
+        //     <Loader1/>
+        //     )
+        //   }
         return (
             <View style={styles.container}>
                  <View style={styles.header}>
@@ -249,6 +249,42 @@ export default class Homepage extends Component {
                     </TouchableOpacity>
                 </Modal>
                 {/* Modal 1 End */}
+                {/* Modal 2 start */}
+                <Modal isVisible={this.state.isModalVisible} style={{
+                    backgroundColor: 'white',
+                    marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <View style={{ height: 240 }}>
+                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Exit?</Text>
+                        </View>
+                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 20 }}>Are you sure you want to exit app?</Text>
+                        </View>
+                        <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-between', height: 50, marginTop: 20
+                        }}>
+                            <TouchableOpacity
+                                style={{ justifyContent: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, alignItems: 'center', width: 150 }}
+                                onPress={() => { this.setState({ isModalVisible: false }) }}
+                            >
+                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Cancel</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
+
+                                onPress={() => BackHandler.exitApp()}
+                                // onPress={() => { this.toggleModal }}
+                            >
+                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Ok</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    </View>
+                </Modal>
+{/* Modal 2 end */}
                 </View>
                 <View style={{backgroundColor: '#e6e8e9',width:wp('100%'), height:hp('12%')}}>
 

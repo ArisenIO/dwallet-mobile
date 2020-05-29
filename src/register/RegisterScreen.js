@@ -376,12 +376,12 @@ export default class RegisterScreen extends Component {
                                 </Text>
                             </View>
                             <TouchableOpacity style={{
-                                height: hp('5%'), width: wp('40%'), borderRadius: 10,
+                                height: hp('5%'), width: wp('35%'), borderRadius: 20,
                                 backgroundColor: '#2dd5c9', justifyContent: 'center', alignItems: 'center'
                             }}
                                 onPress={() => { this._proceed() }}
                             >
-                                <Text style={{ color: '#fff', }}>
+                                <Text style={{ color: '#fff', fontWeight:'700', fontSize:15}}>
                                     Proceed
                     </Text>
                             </TouchableOpacity>
