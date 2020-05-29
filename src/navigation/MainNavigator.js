@@ -15,6 +15,7 @@ import AppIntro from '../slider/slider'
 import Recieve from '../Recieved/recieve'
 import Send_money from '../Send/Send_money' 
 import Pin_Code from '../App_pincode/Pin_code'
+import Setting from '../Setting/Setting'
 
 
 const Scenes = Actions.create(
@@ -68,6 +69,11 @@ const Scenes = Actions.create(
             initial={false}
             hideNavBar={true}
             component={Send_money}
+        />
+        <Scene key="Setting"
+            initial={false}
+            hideNavBar={true}
+            component={Setting}
         />
     </Scene>
 )

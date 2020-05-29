@@ -12,6 +12,7 @@ import Pin_Code from './src/App_pincode/Pin_code'
 import Createwallet from './src/createwallet/createwallet'
 import RegisterScreen from './src/register/RegisterScreen'
 import HelloWorld from './src/dummy/test'
+import Setting from './src/Setting/Setting'
 export default class App extends React.Component {
   render() {
     return (

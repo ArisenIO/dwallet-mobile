@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet, View,
-    Text, ScrollView, Image, TouchableOpacity
+    Text, ScrollView, Image, TouchableOpacity,BackHandler
 } from "react-native";
 import { Button } from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';

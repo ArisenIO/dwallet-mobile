@@ -72,7 +72,7 @@ componentWillUnmount() {
                     <TouchableOpacity
                     style={{justifyContent:'center'}}
                     onPress={()=>{this.backAction()}}>
-                    <Image source={image} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
+                    <Image source={Icon.Back_icon} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
                     </TouchableOpacity>
                     <Text style={{
                         fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold',

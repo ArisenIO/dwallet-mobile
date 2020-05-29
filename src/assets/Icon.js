@@ -13,7 +13,9 @@ export default Images ={
     Checkip_btn:require('./Image/Checkup.png'),
     QR_code_frame:require('./Image/QRcodeframe.png'),
     Profile_pic:require('./Image/profile.png'),
-    loader_gif:require('./Image/gif2.gif')
+    loader_gif:require('./Image/gif2.gif'),
+    Back_icon:require('./Image/backicon.png'),
+    Setting_icon:require('./Image/settingbtn.png')
 
     // Loader:require('./Image/loader.gif')
 }

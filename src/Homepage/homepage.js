@@ -118,6 +118,9 @@ export default class Homepage extends Component {
     recieve_RIX = () => {
         Actions.Recieve();
     }
+    setting=()=>{
+       Actions.Setting();
+    }
     render() {
         if(this.state.isLoading){
             return(
@@ -130,11 +133,24 @@ export default class Homepage extends Component {
                         <TouchableOpacity
                             onPress={() => { this.backAction() }}
                             style={{ justifyContent: 'center' }}>
-                            <Image source={image} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
+                            <Image source={Icon.Back_icon}
+                             style={{ height: 20, tintColor:'white',width: 20, alignSelf: 'center', marginLeft: '4%' }} />
 
                         </TouchableOpacity>
                         <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold', 
                         justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Your Account Details</Text>
+                  <View style={{justifyContent:'flex-end',flexDirection:'row', alignItems:'center', width:wp('35%'),}}>  
+                 <TouchableOpacity 
+                 onPress={()=>{this.setting()}}                 >
+                 <Image
+                   source={Icon.Setting_icon}
+                   resizeMode="contain"
+                   style={{ height: 20, tintColor:'white',width: 20,}}
+                   />
+                 </TouchableOpacity>
+                  
+                  </View>
+                  
                     </View>
                 <ScrollView>
                 <View style={{ backgroundColor: '#4383fc', height: hp('22%'), width: wp('100%'), 
@@ -252,7 +268,9 @@ export default class Homepage extends Component {
                 {/* Modal 1 End */}
                 {/* Modal 2 start */}
              
-                <Modal isVisible={this.state.isModalVisible} style={{
+                <Modal isVisible={this.state.isModalVisible}
+                backdropColor='rgba(230,242,235,0.9)'
+                style={{
                     backgroundColor: 'white',
                     marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
                     alignItems: 'center'

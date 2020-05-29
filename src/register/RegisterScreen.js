@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, TextInput,
-    Text, Image, TouchableOpacity, Keyboard,BackHandler,Alert
+    Text, Image, TouchableOpacity, Keyboard, BackHandler, Alert
 } from "react-native";
 import Clipboard from '@react-native-community/clipboard'
 import { Button, CheckBox } from 'react-native-elements';
@@ -11,7 +11,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import image from '../../assets/leftArrow.png';
 import { validation_reg } from '../../src/Validation/validation'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import Dialog from "react-native-dialog";
+// import Dialog from "react-native-dialog";
 import Toast from 'react-native-simple-toast';
 import Loader1 from '../assets/Loader'
 import Icon from '../assets/Icon';
@@ -27,7 +27,7 @@ export default class RegisterScreen extends Component {
             AccountName_error: '',
             accountStatus: false,
             checked: false,
-            dialogVisible: false,
+            isModalVisible5: false,
             owner_private_keys: '',
             owner_public_keys: '',
             active_private_keys: '',
@@ -35,7 +35,7 @@ export default class RegisterScreen extends Component {
             loader_visible: false,
             isLoading: false
         };
-        this.backAction=this.backAction.bind(this);
+        this.backAction = this.backAction.bind(this);
         console.disableYellowBox = true;
     }
     componentDidMount() {
@@ -44,9 +44,9 @@ export default class RegisterScreen extends Component {
     }
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.backAction);
-      }
-      backAction = () => {
-          Actions.pop()
+    }
+    backAction = () => {
+        Actions.pop()
         // Alert.alert("Hold on!", "Are you sure you want to go back?", [
         //   {
         //     text: "Cancel",
@@ -56,7 +56,7 @@ export default class RegisterScreen extends Component {
         //   { text: "YES", onPress: () => BackHandler.exitApp() }
         // ]);
         return true;
-      };
+    };
     goback = () => {
         Actions.Createwallet();
         // alert("ok")
@@ -119,7 +119,7 @@ export default class RegisterScreen extends Component {
                         this.setState({ Proceed: true, isLoading: false })
                     }
                     else {
-                        this.setState({ Proceed: false,isLoading: false ,error_msg:response.message})
+                        this.setState({ Proceed: false, isLoading: false, error_msg: response.message })
                         // alert(response.message)
                         // this.setState({})
                         this.toggleModal2()
@@ -128,9 +128,9 @@ export default class RegisterScreen extends Component {
                 .catch(error => console.log(error)) //to catch the errors if any
         }
         else {
-            this.setState({isLoading:false})
+            this.setState({ isLoading: false })
             // alert("Account Name must be of 12 characters")
-        this.toggleModal3()
+            this.toggleModal3()
         }
     }
     _proceed = () => {
@@ -192,7 +192,7 @@ export default class RegisterScreen extends Component {
     }
 
     showDialog = () => {
-        this.setState({ dialogVisible: true });
+        this.setState({ isModalVisible5: true });
     };
 
     hideDialog = () => {
@@ -207,7 +207,7 @@ export default class RegisterScreen extends Component {
         // The user has pressed the "Delete" button, so here you can do your own logic.
         // ...Your logic
         this.writeToClipboard();
-        this.setState({ dialogVisible: false });
+        this.setState({ isModalVisible5: false });
     };
 
     writeToClipboard = async () => {
@@ -271,7 +271,7 @@ export default class RegisterScreen extends Component {
                     //         'new_wallet',"1"
                     //         );
 
-                    
+
 
                     Actions.replace('homepage');
                 }
@@ -294,6 +294,7 @@ export default class RegisterScreen extends Component {
     toggleModal4 = () => {
         this.setState({ isModalVisible4: !this.state.isModalVisible4 });
     };
+
     render() {
         if (this.state.isLoading) {
             return (
@@ -306,7 +307,7 @@ export default class RegisterScreen extends Component {
                     <TouchableOpacity
                         style={{ justifyContent: 'center' }}
                         onPress={() => { this.backAction() }}>
-                        <Image source={image} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
+                        <Image source={Icon.Back_icon} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
                     </TouchableOpacity>
                     <Text style={{
                         fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold',
@@ -319,8 +320,10 @@ export default class RegisterScreen extends Component {
                     justifyContent: 'center', alignItems: 'center', marginTop: hp('5%')
                 }}>
                     <TextInput
-                        style={{ width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                         borderColor: '#a8a9ae', height: hp('8%') }}
+                        style={{
+                            width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                            borderColor: '#a8a9ae', height: hp('8%')
+                        }}
                         value={this.state.AccountName}
                         placeholder="Account Name"
                         placeholderTextColor='#a8a9ae'
@@ -335,32 +338,32 @@ export default class RegisterScreen extends Component {
                         <Text style={{ textAlign: 'center', color: '#a8a9ae', fontSize: 13 }}>*Account name can contain numbers from 1-5 and letters from a-z (small case),There shouldn't be any special characters present in the account name</Text>
                     </View>
                 </View>
-                <View style={{width:wp('100%'), justifyContent:'center', alignItems:'center'}}>
-                <View style={{flexDirection:'row',justifyContent:'space-between',width:wp('75%')}}>
-                
-                    <TouchableOpacity
-                        onPress={() => { this._genrate() }}
-                    >
-                       <Image
-                       resizeMode="contain"
-                       source={Icon.Generate_btn}
-                       style={{width:wp('35%'),height:hp('8%')}}
-                       />
-                    </TouchableOpacity>
+                <View style={{ width: wp('100%'), justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: wp('75%') }}>
 
-                
+                        <TouchableOpacity
+                            onPress={() => { this._genrate() }}
+                        >
+                            <Image
+                                resizeMode="contain"
+                                source={Icon.Generate_btn}
+                                style={{ width: wp('35%'), height: hp('8%') }}
+                            />
+                        </TouchableOpacity>
 
-                    <TouchableOpacity
-                        onPress={() => { this._checkloop() }}
-                    >
-                       <Image
-                       resizeMode="contain"
-                       source={Icon.Checkip_btn}
-                       style={{width:wp('35%'),height:hp('8%')}}
-                       />
-                    </TouchableOpacity>
-              
-                </View>
+
+
+                        <TouchableOpacity
+                            onPress={() => { this._checkloop() }}
+                        >
+                            <Image
+                                resizeMode="contain"
+                                source={Icon.Checkip_btn}
+                                style={{ width: wp('35%'), height: hp('8%') }}
+                            />
+                        </TouchableOpacity>
+
+                    </View>
                 </View>
 
                 {
@@ -370,7 +373,7 @@ export default class RegisterScreen extends Component {
                             justifyContent: 'center', alignItems: 'center', width: wp('100%'),
                             height: hp('15%'),
                         }}>
-                            <View style={{marginVertical:hp('1%')}}>
+                            <View style={{ marginVertical: hp('1%') }}>
                                 <Text>
                                     Account Name is Available &#128512; please press proceed
                                 </Text>
@@ -381,7 +384,7 @@ export default class RegisterScreen extends Component {
                             }}
                                 onPress={() => { this._proceed() }}
                             >
-                                <Text style={{ color: '#fff', fontWeight:'700', fontSize:15}}>
+                                <Text style={{ color: '#fff', fontWeight: '700', fontSize: 15 }}>
                                     Proceed
                     </Text>
                             </TouchableOpacity>
@@ -392,7 +395,92 @@ export default class RegisterScreen extends Component {
 
 
                 <View>
-                    <Dialog.Container visible={this.state.dialogVisible}>
+                    {/* start Modal for copy key */}
+                    <Modal isVisible={this.state.isModalVisible5}
+                    backdropColor='rgba(230,242,235,0.9)'
+                    style={{
+                        backgroundColor: 'white',
+                        marginTop: 150, borderRadius: 10, width: 350, maxHeight: 450, justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                    <View style={{ height: 240, height: 440, width:340 }}>
+                        <View style={{ borderBottomWidth: 1,marginLeft:5, height: 50, justifyContent: 'center', }}>
+                            <Text style={{ fontSize: 16, fontWeight: '700' }}>Keys Generated</Text>
+                        </View>
+                        <View style={{ height: 80,  justifyContent: 'center', alignItems: 'center', }}>
+                            <Text style={{ fontSize: 12, textAlign: 'center' }}>  Please keep your private and public keys safe somewhere it help you to restore your account.
+                        </Text>
+                        </View>
+                        <View style={{ marginHorizontal:wp('1%'), width:340}}>
+                            <Text style={{ fontSize: 13, fontWeight: '700' }}>
+                                Owner keys:-
+                    </Text>
+                    <View style={{flexDirection:'row', }}>
+                    <Text style={{ fontSize: 12, fontWeight: '700' }}>
+                                Public keys: 
+                            </Text>
+                            <View style={{ width:250}}>
+                            <Text style={{fontSize:12,color:'grey', marginLeft:2,textAlign:'center'}}>
+                            {this.state.owner_public_keys}
+                            </Text>
+                            </View>
+                          
+                    </View>
+                           
+                    <View style={{flexDirection:'row'}}>
+                    <Text style={{ fontSize: 12, fontWeight: '700' }}>
+                                Private keys: 
+                            </Text>
+                            <View style={{ width:250}}>
+                            <Text style={{color:'grey', marginLeft:2}}>
+                            {this.state.owner_private_keys}
+                            </Text>
+                            </View>
+                    </View>
+                        </View>
+                        <View style={{ marginHorizontal:wp('1%'), marginTop:5}}>
+                            <Text style={{ fontSize: 13, fontWeight: '700' }}>
+                         
+                                Active keys:-
+                    </Text>
+                    <View style={{flexDirection:'row'}}>
+                    <Text style={{ fontSize: 12, fontWeight: '700' }}>
+                                Public keys: 
+                            </Text>
+                            <View style={{ width:250}}>
+                            <Text style={{color:'grey', marginLeft:2}}>
+                            {this.state.active_private_keys}
+                            </Text>
+                            </View>
+                    </View>
+                           
+                    <View style={{flexDirection:'row'}}>
+                    <Text style={{ fontSize: 12, fontWeight: '700' }}>
+                                Private keys: 
+                            </Text>
+                            <View style={{ width:250}}>
+                            <Text style={{color:'grey', marginLeft:2}}>
+                            {this.state.owner_private_keys}
+                            </Text>
+                            </View>
+                    </View>
+                        </View>
+                        <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'center', height: 50, marginTop: 20
+                        }}>
+                            <TouchableOpacity
+                                style={{ justifyContent: 'center', alignItems: 'center',
+                                 backgroundColor: "#2dd5c9", borderRadius: 20, width: 200 }}
+                                 onPress={()=>{this.handleCopy()}}
+                            >
+                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Copy and Register</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
+                    {/*end  Modal for copy key  */}
+                    {/* <Dialog.Container visible={this.state.dialogVisible}>
                         <Dialog.Title>Keys Generated</Dialog.Title>
                         <Dialog.Description>
                             Please keep your private and public keys safe somewhere it help you to restore your account.
@@ -421,89 +509,129 @@ export default class RegisterScreen extends Component {
                             </Text>
                         </View>
                         <Dialog.Button label="Copy and Register" onPress={this.handleCopy} />
-                    </Dialog.Container>
+                    </Dialog.Container> */}
                 </View>
-                 {/* Modal 1 Start */}
-                 <Modal isVisible={this.state.isModalVisible} style={{ backgroundColor:'white',
-                 marginTop: 250, borderRadius: 10, width: 350, maxHeight: 150, justifyContent: 'center',
-                  alignItems: 'center' }}>
-                    <View style={{ }}>
-                        <View style={{ height:50,ustifyContent:'center', alignItems:'center'}}>
-                        <Text style={{fontSize:20}}>
-                        Not a valid character to enter
-                        </Text>
+                {/* Modal 1 Start */}
+                <Modal isVisible={this.state.isModalVisible}
+                    backdropColor='rgba(230,242,235,0.9)'
+                    style={{
+                        backgroundColor: 'white',
+                        marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                    <View style={{ height: 240, width: 340 }}>
+                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                    </View>                    
-                    <TouchableOpacity
-                    style={{  width:100, borderWidth:1,backgroundColor:'#2dd5c9',
-                    borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
-                    onPress={()=>this.toggleModal()}
-                    >
-                        <Text>OK</Text>
-                    </TouchableOpacity>
+                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 20 }}> Not a valid character to enter.</Text>
+                        </View>
+                        <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'center', height: 50, marginTop: 20
+                        }}>
+                            <TouchableOpacity
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
+                                onPress={() => { this.toggleModal() }}                                // onPress={() => { this.toggleModal }}
+                            >
+                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Ok</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    </View>
                 </Modal>
                 {/* Modal 1 End */}
 
                 {/* Modal 2 Start */}
-                <Modal isVisible={this.state.isModalVisible2} style={{ backgroundColor:'white',
-                 marginTop: 250, borderRadius: 10, width: 350, maxHeight: 150, justifyContent: 'center',
-                  alignItems: 'center' }}>
-                    <View style={{ }}>
-                        <View style={{ height:50,ustifyContent:'center', alignItems:'center'}}>
-                        <Text style={{fontSize:20}}>
-                        {this.state.error_msg}
-                        </Text>
+                <Modal isVisible={this.state.isModalVisible2}
+                    backdropColor='rgba(230,242,235,0.9)'
+                    style={{
+                        backgroundColor: 'white',
+                        marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                    <View style={{ height: 240, width: 340 }}>
+                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                    </View>                    
-                    <TouchableOpacity
-                    style={{  width:100, borderWidth:1,backgroundColor:'#2dd5c9',
-                    borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
-                    onPress={()=>this.toggleModal2()}
-                    >
-                        <Text>OK</Text>
-                    </TouchableOpacity>
+                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 20 }}> {this.state.err}</Text>
+                        </View>
+                        <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'center', height: 50, marginTop: 20
+                        }}>
+                            <TouchableOpacity
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
+                                onPress={() => { this.toggleModal2() }}                                // onPress={() => { this.toggleModal }}
+                            >
+                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Ok</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    </View>
                 </Modal>
                 {/* Modal 2 End */}
 
-                 {/* Modal 3 Start */}
-                 <Modal isVisible={this.state.isModalVisible3} style={{ backgroundColor:'white',
-                 marginTop: 250, borderRadius: 10, width: 350, maxHeight: 150, justifyContent: 'center',
-                  alignItems: 'center' }}>
-                    <View style={{ }}>
-                        <View style={{ height:80,ustifyContent:'center', alignItems:'center', width: 350,}}>
-                        <Text style={{fontSize:20, textAlign:'center'}}>
-                        Account Name must be of 12 characters
-                        </Text>
+                {/* Modal 3 Start */}
+                <Modal isVisible={this.state.isModalVisible3}
+                    backdropColor='rgba(230,242,235,0.9)'
+                    style={{
+                        backgroundColor: 'white',
+                        marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                    <View style={{ height: 240, width: 340 }}>
+                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                    </View>                    
-                    <TouchableOpacity
-                    style={{  width:100, borderWidth:1,backgroundColor:'#2dd5c9',
-                    borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
-                    onPress={()=>this.toggleModal3()}
-                    >
-                        <Text>OK</Text>
-                    </TouchableOpacity>
+                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 20 , textAlign:'center'}}> Account name must be of 12 character.</Text>
+                        </View>
+                        <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'center', height: 50, marginTop: 20
+                        }}>
+                            <TouchableOpacity
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
+                                onPress={() => { this.toggleModal3() }}                                // onPress={() => { this.toggleModal }}
+                            >
+                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Ok</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    </View>
                 </Modal>
                 {/* Modal 3 End */}
 
-                 {/* Modal 4 Start */}
-                 <Modal isVisible={this.state.isModalVisible4} style={{ backgroundColor:'white',
-                 marginTop: 250, borderRadius: 10, width: 350, maxHeight: 150, justifyContent: 'center',
-                  alignItems: 'center' }}>
-                    <View style={{ }}>
-                        <View style={{ height:80,ustifyContent:'center', alignItems:'center', width: 350,}}>
-                        <Text style={{fontSize:20, textAlign:'center'}}>
-                        Please enter valid Account Name           
-                         </Text>
+                {/* Modal 4 Start */}
+                <Modal isVisible={this.state.isModalVisible4}
+                    backdropColor='rgba(230,242,235,0.9)'
+                    style={{
+                        backgroundColor: 'white',
+                        marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                    <View style={{ height: 240, width: 340 }}>
+                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                    </View>                    
-                    <TouchableOpacity
-                    style={{  width:100, borderWidth:1,backgroundColor:'#2dd5c9',
-                    borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
-                    onPress={()=>this.toggleModal4()}
-                    >
-                        <Text>OK</Text>
-                    </TouchableOpacity>
+                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 20, textAlign:'center' }}> Please enter valid name.</Text>
+                        </View>
+                        <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'center', height: 50, marginTop: 20
+                        }}>
+                            <TouchableOpacity
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
+                                onPress={() => { this.toggleModal4() }}                                // onPress={() => { this.toggleModal }}
+                            >
+                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Ok</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    </View>
                 </Modal>
                 {/* Modal 4 End */}
 

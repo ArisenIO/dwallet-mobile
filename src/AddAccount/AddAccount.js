@@ -175,7 +175,7 @@ export default class AddAccount extends Component {
                         <TouchableOpacity
                             onPress={() => { this.backAction() }}
                             style={{ justifyContent: 'center' }}>
-                            <Image source={image} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
+                            <Image source={Icon.Back_icon} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
 
                         </TouchableOpacity>
                         <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold', justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Add Account</Text>
@@ -230,59 +230,93 @@ export default class AddAccount extends Component {
                     </View>
                 </View>
                 {/* Modal 1 Start */}
-                <Modal isVisible={this.state.isModalVisible} style={{ backgroundColor:'white',
-                 marginTop: 250, borderRadius: 10, width: 350, maxHeight: 100, justifyContent: 'center',
-                  alignItems: 'center' }}>
-                    <View style={{ }}>
-                        <View style={{ height:50,}}>
-                        <Text style={{fontSize:20}}>Please enter your name.</Text>
+                <Modal isVisible={this.state.isModalVisible} 
+                backdropColor='rgba(230,242,235,0.9)'
+                style={{
+                    backgroundColor: 'white',
+                    marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <View style={{ height: 240 , width:340}}>
+                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                    </View>                    
-                    <TouchableOpacity
-                    style={{  width:100, borderWidth:1,backgroundColor:'#2dd5c9',
-                    borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
-                    onPress={()=>this.toggleModal()}
-                    >
-                        <Text>OK</Text>
-                    </TouchableOpacity>
+                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 20 }}>Please enter your name</Text>
+                        </View>
+                        <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'center', height: 50, marginTop: 20
+                        }}>
+                            <TouchableOpacity
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
+                                onPress={() => {this.toggleModal()}}                                // onPress={() => { this.toggleModal }}
+                            >
+                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Ok</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    </View>
                 </Modal>
                 {/* Modal 1 End */}
                 {/* Modal 2  Start */}
-                <Modal isVisible={this.state.isModalVisible2} style={{ backgroundColor:'white',
-                 marginTop: 250, borderRadius: 10, width: 350, maxHeight: 100, justifyContent: 'center',
-                  alignItems: 'center' }}>
-                    <View style={{ }}>
-                        <View style={{ height:50,}}>
-                        <Text style={{fontSize:20}}>Please enter your private key.</Text>
+                <Modal isVisible={this.state.isModalVisible2} 
+                backdropColor='rgba(230,242,235,0.9)'
+                style={{
+                    backgroundColor: 'white',
+                    marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <View style={{ height: 240 , width:340}}>
+                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                    </View>                    
-                    <TouchableOpacity
-                    style={{  width:100, borderWidth:1,backgroundColor:'#2dd5c9',
-                    borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
-                    onPress={()=>this.toggleModal2()}
-                    >
-                        <Text>OK</Text>
-                    </TouchableOpacity>
+                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 20 }}>Please enter your private key</Text>
+                        </View>
+                        <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'center', height: 50, marginTop: 20
+                        }}>
+                            <TouchableOpacity
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
+                                onPress={() => {this.toggleModal2()}}                                // onPress={() => { this.toggleModal }}
+                            >
+                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Ok</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    </View>
                 </Modal>
                 {/* Modal 2 End */}
                 {/* Modal 3 Start */}
-                <Modal isVisible={this.state.isModalVisible3} style={{ backgroundColor:'white',
-                 marginTop: 250, borderRadius: 10, width: 350, maxHeight: 150, justifyContent: 'center',
-                  alignItems: 'center' }}>
-                    <View style={{ }}>
-                        <View style={{ height:50,ustifyContent:'center', alignItems:'center'}}>
-                        <Text style={{fontSize:20}}>
-                            {this.state.error_msg}
-                        </Text>
+                <Modal isVisible={this.state.isModalVisible3} 
+                backdropColor='rgba(230,242,235,0.9)'
+                style={{
+                    backgroundColor: 'white',
+                    marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <View style={{ height: 240 , width:340}}>
+                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                    </View>                    
-                    <TouchableOpacity
-                    style={{  width:100, borderWidth:1,backgroundColor:'#2dd5c9',
-                    borderRadius:10,justifyContent:'center', alignItems:'center', height:40}}
-                    onPress={()=>this.toggleModal3()}
-                    >
-                        <Text>OK</Text>
-                    </TouchableOpacity>
+                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+            <Text style={{ fontSize: 20 }}>{this.state.error_msg}</Text>
+                        </View>
+                        <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'center', height: 50, marginTop: 20
+                        }}>
+                            <TouchableOpacity
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
+                                onPress={() => {this.toggleModal3()}}                                // onPress={() => { this.toggleModal }}
+                            >
+                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Ok</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    </View>
                 </Modal>
                 {/* Modal 3 End */}
             </ScrollView>
