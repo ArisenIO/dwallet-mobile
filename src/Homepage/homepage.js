@@ -251,6 +251,7 @@ export default class Homepage extends Component {
                 </Modal>
                 {/* Modal 1 End */}
                 {/* Modal 2 start */}
+             
                 <Modal isVisible={this.state.isModalVisible} style={{
                     backgroundColor: 'white',
                     marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',

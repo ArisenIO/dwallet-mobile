@@ -26,7 +26,7 @@ export default class ModalTester extends Component {
                     marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    <View style={{ height: 240 }}>
+                    <View style={{ height: 240 ,}}>
                         <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
                             <Text style={{ fontSize: 20, fontWeight: '700' }}>Exit?</Text>
                         </View>

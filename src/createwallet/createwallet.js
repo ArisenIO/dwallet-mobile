@@ -8,6 +8,8 @@ import { Button } from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Icon from '../assets/Icon'
+import Modal from 'react-native-modal';
+
 export default class Createwallet extends Component {
     constructor(props) {
         super(props);
