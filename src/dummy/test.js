@@ -24,7 +24,7 @@ export default class ModalTester extends Component {
                     <Text>Show Modal</Text>
                 </TouchableOpacity>
                 <Modal isVisible={this.state.isModalVisible}
-                    backdropColor='rgba(230,242,235,0.9)'
+                    backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
                         marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',

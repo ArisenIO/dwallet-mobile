@@ -256,8 +256,6 @@ export default class RegisterScreen extends Component {
                         'accountName': this.state.AccountName,
                         'active_keys': this.state.active_private_keys,
                         'new_wallet': "1"
-
-
                     }
 
                     AsyncStorage.setItem(
@@ -397,7 +395,7 @@ export default class RegisterScreen extends Component {
                 <View>
                     {/* start Modal for copy key */}
                     <Modal isVisible={this.state.isModalVisible5}
-                    backdropColor='rgba(230,242,235,0.9)'
+                    backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
                         marginTop: 150, borderRadius: 10, width: 350, maxHeight: 450, justifyContent: 'center',
@@ -432,7 +430,7 @@ export default class RegisterScreen extends Component {
                                 Private keys: 
                             </Text>
                             <View style={{ width:250}}>
-                            <Text style={{color:'grey', marginLeft:2}}>
+                            <Text style={{fontSize:12,color:'grey', marginLeft:2}}>
                             {this.state.owner_private_keys}
                             </Text>
                             </View>
@@ -448,8 +446,8 @@ export default class RegisterScreen extends Component {
                                 Public keys: 
                             </Text>
                             <View style={{ width:250}}>
-                            <Text style={{color:'grey', marginLeft:2}}>
-                            {this.state.active_private_keys}
+                            <Text style={{fontSize:12,color:'grey', marginLeft:2}}>
+                            {this.state.active_public_keys}
                             </Text>
                             </View>
                     </View>
@@ -459,24 +457,40 @@ export default class RegisterScreen extends Component {
                                 Private keys: 
                             </Text>
                             <View style={{ width:250}}>
-                            <Text style={{color:'grey', marginLeft:2}}>
-                            {this.state.owner_private_keys}
+                            <Text style={{fontSize:12,color:'grey', marginLeft:2}}>
+                            {this.state.active_private_keys}
                             </Text>
                             </View>
                     </View>
                         </View>
                         <View style={{
                             flexDirection: 'row',
-                            justifyContent: 'center', height: 50, marginTop: 20
+                            justifyContent: 'center', height: 38, marginTop: 20
                         }}>
                             <TouchableOpacity
                                 style={{ justifyContent: 'center', alignItems: 'center',
                                  backgroundColor: "#2dd5c9", borderRadius: 20, width: 200 }}
                                  onPress={()=>{this.handleCopy()}}
                             >
-                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Copy and Register</Text>
+                                <Text style={{ fontSize: 14, fontWeight: "400", color: 'white' }}>Copy and Register</Text>
                             </TouchableOpacity>
                         </View>
+
+                        <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'center', height: 38, marginTop: 20
+                        }}>
+                            <TouchableOpacity
+                                style={{ justifyContent: 'center', alignItems: 'center',
+                                 backgroundColor: "#2dd5c9", borderRadius: 20, width: 200 }}
+                                 onPress={()=>{
+                                    this.setState({isModalVisible5: false})
+                                    }}
+                            >
+                                <Text style={{ fontSize: 14, fontWeight: "400", color: 'white' }}>Cancel</Text>
+                            </TouchableOpacity>
+                        </View>
+
                     </View>
                 </Modal>
                     {/*end  Modal for copy key  */}
@@ -513,7 +527,7 @@ export default class RegisterScreen extends Component {
                 </View>
                 {/* Modal 1 Start */}
                 <Modal isVisible={this.state.isModalVisible}
-                    backdropColor='rgba(230,242,235,0.9)'
+                    backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
                         marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
@@ -521,7 +535,7 @@ export default class RegisterScreen extends Component {
                     }}>
                     <View style={{ height: 240, width: 340 }}>
                         <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error!</Text>
                         </View>
                         <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
                             <Text style={{ fontSize: 20 }}> Not a valid character to enter.</Text>
@@ -544,7 +558,7 @@ export default class RegisterScreen extends Component {
 
                 {/* Modal 2 Start */}
                 <Modal isVisible={this.state.isModalVisible2}
-                    backdropColor='rgba(230,242,235,0.9)'
+                    backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
                         marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
@@ -552,10 +566,10 @@ export default class RegisterScreen extends Component {
                     }}>
                     <View style={{ height: 240, width: 340 }}>
                         <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error!</Text>
                         </View>
                         <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 20 }}> {this.state.err}</Text>
+                            <Text style={{ fontSize: 14 }}> {this.state.err}</Text>
                         </View>
                         <View style={{
                             flexDirection: 'row',
@@ -575,7 +589,7 @@ export default class RegisterScreen extends Component {
 
                 {/* Modal 3 Start */}
                 <Modal isVisible={this.state.isModalVisible3}
-                    backdropColor='rgba(230,242,235,0.9)'
+                    backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
                         marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
@@ -583,20 +597,20 @@ export default class RegisterScreen extends Component {
                     }}>
                     <View style={{ height: 240, width: 340 }}>
                         <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error!</Text>
                         </View>
                         <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 20 , textAlign:'center'}}> Account name must be of 12 character.</Text>
+                            <Text style={{ fontSize: 14 , textAlign:'center'}}> Account name must be of 12 character.</Text>
                         </View>
                         <View style={{
                             flexDirection: 'row',
-                            justifyContent: 'center', height: 50, marginTop: 20
+                            justifyContent: 'center', height: 30, marginTop: 20
                         }}>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 80 }}
                                 onPress={() => { this.toggleModal3() }}                                // onPress={() => { this.toggleModal }}
                             >
-                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 16, fontWeight: "700", color: 'white' }}>Ok</Text>
                             </TouchableOpacity>
                         </View>
 
@@ -606,7 +620,7 @@ export default class RegisterScreen extends Component {
 
                 {/* Modal 4 Start */}
                 <Modal isVisible={this.state.isModalVisible4}
-                    backdropColor='rgba(230,242,235,0.9)'
+                    backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
                         marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
@@ -614,7 +628,7 @@ export default class RegisterScreen extends Component {
                     }}>
                     <View style={{ height: 240, width: 340 }}>
                         <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error!</Text>
                         </View>
                         <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
                             <Text style={{ fontSize: 20, textAlign:'center' }}> Please enter valid name.</Text>

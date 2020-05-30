@@ -138,8 +138,8 @@ export default class Homepage extends Component {
 
                         </TouchableOpacity>
                         <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold', 
-                        justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Your Account Details</Text>
-                  <View style={{justifyContent:'flex-end',flexDirection:'row', alignItems:'center', width:wp('35%'),}}>  
+                        justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Account Details</Text>
+                  <View style={{justifyContent:'flex-end',flexDirection:'row', alignItems:'center', width:wp('35%')}}>  
                  <TouchableOpacity 
                  onPress={()=>{this.setting()}}                 >
                  <Image
@@ -269,7 +269,7 @@ export default class Homepage extends Component {
                 {/* Modal 2 start */}
              
                 <Modal isVisible={this.state.isModalVisible}
-                backdropColor='rgba(230,242,235,0.9)'
+                backdropColor='rgba(0,0,0,1)'
                 style={{
                     backgroundColor: 'white',
                     marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
@@ -277,28 +277,28 @@ export default class Homepage extends Component {
                 }}>
                     <View style={{ height: 240 }}>
                         <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Exit?</Text>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Exit!</Text>
                         </View>
                         <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 20 }}>Are you sure you want to exit app?</Text>
+                            <Text style={{ fontSize: 16 }}>Are you sure you want to exit app?</Text>
                         </View>
                         <View style={{
                             flexDirection: 'row',
-                            justifyContent: 'space-between', height: 50, marginTop: 20
+                            justifyContent: 'space-between', height: 38, marginTop: 20
                         }}>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, alignItems: 'center', width: 150 }}
+                                style={{ justifyContent: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, alignItems: 'center', width: 100 }}
                                 onPress={() => { this.setState({ isModalVisible: false }) }}
                             >
-                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Cancel</Text>
+                                <Text style={{ fontSize: 16, fontWeight: "700", color: 'white' }}>Cancel</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 100 }}
 
                                 onPress={() => BackHandler.exitApp()}
                                 // onPress={() => { this.toggleModal }}
                             >
-                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 16, fontWeight: "700", color: 'white' }}>Ok</Text>
                             </TouchableOpacity>
                         </View>
 

@@ -14,7 +14,8 @@ export default Images ={
     QR_code_frame:require('./Image/QRcodeframe.png'),
     Profile_pic:require('./Image/profile.png'),
     loader_gif:require('./Image/gif2.gif'),
-    Back_icon:require('./Image/backicon.png'),
+   // Back_icon:require('./Image/backicon.png'),
+    Back_icon:require('./Image/back_white.png'),
     Setting_icon:require('./Image/settingbtn.png')
 
     // Loader:require('./Image/loader.gif')
