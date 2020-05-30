@@ -33,7 +33,7 @@ export function validation_quantity(email) {
     // var emailRegex =/^\d+(\.\d{1,4})?$/;
    email = email.trim();
    if (email == "" || email == undefined || email == null) {
-       return { status: false, error: "*please enter the private key." };
+       return { status: false, error: "*please enter the amount." };
    }
 //    else if (!emailRegex.test(email)) {
 //        return { status: false, error: "*quantity takes only numeric value & upto 4 digit after decimal." };
