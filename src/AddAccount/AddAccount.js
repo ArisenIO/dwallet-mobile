@@ -175,7 +175,7 @@ export default class AddAccount extends Component {
                         <TouchableOpacity
                             onPress={() => { this.backAction() }}
                             style={{ justifyContent: 'center' }}>
-                            <Image source={Icon.Back_icon} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
+                            <Image source={Icon.Back_icon} style={{tintColor:'white', height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
 
                         </TouchableOpacity>
                         <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold', justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Add Account</Text>
@@ -238,8 +238,8 @@ export default class AddAccount extends Component {
                     alignItems: 'center'
                 }}>
                     <View style={{ height: 240 , width:340}}>
-                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error!</Text>
+                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', alignItems:'center'}}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
                         <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
                             <Text style={{ fontSize: 18 }}>Please enter your name</Text>
@@ -268,8 +268,8 @@ export default class AddAccount extends Component {
                     alignItems: 'center'
                 }}>
                     <View style={{ height: 240 , width:340}}>
-                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error!</Text>
+                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center',alignItems:'center' }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
                         <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
                             <Text style={{ fontSize: 18 }}>Please enter your private key</Text>
@@ -298,8 +298,8 @@ export default class AddAccount extends Component {
                     alignItems: 'center'
                 }}>
                     <View style={{ height: 240 , width:340}}>
-                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error!</Text>
+                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', alignItems:'center'}}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
                         <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
             <Text style={{ fontSize: 18 }}>{this.state.error_msg}</Text>
