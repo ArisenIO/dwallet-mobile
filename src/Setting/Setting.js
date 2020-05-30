@@ -68,7 +68,7 @@ class Setting extends Component {
                         <Image
                             resizeMode="contain"
                             source={Icon.Reset_icon}
-                            style={{width:wp('10%'),  }}
+                            style={{width:wp('7%'), height: hp('5%') ,marginTop:14}}
                         />
                         <View style={{  justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={{ fontSize: 20,  }}>Reset Application</Text>
@@ -85,7 +85,7 @@ class Setting extends Component {
                        <Image
                             resizeMode="contain"
                             source={Icon.Backup_icon}
-                            style={{width:wp('12%'),  }}
+                            style={{width:wp('8%'),  height: hp('5%') }}
                         />
                            </View> 
                         <View style={{  justifyContent: 'center', alignItems: 'center' }}>
@@ -95,7 +95,7 @@ class Setting extends Component {
                 </TouchableOpacity>
                 {/* reset modal start */}
                 <Modal isVisible={this.state.isModalVisible}
-                 backdropColor='rgba(230,242,235,0.9)'
+                 backdropColor='rgba(0,0,0,1)'
                 style={{
                     backgroundColor: 'white',
                     marginTop: 250, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
@@ -106,7 +106,7 @@ class Setting extends Component {
                             <Text style={{ fontSize: 20, fontWeight: '700' }}>Alert?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign:'center' }}>Are you sure you want reset your data?</Text>
+                            <Text style={{ fontSize: 18, textAlign:'center' }}>Are you sure to reset your data?</Text>
                         </View>
                         <View style={{
                             flexDirection: 'row',
@@ -114,7 +114,7 @@ class Setting extends Component {
                         }}>
                             <TouchableOpacity
                                 style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", 
-                                borderRadius: 20, width: wp('37%') }}
+                                borderRadius: 20, width: wp('28%') }}
 
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.setState({isModalVisible:false})}}
@@ -123,7 +123,7 @@ class Setting extends Component {
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", 
-                                borderRadius: 20, width: wp('37%') }}
+                                borderRadius: 20, width: wp('28%') }}
 
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.reset_data() }}
@@ -137,7 +137,7 @@ class Setting extends Component {
                 {/* Modal end */}
                 {/* start Modal for copy key */}
                 <Modal isVisible={this.state.isModalVisible2}
-                    backdropColor='rgba(230,242,235,0.9)'
+                    backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
                         marginTop: 250, borderRadius: 10, width:wp('90%'), maxHeight: hp('36%'), justifyContent: 'center',

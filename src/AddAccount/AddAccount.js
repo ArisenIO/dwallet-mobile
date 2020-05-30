@@ -235,7 +235,7 @@ export default class AddAccount extends Component {
                 </View>
                 {/* Modal 1 Start */}
                 <Modal isVisible={this.state.isModalVisible}
-                    backdropColor='rgba(230,242,235,0.9)'
+                    backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
                         marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
@@ -271,7 +271,7 @@ export default class AddAccount extends Component {
                 {/* Modal 1 End */}
                 {/* Modal 2  Start */}
                 <Modal isVisible={this.state.isModalVisible2}
-                    backdropColor='rgba(230,242,235,0.9)'
+                    backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
                         marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
@@ -307,7 +307,7 @@ export default class AddAccount extends Component {
                 {/* Modal 2 End */}
                 {/* Modal 3 Start */}
                 <Modal isVisible={this.state.isModalVisible3}
-                    backdropColor='rgba(230,242,235,0.9)'
+                    backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
                         marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
