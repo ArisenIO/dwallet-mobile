@@ -46,9 +46,6 @@ class Setting extends Component {
         Toast.show('Copied', Toast.SHORT);
         this.setState({isModalVisible2:false})
     }
-    // backAction = () => {
-    //     Actions.pop();
-    // }
     reset_data = (data) => {
         AsyncStorage.removeItem('items', JSON.stringify(data))
         Actions.replace('Splash')
