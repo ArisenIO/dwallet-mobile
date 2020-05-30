@@ -225,7 +225,7 @@ class Send_money extends Component {
                 }}>
                     <View style={{ height: 240 , width:340}}>
                         <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', alignItems:'center'}}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error!</Text>
                         </View>
                         <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20, margin:15 }}>
                             <Text style={{ fontSize: 16 }}>{this.state.error_msg}</Text>
