@@ -176,7 +176,7 @@ class Send_money extends Component {
                         value={this.state.to_account_name}
                         placeholder="To Name"
                         autoCapitalize="none"
-                        minLength={12}
+                        minLength={1}
                         onChangeText={(text) => { this.set_to_account_name(text) }}
                         maxLength={12}
                     />
