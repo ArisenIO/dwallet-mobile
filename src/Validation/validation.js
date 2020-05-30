@@ -21,8 +21,8 @@ export function validateName(name) {
     // else if (!nameRegex.test(name)) {
     //     return { status: false, error: "*please enter valid name." };
     // }
-    else if (name.length < 2) {
-        return { status: false, error: "*please enter atleast 2 characters." }
+    else if (name.length < 1) {
+        return { status: false, error: "*please enter atleast 1 characters." }
     }
     else {
         return { status: true, error: '' };
