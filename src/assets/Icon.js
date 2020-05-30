@@ -16,8 +16,9 @@ export default Images ={
     loader_gif:require('./Image/gif2.gif'),
    // Back_icon:require('./Image/backicon.png'),
     Back_icon:require('./Image/back_white.png'),
-    Setting_icon:require('./Image/settingbtn.png')
-
+    Setting_icon:require('./Image/settingbtnn.png'),
+    Reset_icon:require('./Image/reset.png'),
+    Backup_icon:require('./Image/backup.png')
     // Loader:require('./Image/loader.gif')
 }
 export const Loader1=require('./Image/loader.gif')

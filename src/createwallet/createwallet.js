@@ -111,35 +111,41 @@ export default class Createwallet extends Component {
                     </View>
                 </View>
                 {/* Modal Start */}
-                <Modal isVisible={this.state.isModalVisible} style={{
+                <Modal isVisible={this.state.isModalVisible}
+                 backdropColor='rgba(230,242,235,0.9)'
+                 style={{
                     backgroundColor: 'white',
-                    marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                    marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    <View style={{ height: 240 }}>
-                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
+                    <View style={{ height: hp('28%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={{ fontSize: 20, fontWeight: '700' }}>Exit?</Text>
                         </View>
-                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 20 }}>Are you sure you want to exit app?</Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 18, textAlign:'center' }}>Are you sure you want exit app?</Text>
                         </View>
                         <View style={{
                             flexDirection: 'row',
-                            justifyContent: 'space-between', height: 50, marginTop: 20
+                            justifyContent: 'space-between', height: hp('5%'), marginTop: hp('5%'), width:wp('88%')
                         }}>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, alignItems: 'center', width: 150 }}
-                                onPress={() => { this.setState({ isModalVisible: false }) }}
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", 
+                                borderRadius: 20, width: wp('40%') }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.setState({isModalVisible:false})}}
                             >
-                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Cancel</Text>
+                                <Text style={{ fontSize: 18,  color: 'white' }}>No</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", 
+                                borderRadius: 20, width: wp('40%') }}
 
-                                onPress={() => BackHandler.exitApp()}
-                                // onPress={() => { this.toggleModal }}
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { BackHandler.exitApp()}}
                             >
-                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18,  color: 'white' }}>Yes</Text>
                             </TouchableOpacity>
                         </View>
 

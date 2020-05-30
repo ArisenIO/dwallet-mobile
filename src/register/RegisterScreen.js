@@ -527,29 +527,35 @@ export default class RegisterScreen extends Component {
                 </View>
                 {/* Modal 1 Start */}
                 <Modal isVisible={this.state.isModalVisible}
-                    backdropColor='rgba(0,0,0,1)'
+                    backdropColor='rgba(230,242,235,0.9)'
                     style={{
                         backgroundColor: 'white',
-                        marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                    <View style={{ height: 240, width: 340 }}>
-                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error!</Text>
+                    <View style={{ height: hp('28%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 20 }}> Not a valid character to enter.</Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 18, textAlign: 'center' }}>Please enter alphanumeric characters.</Text>
                         </View>
                         <View style={{
-                            flexDirection: 'row',
-                            justifyContent: 'center', height: 50, marginTop: 20
+                            justifyContent: 'center', alignItems: 'center',
+                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
                         }}>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
-                                onPress={() => { this.toggleModal() }}                                // onPress={() => { this.toggleModal }}
+                                style={{
+                                    justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                    borderRadius: 20, width: wp('40%'), height: hp('5%'),
+                                }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.toggleModal() }}
                             >
-                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
                             </TouchableOpacity>
+
                         </View>
 
                     </View>
@@ -558,60 +564,72 @@ export default class RegisterScreen extends Component {
 
                 {/* Modal 2 Start */}
                 <Modal isVisible={this.state.isModalVisible2}
-                    backdropColor='rgba(0,0,0,1)'
+                    backdropColor='rgba(230,242,235,0.9)'
                     style={{
                         backgroundColor: 'white',
-                        marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                    <View style={{ height: 240, width: 340 }}>
-                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error!</Text>
+                    <View style={{ height: hp('28%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 14 }}> {this.state.err}</Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                <Text style={{ fontSize: 18, textAlign: 'center' }}>{this.state.error_msg}</Text>
                         </View>
                         <View style={{
-                            flexDirection: 'row',
-                            justifyContent: 'center', height: 50, marginTop: 20
+                            justifyContent: 'center', alignItems: 'center',
+                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
                         }}>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
-                                onPress={() => { this.toggleModal2() }}                                // onPress={() => { this.toggleModal }}
+                                style={{
+                                    justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                    borderRadius: 20, width: wp('40%'), height: hp('5%'),
+                                }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.toggleModal2() }}
                             >
-                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
                             </TouchableOpacity>
+
                         </View>
 
                     </View>
                 </Modal>
                 {/* Modal 2 End */}
 
-                {/* Modal 3 Start */}
+                {/* Modal 3 Start */} 
                 <Modal isVisible={this.state.isModalVisible3}
-                    backdropColor='rgba(0,0,0,1)'
+                    backdropColor='rgba(230,242,235,0.9)'
                     style={{
                         backgroundColor: 'white',
-                        marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                    <View style={{ height: 240, width: 340 }}>
-                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error!</Text>
+                    <View style={{ height: hp('28%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 14 , textAlign:'center'}}> Account name must be of 12 character.</Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 18, textAlign: 'center' }}>Account name must be of 12 character.</Text>
                         </View>
                         <View style={{
-                            flexDirection: 'row',
-                            justifyContent: 'center', height: 30, marginTop: 20
+                            justifyContent: 'center', alignItems: 'center',
+                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
                         }}>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 80 }}
-                                onPress={() => { this.toggleModal3() }}                                // onPress={() => { this.toggleModal }}
+                                style={{
+                                    justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                    borderRadius: 20, width: wp('40%'), height: hp('5%'),
+                                }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.toggleModal3() }}
                             >
-                                <Text style={{ fontSize: 16, fontWeight: "700", color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
                             </TouchableOpacity>
+
                         </View>
 
                     </View>
@@ -620,29 +638,35 @@ export default class RegisterScreen extends Component {
 
                 {/* Modal 4 Start */}
                 <Modal isVisible={this.state.isModalVisible4}
-                    backdropColor='rgba(0,0,0,1)'
+                    backdropColor='rgba(230,242,235,0.9)'
                     style={{
                         backgroundColor: 'white',
-                        marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                    <View style={{ height: 240, width: 340 }}>
-                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error!</Text>
+                    <View style={{ height: hp('28%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 20, textAlign:'center' }}> Please enter valid name.</Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 18, textAlign: 'center' }}>Please enter valid name.</Text>
                         </View>
                         <View style={{
-                            flexDirection: 'row',
-                            justifyContent: 'center', height: 50, marginTop: 20
+                            justifyContent: 'center', alignItems: 'center',
+                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
                         }}>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
-                                onPress={() => { this.toggleModal4() }}                                // onPress={() => { this.toggleModal }}
+                                style={{
+                                    justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                    borderRadius: 20, width: wp('40%'), height: hp('5%'),
+                                }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.toggleModal4() }}
                             >
-                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
                             </TouchableOpacity>
+
                         </View>
 
                     </View>
@@ -661,7 +685,7 @@ const styles = StyleSheet.create({
     },
     header: {
         flexDirection: 'row',
-        backgroundColor: '#1976D2',
+        backgroundColor: "#4383fc",
         height: 60
     }
 });

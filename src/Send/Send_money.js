@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, TextInput,
-    Text, Image, TouchableOpacity, Keyboard,BackHandler,Alert,Linking
+    Text, Image, TouchableOpacity, Keyboard, BackHandler, Alert, Linking
 } from "react-native";
 import Clipboard from '@react-native-community/clipboard'
 import { Button, CheckBox } from 'react-native-elements';
@@ -28,10 +28,10 @@ class Send_money extends Component {
             txtErrorMessage: '',
             txtStatus: false,
             isLoading: false,
-            transaction_hash:''
+            transaction_hash: ''
 
         }
-        this.backAction=this.backAction.bind(this);
+        this.backAction = this.backAction.bind(this);
 
     }
 
@@ -44,24 +44,17 @@ class Send_money extends Component {
                 active_private_key: parsed_value.items.active_keys
             })
         })
-        BackHandler.addEventListener("hardwareBackPress", this.backAction);   
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
 
     }
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.backAction);
-      }
-      backAction = () => {
-          Actions.pop()
-        // Alert.alert("Hold on!", "Are you sure you want to go back?", [
-        //   {
-        //     text: "Cancel",
-        //     onPress: () => null,
-        //     style: "cancel"
-        //   },
-        //   { text: "YES", onPress: () => BackHandler.exitApp() }
-        // ]);
+    }
+    backAction = () => {
+        Actions.pop()
+
         return true;
-      };
+    };
 
     // set_to_account_name = (txt) => {
     //     if (this.state.to_account_name == null) {
@@ -93,7 +86,7 @@ class Send_money extends Component {
                 var to_name = this.state.to_account_name;
                 var quantity_ = parseFloat(this.state.quantity).toFixed(4);
 
-                console.log("account name",to_name,quantity_);
+                console.log("account name", to_name, quantity_);
 
                 fetch("https://dmobileapi.arisen.network/avote/transfer/v1", {
                     method: 'POST',
@@ -112,21 +105,21 @@ class Send_money extends Component {
                     .then(response => response.json())
                     .then((response) => {
                         this.setState({ isLoading: false })
-                        console.log("_resp_for_transfer_", response, " TRANSACTION ",response.transfer.transaction_id)
+                        console.log("_resp_for_transfer_", response, " TRANSACTION ", response.transfer.transaction_id)
                         if (response.success) {
 
                             var hash = response.transfer.transaction_id;
                             this.setState({
-                                isModalVisible1:true,
-                                transaction_hash:hash
+                                isModalVisible1: true,
+                                transaction_hash: hash
                             })
 
                         }
                         else {
                             var error = JSON.parse(response.error);
-                            var err = error.error.details[0].message ;
+                            var err = error.error.details[0].message;
                             // alert(err)
-                            this.setState({error_msg:err})
+                            this.setState({ error_msg: err })
                             this.toggleModal()
                         }
 
@@ -146,6 +139,9 @@ class Send_money extends Component {
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
     };
+    toggleModal1 = () => {
+        this.setState({ isModalVisible1: !this.state.isModalVisible1 });
+    };
 
 
     render() {
@@ -157,11 +153,11 @@ class Send_money extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <TouchableOpacity 
-                    style={{justifyContent:'center', alignItems:'center',}}
-                    onPress={()=>{this.backAction()}}
+                    <TouchableOpacity
+                        style={{ justifyContent: 'center', alignItems: 'center', }}
+                        onPress={() => { this.backAction() }}
                     >
-                    <Image source={Icon.Back_icon} style={{ height: 20, width: 20,tintColor:'white', alignSelf: 'center', marginLeft: '4%' }} />
+                        <Image source={Icon.Back_icon} style={{ height: 20, width: 20, tintColor: 'white', alignSelf: 'center', marginLeft: '4%' }} />
                     </TouchableOpacity>
                     <Text style={{
                         fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold',
@@ -173,8 +169,10 @@ class Send_money extends Component {
                     justifyContent: 'center', alignItems: 'center', marginTop: hp('5%')
                 }}>
                     <TextInput
-                        style={{ width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18, 
-                        borderColor: 'gray', height: hp('8%') }}
+                        style={{
+                            width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                            borderColor: 'gray', height: hp('8%')
+                        }}
                         value={this.state.to_account_name}
                         placeholder="To Name"
                         autoCapitalize="none"
@@ -191,8 +189,10 @@ class Send_money extends Component {
                     justifyContent: 'center', alignItems: 'center', marginTop: hp('5%')
                 }}>
                     <TextInput
-                        style={{ width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                         borderColor: 'gray', height: hp('8%') }}
+                        style={{
+                            width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                            borderColor: 'gray', height: hp('8%')
+                        }}
                         value={this.state.quantity}
                         placeholder="Quantity"
                         autoCapitalize="none"
@@ -215,31 +215,37 @@ class Send_money extends Component {
                         />
                     </TouchableOpacity>
                 </View>
-                 {/* Modal 1 Start */}
-                <Modal isVisible={this.state.isModalVisible} 
-                backdropColor='rgba(0,0,0,1)'
-                style={{
-                    backgroundColor: 'white',
-                    marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
-                    alignItems: 'center'
-                }}>
-                    <View style={{ height: 240 , width:340}}>
-                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', alignItems:'center'}}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error!</Text>
+                {/* Modal 1 Start */}
+                <Modal isVisible={this.state.isModalVisible}
+                    backdropColor='rgba(230,242,235,0.9)'
+                    style={{
+                        backgroundColor: 'white',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                    <View style={{ height: hp('28%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20, margin:15 }}>
-                            <Text style={{ fontSize: 16 }}>{this.state.error_msg}</Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 18, textAlign: 'center' }}>{this.state.error_msg}.</Text>
                         </View>
                         <View style={{
-                            flexDirection: 'row',
-                            justifyContent: 'center', height: 38, marginTop: 20
+                            justifyContent: 'center', alignItems: 'center',
+                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
                         }}>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 100 }}
-                                onPress={() => {this.toggleModal()}}                                // onPress={() => { this.toggleModal }}
+                                style={{
+                                    justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                    borderRadius: 20, width: wp('40%'), height: hp('5%'),
+                                }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.toggleModal() }}
                             >
-                                <Text style={{ fontSize: 18, fontWeight: "700", color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
                             </TouchableOpacity>
+
                         </View>
 
                     </View>
@@ -247,29 +253,35 @@ class Send_money extends Component {
                 {/* Modal 1 End */}
                 {/*  start Modal for api response */}
                 <Modal isVisible={this.state.isModalVisible1}
-                    backdropColor='rgba(0,0,0,1)'
+                    backdropColor='rgba(230,242,235,0.9)'
                     style={{
                         backgroundColor: 'white',
-                        marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                    <View style={{ height: 240, width: 340 }}>
-                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Transaction Details</Text>
+                    <View style={{ height: hp('28%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                        <View style={{ height: 50,marginTop:10, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                       <Text style={{ fontSize: 18 }}>{this.state.transaction_hash}</Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 18, textAlign: 'center' }}>{this.state.transaction_hash}</Text>
                         </View>
                         <View style={{
-                            flexDirection: 'row',
-                            justifyContent: 'center', height: 38, marginTop: 20
+                            justifyContent: 'center', alignItems: 'center',
+                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
                         }}>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 200 }}
-                                onPress={() => { this.toggleModal1() }}                                // onPress={() => { this.toggleModal }}
+                                style={{
+                                    justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                    borderRadius: 20, width: wp('40%'), height: hp('5%'),
+                                }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.toggleModal1() }}
                             >
-                                <Text style={{ fontSize: 18, fontWeight: "700", color: 'white' }}>Check on Explorer</Text>
+                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
                             </TouchableOpacity>
+
                         </View>
 
                     </View>

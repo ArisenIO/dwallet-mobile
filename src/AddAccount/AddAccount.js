@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, TextInput, TouchableOpacity,
-    Text, ScrollView, Image,BackHandler,Alert
+    Text, ScrollView, Image, BackHandler, Alert
 } from "react-native";
 import { validation_quantity, validateName } from '../../src/Validation/validation'
 // import { Button, Input, Icon } from 'react-native-elements';
@@ -24,7 +24,7 @@ export default class AddAccount extends Component {
             confirmpvtkey: '',
             btnState: false
         };
-        this.backAction=this.backAction.bind(this);
+        this.backAction = this.backAction.bind(this);
 
         console.disableYellowBox = true;
     }
@@ -36,9 +36,9 @@ export default class AddAccount extends Component {
     }
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.backAction);
-      }
-      backAction = () => {
-          Actions.pop()
+    }
+    backAction = () => {
+        Actions.pop()
         // Alert.alert("Hold on!", "Are you sure you want to go back?", [
         //   {
         //     text: "Cancel",
@@ -48,7 +48,7 @@ export default class AddAccount extends Component {
         //   { text: "YES", onPress: () => BackHandler.exitApp() }
         // ]);
         return true;
-      };
+    };
 
     showPvtKeybtn = () => {
         if (this.state.showPvtkey == true) {
@@ -89,7 +89,7 @@ export default class AddAccount extends Component {
                             }
 
                             AsyncStorage.setItem(
-                                'items', JSON.stringify({items})
+                                'items', JSON.stringify({ items })
                             );
 
                             //   AsyncStorage.setItem(
@@ -101,8 +101,8 @@ export default class AddAccount extends Component {
 
                             Actions.replace('homepage')
                         }
-                        else if (response.success==false) {
-                            this.setState({error_msg:response.message})
+                        else if (response.success == false) {
+                            this.setState({ error_msg: response.message })
                             // alert(response.success.message)
                             this.toggleModal3()
                             console.log("error_msg_in_addAcount_", response.message)
@@ -175,19 +175,21 @@ export default class AddAccount extends Component {
                         <TouchableOpacity
                             onPress={() => { this.backAction() }}
                             style={{ justifyContent: 'center' }}>
-                            <Image source={Icon.Back_icon} style={{tintColor:'white', height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
+                            <Image source={Icon.Back_icon} style={{ tintColor: 'white', height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
 
                         </TouchableOpacity>
                         <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold', justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Add Account</Text>
                     </View>
                     <View
-                    style={{
-                        width: wp('100%'), height: hp('8%'),
-                        justifyContent: 'center', alignItems: 'center', marginTop: hp('5%')
-                    }}>
+                        style={{
+                            width: wp('100%'), height: hp('8%'),
+                            justifyContent: 'center', alignItems: 'center', marginTop: hp('5%')
+                        }}>
                         <TextInput
-                            style={{ width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18, 
-                            borderColor: 'gray', height: hp('8%') }}
+                            style={{
+                                width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                                borderColor: 'gray', height: hp('8%')
+                            }}
                             placeholder="Enter your name"
                             value={this.state.to_account_name}
                             autoCapitalize="none"
@@ -203,8 +205,10 @@ export default class AddAccount extends Component {
                         justifyContent: 'center', alignItems: 'center', marginTop: hp('5%')
                     }}>
                         <TextInput
-                            style={{ width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18, 
-                            borderColor: 'gray', height: hp('8%') }}
+                            style={{
+                                width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                                borderColor: 'gray', height: hp('8%')
+                            }}
                             placeholder="Private Key"
                             value={this.state.private_key}
                             autoCapitalize="none"
@@ -230,90 +234,108 @@ export default class AddAccount extends Component {
                     </View>
                 </View>
                 {/* Modal 1 Start */}
-                <Modal isVisible={this.state.isModalVisible} 
-                backdropColor='rgba(0,0,0,1)'
-                style={{
-                    backgroundColor: 'white',
-                    marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
-                    alignItems: 'center'
-                }}>
-                    <View style={{ height: 240 , width:340}}>
-                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', alignItems:'center'}}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error!</Text>
+                <Modal isVisible={this.state.isModalVisible}
+                    backdropColor='rgba(230,242,235,0.9)'
+                    style={{
+                        backgroundColor: 'white',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                    <View style={{ height: hp('28%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18 }}>Please enter your name</Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 18, textAlign: 'center' }}>Please enter your name</Text>
                         </View>
                         <View style={{
-                            flexDirection: 'row',
-                            justifyContent: 'center', height: 38, marginTop: 20
+                            justifyContent: 'center', alignItems: 'center',
+                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
                         }}>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 100 }}
-                                onPress={() => {this.toggleModal()}}                                // onPress={() => { this.toggleModal }}
+                                style={{
+                                    justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                    borderRadius: 20, width: wp('40%'), height: hp('5%'),
+                                }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.toggleModal() }}
                             >
-                                <Text style={{ fontSize: 18, fontWeight: "700", color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
                             </TouchableOpacity>
+
                         </View>
 
                     </View>
                 </Modal>
                 {/* Modal 1 End */}
                 {/* Modal 2  Start */}
-                <Modal isVisible={this.state.isModalVisible2} 
-                backdropColor='rgba(0,0,0,1)'
-                style={{
-                    backgroundColor: 'white',
-                    marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
-                    alignItems: 'center'
-                }}>
-                    <View style={{ height: 240 , width:340}}>
-                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center',alignItems:'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error!</Text>
+                <Modal isVisible={this.state.isModalVisible2}
+                    backdropColor='rgba(230,242,235,0.9)'
+                    style={{
+                        backgroundColor: 'white',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                    <View style={{ height: hp('28%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18 }}>Please enter your private key</Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 18, textAlign: 'center' }}>Please enter your private key</Text>
                         </View>
                         <View style={{
-                            flexDirection: 'row',
-                            justifyContent: 'center', height: 38, marginTop: 20
+                            justifyContent: 'center', alignItems: 'center',
+                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
                         }}>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
-                                onPress={() => {this.toggleModal2()}}                                // onPress={() => { this.toggleModal }}
+                                style={{
+                                    justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                    borderRadius: 20, width: wp('40%'), height: hp('5%'),
+                                }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.toggleModal2() }}
                             >
-                                <Text style={{ fontSize: 18, fontWeight: "700", color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
                             </TouchableOpacity>
+
                         </View>
 
                     </View>
                 </Modal>
                 {/* Modal 2 End */}
                 {/* Modal 3 Start */}
-                <Modal isVisible={this.state.isModalVisible3} 
-                backdropColor='rgba(0,0,0,1)'
-                style={{
-                    backgroundColor: 'white',
-                    marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
-                    alignItems: 'center'
-                }}>
-                    <View style={{ height: 240 , width:340}}>
-                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', alignItems:'center'}}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error!</Text>
+                <Modal isVisible={this.state.isModalVisible3}
+                    backdropColor='rgba(230,242,235,0.9)'
+                    style={{
+                        backgroundColor: 'white',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                    <View style={{ height: hp('28%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-            <Text style={{ fontSize: 18 }}>{this.state.error_msg}</Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 18, textAlign: 'center' }}>{this.state.error_msg}</Text>
                         </View>
                         <View style={{
-                            flexDirection: 'row',
-                            justifyContent: 'center', height: 38, marginTop: 20
+                            justifyContent: 'center', alignItems: 'center',
+                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
                         }}>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 100 }}
-                                onPress={() => {this.toggleModal3()}}                                // onPress={() => { this.toggleModal }}
+                                style={{
+                                    justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                    borderRadius: 20, width: wp('40%'), height: hp('5%'),
+                                }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.toggleModal3() }}
                             >
-                                <Text style={{ fontSize: 18, fontWeight: "700", color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
                             </TouchableOpacity>
+
                         </View>
 
                     </View>

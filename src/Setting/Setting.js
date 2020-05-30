@@ -33,8 +33,8 @@ class Setting extends Component {
             "active_private_key": this.state.active_key
         };
         await Clipboard.setString(JSON.stringify(copied_data));
-
         Toast.show('Copied', Toast.SHORT);
+        this.setState({isModalVisible2:false})
     }
     backAction = () => {
         Actions.pop();
@@ -61,51 +61,74 @@ class Setting extends Component {
                         justifyContent: 'center', alignSelf: 'center', marginStart: '2%'
                     }}>Setting Screen</Text>
                 </View>
-                <View style={{ backgroundColor: '#e1e1e1', height: hp('93%') }}>
-                    <View style={{ justifyContent: 'space-between', height: hp('15%'), width: wp('90%'), marginHorizontal: 10, marginVertical: 10 }}>
-                        <TouchableOpacity
+                <TouchableOpacity
                             onPress={() => { this.setState({ isModalVisible: true }) }}
-                            style={{ backgroundColor: 'white', borderRadius: 10, height: hp('6.5%'), width: wp('90%'), justifyContent: 'center', padding: 5 }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700', }}>Reset Application</Text>
-                        </TouchableOpacity>
-                        <View style={{ width: wp('90%'), height: hp('0.2%'), backgroundColor: 'black' }}></View>
-                        <TouchableOpacity
-                            onPress={() => { this.setState({ isModalVisible2: true }) }}
-                            style={{ backgroundColor: 'white', borderRadius: 10, height: hp('6.5%'), width: wp('90%'), justifyContent: 'center', padding: 5 }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700', }}>Backup </Text>
-                        </TouchableOpacity>
+                            style={{ width: wp('100%'), height: hp('8%'),  justifyContent: 'center' , marginLeft:20}}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: hp('8%'), width: wp('55%')}}>
+                        <Image
+                            resizeMode="contain"
+                            source={Icon.Reset_icon}
+                            style={{width:wp('10%'),  }}
+                        />
+                        <View style={{  justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 20,  }}>Reset Application</Text>
+                        </View>
                     </View>
-                </View>
+                </TouchableOpacity>
+                <View style={{width:wp('100%'), height:hp('0.03%'), backgroundColor:'gray'}}></View>
+                <TouchableOpacity
+                 onPress={() => { this.setState({isModalVisible2:true}) }}
+                style={{ width: wp('100%'), height: hp('8%'),  justifyContent: 'center' , marginLeft:20}}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: hp('8%'), width: wp('32%')}}>
+                       
+                       <View style={{ justifyContent:'center', alignItems:'center'}}>
+                       <Image
+                            resizeMode="contain"
+                            source={Icon.Backup_icon}
+                            style={{width:wp('12%'),  }}
+                        />
+                           </View> 
+                        <View style={{  justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 20,  }}>Backup</Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
                 {/* reset modal start */}
-                <Modal isVisible={this.state.isModalVisible} style={{
+                <Modal isVisible={this.state.isModalVisible}
+                 backdropColor='rgba(230,242,235,0.9)'
+                style={{
                     backgroundColor: 'white',
-                    marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                    marginTop: 250, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    <View style={{ height: 240 }}>
-                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Hello?</Text>
+                    <View style={{ height: hp('28%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Alert?</Text>
                         </View>
-                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 20 }}>Are you sure you want reset your data?</Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 18, textAlign:'center' }}>Are you sure you want reset your data?</Text>
                         </View>
                         <View style={{
                             flexDirection: 'row',
-                            justifyContent: 'space-between', height: 50, marginTop: 20
+                            justifyContent: 'space-between', height: hp('5%'), marginTop: hp('5%')
                         }}>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, alignItems: 'center', width: 150 }}
-                                onPress={() => { this.setState({ isModalVisible: false }) }}
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", 
+                                borderRadius: 20, width: wp('37%') }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.setState({isModalVisible:false})}}
                             >
-                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Cancel</Text>
+                                <Text style={{ fontSize: 18,  color: 'white' }}>No</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", 
+                                borderRadius: 20, width: wp('37%') }}
 
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.reset_data() }}
                             >
-                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Yes</Text>
+                                <Text style={{ fontSize: 18,  color: 'white' }}>Yes</Text>
                             </TouchableOpacity>
                         </View>
 
@@ -117,19 +140,19 @@ class Setting extends Component {
                     backdropColor='rgba(230,242,235,0.9)'
                     style={{
                         backgroundColor: 'white',
-                        marginTop: 250, borderRadius: 10, width: 350, maxHeight: 240, justifyContent: 'center',
+                        marginTop: 250, borderRadius: 10, width:wp('90%'), maxHeight: hp('36%'), justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                    <View style={{ height: 250, width: 340, }}>
+                    <View style={{ height: hp('34%'), width: wp('89%'), }}>
                         <View style={{ borderBottomWidth: 1, marginLeft: 5, height: 50, justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={{ fontSize: 16, fontWeight: '700' }}>Your Generated Keys</Text>
                         </View>
-                        <View style={{ height: 80, justifyContent: 'center', alignItems: 'center', }}>
+                        <View style={{ height: hp('8%'), justifyContent: 'center', alignItems: 'center',}}>
                             <Text style={{ fontSize: 12, textAlign: 'center' }}>  Please keep your private and public keys safe somewhere it help you to restore your account.
                         </Text>
                         </View>
-                        <View style={{ marginHorizontal: wp('1%'), width: 340 }}>
-                            <View style={{ flexDirection: 'row', marginHorizontal: 2 }}>
+                        <View style={{ marginHorizontal: wp('1%'), width: wp('80%'), height:hp('23%') }}>
+                            <View style={{ flexDirection: 'row', marginHorizontal: 2 , marginVertical:hp('1%')}}>
                                 <Text style={{ fontSize: 12, fontWeight: '700', textAlign: 'center' }}>
                                     Account Name:
                             </Text>
@@ -150,17 +173,29 @@ class Setting extends Component {
                                     </Text>
                                 </View>
                             </View>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 35 }}>
-                                <TouchableOpacity
-                                    style={{
-                                        justifyContent: 'center', alignItems: 'center',
-                                        backgroundColor: "#2dd5c9", borderRadius: 20, width: 200
-                                    }}
-                                    onPress={() => { this.writeToClipboard() }}
-                                >
-                                    <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Copy and Register</Text>
-                                </TouchableOpacity>
-                            </View>
+                            <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-between', height: hp('5%'), marginTop: hp('6%'), width:wp('86%')
+                        }}>
+                            <TouchableOpacity
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", 
+                                borderRadius: 20, width: wp('37%') }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.setState({isModalVisible2:false})}}
+                            >
+                                <Text style={{ fontSize: 18,  color: 'white' }}>Cancel</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", 
+                                borderRadius: 20, width: wp('37%') }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.writeToClipboard() }}
+                            >
+                                <Text style={{ fontSize: 18,  color: 'white' }}>Copy</Text>
+                            </TouchableOpacity>
+                        </View>
 
                         </View>
                     </View>
