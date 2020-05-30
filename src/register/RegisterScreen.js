@@ -57,10 +57,10 @@ export default class RegisterScreen extends Component {
         // ]);
         return true;
     };
-    goback = () => {
-        Actions.Createwallet();
-        // alert("ok")
-    }
+    // goback = () => {
+    //     Actions.Createwallet();
+    //     // alert("ok")
+    // }
     iconpress = () => {
         if (this.state.checked == true) {
             this.setState({ checked: false })

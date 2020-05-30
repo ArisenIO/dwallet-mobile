@@ -220,7 +220,7 @@ class Send_money extends Component {
                     backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
-                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('32%'), justifyContent: 'center',
                         alignItems: 'center'
                     }}>
                     <View style={{ height: hp('28%') }}>
@@ -256,12 +256,12 @@ class Send_money extends Component {
                     backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
-                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('32%'), justifyContent: 'center',
                         alignItems: 'center'
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Transaction Id</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
                             <Text style={{ fontSize: 18, textAlign: 'center' }}>{this.state.transaction_hash}</Text>

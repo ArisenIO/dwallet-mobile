@@ -27,26 +27,32 @@ export default class ModalTester extends Component {
                     backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
-                        marginTop: 250, borderRadius: 10, width: 350, maxHeight: 250, justifyContent: 'center',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('32%'), justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                    <View style={{ height: 240, width: 340 }}>
-                        <View style={{ borderBottomWidth: 1, height: 50, justifyContent: 'center', }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Send Details</Text>
+                    <View style={{ height: hp('28%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
-                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 20 }}> xysd,sbfmbdsf,mbdsnmg.</Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 18, textAlign: 'center' }}>{this.state.error_msg}jdhfkjdhfjfhjgfghfhjhgfj.</Text>
                         </View>
                         <View style={{
-                            flexDirection: 'row',
-                            justifyContent: 'center', height: 50, marginTop: 20
+                            justifyContent: 'center', alignItems: 'center',
+                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
                         }}>
                             <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: 150 }}
-                                onPress={() => { this.toggleModal() }}                                // onPress={() => { this.toggleModal }}
+                                style={{
+                                    justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                    borderRadius: 20, width: wp('40%'), height: hp('5%'),
+                                }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.toggleModal() }}
                             >
-                                <Text style={{ fontSize: 20, fontWeight: "700", color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
                             </TouchableOpacity>
+
                         </View>
 
                     </View>
