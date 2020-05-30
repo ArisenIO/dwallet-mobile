@@ -105,7 +105,7 @@ class Send_money extends Component {
                     .then(response => response.json())
                     .then((response) => {
                         this.setState({ isLoading: false })
-                        console.log("_resp_for_transfer_", response, " TRANSACTION ", response.transfer.transaction_id)
+                        console.log("_resp_for_transfer_", response, " TRANSACTION ", response)
                         if (response.success) {
 
                             var hash = response.transfer.transaction_id;
