@@ -256,15 +256,15 @@ class Send_money extends Component {
                     backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
-                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('32%'), justifyContent: 'center',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('40%'), justifyContent: 'center',
                         alignItems: 'center'
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Transaction Id</Text>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Transaction Successfull</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center' }}>{this.state.transaction_hash}</Text>
+                            <Text style={{ fontSize: 14, textAlign: 'center' ,color:'blue'}}>Your Transaction Id is {this.state.transaction_hash}</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
@@ -277,9 +277,24 @@ class Send_money extends Component {
                                 }}
 
                                 // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { 
+                                    Linking.openURL("https://data.arisen.network/accounts/" + this.state.to_account_name)}
+                                 }
+                            >
+                                <Text style={{ fontSize: 16, color: 'white' }}>check on explorer</Text>
+                            </TouchableOpacity>
+
+
+                            <TouchableOpacity
+                                style={{
+                                    justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                    borderRadius: 20, width: wp('40%'), height: hp('5%'),marginTop:'5%'
+                                }}
+
+                                // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal1() }}
                             >
-                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 16, color: 'white' }}>Cancel</Text>
                             </TouchableOpacity>
 
                         </View>

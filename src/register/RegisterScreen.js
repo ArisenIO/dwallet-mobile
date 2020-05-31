@@ -255,6 +255,7 @@ export default class RegisterScreen extends Component {
                     var items = {
                         'accountName': this.state.AccountName,
                         'active_keys': this.state.active_private_keys,
+                        'active_public_keys':this.state.active_public_keys,
                         'new_wallet': "1"
                     }
 

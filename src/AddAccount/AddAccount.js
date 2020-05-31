@@ -79,7 +79,7 @@ export default class AddAccount extends Component {
                 })
                     .then(response => response.json())
                     .then((response) => {
-                        console.log("resp_for_check_api", response)
+                        console.log("resp_for_check_api", response.found_account.required_auth.accounts)
                         if (response.success == true) {
 
                             var items = {
@@ -92,43 +92,14 @@ export default class AddAccount extends Component {
                                 'items', JSON.stringify({ items })
                             );
 
-                            //   AsyncStorage.setItem(
-                            //     'active_keys',this.state.private_key
-                            //     );
-                            //     AsyncStorage.setItem(
-                            //         'new_wallet',"0"
-                            //         );
 
                             Actions.replace('homepage')
                         }
                         else if (response.success == false) {
                             this.setState({ error_msg: response.message })
-                            // alert(response.success.message)
                             this.toggleModal3()
                             console.log("error_msg_in_addAcount_", response.message)
                         }
-
-                        //{"account": "loveaffair11", "active_private": "5J9dikvJnK3SmEHcoottXogsonjfBsDzQggYJDLmHFPGUve9vcB", 
-                        //"active_public": "RSN75W8mipfTk4oSamxLWiBFQgUnHPvdwbbaRcNPDifhYd4YLGhJd",
-                        // "owner_private": "5Ka2buLz2U39ae8Xe9PgAvq1hHhUdgXb5nvKxvawby39LUo2JEt", 
-                        //"owner_public": "RSN7pjSWUaBSkv1J3ZJi5tbzuZWC8feTHbhtKt6ua5EqmsAGTaVdh"}
-
-                        // if (response.success == true) {
-
-
-                        //     this.setState({owner_private_keys: response.owner_private,
-                        //         owner_public_keys:response.owner_public,
-                        //         active_private_keys:response.active_private,
-                        //         active_public_keys:response.active_public,
-                        //         AccountName:response.account,
-                        //         isLoading:false
-                        //                     })
-                        //     this.showDialog();
-
-                        // }
-                        // else {
-                        //     alert("Please enter valid Account Name")
-                        // }
                     })
                     .catch(error => console.log(error)) //to catch the errors if any
             }
@@ -209,7 +180,7 @@ export default class AddAccount extends Component {
                                 width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
                                 borderColor: 'gray', height: hp('8%')
                             }}
-                            placeholder="Private Key"
+                            placeholder="Enter Active Private Key"
                             value={this.state.private_key}
                             autoCapitalize="none"
                             keyboardType="default"
@@ -282,7 +253,7 @@ export default class AddAccount extends Component {
                             <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center' }}>Please enter your private key</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center' }}>Please enter your Active private key</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
