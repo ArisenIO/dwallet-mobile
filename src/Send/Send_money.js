@@ -171,11 +171,12 @@ class Send_money extends Component {
                     <TextInput
                         style={{
                             width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                            borderColor: 'gray', height: hp('8%')
+                            borderColor: 'gray', height: hp('8%') , color:'black'
                         }}
                         value={this.state.to_account_name}
                         placeholder="To Name"
                         autoCapitalize="none"
+                        placeholderTextColor='#a8a9ae'
                         minLength={1}
                         onChangeText={(text) => { this.set_to_account_name(text) }}
                         maxLength={12}
@@ -191,11 +192,12 @@ class Send_money extends Component {
                     <TextInput
                         style={{
                             width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                            borderColor: 'gray', height: hp('8%')
+                            borderColor: 'gray', height: hp('8%') , color:'black'
                         }}
                         value={this.state.quantity}
                         placeholder="Quantity"
                         autoCapitalize="none"
+                        placeholderTextColor='#a8a9ae'
                         keyboardType='number-pad'
                         minLength={12}
                         onChangeText={(text) => { this.set_to_quantity(text) }}

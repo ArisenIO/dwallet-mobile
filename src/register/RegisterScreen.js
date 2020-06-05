@@ -321,7 +321,7 @@ export default class RegisterScreen extends Component {
                     <TextInput
                         style={{
                             width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                            borderColor: '#a8a9ae', height: hp('8%')
+                            borderColor: '#a8a9ae', height: hp('8%') , color:'black'
                         }}
                         value={this.state.AccountName}
                         placeholder="Account Name"

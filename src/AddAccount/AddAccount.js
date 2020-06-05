@@ -159,10 +159,11 @@ export default class AddAccount extends Component {
                         <TextInput
                             style={{
                                 width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                                borderColor: 'gray', height: hp('8%')
+                                borderColor: 'gray', height: hp('8%') ,color:'black'
                             }}
                             placeholder="Enter your name"
                             value={this.state.to_account_name}
+                            placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
                             minLength={12}
                             onChangeText={(text) => { this.set_to_account_name(text) }}
@@ -178,10 +179,11 @@ export default class AddAccount extends Component {
                         <TextInput
                             style={{
                                 width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                                borderColor: 'gray', height: hp('8%')
+                                borderColor: 'gray', height: hp('8%'), color:'black'
                             }}
                             placeholder="Enter Active Private Key"
                             value={this.state.private_key}
+                            placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
                             keyboardType="default"
                             minLength={12}
