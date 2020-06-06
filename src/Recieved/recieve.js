@@ -6,18 +6,14 @@ import Icon from '../assets/Icon'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import image from '../../assets/leftArrow.png';
 import AsyncStorage from '@react-native-community/async-storage';
-
 import { Actions } from 'react-native-router-flux';
 import QRCode from 'react-native-qrcode-svg';
-
-
 
 class Recieve extends Component {
     constructor(props) {
         super(props);
         this.state = {  }
         this.backAction=this.backAction.bind(this);
-
     }
 
     componentDidMount(){
@@ -70,7 +66,7 @@ componentWillUnmount() {
             <View style={Styles.container}>
                 <View style={Styles.header}>
                     <TouchableOpacity
-                    style={{justifyContent:'center'}}
+                    style={{justifyContent:'center', alignItems:'center', }}
                     onPress={()=>{this.backAction()}}>
                     <Image source={Icon.Back_icon} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
                     </TouchableOpacity>
@@ -124,6 +120,7 @@ container:{
 header: {
     flexDirection: 'row',
     backgroundColor: '#4383fc',
-    height: 60
+    height: 60,
+    // backgroundColor:'red'
 }
 })

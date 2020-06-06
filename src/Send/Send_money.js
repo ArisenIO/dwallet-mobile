@@ -318,6 +318,6 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         backgroundColor: '#4383fc',
-        height: 60
+        height: 60,
     }
 })

@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, TextInput, TouchableOpacity,
-    Text, ScrollView, Image, BackHandler, Alert
+    Text, ScrollView, Image, BackHandler, Alert,Platform
 } from "react-native";
 import { validation_quantity, validateName } from '../../src/Validation/validation'
 // import { Button, Input, Icon } from 'react-native-elements';
@@ -142,6 +142,7 @@ export default class AddAccount extends Component {
             <ScrollView>
                 <View style={styles.container}>
                     <View style={styles.header}>
+                        <View style={{ flexDirection:'row', justifyContent:'center', alignItems:'center'}}>                      
                         <TouchableOpacity
                             onPress={() => { this.backAction() }}
                             style={{ justifyContent: 'center' }}>
@@ -149,6 +150,7 @@ export default class AddAccount extends Component {
 
                         </TouchableOpacity>
                         <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold', justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Add Account</Text>
+                        </View>
                     </View>
                     <View
                         style={{
@@ -325,6 +327,7 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         backgroundColor: '#4383fc',
-        height: 60
+        height: 60,
+        // backgroundColor:'red'
     }
 });

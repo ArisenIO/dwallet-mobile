@@ -114,11 +114,11 @@ export default class Homepage extends Component {
         Actions.Setting();
     }
     render() {
-        if(this.state.isLoading){
-            return(
-            <Loader1/>
-            )
-          }
+        // if(this.state.isLoading){
+        //     return(
+        //     <Loader1/>
+        //     )
+        //   }
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
@@ -127,7 +127,6 @@ export default class Homepage extends Component {
                         style={{ justifyContent: 'center', width: wp('10%') }}>
                         <Image source={Icon.Back_icon}
                             style={{ height: 20, tintColor: 'white', width: 20, alignSelf: 'center', marginLeft: '4%' }} />
-
                     </TouchableOpacity>
                     <View style={{ justifyContent: 'center', alignItems: 'center', width: wp('80%') }}>
                         <Text style={{
@@ -145,7 +144,6 @@ export default class Homepage extends Component {
                             />
                         </TouchableOpacity>
                     </View>
-
                 </View>
                 <ScrollView>
                     <View style={{
@@ -423,7 +421,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#4383fc',
         height: 60,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        alignItems:'center'
     },
     account_name_container: {
         width: wp('100%'),

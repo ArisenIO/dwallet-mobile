@@ -304,13 +304,13 @@ export default class RegisterScreen extends Component {
             <View style={styles.container}>
                 <View style={styles.header}>
                     <TouchableOpacity
-                        style={{ justifyContent: 'center' }}
+                        style={{ justifyContent: 'center' , alignItems:'center'}}
                         onPress={() => { this.backAction() }}>
                         <Image source={Icon.Back_icon} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
                     </TouchableOpacity>
                     <Text style={{
                         fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold',
-                        justifyContent: 'center', alignSelf: 'center', marginStart: '2%'
+                        justifyContent: 'center', alignSelf: 'center', marginStart: '2%',
                     }}>Register Account</Text>
                 </View>
 
@@ -687,6 +687,6 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         backgroundColor: "#4383fc",
-        height: 60
+        height: 60,
     }
 });
