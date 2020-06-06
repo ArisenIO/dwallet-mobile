@@ -79,7 +79,7 @@ export default class AddAccount extends Component {
                 })
                     .then(response => response.json())
                     .then((response) => {
-                        console.log("resp_for_check_api", response.found_account.required_auth.accounts)
+                        console.log("respfromappi", response.found_account.required_auth.accounts)
                         if (response.success == true) {
 
                             var items = {
