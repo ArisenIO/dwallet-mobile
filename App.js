@@ -19,7 +19,7 @@ export default class App extends React.Component {
       <View style={{ height: '100%', width: '100%' }}>
         <StatusBar backgroundColor="#4383fc">
         </StatusBar>
-        <Setting />
+        <MainNavigator />
       </View >
     )
   }
