@@ -65,15 +65,20 @@ export default class Createwallet extends Component {
                     />
                 </View>
                 <View style={{ width: wp('100'), height: hp('3%'), justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ color: '#505050', fontWeight: '700', fontSize: 22 }}>Welcome!</Text>
+                    <Text style={{ color: '#505050', fontWeight: '700', fontSize: 22 }}>Let's get started!</Text>
                 </View>
                 <View style={{
                     marginTop: 10, width: wp('100%'), height: hp('10%'), justifyContent: 'center',
                     alignItems: 'center'
                 }}>
                     <View style={{ width: wp('70%'), height: hp('8%'), justifyContent: 'center', alignItems: 'center', }}>
-                        <Text style={{ color: '#a8a9ae', fontWeight: '600', fontSize: 16, textAlign: 'center' }}>
-                            Welcome to dWallet. To start working withthe wallet, just add your account here.
+                        <Text style={{ color: '#a8a9ae',
+                        //  fontWeight: '100',
+                          fontSize: 16,
+                         textAlign: 'center',
+                          
+                          }}>
+                        Change description under it to "To get started with dWallet, either login with PeepsID or create a new PeepsID.
                             </Text>
                     </View>
                 </View>
@@ -89,7 +94,7 @@ export default class Createwallet extends Component {
                             }}
                         >
                             <Text style={{ color: this.state.b_2 ? '#379aff' : 'white', fontSize: 16, fontWeight: '700' }}>
-                                Add Account
+                            Login With PeepsID
                             </Text>
                         </TouchableOpacity>
                     </View>
@@ -105,7 +110,7 @@ export default class Createwallet extends Component {
                             }}
                         >
                             <Text style={{ color: this.state.b_2 ? 'white' : '#379aff', fontSize: 16, fontWeight: '700' }}>
-                                Register Account
+                            Create New PeepsID
                                 </Text>
                         </TouchableOpacity>
                     </View>

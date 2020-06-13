@@ -74,16 +74,16 @@ class Setting extends Component {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: hp('8%'), width: wp('55%')}}>
                         <Image
                             resizeMode="contain"
-                            source={Icon.Reset_icon}
-                            style={{width:wp('7%'), marginTop:5 }}
+                            source={Icon.lOgout_icon}
+                            style={{width:wp('5%'), marginTop:5 }}
                         />
-                        <View style={{  justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20,  }}>Reset Application</Text>
+                        <View style={{  justifyContent: 'center', width:wp('75%'), marginLeft:wp('2%')}}>
+                            <Text style={{ fontSize: 20, fontWeight:'700' }}>Logout</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
                 <View style={{width:wp('100%'), height:hp('0.03%'), backgroundColor:'gray'}}></View>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                  onPress={() => { this.setState({isModalVisible2:true}) }}
                 style={{ width: wp('100%'), height: hp('8%'),  justifyContent: 'center' , marginLeft:20}}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: hp('8%'), width: wp('32%')}}>
@@ -99,7 +99,7 @@ class Setting extends Component {
                             <Text style={{ fontSize: 20,  }}>Backup</Text>
                         </View>
                     </View>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 {/* reset modal start */}
                 <Modal isVisible={this.state.isModalVisible}
                  backdropColor='rgba(0,0,0,1)'
@@ -113,7 +113,7 @@ class Setting extends Component {
                             <Text style={{ fontSize: 20, fontWeight: '700' }}>Alert?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign:'center' }}>Are you sure you want reset your data?</Text>
+                            <Text style={{ fontSize: 18, textAlign:'center' }}>Are you sure you want logout your app?</Text>
                         </View>
                         <View style={{
                             flexDirection: 'row',
@@ -143,7 +143,7 @@ class Setting extends Component {
                 </Modal>
                 {/* Modal end */}
                 {/* start Modal for copy key */}
-                <Modal isVisible={this.state.isModalVisible2}
+                {/* <Modal isVisible={this.state.isModalVisible2}
                     backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
@@ -206,7 +206,7 @@ class Setting extends Component {
 
                         </View>
                     </View>
-                </Modal>
+                </Modal> */}
                 {/*end  Modal for copy key  */}
 
             </View>

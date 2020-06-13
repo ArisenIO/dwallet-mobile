@@ -3,13 +3,11 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, TextInput, TouchableOpacity,
-    Text, ScrollView, Image, BackHandler, Alert,Platform
+    Text, ScrollView, Image, BackHandler, Alert, Platform
 } from "react-native";
 import { validation_quantity, validateName } from '../../src/Validation/validation'
 // import { Button, Input, Icon } from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
-import image from '../../assets/leftArrow.png';
-import eye from '../../assets/eye.png';
 import Toast from 'react-native-simple-toast';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Icon from '../assets/Icon'
@@ -142,14 +140,15 @@ export default class AddAccount extends Component {
             <ScrollView>
                 <View style={styles.container}>
                     <View style={styles.header}>
-                        <View style={{ flexDirection:'row', justifyContent:'center', alignItems:'center'}}>                      
-                        <TouchableOpacity
-                            onPress={() => { this.backAction() }}
-                            style={{ justifyContent: 'center' }}>
-                            <Image source={Icon.Back_icon} style={{ tintColor: 'white', height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
+                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                            <TouchableOpacity
+                                onPress={() => { this.backAction() }}
+                                style={{ justifyContent: 'center' }}>
+                                <Image source={Icon.Back_icon} style={{ tintColor: 'white', height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
 
-                        </TouchableOpacity>
-                        <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold', justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Add Account</Text>
+                            </TouchableOpacity>
+                            <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', fontWeight: '700',
+                             justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Add Account</Text>
                         </View>
                     </View>
                     <View
@@ -160,7 +159,7 @@ export default class AddAccount extends Component {
                         <TextInput
                             style={{
                                 width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                                borderColor: 'gray', height: hp('8%') ,color:'black'
+                                borderColor: 'gray', height: hp('8%'), color: 'black'
                             }}
                             placeholder="Enter your name"
                             value={this.state.to_account_name}
@@ -180,7 +179,7 @@ export default class AddAccount extends Component {
                         <TextInput
                             style={{
                                 width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                                borderColor: 'gray', height: hp('8%'), color:'black'
+                                borderColor: 'gray', height: hp('8%'), color: 'black'
                             }}
                             placeholder="Enter Active Private Key"
                             value={this.state.private_key}
@@ -220,7 +219,7 @@ export default class AddAccount extends Component {
                             <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center' }}>Please enter your name</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center',fontWeight:'100' }}>Please enter your name</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
@@ -256,7 +255,7 @@ export default class AddAccount extends Component {
                             <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center' }}>Please enter your Active private key</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center' ,fontWeight:'100'}}>Please enter your Active private key</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
@@ -292,7 +291,7 @@ export default class AddAccount extends Component {
                             <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center' }}>{this.state.error_msg}</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center' ,fontWeight:'100'}}>{this.state.error_msg}</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',

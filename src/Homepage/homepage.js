@@ -9,7 +9,6 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import AsyncStorage from '@react-native-community/async-storage';
 import Loader1 from '../assets/Loader'
 import Icon from '../assets/Icon'
-import image from '../../assets/leftArrow.png';
 import Modal from 'react-native-modal';
 
 
@@ -169,7 +168,7 @@ export default class Homepage extends Component {
                                 <View style={{ width: wp('100%'), alignItems: 'center',
                                  justifyContent: 'center' }}>
 
-                                    <Text style={{ color: '#ffffff', }}>Your Account Name is</Text>
+                                    <Text style={{ color: '#ffffff', }}>Your RIX Balance</Text>
                                     <Text style={{ color: '#ffffff', fontWeight: '700', marginTop: 15, fontSize: 25 }}>
                                         {/* hfgjdh */}
                                     {this.state.AccountName}
@@ -184,7 +183,7 @@ export default class Homepage extends Component {
 
                     </View>
                     <View style={{ backgroundColor: '#4383fc', }}>
-                        <Text style={{ color: '#ffffff', marginLeft: 30, fontWeight: '700', fontSize: 20, marginVertical: 5 }}>Balance Statement -></Text>
+                        <Text style={{ color: '#ffffff', marginLeft: 30, fontWeight: '700', fontSize: 20, marginVertical: 5 }}>Account Overview</Text>
                     </View>
 
                     <View style={{ backgroundColor: '#4383fc' }}>
@@ -197,7 +196,7 @@ export default class Homepage extends Component {
                                 flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderRadius: 15, marginVertical: hp("2%")
                             }}>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: hp('3%'), width: wp('75%') }}>
-                                    <Text style={{ color: '#75767b' }}>Liquid Balance</Text>
+                                    <Text style={{ color: '#75767b' }}>Spendable Balance</Text>
                                     <Text style={{ color: '#101217', fontWeight: '700' }}>
                                         {/* 2000 RIX */}
                                         {this.state.core_liquid_balance}
@@ -210,7 +209,7 @@ export default class Homepage extends Component {
                                 flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderRadius: 15, marginVertical: hp("2%")
                             }}>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: hp('3%'), width: wp('75%') }}>
-                                    <Text style={{ color: '#75767b' }}>Staked to Self</Text>
+                                    <Text style={{ color: '#75767b' }}>Total Staked</Text>
                                     <Text style={{ color: '#101217', fontWeight: '700' }}>
                                         {/* 200 RIX */}
                                         {this.state.staked_to_self}
@@ -231,7 +230,7 @@ export default class Homepage extends Component {
                                 </View>
                             </View>
 
-                            <View style={{ flexDirection: 'row', width: wp('90%'), marginTop: 45, justifyContent: 'space-between' }}>
+                            <View style={{ flexDirection: 'row', width: wp('90%'), marginTop: 35, justifyContent: 'space-between' }}>
                                 <TouchableOpacity
                                     onPress={() => { this._transferFunds() }}
                                     style={{
@@ -239,7 +238,7 @@ export default class Homepage extends Component {
                                         borderRadius: 15, borderWidth: wp('0.2%'), borderColor: '#101217'
                                     }}
                                 >
-                                    <Text style={{ color: '#101217', fontWeight: '700' }}>Send</Text>
+                                    <Text style={{ color: '#101217', fontWeight: '700' }}>Send RIX</Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity
@@ -249,7 +248,7 @@ export default class Homepage extends Component {
                                         borderRadius: 15, backgroundColor: '#2dd5c9'
                                     }}
                                 >
-                                    <Text style={{ color: '#ffffff', fontWeight: '700' }}>Recieve</Text>
+                                    <Text style={{ color: '#ffffff', fontWeight: '700' }}>Receive RIX</Text>
                                 </TouchableOpacity>
 
                             </View>

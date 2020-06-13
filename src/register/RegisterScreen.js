@@ -8,7 +8,6 @@ import {
 import Clipboard from '@react-native-community/clipboard'
 import { Button, CheckBox } from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
-import image from '../../assets/leftArrow.png';
 import { validation_reg } from '../../src/Validation/validation'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 // import Dialog from "react-native-dialog";
@@ -255,7 +254,7 @@ export default class RegisterScreen extends Component {
                     var items = {
                         'accountName': this.state.AccountName,
                         'active_keys': this.state.active_private_keys,
-                        'active_public_keys':this.state.active_public_keys,
+                        'active_public_keys': this.state.active_public_keys,
                         'new_wallet': "1"
                     }
 
@@ -304,14 +303,14 @@ export default class RegisterScreen extends Component {
             <View style={styles.container}>
                 <View style={styles.header}>
                     <TouchableOpacity
-                        style={{ justifyContent: 'center' , alignItems:'center'}}
+                        style={{ justifyContent: 'center', alignItems: 'center' }}
                         onPress={() => { this.backAction() }}>
                         <Image source={Icon.Back_icon} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
                     </TouchableOpacity>
                     <Text style={{
                         fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold',
-                        justifyContent: 'center', alignSelf: 'center', marginStart: '2%',
-                    }}>Register Account</Text>
+                        justifyContent: 'center', alignSelf: 'center', marginStart: '2%',fontWeight:'700'
+                    }}>Create New PeepsID</Text>
                 </View>
 
                 <View style={{
@@ -321,10 +320,10 @@ export default class RegisterScreen extends Component {
                     <TextInput
                         style={{
                             width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                            borderColor: '#a8a9ae', height: hp('8%') , color:'black'
+                            borderColor: '#a8a9ae', height: hp('8%'), color: 'black'
                         }}
                         value={this.state.AccountName}
-                        placeholder="Account Name"
+                        placeholder="Enter a username..."
                         placeholderTextColor='#a8a9ae'
                         autoCapitalize="none"
                         minLength={12}
@@ -334,10 +333,17 @@ export default class RegisterScreen extends Component {
                 </View>
                 <View style={{ justifyContent: 'center', marginTop: hp('2%'), alignItems: 'center', width: wp('100%') }}>
                     <View style={{ width: wp('90%'), height: hp('10%') }}>
-                        <Text style={{ textAlign: 'center', color: '#a8a9ae', fontSize: 13 }}>*Account name can contain numbers from 1-5 and letters from a-z (small case),There shouldn't be any special characters present in the account name</Text>
+                        <Text style={{ textAlign: 'center',
+                        //  color: '#a8a9ae',
+                        // color:'red', 
+                         fontSize: 13,
+                         fontFamily:'DancingScript-Regular'
+                   
+                    }}>*PeepsID username (Arisen username) can contain numbers 1-5 and letters a-z (lowercase). Special characters are not allowed.</Text>
                     </View>
+
                 </View>
-                <View style={{ width: wp('100%'), justifyContent: 'center', alignItems: 'center' }}>
+                {/* <View style={{ width: wp('100%'), justifyContent: 'center', alignItems: 'center' }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: wp('75%') }}>
 
                         <TouchableOpacity
@@ -363,6 +369,28 @@ export default class RegisterScreen extends Component {
                         </TouchableOpacity>
 
                     </View>
+                </View> */}
+
+                <View style={{ width: wp('100%'), justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: wp('95%') }}>
+
+                        <TouchableOpacity
+                        style={{ backgroundColor: "#2dd5c9",width: wp('45%'), height: hp('5%'), justifyContent:'center', alignItems:'center',borderRadius:30 }}
+                            onPress={() => { this._genrate() }}
+                        >
+                          <Text style={{color:'white', fontWeight:'700',fontSize:15}}>Generate Random</Text>
+                        </TouchableOpacity>
+
+
+
+                        <TouchableOpacity
+                        style={{ backgroundColor: "#2dd5c9",width: wp('45%'), height: hp('5%'), justifyContent:'center', alignItems:'center',borderRadius:30 }}
+                            onPress={() => { this._checkloop() }}
+                        >
+                          <Text style={{color:'white', fontWeight:'700',fontSize:15}}>Check Availability</Text>
+                        </TouchableOpacity>
+
+                    </View>
                 </View>
 
                 {
@@ -374,7 +402,7 @@ export default class RegisterScreen extends Component {
                         }}>
                             <View style={{ marginVertical: hp('1%') }}>
                                 <Text>
-                                    Account Name is Available &#128512; please press proceed
+                                The username is available!
                                 </Text>
                             </View>
                             <TouchableOpacity style={{
@@ -384,7 +412,7 @@ export default class RegisterScreen extends Component {
                                 onPress={() => { this._proceed() }}
                             >
                                 <Text style={{ color: '#fff', fontWeight: '700', fontSize: 15 }}>
-                                    Proceed
+                                Register PeepsID
                     </Text>
                             </TouchableOpacity>
                         </View>
@@ -393,107 +421,111 @@ export default class RegisterScreen extends Component {
                 }
 
 
-                <View>
+                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                     {/* start Modal for copy key */}
                     <Modal isVisible={this.state.isModalVisible5}
-                    backdropColor='rgba(0,0,0,1)'
-                    style={{
-                        backgroundColor: 'white',
-                        marginTop: 150, borderRadius: 10, width: 350, maxHeight: 450, justifyContent: 'center',
-                        alignItems: 'center'
-                    }}>
-                    <View style={{ height: 240, height: 440, width:340 }}>
-                        <View style={{ borderBottomWidth: 1,marginLeft:5, height: 50, justifyContent: 'center', }}>
-                            <Text style={{ fontSize: 16, fontWeight: '700' }}>Keys Generated</Text>
-                        </View>
-                        <View style={{ height: 80,  justifyContent: 'center', alignItems: 'center', }}>
-                            <Text style={{ fontSize: 12, textAlign: 'center' }}>  Please keep your private and public keys safe somewhere it help you to restore your account.
+                        backdropColor='rgba(0,0,0,1)'
+                        style={{
+                            backgroundColor: 'white',
+                            marginTop: 150, borderRadius: 10, width: 350, maxHeight: 450, justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>
+                        <View style={{ height: 240, height: 440, width: 340 }}>
+                            <View style={{ borderBottomWidth: 1, marginLeft: 5, height: 50, justifyContent: 'center', }}>
+                                <Text style={{ fontSize: 16, fontWeight: '700' }}>Keys Generated</Text>
+                            </View>
+                            <View style={{ height: 80, justifyContent: 'center', alignItems: 'center', }}>
+                                <Text style={{ fontSize: 12, textAlign: 'center' }}>  Please keep your private and public keys safe somewhere it help you to restore your account.
                         </Text>
-                        </View>
-                        <View style={{ marginHorizontal:wp('1%'), width:340}}>
-                            <Text style={{ fontSize: 13, fontWeight: '700' }}>
-                                Owner keys:-
+                            </View>
+                            <View style={{ marginHorizontal: wp('1%'), width: 340 }}>
+                                <Text style={{ fontSize: 13, fontWeight: '700' }}>
+                                    Owner keys:-
                     </Text>
-                    <View style={{flexDirection:'row', }}>
-                    <Text style={{ fontSize: 12, fontWeight: '700' }}>
-                                Public keys: 
+                                <View style={{ flexDirection: 'row', }}>
+                                    <Text style={{ fontSize: 12, fontWeight: '700' }}>
+                                        Public keys:
                             </Text>
-                            <View style={{ width:250}}>
-                            <Text style={{fontSize:12,color:'grey', marginLeft:2,textAlign:'center'}}>
-                            {this.state.owner_public_keys}
-                            </Text>
-                            </View>
-                          
-                    </View>
-                           
-                    <View style={{flexDirection:'row'}}>
-                    <Text style={{ fontSize: 12, fontWeight: '700' }}>
-                                Private keys: 
-                            </Text>
-                            <View style={{ width:250}}>
-                            <Text style={{fontSize:12,color:'grey', marginLeft:2}}>
-                            {this.state.owner_private_keys}
-                            </Text>
-                            </View>
-                    </View>
-                        </View>
-                        <View style={{ marginHorizontal:wp('1%'), marginTop:5}}>
-                            <Text style={{ fontSize: 13, fontWeight: '700' }}>
-                         
-                                Active keys:-
-                    </Text>
-                    <View style={{flexDirection:'row'}}>
-                    <Text style={{ fontSize: 12, fontWeight: '700' }}>
-                                Public keys: 
-                            </Text>
-                            <View style={{ width:250}}>
-                            <Text style={{fontSize:12,color:'grey', marginLeft:2}}>
-                            {this.state.active_public_keys}
-                            </Text>
-                            </View>
-                    </View>
-                           
-                    <View style={{flexDirection:'row'}}>
-                    <Text style={{ fontSize: 12, fontWeight: '700' }}>
-                                Private keys: 
-                            </Text>
-                            <View style={{ width:250}}>
-                            <Text style={{fontSize:12,color:'grey', marginLeft:2}}>
-                            {this.state.active_private_keys}
-                            </Text>
-                            </View>
-                    </View>
-                        </View>
-                        <View style={{
-                            flexDirection: 'row',
-                            justifyContent: 'center', height: 38, marginTop: 20
-                        }}>
-                            <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center',
-                                 backgroundColor: "#2dd5c9", borderRadius: 20, width: 200 }}
-                                 onPress={()=>{this.handleCopy()}}
-                            >
-                                <Text style={{ fontSize: 14, fontWeight: "400", color: 'white' }}>Copy and Register</Text>
-                            </TouchableOpacity>
-                        </View>
+                                    <View style={{ width: 250 }}>
+                                        <Text style={{ fontSize: 12, color: 'grey', marginLeft: 2, textAlign: 'center' }}>
+                                            {this.state.owner_public_keys}
+                                        </Text>
+                                    </View>
 
-                        <View style={{
-                            flexDirection: 'row',
-                            justifyContent: 'center', height: 38, marginTop: 20
-                        }}>
-                            <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center',
-                                 backgroundColor: "#2dd5c9", borderRadius: 20, width: 200 }}
-                                 onPress={()=>{
-                                    this.setState({isModalVisible5: false})
+                                </View>
+
+                                <View style={{ flexDirection: 'row' }}>
+                                    <Text style={{ fontSize: 12, fontWeight: '700' }}>
+                                        Private keys:
+                            </Text>
+                                    <View style={{ width: 250 }}>
+                                        <Text style={{ fontSize: 12, color: 'grey', marginLeft: 2 }}>
+                                            {this.state.owner_private_keys}
+                                        </Text>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={{ marginHorizontal: wp('1%'), marginTop: 5 }}>
+                                <Text style={{ fontSize: 13, fontWeight: '700' }}>
+
+                                    Active keys:-
+                    </Text>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <Text style={{ fontSize: 12, fontWeight: '700' }}>
+                                        Public keys:
+                            </Text>
+                                    <View style={{ width: 250 }}>
+                                        <Text style={{ fontSize: 12, color: 'grey', marginLeft: 2 }}>
+                                            {this.state.active_public_keys}
+                                        </Text>
+                                    </View>
+                                </View>
+
+                                <View style={{ flexDirection: 'row' }}>
+                                    <Text style={{ fontSize: 12, fontWeight: '700' }}>
+                                        Private keys:
+                            </Text>
+                                    <View style={{ width: 250 }}>
+                                        <Text style={{ fontSize: 12, color: 'grey', marginLeft: 2 }}>
+                                            {this.state.active_private_keys}
+                                        </Text>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={{
+                                flexDirection: 'row',
+                                justifyContent: 'center', height: 38, marginTop: 20
+                            }}>
+                                <TouchableOpacity
+                                    style={{
+                                        justifyContent: 'center', alignItems: 'center',
+                                        backgroundColor: "#2dd5c9", borderRadius: 20, width: 200
                                     }}
-                            >
-                                <Text style={{ fontSize: 14, fontWeight: "400", color: 'white' }}>Cancel</Text>
-                            </TouchableOpacity>
-                        </View>
+                                    onPress={() => { this.handleCopy() }}
+                                >
+                                    <Text style={{ fontSize: 14, fontWeight: "400", color: 'white' }}>Copy and Register</Text>
+                                </TouchableOpacity>
+                            </View>
 
-                    </View>
-                </Modal>
+                            <View style={{
+                                flexDirection: 'row',
+                                justifyContent: 'center', height: 38, marginTop: 20
+                            }}>
+                                <TouchableOpacity
+                                    style={{
+                                        justifyContent: 'center', alignItems: 'center',
+                                        backgroundColor: "#2dd5c9", borderRadius: 20, width: 200
+                                    }}
+                                    onPress={() => {
+                                        this.setState({ isModalVisible5: false })
+                                    }}
+                                >
+                                    <Text style={{ fontSize: 14, fontWeight: "400", color: 'white' }}>Cancel</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                        </View>
+                    </Modal>
                     {/*end  Modal for copy key  */}
                     {/* <Dialog.Container visible={this.state.dialogVisible}>
                         <Dialog.Title>Keys Generated</Dialog.Title>
@@ -531,7 +563,7 @@ export default class RegisterScreen extends Component {
                     backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
-                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('32%'), justifyContent: 'center',
                         alignItems: 'center'
                     }}>
                     <View style={{ height: hp('28%') }}>
@@ -576,7 +608,7 @@ export default class RegisterScreen extends Component {
                             <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                <Text style={{ fontSize: 18, textAlign: 'center' }}>{this.state.error_msg}</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center' }}>{this.state.error_msg}</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
@@ -600,7 +632,7 @@ export default class RegisterScreen extends Component {
                 </Modal>
                 {/* Modal 2 End */}
 
-                {/* Modal 3 Start */} 
+                {/* Modal 3 Start */}
                 <Modal isVisible={this.state.isModalVisible3}
                     backdropColor='rgba(0,0,0,1)'
                     style={{

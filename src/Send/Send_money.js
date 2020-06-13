@@ -8,7 +8,6 @@ import {
 import Clipboard from '@react-native-community/clipboard'
 import { Button, CheckBox } from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
-import image from '../../assets/leftArrow.png';
 import { validation_quantity, validateName } from '../../src/Validation/validation'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Dialog from "react-native-dialog";
@@ -222,7 +221,7 @@ class Send_money extends Component {
                     backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
-                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('32%'), justifyContent: 'center',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('40%'), justifyContent: 'center',
                         alignItems: 'center'
                     }}>
                     <View style={{ height: hp('28%') }}>
@@ -263,7 +262,7 @@ class Send_money extends Component {
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Transaction Successfull</Text>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>RIX Sent Successfully</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
                             <Text style={{ fontSize: 14, textAlign: 'center' ,color:'blue'}}>Your Transaction Id is {this.state.transaction_hash}</Text>
@@ -283,7 +282,7 @@ class Send_money extends Component {
                                     Linking.openURL("https://data.arisen.network/accounts/" + this.state.to_account_name)}
                                  }
                             >
-                                <Text style={{ fontSize: 16, color: 'white' }}>check on explorer</Text>
+                                <Text style={{ fontSize: 16, color: 'white' }}>Check Via Arisen Explorer</Text>
                             </TouchableOpacity>
 
 
