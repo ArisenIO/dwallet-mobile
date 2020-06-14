@@ -129,7 +129,7 @@ export default class Homepage extends Component {
                     </TouchableOpacity>
                     <View style={{ justifyContent: 'center', alignItems: 'center', width: wp('80%') }}>
                         <Text style={{
-                            fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold',
+                            fontSize: 22, color: 'white', textAlign: 'center', fontFamily: 'Montserrat-Bold',
                             justifyContent: 'center', alignSelf: 'center', marginStart: '2%'
                         }}>Your Account Details</Text>
                     </View>
@@ -161,17 +161,19 @@ export default class Homepage extends Component {
 
                             <View style={{
                                 height: hp('6%'), width: wp('100%'), justifyContent: 'center',
-                                alignItems: 'center', 
+                                alignItems: 'center',
                             }}>
 
 
-                                <View style={{ width: wp('100%'), alignItems: 'center',
-                                 justifyContent: 'center' }}>
+                                <View style={{
+                                    width: wp('100%'), alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}>
 
-                                    <Text style={{ color: '#ffffff', }}>Your RIX Balance</Text>
-                                    <Text style={{ color: '#ffffff', fontWeight: '700', marginTop: 15, fontSize: 25 }}>
+                                    <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Regular', }}>Your RIX Balance</Text>
+                                    <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Bold', marginTop: 15, fontSize: 25 }}>
                                         {/* hfgjdh */}
-                                    {this.state.AccountName}
+                                        {this.state.AccountName}
                                     </Text>
 
                                 </View>
@@ -183,7 +185,7 @@ export default class Homepage extends Component {
 
                     </View>
                     <View style={{ backgroundColor: '#4383fc', }}>
-                        <Text style={{ color: '#ffffff', marginLeft: 30, fontWeight: '700', fontSize: 20, marginVertical: 5 }}>Account Overview</Text>
+                        <Text style={{ color: '#ffffff', marginLeft: 30, fontSize: 20, marginVertical: 5, fontFamily: 'Montserrat-Bold' }}>Account Overview</Text>
                     </View>
 
                     <View style={{ backgroundColor: '#4383fc' }}>
@@ -196,8 +198,8 @@ export default class Homepage extends Component {
                                 flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderRadius: 15, marginVertical: hp("2%")
                             }}>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: hp('3%'), width: wp('75%') }}>
-                                    <Text style={{ color: '#75767b' }}>Spendable Balance</Text>
-                                    <Text style={{ color: '#101217', fontWeight: '700' }}>
+                                    <Text style={{ color: '#75767b', fontFamily: 'Montserrat-Regular' }}>Spendable Balance</Text>
+                                    <Text style={{ color: '#101217', fontFamily: 'Montserrat-Bold' }}>
                                         {/* 2000 RIX */}
                                         {this.state.core_liquid_balance}
                                     </Text>
@@ -209,8 +211,8 @@ export default class Homepage extends Component {
                                 flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderRadius: 15, marginVertical: hp("2%")
                             }}>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: hp('3%'), width: wp('75%') }}>
-                                    <Text style={{ color: '#75767b' }}>Total Staked</Text>
-                                    <Text style={{ color: '#101217', fontWeight: '700' }}>
+                                    <Text style={{ color: '#75767b', fontFamily: 'Montserrat-Regular' }}>Total Staked</Text>
+                                    <Text style={{ color: '#101217', fontFamily: 'Montserrat-Bold' }}>
                                         {/* 200 RIX */}
                                         {this.state.staked_to_self}
                                     </Text>
@@ -222,8 +224,8 @@ export default class Homepage extends Component {
                                 flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderRadius: 15, marginVertical: hp("2%")
                             }}>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: hp('3%'), width: wp('75%') }}>
-                                    <Text style={{ color: '#75767b' }}>Total Balance</Text>
-                                    <Text style={{ color: '#101217', fontWeight: '700' }}>
+                                    <Text style={{ color: '#75767b', fontFamily: 'Montserrat-Regular' }}>Total Balance</Text>
+                                    <Text style={{ color: '#101217', fontFamily: 'Montserrat-Bold' }}>
                                         {/* 20 RIX */}
                                         {this.state.total_balance}
                                     </Text>
@@ -238,7 +240,7 @@ export default class Homepage extends Component {
                                         borderRadius: 15, borderWidth: wp('0.2%'), borderColor: '#101217'
                                     }}
                                 >
-                                    <Text style={{ color: '#101217', fontWeight: '700' }}>Send RIX</Text>
+                                    <Text style={{ color: '#101217', fontFamily: 'Montserrat-Bold' }}>Send RIX</Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity
@@ -248,7 +250,7 @@ export default class Homepage extends Component {
                                         borderRadius: 15, backgroundColor: '#2dd5c9'
                                     }}
                                 >
-                                    <Text style={{ color: '#ffffff', fontWeight: '700' }}>Receive RIX</Text>
+                                    <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Bold' }}>Receive RIX</Text>
                                 </TouchableOpacity>
 
                             </View>
@@ -257,82 +259,86 @@ export default class Homepage extends Component {
                         </View>
                         {/* Modal 1 Start */}
                         <Modal isVisible={this.state.isModalVisible}
-                    backdropColor='rgba(0,0,0,1)'
-                    style={{
-                        backgroundColor: 'white',
-                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
-                        alignItems: 'center'
-                    }}>
-                    <View style={{ height: hp('28%') }}>
-                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
-                        </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                <Text style={{ fontSize: 18, textAlign: 'center' }}>{this.state.error_msg}</Text>
-                        </View>
-                        <View style={{
-                            justifyContent: 'center', alignItems: 'center',
-                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
-                        }}>
-                            <TouchableOpacity
-                                style={{
-                                    justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
-                                    borderRadius: 20, width: wp('40%'), height: hp('5%'),
-                                }}
+                            backdropColor='rgba(0,0,0,1)'
+                            style={{
+                                backgroundColor: 'white',
+                                marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
+                                alignItems: 'center'
+                            }}>
+                            <View style={{ height: hp('28%') }}>
+                                <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                                    <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
+                                </View>
+                                <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                                    <Text style={{ fontSize: 18, textAlign: 'center' }}>{this.state.error_msg}</Text>
+                                </View>
+                                <View style={{
+                                    justifyContent: 'center', alignItems: 'center',
+                                    height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
+                                }}>
+                                    <TouchableOpacity
+                                        style={{
+                                            justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                            borderRadius: 20, width: wp('40%'), height: hp('5%'),
+                                        }}
 
-                                // onPress={() => BackHandler.exitApp()}
-                                onPress={() => { this.toggleModal() }}
-                            >
-                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
-                            </TouchableOpacity>
+                                        // onPress={() => BackHandler.exitApp()}
+                                        onPress={() => { this.toggleModal() }}
+                                    >
+                                        <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
+                                    </TouchableOpacity>
 
-                        </View>
+                                </View>
 
-                    </View>
-                </Modal>
+                            </View>
+                        </Modal>
                         {/* Modal 1 End */}
                         {/* Modal 2 start */}
 
                         <Modal isVisible={this.state.isModalVisible2}
-                 backdropColor='rgba(0,0,0,1)'
-                 style={{
-                    backgroundColor: 'white',
-                    marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
-                    alignItems: 'center'
-                }}>
-                    <View style={{ height: hp('28%') }}>
-                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Exit?</Text>
-                        </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign:'center' }}>Are you sure you want exit app?</Text>
-                        </View>
-                        <View style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-between', height: hp('5%'), marginTop: hp('5%'), width:wp('88%')
-                        }}>
-                            <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", 
-                                borderRadius: 20, width: wp('40%') }}
+                            backdropColor='rgba(0,0,0,1)'
+                            style={{
+                                backgroundColor: 'white',
+                                marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
+                                alignItems: 'center'
+                            }}>
+                            <View style={{ height: hp('28%') }}>
+                                <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                                    <Text style={{ fontSize: 20, fontWeight: '700' }}>Exit?</Text>
+                                </View>
+                                <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                                    <Text style={{ fontSize: 18, textAlign: 'center' }}>Are you sure you want exit app?</Text>
+                                </View>
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-between', height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
+                                }}>
+                                    <TouchableOpacity
+                                        style={{
+                                            justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                            borderRadius: 20, width: wp('40%')
+                                        }}
 
-                                // onPress={() => BackHandler.exitApp()}
-                                onPress={() => { this.setState({isModalVisible2:false})}}
-                            >
-                                <Text style={{ fontSize: 18,  color: 'white' }}>No</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", 
-                                borderRadius: 20, width: wp('40%') }}
+                                        // onPress={() => BackHandler.exitApp()}
+                                        onPress={() => { this.setState({ isModalVisible2: false }) }}
+                                    >
+                                        <Text style={{ fontSize: 18, color: 'white' }}>No</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity
+                                        style={{
+                                            justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                            borderRadius: 20, width: wp('40%')
+                                        }}
 
-                                // onPress={() => BackHandler.exitApp()}
-                                onPress={() => { BackHandler.exitApp()}}
-                            >
-                                <Text style={{ fontSize: 18,  color: 'white' }}>Yes</Text>
-                            </TouchableOpacity>
-                        </View>
+                                        // onPress={() => BackHandler.exitApp()}
+                                        onPress={() => { BackHandler.exitApp() }}
+                                    >
+                                        <Text style={{ fontSize: 18, color: 'white' }}>Yes</Text>
+                                    </TouchableOpacity>
+                                </View>
 
-                    </View>
-                </Modal>
+                            </View>
+                        </Modal>
                         {/* Modal 2 end */}
                     </View>
                     <View style={{ backgroundColor: '#e6e8e9', width: wp('100%'), height: hp('12%') }}>
@@ -421,7 +427,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#4383fc',
         height: 60,
         justifyContent: 'space-between',
-        alignItems:'center'
+        alignItems: 'center'
     },
     account_name_container: {
         width: wp('100%'),
