@@ -46,9 +46,9 @@ class Setting extends Component {
         Toast.show('Copied', Toast.SHORT);
         this.setState({isModalVisible2:false})
     }
-    reset_data = (data) => {
-        AsyncStorage.removeItem('items', JSON.stringify(data))
-        Actions.replace('Splash')
+    reset_data = () => {
+        AsyncStorage.removeItem('items')
+        Actions.reset('Splash')
     }
     render() {
         { console.log("resp_name", this.state.account_name) }
