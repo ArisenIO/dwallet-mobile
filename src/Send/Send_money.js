@@ -66,13 +66,13 @@ class Send_money extends Component {
     // }
 
     set_to_account_name(txt) {
-        this.setState({ to_account_name: txt });
+        this.setState({ to_account_name: (txt).trim() });
         this.state.AccountName_error = validateName(txt).error;
         this.state.AccountName_status = validateName(txt).status;
 
     }
     set_to_quantity(txt) {
-        this.setState({ quantity: txt });
+        this.setState({ quantity: (txt).trim() });
         this.state.txtErrorMessage = validation_quantity(txt).error;
         this.state.txtStatus = validation_quantity(txt).status;
 
@@ -197,7 +197,7 @@ class Send_money extends Component {
                         placeholder="Quantity"
                         autoCapitalize="none"
                         placeholderTextColor='#a8a9ae'
-                        keyboardType='number-pad'
+                        keyboardType='numeric'
                         minLength={12}
                         onChangeText={(text) => { this.set_to_quantity(text) }}
                     />
