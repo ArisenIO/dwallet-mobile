@@ -147,7 +147,8 @@ export default class AddAccount extends Component {
                                 <Image source={Icon.Back_icon} style={{ tintColor: 'white', height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
 
                             </TouchableOpacity>
-                            <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', fontWeight: '700',
+                            <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', 
+                            fontFamily: 'Montserrat-Bold',
                              justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Add Account</Text>
                         </View>
                     </View>
@@ -159,7 +160,7 @@ export default class AddAccount extends Component {
                         <TextInput
                             style={{
                                 width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                                borderColor: 'gray', height: hp('8%'), color: 'black'
+                                borderColor: 'gray', height: hp('8%'), color: 'black',fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="Enter your name"
                             value={this.state.to_account_name}
@@ -170,7 +171,7 @@ export default class AddAccount extends Component {
                         />
                     </View>
                     <View style={{ marginLeft: 15 }}>
-                        <Text style={{ color: 'red' }}>{this.state.AccountName_error} </Text>
+                        <Text style={{ color: 'red' ,fontFamily: 'Montserrat-Regular',}}>{this.state.AccountName_error} </Text>
                     </View>
                     <View style={{
                         width: wp('100%'), height: hp('8%'),
@@ -179,7 +180,7 @@ export default class AddAccount extends Component {
                         <TextInput
                             style={{
                                 width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                                borderColor: 'gray', height: hp('8%'), color: 'black'
+                                borderColor: 'gray', height: hp('8%'), color: 'black',fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="Enter Active Private Key"
                             value={this.state.private_key}
@@ -191,7 +192,7 @@ export default class AddAccount extends Component {
                         />
                     </View>
                     <View style={{ marginLeft: 15 }}>
-                        <Text style={{ color: 'red' }}>{this.state.txtErrorMessage} </Text>
+                        <Text style={{ color: 'red',fontFamily: 'Montserrat-Regular', }}>{this.state.txtErrorMessage} </Text>
                     </View>
 
                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -216,10 +217,10 @@ export default class AddAccount extends Component {
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
+                            <Text style={{ fontSize: 20,   fontFamily: 'Montserrat-Bold',}}>Error?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center',fontWeight:'100' }}>Please enter your name</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center',fontWeight:'100',fontFamily: 'Montserrat-Regular' }}>Please enter your name</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
@@ -234,7 +235,7 @@ export default class AddAccount extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal() }}
                             >
-                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Regular' }}>Ok</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -252,10 +253,10 @@ export default class AddAccount extends Component {
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
+                            <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold', }}>Error?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center' ,fontWeight:'100'}}>Please enter your Active private key</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center' ,fontWeight:'100',fontFamily: 'Montserrat-Regular',}}>Please enter your Active private key</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
@@ -270,7 +271,7 @@ export default class AddAccount extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal2() }}
                             >
-                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Regular', }}>Ok</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -288,10 +289,10 @@ export default class AddAccount extends Component {
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
+                            <Text style={{ fontSize: 20, fontWeight: '700',fontFamily: 'Montserrat-Bold', }}>Error?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center' ,fontWeight:'100'}}>{this.state.error_msg}</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center' ,fontFamily: 'Montserrat-Regular', }}>{this.state.error_msg}</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
@@ -306,7 +307,7 @@ export default class AddAccount extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal3() }}
                             >
-                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Regular',  }}>Ok</Text>
                             </TouchableOpacity>
 
                         </View>

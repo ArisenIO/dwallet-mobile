@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, Text,
-    TouchableOpacity, Image, ScrollView, BackHandler, Alert
+    TouchableOpacity, Image, ScrollView, BackHandler, Alert, Platform
 } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -129,7 +129,9 @@ export default class Homepage extends Component {
                     </TouchableOpacity>
                     <View style={{ justifyContent: 'center', alignItems: 'center', width: wp('80%') }}>
                         <Text style={{
-                            fontSize: 22, color: 'white', textAlign: 'center', fontFamily: 'Montserrat-Bold',
+                            fontSize: 22, color: 'white', textAlign: 'center', 
+                            fontFamily: 'Montserrat-Bold',
+                            
                             justifyContent: 'center', alignSelf: 'center', marginStart: '2%'
                         }}>Your Account Details</Text>
                     </View>
@@ -171,14 +173,13 @@ export default class Homepage extends Component {
                                 }}>
 
                                     <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Regular', }}>Your RIX Balance</Text>
-                                    <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Bold', marginTop: 15, fontSize: 25 }}>
+                                   <View style={{justifyContent:'center', alignItems:'center',height:Platform.OS==="ios" ? hp('10%') : hp('5%'), marginTop: 15,}}>
+                                   <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Bold', fontSize: 25 }}>
                                         {/* hfgjdh */}
                                         {this.state.AccountName}
                                     </Text>
-
+                                   </View>
                                 </View>
-
-
                                 {/* <Text style={{ color: '#ffffff', }}>Balance Statement -></Text> */}
                             </View>
                         </View>
@@ -267,10 +268,10 @@ export default class Homepage extends Component {
                             }}>
                             <View style={{ height: hp('28%') }}>
                                 <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
+                                    <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold'  }}>Error?</Text>
                                 </View>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                                    <Text style={{ fontSize: 18, textAlign: 'center' }}>{this.state.error_msg}</Text>
+                                    <Text style={{ fontSize: 18, textAlign: 'center' ,fontFamily: 'Montserrat-Regular' }}>{this.state.error_msg}</Text>
                                 </View>
                                 <View style={{
                                     justifyContent: 'center', alignItems: 'center',
@@ -285,7 +286,7 @@ export default class Homepage extends Component {
                                         // onPress={() => BackHandler.exitApp()}
                                         onPress={() => { this.toggleModal() }}
                                     >
-                                        <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
+                                        <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Bold' }}>Ok</Text>
                                     </TouchableOpacity>
 
                                 </View>
@@ -299,15 +300,15 @@ export default class Homepage extends Component {
                             backdropColor='rgba(0,0,0,1)'
                             style={{
                                 backgroundColor: 'white',
-                                marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
+                                marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: Platform.OS === 'ios' ? hp('33%') : hp('30%'),  justifyContent: 'center',
                                 alignItems: 'center'
                             }}>
                             <View style={{ height: hp('28%') }}>
                                 <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={{ fontSize: 20, fontWeight: '700' }}>Exit?</Text>
+                                    <Text style={{ fontSize: 20,fontFamily: 'Montserrat-Bold'}}>Exit?</Text>
                                 </View>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                                    <Text style={{ fontSize: 18, textAlign: 'center' }}>Are you sure you want exit app?</Text>
+                                    <Text style={{ fontSize: 18, textAlign: 'center',fontFamily: 'Montserrat-Regular'  }}>Are you sure you want exit app?</Text>
                                 </View>
                                 <View style={{
                                     flexDirection: 'row',
@@ -322,7 +323,7 @@ export default class Homepage extends Component {
                                         // onPress={() => BackHandler.exitApp()}
                                         onPress={() => { this.setState({ isModalVisible2: false }) }}
                                     >
-                                        <Text style={{ fontSize: 18, color: 'white' }}>No</Text>
+                                        <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Bold' }}>No</Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity
                                         style={{
@@ -333,7 +334,7 @@ export default class Homepage extends Component {
                                         // onPress={() => BackHandler.exitApp()}
                                         onPress={() => { BackHandler.exitApp() }}
                                     >
-                                        <Text style={{ fontSize: 18, color: 'white' }}>Yes</Text>
+                                        <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Bold' }}>Yes</Text>
                                     </TouchableOpacity>
                                 </View>
 

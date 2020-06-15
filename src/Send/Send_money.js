@@ -159,7 +159,7 @@ class Send_money extends Component {
                         <Image source={Icon.Back_icon} style={{ height: 20, width: 20, tintColor: 'white', alignSelf: 'center', marginLeft: '4%' }} />
                     </TouchableOpacity>
                     <Text style={{
-                        fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold',
+                        fontSize: 22, color: 'white', textAlign: 'center',  fontFamily: 'Montserrat-Bold',
                         justifyContent: 'center', alignSelf: 'center', marginStart: '2%'
                     }}>Transfer RIX</Text>
                 </View>
@@ -170,7 +170,7 @@ class Send_money extends Component {
                     <TextInput
                         style={{
                             width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                            borderColor: 'gray', height: hp('8%') , color:'black'
+                            borderColor: 'gray', height: hp('8%') , color:'black',fontFamily: 'Montserrat-Regular' 
                         }}
                         value={this.state.to_account_name}
                         placeholder="To Name"
@@ -182,7 +182,7 @@ class Send_money extends Component {
                     />
                 </View>
                 <View style={{ marginLeft: 15 }}>
-                    <Text style={{ color: 'red' }}>{this.state.AccountName_error} </Text>
+                    <Text style={{ color: 'red',fontFamily: 'Montserrat-Regular'  }}>{this.state.AccountName_error} </Text>
                 </View>
                 <View style={{
                     width: wp('100%'), height: hp('8%'),
@@ -191,7 +191,7 @@ class Send_money extends Component {
                     <TextInput
                         style={{
                             width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                            borderColor: 'gray', height: hp('8%') , color:'black'
+                            borderColor: 'gray', height: hp('8%') , color:'black',fontFamily: 'Montserrat-Regular' 
                         }}
                         value={this.state.quantity}
                         placeholder="Quantity"
@@ -203,18 +203,28 @@ class Send_money extends Component {
                     />
                 </View>
                 <View style={{ marginLeft: 15 }}>
-                    <Text style={{ color: 'red' }}>{this.state.txtErrorMessage} </Text>
+                    <Text style={{ color: 'red',fontFamily: 'Montserrat-Regular'  }}>{this.state.txtErrorMessage} </Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         onPress={() => { this._transfer() }}
                     >
-                        <Image
+                         <Image
                             resizeMode="contain"
                             source={Icon.Send_btn}
                             style={{ width: wp('40%'), }}
-                        />
-                    </TouchableOpacity>
+                        /> 
+                        <Text>Send</Text>
+                    </TouchableOpacity> */}
+                    <TouchableOpacity
+                                     onPress={() => { this._transfer() }}
+                                    style={{
+                                        justifyContent: 'center', alignItems: 'center', width: wp('42%'), height: hp('6%'),
+                                        borderRadius: 15, backgroundColor: '#2dd5c9', marginTop:20
+                                    }}
+                                >
+                                    <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Bold' }}>Send</Text>
+                                </TouchableOpacity>
                 </View>
                 {/* Modal 1 Start */}
                 <Modal isVisible={this.state.isModalVisible}
@@ -226,10 +236,10 @@ class Send_money extends Component {
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
+                            <Text style={{ fontSize: 20,fontFamily: 'Montserrat-Bold' }}>Error?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center' }}>{this.state.error_msg}.</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center',fontFamily: 'Montserrat-Regular'  }}>{this.state.error_msg}.</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
@@ -244,7 +254,7 @@ class Send_money extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal() }}
                             >
-                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Bold'  }}>Ok</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -262,10 +272,10 @@ class Send_money extends Component {
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>RIX Sent Successfully</Text>
+                            <Text style={{ fontSize: 2,fontFamily: 'Montserrat-Bold'  }}>RIX Sent Successfully</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 14, textAlign: 'center' ,color:'blue'}}>Your Transaction Id is {this.state.transaction_hash}</Text>
+                            <Text style={{ fontSize: 14, textAlign: 'center' ,color:'blue',fontFamily: 'Montserrat-Regular' }}>Your Transaction Id is {this.state.transaction_hash}</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
@@ -282,7 +292,7 @@ class Send_money extends Component {
                                     Linking.openURL("https://data.arisen.network/accounts/" + this.state.to_account_name)}
                                  }
                             >
-                                <Text style={{ fontSize: 16, color: 'white' }}>Check Via Arisen Explorer</Text>
+                                <Text style={{ fontSize: 16, color: 'white' ,fontFamily: 'Montserrat-Bold' }}>Check Via Arisen Explorer</Text>
                             </TouchableOpacity>
 
 
@@ -295,7 +305,7 @@ class Send_money extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal1() }}
                             >
-                                <Text style={{ fontSize: 16, color: 'white' }}>Cancel</Text>
+                                <Text style={{ fontSize: 16, color: 'white',fontFamily: 'Montserrat-Bold'  }}>Cancel</Text>
                             </TouchableOpacity>
 
                         </View>

@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     Animated,
-    View, Text,Image, ImageBackground
+    View, Text,Image, ImageBackground, Platform
 } from "react-native";
 import AsyncStorage from '@react-native-community/async-storage';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet, View,
-    Text, ScrollView, Image, TouchableOpacity,BackHandler
+    Text, ScrollView, Image, TouchableOpacity,BackHandler, Platform
 } from "react-native";
 import { Button } from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -64,21 +64,21 @@ export default class Createwallet extends Component {
                         style={{ width: wp('50%') }}
                     />
                 </View>
-                <View style={{ width: wp('100'), height: hp('3%'), justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ color: '#505050', fontWeight: '700', fontSize: 22 }}>Let's get started!</Text>
+                <View style={{ width: wp('100'), height: Platform.OS === 'ios' ? hp('7%') : hp('5%'), justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ color: '#505050',fontFamily: 'Montserrat-Bold',fontSize: 22 }}>Let's get started!</Text>
                 </View>
                 <View style={{
-                    marginTop: 10, width: wp('100%'), height: hp('10%'), justifyContent: 'center',
+                    marginTop: 10, width: wp('100%'), height: Platform.OS === 'ios' ? hp('15%') : hp('12%'), justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    <View style={{ width: wp('70%'), height: hp('8%'), justifyContent: 'center', alignItems: 'center', }}>
+                    <View style={{ width: wp('70%'), height: Platform.OS === 'ios' ? hp('15%') : hp('12%'),height: hp('8%'), justifyContent: 'center', alignItems: 'center', }}>
                         <Text style={{ color: '#a8a9ae',
                         //  fontWeight: '100',
                           fontSize: 16,
-                         textAlign: 'center',
+                         textAlign: 'center',fontFamily: 'Montserrat-Regular', 
                           
                           }}>
-                        Change description under it to "To get started with dWallet, either login with PeepsID or create a new PeepsID.
+                        To get started with dWallet, either login with PeepsID or create a new PeepsID.
                             </Text>
                     </View>
                 </View>
@@ -93,7 +93,7 @@ export default class Createwallet extends Component {
                                 justifyContent: 'center', alignItems: 'center', borderRadius: 25
                             }}
                         >
-                            <Text style={{ color: this.state.b_2 ? '#379aff' : 'white', fontSize: 16, fontWeight: '700' }}>
+                            <Text style={{ color: this.state.b_2 ? '#379aff' : 'white', fontSize: 16, fontFamily: 'Montserrat-Bold', }}>
                             Login With PeepsID
                             </Text>
                         </TouchableOpacity>
@@ -109,7 +109,7 @@ export default class Createwallet extends Component {
                                 justifyContent: 'center', alignItems: 'center', borderRadius: 25
                             }}
                         >
-                            <Text style={{ color: this.state.b_2 ? 'white' : '#379aff', fontSize: 16, fontWeight: '700' }}>
+                            <Text style={{ color: this.state.b_2 ? 'white' : '#379aff', fontSize: 16,fontFamily: 'Montserrat-Bold',}}>
                             Create New PeepsID
                                 </Text>
                         </TouchableOpacity>
@@ -125,10 +125,10 @@ export default class Createwallet extends Component {
                 }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Exit?</Text>
+                            <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold',  }}>Exit?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign:'center' }}>Are you sure you want exit app?</Text>
+                            <Text style={{ fontSize: 18, textAlign:'center' ,fontFamily: 'Montserrat-Regular', }}>Are you sure you want exit app?</Text>
                         </View>
                         <View style={{
                             flexDirection: 'row',
@@ -141,7 +141,7 @@ export default class Createwallet extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.setState({isModalVisible:false})}}
                             >
-                                <Text style={{ fontSize: 18,  color: 'white' }}>No</Text>
+                                <Text style={{ fontSize: 18,  color: 'white' ,fontFamily: 'Montserrat-Bold', }}>No</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", 
@@ -150,7 +150,7 @@ export default class Createwallet extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { BackHandler.exitApp()}}
                             >
-                                <Text style={{ fontSize: 18,  color: 'white' }}>Yes</Text>
+                                <Text style={{ fontSize: 18,  color: 'white' ,fontFamily: 'Montserrat-Bold',}}>Yes</Text>
                             </TouchableOpacity>
                         </View>
 

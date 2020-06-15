@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "eosapp.app"
+               BuildableName = "dWallet.app"
                BlueprintName = "eosapp"
                ReferencedContainer = "container:eosapp.xcodeproj">
             </BuildableReference>
@@ -55,7 +55,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "eosapp.app"
+            BuildableName = "dWallet.app"
             BlueprintName = "eosapp"
             ReferencedContainer = "container:eosapp.xcodeproj">
          </BuildableReference>
@@ -72,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "eosapp.app"
+            BuildableName = "dWallet.app"
             BlueprintName = "eosapp"
             ReferencedContainer = "container:eosapp.xcodeproj">
          </BuildableReference>

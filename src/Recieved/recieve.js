@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ImageBackground, BackHandler, Alert } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity, ImageBackground, BackHandler, Platform } from 'react-native'
 import Icon from '../assets/Icon'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -70,12 +70,12 @@ class Recieve extends Component {
                         <Image source={Icon.Back_icon} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
                     </TouchableOpacity>
                     <Text style={{
-                        fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold',
-                        justifyContent: 'center', alignSelf: 'center', marginStart: '2%'
+                        fontSize: 22, color: 'white', textAlign: 'center', 
+                        justifyContent: 'center', alignSelf: 'center', marginStart: '2%',fontFamily: 'Montserrat-Bold',
                     }}>Account Overview</Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: hp('5%'), width: wp('100%'), }}>
-                    <Text style={{ fontSize: 20, color: '#a8a9ae', fontWeight: '100', textAlign: 'center' }}>This QR code can be used by friends to send RIX to your account.</Text>
+                    <Text style={{ fontSize: 18, color: '#a8a9ae', textAlign: 'center' ,fontFamily: 'Montserrat-Regular',}}>This QR code can be used by friends to send RIX to your account.</Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                     <ImageBackground
@@ -97,8 +97,8 @@ class Recieve extends Component {
 
                     </ImageBackground>
                 </View>
-                <View style={{ marginVertical: 25, justifyContent: 'center', alignItems: 'center', fontSize: 20, fontWeight: '700' }}>
-                    <Text>
+                <View style={{ marginVertical: 25, justifyContent: 'center', alignItems: 'center', fontSize: 20, fontFamily: 'Montserrat-Bold', }}>
+                    <Text style={{fontFamily: 'Montserrat-Regular' }}>
                         {this.state.AccountName}
                     </Text>
                 </View>

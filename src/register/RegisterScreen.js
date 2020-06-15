@@ -308,8 +308,8 @@ export default class RegisterScreen extends Component {
                         <Image source={Icon.Back_icon} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
                     </TouchableOpacity>
                     <Text style={{
-                        fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold',
-                        justifyContent: 'center', alignSelf: 'center', marginStart: '2%',fontWeight:'700'
+                        fontSize: 22, color: 'white', textAlign: 'center',
+                        justifyContent: 'center', alignSelf: 'center', marginStart: '2%',fontFamily: 'Montserrat-Bold',
                     }}>Create New PeepsID</Text>
                 </View>
 
@@ -320,7 +320,7 @@ export default class RegisterScreen extends Component {
                     <TextInput
                         style={{
                             width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                            borderColor: '#a8a9ae', height: hp('8%'), color: 'black'
+                            borderColor: '#a8a9ae', height: hp('8%'), color: 'black',fontFamily: 'Montserrat-Regular', 
                         }}
                         value={this.state.AccountName}
                         placeholder="Enter a username..."
@@ -337,7 +337,7 @@ export default class RegisterScreen extends Component {
                         //  color: '#a8a9ae',
                         // color:'red', 
                          fontSize: 13,
-                         fontFamily:'DancingScript-Regular'
+                         fontFamily: 'Montserrat-Regular', 
                    
                     }}>*PeepsID username (Arisen username) can contain numbers 1-5 and letters a-z (lowercase). Special characters are not allowed.</Text>
                     </View>
@@ -378,7 +378,7 @@ export default class RegisterScreen extends Component {
                         style={{ backgroundColor: "#2dd5c9",width: wp('45%'), height: hp('5%'), justifyContent:'center', alignItems:'center',borderRadius:30 }}
                             onPress={() => { this._genrate() }}
                         >
-                          <Text style={{color:'white', fontWeight:'700',fontSize:15}}>Generate Random</Text>
+                          <Text style={{color:'white', fontFamily: 'Montserrat-Bold',fontSize:15}}>Generate Random</Text>
                         </TouchableOpacity>
 
 
@@ -387,7 +387,7 @@ export default class RegisterScreen extends Component {
                         style={{ backgroundColor: "#2dd5c9",width: wp('45%'), height: hp('5%'), justifyContent:'center', alignItems:'center',borderRadius:30 }}
                             onPress={() => { this._checkloop() }}
                         >
-                          <Text style={{color:'white', fontWeight:'700',fontSize:15}}>Check Availability</Text>
+                          <Text style={{color:'white', fontFamily: 'Montserrat-Bold',fontSize:15}}>Check Availability</Text>
                         </TouchableOpacity>
 
                     </View>
@@ -401,17 +401,17 @@ export default class RegisterScreen extends Component {
                             height: hp('15%'),
                         }}>
                             <View style={{ marginVertical: hp('1%') }}>
-                                <Text>
+                                <Text style={{fontFamily: 'Montserrat-Regular',}}>
                                 The username is available!
                                 </Text>
                             </View>
                             <TouchableOpacity style={{
-                                height: hp('5%'), width: wp('35%'), borderRadius: 20,
+                                height: hp('5%'), width: wp('40%'), borderRadius: 20,
                                 backgroundColor: '#2dd5c9', justifyContent: 'center', alignItems: 'center'
                             }}
                                 onPress={() => { this._proceed() }}
                             >
-                                <Text style={{ color: '#fff', fontWeight: '700', fontSize: 15 }}>
+                                <Text style={{ color: '#fff', fontFamily: 'Montserrat-Bold',fontSize: 15 }}>
                                 Register PeepsID
                     </Text>
                             </TouchableOpacity>
@@ -432,22 +432,22 @@ export default class RegisterScreen extends Component {
                         }}>
                         <View style={{ height: 240, height: 440, width: 340 }}>
                             <View style={{ borderBottomWidth: 1, marginLeft: 5, height: 50, justifyContent: 'center', }}>
-                                <Text style={{ fontSize: 16, fontWeight: '700' }}>Keys Generated</Text>
+                                <Text style={{ fontSize: 16,  fontFamily: 'Montserrat-Bold',}}>Keys Generated</Text>
                             </View>
                             <View style={{ height: 80, justifyContent: 'center', alignItems: 'center', }}>
-                                <Text style={{ fontSize: 12, textAlign: 'center' }}>  Please keep your private and public keys safe somewhere it help you to restore your account.
+                                <Text style={{ fontSize: 12, textAlign: 'center' ,fontFamily: 'Montserrat-Bold',}}>  Please keep your private and public keys safe somewhere it help you to restore your account.
                         </Text>
                             </View>
                             <View style={{ marginHorizontal: wp('1%'), width: 340 }}>
-                                <Text style={{ fontSize: 13, fontWeight: '700' }}>
+                                <Text style={{ fontSize: 13, fontFamily: 'Montserrat-Bold', }}>
                                     Owner keys:-
                     </Text>
                                 <View style={{ flexDirection: 'row', }}>
-                                    <Text style={{ fontSize: 12, fontWeight: '700' }}>
+                                    <Text style={{ fontSize: 12, fontFamily: 'Montserrat-Bold',}}>
                                         Public keys:
                             </Text>
                                     <View style={{ width: 250 }}>
-                                        <Text style={{ fontSize: 12, color: 'grey', marginLeft: 2, textAlign: 'center' }}>
+                                        <Text style={{ fontSize: 12, color: 'grey',fontFamily: 'Montserrat-Regular', marginLeft: 2, textAlign: 'center' }}>
                                             {this.state.owner_public_keys}
                                         </Text>
                                     </View>
@@ -455,38 +455,38 @@ export default class RegisterScreen extends Component {
                                 </View>
 
                                 <View style={{ flexDirection: 'row' }}>
-                                    <Text style={{ fontSize: 12, fontWeight: '700' }}>
+                                    <Text style={{ fontSize: 12, fontFamily: 'Montserrat-Bold', }}>
                                         Private keys:
                             </Text>
                                     <View style={{ width: 250 }}>
-                                        <Text style={{ fontSize: 12, color: 'grey', marginLeft: 2 }}>
+                                        <Text style={{ fontSize: 12, color: 'grey', marginLeft: 2,fontFamily: 'Montserrat-Regular', }}>
                                             {this.state.owner_private_keys}
                                         </Text>
                                     </View>
                                 </View>
                             </View>
                             <View style={{ marginHorizontal: wp('1%'), marginTop: 5 }}>
-                                <Text style={{ fontSize: 13, fontWeight: '700' }}>
+                                <Text style={{ fontSize: 13,  fontFamily: 'Montserrat-Bold', }}>
 
                                     Active keys:-
                     </Text>
                                 <View style={{ flexDirection: 'row' }}>
-                                    <Text style={{ fontSize: 12, fontWeight: '700' }}>
+                                    <Text style={{ fontSize: 12,  fontFamily: 'Montserrat-Bold', }}>
                                         Public keys:
                             </Text>
                                     <View style={{ width: 250 }}>
-                                        <Text style={{ fontSize: 12, color: 'grey', marginLeft: 2 }}>
+                                        <Text style={{ fontSize: 12, fontFamily: 'Montserrat-Regular',color: 'grey', marginLeft: 2 }}>
                                             {this.state.active_public_keys}
                                         </Text>
                                     </View>
                                 </View>
 
                                 <View style={{ flexDirection: 'row' }}>
-                                    <Text style={{ fontSize: 12, fontWeight: '700' }}>
+                                    <Text style={{ fontSize: 12,fontFamily: 'Montserrat-Bold',}}>
                                         Private keys:
                             </Text>
                                     <View style={{ width: 250 }}>
-                                        <Text style={{ fontSize: 12, color: 'grey', marginLeft: 2 }}>
+                                        <Text style={{ fontSize: 12, color: 'grey', marginLeft: 2,fontFamily: 'Montserrat-Regular', }}>
                                             {this.state.active_private_keys}
                                         </Text>
                                     </View>
@@ -503,7 +503,7 @@ export default class RegisterScreen extends Component {
                                     }}
                                     onPress={() => { this.handleCopy() }}
                                 >
-                                    <Text style={{ fontSize: 14, fontWeight: "400", color: 'white' }}>Copy and Register</Text>
+                                    <Text style={{ fontSize: 12, fontFamily: 'Montserrat-Bold', color: 'white' }}>Copy and Register</Text>
                                 </TouchableOpacity>
                             </View>
 
@@ -520,7 +520,7 @@ export default class RegisterScreen extends Component {
                                         this.setState({ isModalVisible5: false })
                                     }}
                                 >
-                                    <Text style={{ fontSize: 14, fontWeight: "400", color: 'white' }}>Cancel</Text>
+                                    <Text style={{ fontSize: 12,fontFamily: 'Montserrat-Bold',color: 'white' }}>Cancel</Text>
                                 </TouchableOpacity>
                             </View>
 
@@ -568,10 +568,10 @@ export default class RegisterScreen extends Component {
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
+                            <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold', }}>Error?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center' }}>Please enter alphanumeric characters.</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center',fontFamily: 'Montserrat-Regular', }}>Please enter alphanumeric characters.</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
@@ -586,7 +586,7 @@ export default class RegisterScreen extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal() }}
                             >
-                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 16, color: 'white',fontFamily: 'Montserrat-Bold', }}>Ok</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -605,10 +605,10 @@ export default class RegisterScreen extends Component {
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
+                            <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold',}}>Error?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center' }}>{this.state.error_msg}</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center' ,fontFamily: 'Montserrat-Regular',  }}>{this.state.error_msg}</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
@@ -623,7 +623,7 @@ export default class RegisterScreen extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal2() }}
                             >
-                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Bold', }}>Ok</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -637,15 +637,15 @@ export default class RegisterScreen extends Component {
                     backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
-                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('32%'), justifyContent: 'center',
                         alignItems: 'center'
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
+                            <Text style={{ fontSize: 20,fontFamily: 'Montserrat-Bold',}}>Error?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center' }}>Account name must be of 12 character.</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center',fontFamily: 'Montserrat-Regular',  }}>Account name must be of 12 character.</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
@@ -660,7 +660,7 @@ export default class RegisterScreen extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal3() }}
                             >
-                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Bold', }}>Ok</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -679,10 +679,10 @@ export default class RegisterScreen extends Component {
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Error?</Text>
+                            <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold', }}>Error?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center' }}>Please enter valid name.</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center',fontFamily: 'Montserrat-Regular',  }}>Please enter valid name.</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
@@ -697,7 +697,7 @@ export default class RegisterScreen extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal4() }}
                             >
-                                <Text style={{ fontSize: 18, color: 'white' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Bold',  }}>Ok</Text>
                             </TouchableOpacity>
 
                         </View>

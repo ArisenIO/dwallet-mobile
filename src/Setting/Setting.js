@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image ,BackHandler} from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Image ,BackHandler, Platform} from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Icon from '../assets/Icon'
 import { Actions } from 'react-native-router-flux';
@@ -64,7 +64,7 @@ class Setting extends Component {
 
                     </TouchableOpacity>
                     <Text style={{
-                        fontSize: 22, color: 'white', textAlign: 'center', fontWeight: 'bold',
+                        fontSize: 22, color: 'white', textAlign: 'center', fontFamily: 'Montserrat-Bold' ,
                         justifyContent: 'center', alignSelf: 'center', marginStart: '2%', 
                     }}>Setting Screen</Text>
                 </View>
@@ -78,7 +78,7 @@ class Setting extends Component {
                             style={{width:wp('5%'), marginTop:5 }}
                         />
                         <View style={{  justifyContent: 'center', width:wp('75%'), marginLeft:wp('2%')}}>
-                            <Text style={{ fontSize: 20, fontWeight:'700' }}>Logout</Text>
+                            <Text style={{ fontSize: 20,  fontFamily: 'Montserrat-Bold'  }}>Logout</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -105,18 +105,21 @@ class Setting extends Component {
                  backdropColor='rgba(0,0,0,1)'
                 style={{
                     backgroundColor: 'white',
-                    marginTop: 250, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
+                    marginTop: 250, borderRadius: 10, width: wp('92%'), maxHeight: Platform.OS === 'ios' ? hp('37%') : hp('30%'), justifyContent: 'center',
                     alignItems: 'center'
                 }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Alert?</Text>
+                            <Text style={{ fontSize: 20,fontFamily: 'Montserrat-Bold' }}>Alert?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign:'center' }}>Are you sure you want logout your app?</Text>
+                            <Text style={{ fontSize: 18, textAlign:'center' ,fontFamily: 'Montserrat-Regular'}}>Are you sure you want logout your app?</Text>
                         </View>
+                        <View style={{justifyContent:'center', alignItems:'center'}}>
+
+                    
                         <View style={{
-                            flexDirection: 'row',
+                            flexDirection: 'row',width:wp('80%'),
                             justifyContent: 'space-between', height: hp('5%'), marginTop: hp('5%')
                         }}>
                             <TouchableOpacity
@@ -126,7 +129,7 @@ class Setting extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.setState({isModalVisible:false})}}
                             >
-                                <Text style={{ fontSize: 18,  color: 'white' }}>No</Text>
+                                <Text style={{ fontSize: 18,  color: 'white' ,fontFamily: 'Montserrat-Bold' }}>No</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", 
@@ -135,8 +138,9 @@ class Setting extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.reset_data() }}
                             >
-                                <Text style={{ fontSize: 18,  color: 'white' }}>Yes</Text>
+                                <Text style={{ fontSize: 18,  color: 'white' ,fontFamily: 'Montserrat-Bold' }}>Yes</Text>
                             </TouchableOpacity>
+                        </View>
                         </View>
 
                     </View>
