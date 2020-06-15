@@ -71,8 +71,8 @@ export default class AddAccount extends Component {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        account: this.state.account,
-                        private_key: this.state.private_key
+                        account: (this.state.account).trim(),
+                        private_key: (this.state.private_key).trim()
                     })
                 })
                     .then(response => response.json())
@@ -80,8 +80,8 @@ export default class AddAccount extends Component {
                         if (response.success == true) {
 
                             var items = {
-                                'accountName': this.state.account,
-                                'active_keys': this.state.private_key,
+                                'accountName': (this.state.account).trim(),
+                                'active_keys': (this.state.private_key).trim(),
                                 'new_wallet': "0"
                             }
 
