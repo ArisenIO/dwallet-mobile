@@ -71,7 +71,6 @@ export default class Createwallet extends Component {
                     marginTop: 10, width: wp('100%'), height: Platform.OS === 'ios' ? hp('15%') : hp('12%'), justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    <View style={{ width: wp('70%'), height: Platform.OS === 'ios' ? hp('15%') : hp('12%'),height: hp('8%'), justifyContent: 'center', alignItems: 'center', }}>
                         <Text style={{ color: '#a8a9ae',
                         //  fontWeight: '100',
                           fontSize: 16,
@@ -80,7 +79,6 @@ export default class Createwallet extends Component {
                           }}>
                         To get started with dWallet, either login with PeepsID or create a new PeepsID.
                             </Text>
-                    </View>
                 </View>
                 <View style={styles.button1}>
                     <View
