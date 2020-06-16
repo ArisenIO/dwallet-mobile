@@ -19,7 +19,8 @@ export default Images ={
     Setting_icon:require('./Image/settingbtnn.png'),
     Reset_icon:require('./Image/reset.png'),
     Backup_icon:require('./Image/backup.png'),
-    lOgout_icon:require('./Image/logout.png')
+    lOgout_icon:require('./Image/logout.png'),
+    Camera_icon:require('./Image/camera.png')
     // Loader:require('./Image/loader.gif')
 }
 export const Loader1=require('./Image/loader.gif')

@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, TextInput,
-    Text, Image, TouchableOpacity, Keyboard, BackHandler, Alert, Linking
+    Text, Image, TouchableOpacity, Keyboard, BackHandler, Alert, Linkin, PermissionsAndroid, Platform, 
 } from "react-native";
 import Clipboard from '@react-native-community/clipboard'
 import { Button, CheckBox } from 'react-native-elements';
@@ -15,6 +15,8 @@ import Toast from 'react-native-simple-toast';
 import Loader1 from '../assets/Loader'
 import Icon from '../assets/Icon'
 import Modal from 'react-native-modal';
+import { CameraKitCameraScreen, } from 'react-native-camera-kit';
+
 
 class Send_money extends Component {
     constructor(props) {
@@ -27,7 +29,10 @@ class Send_money extends Component {
             txtErrorMessage: '',
             txtStatus: false,
             isLoading: false,
-            transaction_hash: ''
+            transaction_hash: '',
+            qrvalue: '',
+            opneScanner: false,
+            cam:false
 
         }
         this.backAction = this.backAction.bind(this);
@@ -142,6 +147,49 @@ class Send_money extends Component {
         this.setState({ isModalVisible1: !this.state.isModalVisible1 });
     };
 
+    onOpneScanner() {
+        var that =this;
+        // this.setState({cam:true})
+        //To Start Scanning
+        if(Platform.OS === 'android'){
+          async function requestCameraPermission() {
+            try {
+              const granted = await PermissionsAndroid.request(
+                PermissionsAndroid.PERMISSIONS.CAMERA,{
+                  'title': 'CameraExample App Camera Permission',
+                  'message': 'CameraExample App needs access to your camera '
+                }
+              )
+              if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                //If CAMERA Permission is granted
+                that.setState({ qrvalue: '' });
+                that.setState({ opneScanner: true ,cam:true});
+              } else {
+                alert("CAMERA permission denied");
+              }
+            } catch (err) {
+              alert("Camera permission err",err);
+              console.warn(err);
+            }
+          }
+          //Calling the camera permission function
+          requestCameraPermission();
+        }else{
+          that.setState({ qrvalue: '' });
+          that.setState({ opneScanner: true });
+        }    
+      }
+      onOpenlink() {
+        //Function to open URL, If scanned 
+        Linking.openURL(this.state.qrvalue);
+        //Linking used to open the URL in any browser that you have installed
+      }
+      onBarcodeScan(qrvalue) {
+        //called after te successful scanning of QRCode/Barcode
+        this.setState({ qrvalue: qrvalue });
+        this.setState({ opneScanner: false });
+      }
+
 
     render() {
         if (this.state.isLoading) {
@@ -149,6 +197,7 @@ class Send_money extends Component {
                 <Loader1 />
             )
         }
+        if (!this.state.opneScanner) {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
@@ -163,13 +212,18 @@ class Send_money extends Component {
                         justifyContent: 'center', alignSelf: 'center', marginStart: '2%'
                     }}>Transfer RIX</Text>
                 </View>
+                <View style={{width:wp('100%'), justifyContent:'center', alignItems:'center'}}>
                 <View style={{
-                    width: wp('100%'), height: hp('8%'),
-                    justifyContent: 'center', alignItems: 'center', marginTop: hp('5%')
+                    width: wp('90%'), height: hp('8%'),
+                    justifyContent: 'space-between', alignItems: 'center', marginTop: hp('5%'),flexDirection:'row'
                 }}>
+{
+    this.state.cam ===false ?
+
+
                     <TextInput
                         style={{
-                            width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                            width: wp('70%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
                             borderColor: 'gray', height: hp('8%') , color:'black',fontFamily: 'Montserrat-Regular' 
                         }}
                         value={this.state.to_account_name}
@@ -180,7 +234,37 @@ class Send_money extends Component {
                         onChangeText={(text) => { this.set_to_account_name(text) }}
                         maxLength={12}
                     />
+            :
+            <TextInput
+            style={{
+                width: wp('70%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                borderColor: 'gray', height: hp('8%') , color:'black',fontFamily: 'Montserrat-Regular' 
+            }}
+            value={this.state.to_account_name}
+            placeholder={this.state.qrvalue }
+            autoCapitalize="none"
+            editable={false}
+            placeholderTextColor='#a8a9ae'
+            minLength={1}
+            onChangeText={(text) => { this.set_to_account_name(text) }}
+            maxLength={12}
+        />
+        }
+
+                    <TouchableOpacity 
+                      onPress={() => this.onOpneScanner()}
+                    >
+                    <Image
+                    style={{width:wp('10%'), height:hp('8%')}}
+                    source={Icon.Camera_icon}
+                    resizeMethod="resize"
+                    resizeMode="contain"
+                    />
+                    </TouchableOpacity>
+                
                 </View>
+                </View>
+            
                 <View style={{ marginLeft: 15 }}>
                     <Text style={{ color: 'red',fontFamily: 'Montserrat-Regular'  }}>{this.state.AccountName_error} </Text>
                 </View>
@@ -319,6 +403,26 @@ class Send_money extends Component {
             </View>
         );
     }
+    return (
+        <View style={{ flex: 1 }}>
+          <CameraKitCameraScreen
+            showFrame={false}
+            //Show/hide scan frame
+            scanBarcode={true}
+            //Can restrict for the QR Code only
+            laserColor={'blue'}
+            //Color can be of your choice
+            frameColor={'yellow'}
+            //If frame is visible then frame color
+            colorForScannerFrame={'black'}
+            //Scanner Frame color
+            onReadCode={event =>
+              this.onBarcodeScan(event.nativeEvent.codeStringValue)
+            }
+          />
+        </View>
+      );
+}
 }
 
 export default Send_money;

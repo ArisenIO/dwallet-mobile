@@ -37,7 +37,11 @@ export default class Homepage extends Component {
 
     }
     componentWillUnmount() {
+        // BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+
+    if (Platform.OS == "android") {
         BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+  }
     }
     backAction = () => {
         this.setState({ isModalVisible2: !this.state.isModalVisible2 });
