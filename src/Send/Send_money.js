@@ -186,6 +186,7 @@ class Send_money extends Component {
       }
       onBarcodeScan(to_account_name) {
         //called after te successful scanning of QRCode/Barcode
+        this.set_to_account_name(to_account_name);
         this.setState({ to_account_name: to_account_name });
         this.setState({ opneScanner: false });
       }
