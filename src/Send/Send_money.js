@@ -162,7 +162,7 @@ class Send_money extends Component {
               )
               if (granted === PermissionsAndroid.RESULTS.GRANTED) {
                 //If CAMERA Permission is granted
-                that.setState({ qrvalue: '' });
+                that.setState({ to_account_name: '' });
                 that.setState({ opneScanner: true ,cam:true});
               } else {
                 alert("CAMERA permission denied");
@@ -175,18 +175,18 @@ class Send_money extends Component {
           //Calling the camera permission function
           requestCameraPermission();
         }else{
-          that.setState({ qrvalue: '' });
+          that.setState({ to_account_name: '' });
           that.setState({ opneScanner: true });
         }    
       }
       onOpenlink() {
         //Function to open URL, If scanned 
-        Linking.openURL(this.state.qrvalue);
+        Linking.openURL(this.state.to_account_name);
         //Linking used to open the URL in any browser that you have installed
       }
-      onBarcodeScan(qrvalue) {
+      onBarcodeScan(to_account_name) {
         //called after te successful scanning of QRCode/Barcode
-        this.setState({ qrvalue: qrvalue });
+        this.setState({ to_account_name: to_account_name });
         this.setState({ opneScanner: false });
       }
 
@@ -241,9 +241,9 @@ class Send_money extends Component {
                 borderColor: 'gray', height: hp('8%') , color:'black',fontFamily: 'Montserrat-Regular' 
             }}
             value={this.state.to_account_name}
-            placeholder={this.state.qrvalue }
+            placeholder="Enter Account Name"
             autoCapitalize="none"
-            editable={false}
+            editable={true}
             placeholderTextColor='#a8a9ae'
             minLength={1}
             onChangeText={(text) => { this.set_to_account_name(text) }}
