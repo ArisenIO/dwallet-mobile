@@ -3,13 +3,14 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, Text,
-    TouchableOpacity, Image, ScrollView, BackHandler, Alert, Platform
+    TouchableOpacity, Image, ScrollView, BackHandler, Alert, Platform ,RefreshControl
 } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-community/async-storage';
 import Loader1 from '../assets/Loader'
 import Icon from '../assets/Icon'
 import Modal from 'react-native-modal';
+
 
 
 export default class Homepage extends Component {
@@ -26,6 +27,7 @@ export default class Homepage extends Component {
             owner_public_key: '',
             active_public_key: '',
             isLoading: true,
+            refreshing:false
         };
         this.backAction = this.backAction.bind(this);
 
@@ -48,15 +50,12 @@ export default class Homepage extends Component {
         return true;
     };
     _retrieveData = () => {
-        console.log("retrirve");
         try {
             AsyncStorage.getItem('items').then((value) => {
                 var parsed_value = JSON.parse(value);
-                console.log("async storage data", parsed_value);
 
                 var account_name = parsed_value.items.accountName;
 
-                console.log("Account Name", account_name);
                 this.setState({
                     AccountName: parsed_value.items.accountName,
                     active_private_key: parsed_value.items.active_keys
@@ -73,7 +72,6 @@ export default class Homepage extends Component {
                 })
                     .then(response => response.json())
                     .then((response) => {
-                        console.log("resp_for_check_api", response)
                         if (response.success == true) {
                             this.setState({ isLoading: false })
                             if (response.account.core_liquid_balance) {
@@ -87,7 +85,8 @@ export default class Homepage extends Component {
                             var stakedtoself = cpu_weigt + net_weight;
                             this.setState({ staked_to_self: stakedtoself })
                             var totalBalance = stakedtoself + parseFloat(this.state.core_liquid_balance);
-                            this.setState({ total_balance: totalBalance })
+                            this.setState({ total_balance: totalBalance ,refreshing: false})
+
                         }
                         else {
                             // alert(response.message)
@@ -116,6 +115,15 @@ export default class Homepage extends Component {
     setting = () => {
         Actions.Setting();
     }
+
+    
+    _onRefresh = () => {
+        this.setState({refreshing: true});
+        
+            this._retrieveData()
+   
+      }
+
     render() {
         // if(this.state.isLoading){
         //     return(
@@ -153,7 +161,13 @@ export default class Homepage extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <ScrollView>
+                <ScrollView refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+          />
+        }
+                >
                     <View style={{
                         backgroundColor: '#4383fc', height: hp('22%'), width: wp('100%'),
                         justifyContent: 'center', alignItems: 'center'
@@ -179,7 +193,7 @@ export default class Homepage extends Component {
                                     justifyContent: 'center'
                                 }}>
 
-                                    <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Regular', }}>Your RIX Balance</Text>
+                                    <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Regular', }}>Your RIX AccountName</Text>
                                    <View style={{justifyContent:'center', alignItems:'center',height:Platform.OS==="ios" ? hp('10%') : hp('5%'), marginTop: 15,}}>
                                    <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Bold', fontSize: 25 }}>
                                         {/* hfgjdh */}
@@ -352,73 +366,6 @@ export default class Homepage extends Component {
                     <View style={{ backgroundColor: '#e6e8e9', width: wp('100%'), height: hp('12%') }}>
 
                     </View>
-
-
-                    {/* <View style={styles.account_name_container}>
-                    <Text style={styles.account_name}>
-                        Your Account Name </Text>
-                    <Text style={styles.account_name}>
-                        {this.state.AccountName}
-                    </Text>
-                </View>
-                <View style={styles.blnc_main_cntr}>
-                    <View style={styles.balance_name_container}>
-                        <Text style={styles.account_name_blnce}>
-                            Balance Statement
-                    </Text>
-                    </View>
-                </View>
-
-                <View style={styles.blac_cntr}>
-                    <View style={styles.balance_container}>
-                        <View style={styles.balance_inner_container}>
-                            <Text style={styles.balance_name}>Liquid Balance:
-                         </Text>
-                            <Text style={styles.balance_amount}>
-                                {this.state.core_liquid_balance} RIX
-                         </Text>
-                        </View>
-                        <View style={styles.balance_inner_container}>
-                            <Text style={styles.balance_name}>Staked to Self:
-                         </Text>
-                            <Text style={styles.balance_amount}>
-                                {this.state.staked_to_self} RIX
-                         </Text>
-                        </View>
-                        <View style={styles.balance_inner_container}>
-                            <Text style={styles.balance_name}>Total Balance:
-                         </Text>
-                            <Text style={styles.balance_amount}>
-                                {this.state.total_balance} RIX
-                         </Text>
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.button1}>
-                    <View style={styles.btn_inner_container}>
-                        <View
-                            style={styles.TouchableOpacity_btn_container}>
-                            <TouchableOpacity
-                                onPress={() => { this._transferFunds() }}
-                                style={styles.TouchableOpacity}>
-                                <Text style={styles.btn_text}>
-                                    Send
-                            </Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View
-                            style={styles.TouchableOpacity_btn_container}                        >
-                            <TouchableOpacity
-                                onPress={() => { this.recieve_RIX() }}
-                                style={styles.TouchableOpacity}>
-                                <Text style={styles.btn_text}>
-                                    Recieve
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View> */}
                 </ScrollView>
             </View >
         );
