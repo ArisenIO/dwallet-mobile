@@ -133,6 +133,7 @@ export default class Homepage extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
+                    {Platform.OS == "ios" ? null :
                     <TouchableOpacity
                         onPress={() => { this.backAction() }}
                         style={{ justifyContent: 'center', width: wp('10%') }}>
@@ -141,12 +142,14 @@ export default class Homepage extends Component {
                         resizeMethod="resize"
                             style={{ height: 20, tintColor: 'white', width: 20, alignSelf: 'center', marginLeft: '4%' }} />
                     </TouchableOpacity>
+                    }
+
                     <View style={{ justifyContent: 'center', alignItems: 'center', width: wp('80%') }}>
                         <Text style={{
                             fontSize: 22, color: 'white', textAlign: 'center', 
                             fontFamily: 'Montserrat-Bold',
                             
-                            justifyContent: 'center', alignSelf: 'center', marginStart: '2%'
+                            justifyContent: 'center', alignSelf: 'center', marginStart: Platform.OS==="ios" ? "12%" : "2%"
                         }}>Your Account Details</Text>
                     </View>
                     <View style={{ justifyContent: 'center', flexDirection: 'row', alignItems: 'center', width: wp('10%'), }}>

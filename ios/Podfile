@@ -81,15 +81,7 @@ target 'dWallet' do
 
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
-<<<<<<< HEAD
-  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
-
-  pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
-
-  target 'eosappTests' do
-=======
   target 'dWalletTests' do
->>>>>>> 1635976a224bb5c7f78751ebf16cbf7c3036e1fa
     inherit! :complete
     # Pods for testing
   end
