@@ -44,8 +44,8 @@ def flipper_post_install(installer)
   end
 end
 
-target 'eosapp' do
-  # Pods for eosapp
+target 'dWallet' do
+  # Pods for dWallet
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -81,7 +81,7 @@ target 'eosapp' do
 
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
-  target 'eosappTests' do
+  target 'dWalletTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -98,10 +98,10 @@ target 'eosapp' do
   end
 end
 
-target 'eosapp-tvOS' do
-  # Pods for eosapp-tvOS
+target 'dWallet-tvOS' do
+  # Pods for dWallet-tvOS
 
-  target 'eosapp-tvOSTests' do
+  target 'dWallet-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

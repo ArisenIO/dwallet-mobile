@@ -125,6 +125,8 @@ export default class Homepage extends Component {
                         onPress={() => { this.backAction() }}
                         style={{ justifyContent: 'center', width: wp('10%') }}>
                         <Image source={Icon.Back_icon}
+                        resizeMode="contain"
+                        resizeMethod="resize"
                             style={{ height: 20, tintColor: 'white', width: 20, alignSelf: 'center', marginLeft: '4%' }} />
                     </TouchableOpacity>
                     <View style={{ justifyContent: 'center', alignItems: 'center', width: wp('80%') }}>
@@ -141,6 +143,7 @@ export default class Homepage extends Component {
                             <Image
                                 source={Icon.Setting_icon}
                                 resizeMode="contain"
+                                resizeMethod="resize"
                                 style={{ height: 20, tintColor: 'white', width: 20, }}
                             />
                         </TouchableOpacity>

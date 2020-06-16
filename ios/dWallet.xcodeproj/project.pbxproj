@@ -7,21 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* eosappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* eosappTests.m */; };
+		00E356F31AD99517003FC87E /* dWalletTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* dWalletTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2381804BB2E5413332AA0C9E /* libPods-eosapp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C52BD994D2B536642285F30 /* libPods-eosapp-tvOS.a */; };
+		19EFEBFFD77E47E284056B71 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5628F1A185DB40A0B277A651 /* Montserrat-Bold.ttf */; };
+		2381804BB2E5413332AA0C9E /* libPods-dWallet-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C52BD994D2B536642285F30 /* libPods-dWallet-tvOS.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* eosappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* eosappTests.m */; };
-		3D8795D687786C4BA556D6C9 /* libPods-eosapp-eosappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D95967A8384F734EB400A0 /* libPods-eosapp-eosappTests.a */; };
-		BBFA97A5244BEB27E298BC07 /* libPods-eosapp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BBC2B0830B76AAD7F2236E1 /* libPods-eosapp-tvOSTests.a */; };
-		19EFEBFFD77E47E284056B71 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5628F1A185DB40A0B277A651 /* Montserrat-Bold.ttf */; };
-		82B4DAD9907F4160A6CF93B1 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DF4D4AFFFAAF4781B2B1EEF7 /* Montserrat-Light.ttf */; };
+		2DCD954D1E0B4F2C00145EB5 /* dWalletTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* dWalletTests.m */; };
+		3D8795D687786C4BA556D6C9 /* libPods-dWallet-dWalletTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D95967A8384F734EB400A0 /* libPods-dWallet-dWalletTests.a */; };
 		7F488F960F0B46B99ECF7071 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A8130FA774947A781B074B1 /* Montserrat-Regular.ttf */; };
+		82B4DAD9907F4160A6CF93B1 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DF4D4AFFFAAF4781B2B1EEF7 /* Montserrat-Light.ttf */; };
+		ACEC2E3BF31EAD6E092CFD98 /* libPods-dWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E64902AB0138C84F915ACF /* libPods-dWallet.a */; };
+		BBFA97A5244BEB27E298BC07 /* libPods-dWallet-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BBC2B0830B76AAD7F2236E1 /* libPods-dWallet-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,65 +31,65 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = eosapp;
+			remoteInfo = dWallet;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "eosapp-tvOS";
+			remoteInfo = "dWallet-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* eosappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eosappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* dWalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dWalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* eosappTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eosappTests.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* dWalletTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dWalletTests.m; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* dWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = eosapp/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = eosapp/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = dWallet/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = dWallet/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = eosapp/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = eosapp/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = eosapp/main.m; sourceTree = "<group>"; };
-		201A82C7901B08ABEE398F41 /* Pods-eosapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eosapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-eosapp/Pods-eosapp.release.xcconfig"; sourceTree = "<group>"; };
-		23E64902AB0138C84F915ACF /* libPods-eosapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eosapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C52BD994D2B536642285F30 /* libPods-eosapp-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eosapp-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E47B1E0B4A5D006451C7 /* eosapp-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eosapp-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* eosapp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "eosapp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = dWallet/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = dWallet/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = dWallet/main.m; sourceTree = "<group>"; };
+		1A8130FA774947A781B074B1 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		201A82C7901B08ABEE398F41 /* Pods-dWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-dWallet/Pods-dWallet.release.xcconfig"; sourceTree = "<group>"; };
+		23E64902AB0138C84F915ACF /* libPods-dWallet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dWallet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C52BD994D2B536642285F30 /* libPods-dWallet-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dWallet-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E47B1E0B4A5D006451C7 /* dWallet-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dWallet-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* dWallet-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "dWallet-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34D28ACC3A4B4243937477A4 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		409681B9A1B54E88BDB37B85 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		4F0AD896113840A5AC205A84 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		5628F1A185DB40A0B277A651 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		66B36FE9F6D94EB0AF8AA980 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		66B52F7F5E734D6BB71F490F /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
-		6AF7DDDAF2367BD8B1DE1FAE /* Pods-eosapp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eosapp-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-eosapp-tvOSTests/Pods-eosapp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		6B866B77E34FF5189FB33972 /* Pods-eosapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eosapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-eosapp/Pods-eosapp.debug.xcconfig"; sourceTree = "<group>"; };
+		6AF7DDDAF2367BD8B1DE1FAE /* Pods-dWallet-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dWallet-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dWallet-tvOSTests/Pods-dWallet-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6B866B77E34FF5189FB33972 /* Pods-dWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dWallet/Pods-dWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		74016E5D973A4C7E83BB7026 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
-		788EAE5D1C85BC7FF7A4B351 /* Pods-eosapp-eosappTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eosapp-eosappTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-eosapp-eosappTests/Pods-eosapp-eosappTests.release.xcconfig"; sourceTree = "<group>"; };
+		788EAE5D1C85BC7FF7A4B351 /* Pods-dWallet-dWalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dWallet-dWalletTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-dWallet-dWalletTests/Pods-dWallet-dWalletTests.release.xcconfig"; sourceTree = "<group>"; };
 		7B1D767A4BC94172A8D01512 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
-		7BBC2B0830B76AAD7F2236E1 /* libPods-eosapp-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eosapp-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BBC2B0830B76AAD7F2236E1 /* libPods-dWallet-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dWallet-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81487A568C6B499C92E3758D /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
-		819ED6832002D92B04123100 /* Pods-eosapp-eosappTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eosapp-eosappTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-eosapp-eosappTests/Pods-eosapp-eosappTests.debug.xcconfig"; sourceTree = "<group>"; };
+		819ED6832002D92B04123100 /* Pods-dWallet-dWalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dWallet-dWalletTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dWallet-dWalletTests/Pods-dWallet-dWalletTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8CA871A156E84627950FC08D /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-ionicons/fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		93DF05BD2865BF63A9518088 /* Pods-eosapp-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eosapp-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-eosapp-tvOSTests/Pods-eosapp-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		93DF05BD2865BF63A9518088 /* Pods-dWallet-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dWallet-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-dWallet-tvOSTests/Pods-dWallet-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		9439926E3DB3477F87EE6DD0 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		99AD13425B25E0215396EBAA /* Pods-eosapp-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eosapp-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-eosapp-tvOS/Pods-eosapp-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		99AD13425B25E0215396EBAA /* Pods-dWallet-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dWallet-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dWallet-tvOS/Pods-dWallet-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9ABDA57209BD48468CBDC90B /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		A49EA84E38E34676AE5E00AE /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		A57DD84CA75848D7A1ED441B /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		B15647C90494496B99B87F07 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		BDEC3D7A21E75E6F33E104E8 /* Pods-eosapp-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eosapp-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-eosapp-tvOS/Pods-eosapp-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		BDEC3D7A21E75E6F33E104E8 /* Pods-dWallet-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dWallet-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-dWallet-tvOS/Pods-dWallet-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		D5C061C16DEC4928BE3EBC26 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		DA46EE620EF8433899D7206B /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
-		E9D95967A8384F734EB400A0 /* libPods-eosapp-eosappTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eosapp-eosappTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF4D4AFFFAAF4781B2B1EEF7 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		E9D95967A8384F734EB400A0 /* libPods-dWallet-dWalletTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dWallet-dWalletTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F285327F3D28481DACCAF722 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
-		5628F1A185DB40A0B277A651 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		DF4D4AFFFAAF4781B2B1EEF7 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; name = "Montserrat-Light.ttf"; path = "../assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		1A8130FA774947A781B074B1 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; name = "Montserrat-Regular.ttf"; path = "../assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D8795D687786C4BA556D6C9 /* libPods-eosapp-eosappTests.a in Frameworks */,
+				3D8795D687786C4BA556D6C9 /* libPods-dWallet-dWalletTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACEC2E3BF31EAD6E092CFD98 /* libPods-dWallet.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2381804BB2E5413332AA0C9E /* libPods-eosapp-tvOS.a in Frameworks */,
+				2381804BB2E5413332AA0C9E /* libPods-dWallet-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,20 +121,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBFA97A5244BEB27E298BC07 /* libPods-eosapp-tvOSTests.a in Frameworks */,
+				BBFA97A5244BEB27E298BC07 /* libPods-dWallet-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* eosappTests */ = {
+		00E356EF1AD99517003FC87E /* dWalletTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* eosappTests.m */,
+				00E356F21AD99517003FC87E /* dWalletTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = eosappTests;
+			path = dWalletTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -143,7 +145,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* eosapp */ = {
+		13B07FAE1A68108700A75B9A /* dWallet */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -154,7 +156,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = eosapp;
+			name = dWallet;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -162,10 +164,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				23E64902AB0138C84F915ACF /* libPods-eosapp.a */,
-				E9D95967A8384F734EB400A0 /* libPods-eosapp-eosappTests.a */,
-				2C52BD994D2B536642285F30 /* libPods-eosapp-tvOS.a */,
-				7BBC2B0830B76AAD7F2236E1 /* libPods-eosapp-tvOSTests.a */,
+				23E64902AB0138C84F915ACF /* libPods-dWallet.a */,
+				E9D95967A8384F734EB400A0 /* libPods-dWallet-dWalletTests.a */,
+				2C52BD994D2B536642285F30 /* libPods-dWallet-tvOS.a */,
+				7BBC2B0830B76AAD7F2236E1 /* libPods-dWallet-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -173,14 +175,14 @@
 		728F70DC66F3628C2DC88CAA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6B866B77E34FF5189FB33972 /* Pods-eosapp.debug.xcconfig */,
-				201A82C7901B08ABEE398F41 /* Pods-eosapp.release.xcconfig */,
-				819ED6832002D92B04123100 /* Pods-eosapp-eosappTests.debug.xcconfig */,
-				788EAE5D1C85BC7FF7A4B351 /* Pods-eosapp-eosappTests.release.xcconfig */,
-				99AD13425B25E0215396EBAA /* Pods-eosapp-tvOS.debug.xcconfig */,
-				BDEC3D7A21E75E6F33E104E8 /* Pods-eosapp-tvOS.release.xcconfig */,
-				6AF7DDDAF2367BD8B1DE1FAE /* Pods-eosapp-tvOSTests.debug.xcconfig */,
-				93DF05BD2865BF63A9518088 /* Pods-eosapp-tvOSTests.release.xcconfig */,
+				6B866B77E34FF5189FB33972 /* Pods-dWallet.debug.xcconfig */,
+				201A82C7901B08ABEE398F41 /* Pods-dWallet.release.xcconfig */,
+				819ED6832002D92B04123100 /* Pods-dWallet-dWalletTests.debug.xcconfig */,
+				788EAE5D1C85BC7FF7A4B351 /* Pods-dWallet-dWalletTests.release.xcconfig */,
+				99AD13425B25E0215396EBAA /* Pods-dWallet-tvOS.debug.xcconfig */,
+				BDEC3D7A21E75E6F33E104E8 /* Pods-dWallet-tvOS.release.xcconfig */,
+				6AF7DDDAF2367BD8B1DE1FAE /* Pods-dWallet-tvOSTests.debug.xcconfig */,
+				93DF05BD2865BF63A9518088 /* Pods-dWallet-tvOSTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -195,9 +197,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* eosapp */,
+				13B07FAE1A68108700A75B9A /* dWallet */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* eosappTests */,
+				00E356EF1AD99517003FC87E /* dWalletTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				AB813105228F42FBA3E05FA3 /* Resources */,
@@ -212,9 +214,9 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* dWallet.app */,
-				00E356EE1AD99517003FC87E /* eosappTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* eosapp-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* eosapp-tvOSTests.xctest */,
+				00E356EE1AD99517003FC87E /* dWalletTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* dWallet-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* dWallet-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -249,9 +251,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* eosappTests */ = {
+		00E356ED1AD99517003FC87E /* dWalletTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "eosappTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "dWalletTests" */;
 			buildPhases = (
 				58399AF856C0FF41F022EF87 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -264,14 +266,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = eosappTests;
-			productName = eosappTests;
-			productReference = 00E356EE1AD99517003FC87E /* eosappTests.xctest */;
+			name = dWalletTests;
+			productName = dWalletTests;
+			productReference = 00E356EE1AD99517003FC87E /* dWalletTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* eosapp */ = {
+		13B07F861A680F5B00A75B9A /* dWallet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "eosapp" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "dWallet" */;
 			buildPhases = (
 				8290302499F284F7242248D4 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -285,14 +287,14 @@
 			);
 			dependencies = (
 			);
-			name = eosapp;
-			productName = eosapp;
+			name = dWallet;
+			productName = dWallet;
 			productReference = 13B07F961A680F5B00A75B9A /* dWallet.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* eosapp-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* dWallet-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "eosapp-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "dWallet-tvOS" */;
 			buildPhases = (
 				1D69CA6EECEE5A8318352539 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -305,14 +307,14 @@
 			);
 			dependencies = (
 			);
-			name = "eosapp-tvOS";
-			productName = "eosapp-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* eosapp-tvOS.app */;
+			name = "dWallet-tvOS";
+			productName = "dWallet-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* dWallet-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* eosapp-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* dWallet-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "eosapp-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "dWallet-tvOSTests" */;
 			buildPhases = (
 				494322B73218C810ADCBC02E /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -324,9 +326,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "eosapp-tvOSTests";
-			productName = "eosapp-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* eosapp-tvOSTests.xctest */;
+			name = "dWallet-tvOSTests";
+			productName = "dWallet-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* dWallet-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -356,7 +358,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "eosapp" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "dWallet" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -369,10 +371,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* eosapp */,
-				00E356ED1AD99517003FC87E /* eosappTests */,
-				2D02E47A1E0B4A5D006451C7 /* eosapp-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* eosapp-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* dWallet */,
+				00E356ED1AD99517003FC87E /* dWalletTests */,
+				2D02E47A1E0B4A5D006451C7 /* dWallet-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* dWallet-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -435,7 +437,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-eosapp-eosappTests/Pods-eosapp-eosappTests-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-dWallet-dWalletTests/Pods-dWallet-dWalletTests-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -474,7 +476,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-eosapp-eosappTests/Pods-eosapp-eosappTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dWallet-dWalletTests/Pods-dWallet-dWalletTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1D69CA6EECEE5A8318352539 /* [CP] Check Pods Manifest.lock */ = {
@@ -488,7 +490,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-eosapp-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-dWallet-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -520,7 +522,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-eosapp-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-dWallet-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -538,7 +540,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-eosapp-eosappTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-dWallet-dWalletTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -551,7 +553,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-eosapp/Pods-eosapp-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-dWallet/Pods-dWallet-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -590,7 +592,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-eosapp/Pods-eosapp-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dWallet/Pods-dWallet-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8290302499F284F7242248D4 /* [CP] Check Pods Manifest.lock */ = {
@@ -604,7 +606,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-eosapp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-dWallet-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -648,7 +650,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* eosappTests.m in Sources */,
+				00E356F31AD99517003FC87E /* dWalletTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,7 +676,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* eosappTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* dWalletTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,12 +685,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* eosapp */;
+			target = 13B07F861A680F5B00A75B9A /* dWallet */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* eosapp-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* dWallet-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -700,7 +702,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = eosapp;
+			path = dWallet;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -708,14 +710,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 819ED6832002D92B04123100 /* Pods-eosapp-eosappTests.debug.xcconfig */;
+			baseConfigurationReference = 819ED6832002D92B04123100 /* Pods-dWallet-dWalletTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = eosappTests/Info.plist;
+				INFOPLIST_FILE = dWalletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -725,17 +727,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eosapp.app/eosapp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dWallet.app/dWallet";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 788EAE5D1C85BC7FF7A4B351 /* Pods-eosapp-eosappTests.release.xcconfig */;
+			baseConfigurationReference = 788EAE5D1C85BC7FF7A4B351 /* Pods-dWallet-dWalletTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = eosappTests/Info.plist;
+				INFOPLIST_FILE = dWalletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -745,13 +747,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eosapp.app/eosapp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dWallet.app/dWallet";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6B866B77E34FF5189FB33972 /* Pods-eosapp.debug.xcconfig */;
+			baseConfigurationReference = 6B866B77E34FF5189FB33972 /* Pods-dWallet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -762,7 +764,7 @@
 					"$(inherited)",
 					"FB_SONARKIT_ENABLED=1",
 				);
-				INFOPLIST_FILE = eosapp/Info.plist;
+				INFOPLIST_FILE = dWallet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -776,13 +778,13 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 201A82C7901B08ABEE398F41 /* Pods-eosapp.release.xcconfig */;
+			baseConfigurationReference = 201A82C7901B08ABEE398F41 /* Pods-dWallet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GV2R6XV44W;
-				INFOPLIST_FILE = eosapp/Info.plist;
+				INFOPLIST_FILE = dWallet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -795,7 +797,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 99AD13425B25E0215396EBAA /* Pods-eosapp-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 99AD13425B25E0215396EBAA /* Pods-dWallet-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -806,14 +808,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "eosapp-tvOS/Info.plist";
+				INFOPLIST_FILE = "dWallet-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.eosapp-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.dWallet-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -823,7 +825,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BDEC3D7A21E75E6F33E104E8 /* Pods-eosapp-tvOS.release.xcconfig */;
+			baseConfigurationReference = BDEC3D7A21E75E6F33E104E8 /* Pods-dWallet-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -834,14 +836,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "eosapp-tvOS/Info.plist";
+				INFOPLIST_FILE = "dWallet-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.eosapp-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.dWallet-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -851,7 +853,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AF7DDDAF2367BD8B1DE1FAE /* Pods-eosapp-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 6AF7DDDAF2367BD8B1DE1FAE /* Pods-dWallet-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -861,24 +863,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "eosapp-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "dWallet-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.eosapp-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.dWallet-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eosapp-tvOS.app/eosapp-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dWallet-tvOS.app/dWallet-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93DF05BD2865BF63A9518088 /* Pods-eosapp-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 93DF05BD2865BF63A9518088 /* Pods-dWallet-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -888,17 +890,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "eosapp-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "dWallet-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.eosapp-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.dWallet-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eosapp-tvOS.app/eosapp-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dWallet-tvOS.app/dWallet-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -1019,7 +1021,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "eosappTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "dWalletTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -1028,7 +1030,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "eosapp" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "dWallet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -1037,7 +1039,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "eosapp-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "dWallet-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -1046,7 +1048,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "eosapp-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "dWallet-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -1055,7 +1057,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "eosapp" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "dWallet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

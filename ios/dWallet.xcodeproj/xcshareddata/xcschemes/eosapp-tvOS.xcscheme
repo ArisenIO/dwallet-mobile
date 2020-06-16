@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "eosapp-tvOS.app"
-               BlueprintName = "eosapp-tvOS"
-               ReferencedContainer = "container:eosapp.xcodeproj">
+               BuildableName = "dWallet-tvOS.app"
+               BlueprintName = "dWallet-tvOS"
+               ReferencedContainer = "container:dWallet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "eosapp-tvOSTests.xctest"
-               BlueprintName = "eosapp-tvOSTests"
-               ReferencedContainer = "container:eosapp.xcodeproj">
+               BuildableName = "dWallet-tvOSTests.xctest"
+               BlueprintName = "dWallet-tvOSTests"
+               ReferencedContainer = "container:dWallet.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "eosapp-tvOS.app"
-            BlueprintName = "eosapp-tvOS"
-            ReferencedContainer = "container:eosapp.xcodeproj">
+            BuildableName = "dWallet-tvOS.app"
+            BlueprintName = "dWallet-tvOS"
+            ReferencedContainer = "container:dWallet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "eosapp-tvOS.app"
-            BlueprintName = "eosapp-tvOS"
-            ReferencedContainer = "container:eosapp.xcodeproj">
+            BuildableName = "dWallet-tvOS.app"
+            BlueprintName = "dWallet-tvOS"
+            ReferencedContainer = "container:dWallet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
