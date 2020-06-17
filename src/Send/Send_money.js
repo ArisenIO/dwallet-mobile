@@ -146,7 +146,12 @@ class Send_money extends Component {
     toggleModal1 = () => {
         this.setState({ isModalVisible1: !this.state.isModalVisible1 });
     };
-
+    toggleModal2 = () => {
+        this.setState({ isModalVisible2: !this.state.isModalVisible2 });
+    };
+    toggleModal3 = () => {
+        this.setState({ isModalVisible3: !this.state.isModalVisible3 });
+    };
     onOpneScanner() {
         var that =this;
         // this.setState({cam:true})
@@ -164,10 +169,14 @@ class Send_money extends Component {
                 //If CAMERA Permission is granted
                 that.setState({ to_account_name: '' });
                 that.setState({ opneScanner: true ,cam:true});
+              
               } else {
-                alert("CAMERA permission denied");
+                // alert("CAMERA permission denied");
+              that.toggleModal2()
               }
             } catch (err) {
+                that.setState({err:err})
+                that.toggleModal3()
               alert("Camera permission err",err);
               console.warn(err);
             }
@@ -179,11 +188,11 @@ class Send_money extends Component {
           that.setState({ opneScanner: true });
         }    
       }
-      onOpenlink() {
-        //Function to open URL, If scanned 
-        Linking.openURL(this.state.to_account_name);
-        //Linking used to open the URL in any browser that you have installed
-      }
+    //   onOpenlink() {
+    //     //Function to open URL, If scanned 
+    //     Linking.openURL(this.state.to_account_name);
+    //     //Linking used to open the URL in any browser that you have installed
+    //   }
       onBarcodeScan(to_account_name) {
         //called after te successful scanning of QRCode/Barcode
         this.set_to_account_name(to_account_name);
@@ -238,7 +247,7 @@ class Send_money extends Component {
             :
             <TextInput
             style={{
-                width: wp('70%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                width: wp('70%'), borderBottomWidth: wp('0.1%'), fontSize: 18,backgroundColor:'red',
                 borderColor: 'gray', height: hp('8%') , color:'black',fontFamily: 'Montserrat-Regular' 
             }}
             value={this.state.to_account_name}
@@ -401,6 +410,79 @@ class Send_money extends Component {
                     </View>
                 </Modal>
                 {/* End modal for api resp  */}
+                {/* Cameraa Permission start modal */}
+                <Modal isVisible={this.state.isModalVisible2}
+                    backdropColor='rgba(0,0,0,1)'
+                    style={{
+                        backgroundColor: 'white',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                    <View style={{ height: hp('28%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold',}}>Error?</Text>
+                        </View>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 18, textAlign: 'center' ,fontFamily: 'Montserrat-Regular',  }}>CAMERA permission denied</Text>
+                        </View>
+                        <View style={{
+                            justifyContent: 'center', alignItems: 'center',
+                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
+                        }}>
+                            <TouchableOpacity
+                                style={{
+                                    justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                    borderRadius: 20, width: wp('40%'), height: hp('5%'),
+                                }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.toggleModal2() }}
+                            >
+                                <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Bold', }}>Ok</Text>
+                            </TouchableOpacity>
+
+                        </View>
+
+                    </View>
+                </Modal>
+                {/* Camera Permission Modal End */}
+
+                 {/* Cameraa Permission start modal */}
+                 <Modal isVisible={this.state.isModalVisible3}
+                    backdropColor='rgba(0,0,0,1)'
+                    style={{
+                        backgroundColor: 'white',
+                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                    <View style={{ height: hp('28%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold',}}>Error?</Text>
+                        </View>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 18, textAlign: 'center' ,fontFamily: 'Montserrat-Regular',  }}>CAMERA permission denied</Text>
+                        </View>
+                        <View style={{
+                            justifyContent: 'center', alignItems: 'center',
+                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
+                        }}>
+                            <TouchableOpacity
+                                style={{
+                                    justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                    borderRadius: 20, width: wp('40%'), height: hp('5%'),
+                                }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.toggleModal2() }}
+                            >
+                                <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Bold', }}>Ok</Text>
+                            </TouchableOpacity>
+
+                        </View>
+
+                    </View>
+                </Modal>
+                {/* Camera Permission Modal End */}
             </View>
         );
     }

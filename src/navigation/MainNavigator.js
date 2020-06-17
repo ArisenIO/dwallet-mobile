@@ -16,13 +16,18 @@ import Recieve from '../Recieved/recieve'
 import Send_money from '../Send/Send_money' 
 import Pin_Code from '../App_pincode/Pin_code'
 import Setting from '../Setting/Setting'
-
+import Splash1 from '../Splash/Splash1'
 
 const Scenes = Actions.create(
     <Scene key='root' >
 
-        <Scene key="Splash"
+<Scene key="Splash1"
             initial={true}
+            hideNavBar={true}
+            component={Splash1}
+        />
+        <Scene key="Splash"
+            initial={false}
             hideNavBar={true}
             component={Splash}
         />

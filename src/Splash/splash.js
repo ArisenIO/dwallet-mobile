@@ -59,7 +59,7 @@ export default class Splash extends Component {
     
              });
 
-        }, 3000);
+        }, 2000);
         //     console.log("inside set timeout");
 
         //     AsyncStorage.getItem('creds').then((value) =>{

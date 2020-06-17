@@ -1,5 +1,5 @@
 export default Images ={
-    // slider1:require('./Image/slider.png'),
+    frist_splash:require('./Image/Splash1.png'),
     First_Silder:require('./Image/sliderfrist1.png'),
     Second_Silder:require('./Image/slidersecond2.png'),
     Third_Slider:require('./Image/thirdslider.png'),
