@@ -1,40 +1,56 @@
 import Icon from "react-native-vector-icons/Ionicons"
-import React, { Component, useRef, useState } from "react"
-import { ImageBackground, SafeAreaView, StatusBar, Text } from "react-native"
-import ReactNativePinView from "react-native-pin-view"
-import AsyncStorage from '@react-native-community/async-storage';
-import Pin_Code from "../App_pincode/Pin_code";
+import React, { Component,useEffect, useRef, useState } from "react"
+import { ImageBackground, SafeAreaView, StatusBar, Text, View ,StyleSheet,Image} from "react-native"
+import PinView from "react-native-pin-view"
+import icon from "../assets/Icon"
 
 class createPin extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      showRemoveButton:false,
-      showCompletedButton:false,
-      enteredPin:'',
-     };
+    this.pinView = null
+    this.state = {
+      visible: false,
+      confirmVisible:false
+    };
+  
   }
-  enterValue=(value)=>{
-    this.setState({enteredPin:value},()=>{
-      if (this.state.enteredPin.length > 0) {
-        this.setState({showRemoveButton:true})
-      } else {
-        this.setState({showRemoveButton:false})
-      }
-      if (this.state.enteredPin.length === 6) {
-        var pin_code = {
-          "pin_code": this.state.enteredPin
-      }
-        AsyncStorage.setItem(
-          'pin_code', JSON.stringify(pin_code)
-      );
-      console.log("data in async", pin_code)
-      this.setState({showCompletedButton:true})
-      } else {
-        this.setState({showCompletedButton:false})
-      }
-      console.log("Ok..", this.state.enteredPin)
+
+ componentDidMount() {
+  }
+
+  setEnteredPin = (value) =>{
+    console.log(value);
+    if (value.length > 0) {
+      this.setShowRemoveButton(true)
+    } else {
+      this.setShowRemoveButton(false)
+    }
+
+    if (value.length === 6){
+      this.setState({
+        confirmVisible:true
+      })
+    } 
+  }
+
+  setShowRemoveButton(val) {
+    this.setState({
+      visible:val
     })
+  }
+
+  onButtonPress = (key) => {
+
+    console.log("keys",key);
+
+    if (key === "custom_left") {
+     this.current.clear()
+    }
+    if (key === "custom_right") {
+
+      //send to confirm pin page with props value "pin value"
+
+    }
   }
     render() {
     return (
@@ -51,50 +67,87 @@ class createPin extends Component {
             }}>
            dWallet
           </Text>
-          <ReactNativePinView
-            inputSize={32}
-            ref={this}
-            pinLength={6}
-            buttonSize={60}
-            onValueChange={value => {this.enterValue(value)}}
-            buttonAreaStyle={{
-              marginTop: 24,
-            }}
-            inputAreaStyle={{
-              marginBottom: 24,
-            }}
-            inputViewEmptyStyle={{
-              backgroundColor: "transparent",
-              borderWidth: 1,
-              borderColor: "#FFF",
-            }}
-            inputViewFilledStyle={{
-              backgroundColor: "#FFF",
-            }}
-            buttonViewStyle={{
-              borderWidth: 1,
-              borderColor: "#FFF",
-            }}
-            buttonTextStyle={{
-              color: "#FFF",
-            }}
-            onButtonPress={key => {
-              if (key === "custom_left") {
-                pinView.current.clear()
-              }
-              if (key === "custom_right") {
-                alert("Entered Pin: " + this.state.enteredPin)
-              }
-            
-            }}
-            customLeftButton={this.state.showRemoveButton ? 
-            <Icon name={"ios-backspace"} size={36} color={"#FFF"} /> : undefined}
-            customRightButton={this.state.showCompletedButton ? <Icon name={"ios-unlock"} size={36} color={"#FFF"} /> : undefined}
-          />
-        </SafeAreaView>
-    </>
-    );
-  }
+
+      <PinView 
+      ref={this}
+      pinLength={6} 
+      buttonAreaStyle={{
+        marginTop: 24,
+      }}
+      inputAreaStyle={{
+        marginBottom: 24,
+      }}
+      inputViewEmptyStyle={{
+        backgroundColor: "transparent",
+        borderWidth: 1,
+        borderColor: "#000",
+      }}
+      inputViewFilledStyle={{
+        backgroundColor: "#000",
+      }}
+      buttonViewStyle={{
+        borderWidth: 1,
+        borderColor: "#000",
+      }}
+      buttonTextStyle={{
+        color: "#000",
+      }}
+      onValueChange={value => this.setEnteredPin(value)}
+      onButtonPress={key => {
+        this.onButtonPress(key)
+      }}
+      customLeftButton={this.state.visible ?  <Text
+        style={{
+          paddingTop: 24,
+          paddingBottom: 48,
+          color: "#000",
+          fontSize: 20,
+        }}>
+        Del
+      </Text> : undefined}
+      
+      customRightButton={this.state.confirmVisible ? <Text
+        style={{
+          paddingTop: 24,
+          paddingBottom: 48,
+          color: "#000",
+          fontSize: 20,
+        }}>
+        Done
+      </Text> : undefined}
+      ></PinView>
+    </View>
+
+    )
+ }
 }
 
-export default createPin;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "space-between",
+    backgroundColor: "#000",
+    padding: 20,
+    margin: 10,
+  },
+  top: {
+    flex: 0.3,
+    backgroundColor: "grey",
+    borderWidth: 5,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+  middle: {
+    flex: 0.3,
+    backgroundColor: "beige",
+    borderWidth: 5,
+  },
+  bottom: {
+    flex: 0.3,
+    backgroundColor: "pink",
+    borderWidth: 5,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+});
