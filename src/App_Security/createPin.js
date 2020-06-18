@@ -1,9 +1,13 @@
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import React, { Component, useEffect, useRef, useState } from "react"
-import { ImageBackground, SafeAreaView, StatusBar, Text, View, Image } from "react-native"
-import Icons from '../assets/Icon'
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { ImageBackground, SafeAreaView, StatusBar, Text, View, StyleSheet, Image } from "react-native"
 import PinView from "react-native-pin-view"
+import Icons from "../assets/Icon"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Actions } from 'react-native-router-flux';
+
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 
 export default class createPin extends Component {
@@ -13,14 +17,9 @@ export default class createPin extends Component {
     super(props);
     this.pinView = null
     this.state = {
-      pincode:"",
-      firstpin: '',
-      secondpin: '',
-      codelist: '',
       visible: false,
-      walletRestore: '',
-      pinView: null,
-      visible:false
+      confirmVisible: false,
+      pin: ""
     };
 
   }
@@ -32,18 +31,50 @@ export default class createPin extends Component {
     console.log('=====================123SS', value);
   }
 
-  setEnteredPin = (value) =>{
-    console.log(value);
+  setEnteredPin = (value) => {
+   var pincode =value
+    console.log('set entered pin value=======================', pincode);
+    this.setState({ pin: pincode })
+    // AsyncStorage.setItem('Pin', pincode)
+
     if (value.length > 0) {
       this.setShowRemoveButton(true)
+      // Actions.replace('confirmPin')
     } else {
       this.setShowRemoveButton(false)
+    }
+
+    if (value.length === 6) {
+      this.setState({
+        confirmVisible: true
+      })
+    }
+  }
+
+  setShowRemoveButton(val) {
+    this.setState({
+      visible: val
+    })
+  }
+
+  onButtonPress = (key) => {
+    console.log("keys onbutton press 1", key);
+
+    if (key === "custom_left") {
+      this.current.clear()
+    }
+    if (key === "custom_right") {
+      const createpin = JSON.stringify(this.state.pin)
+      console.log('key onbutton press rightbutton 1',createpin)
+      AsyncStorage.setItem('pin',createPin)
+      console.log('key onbutton press rightbutton 1',createpin)
+
     }
   }
 
   setShowRemoveButton() {
     this.setState({
-      visible:true
+      visible: true
     })
   }
 
@@ -52,7 +83,7 @@ export default class createPin extends Component {
 
       <View style={{ flex: 1, backgroundColor: 'white', }}>
 
-        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10, width: wp('100%'), height: hp('5%') }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 30, width: wp('100%'), height: hp('5%') }}>
           <Text style={{ fontSize: 40, fontWeight: '700', color: '#379aff' }}>dWallet</Text>
         </View>
         <View style={{
@@ -72,12 +103,15 @@ export default class createPin extends Component {
         <PinView
           ref={this}
           pinLength={6}
-          onValueChange={value => this.setEnteredPin(value)}
           buttonAreaStyle={{
-            marginTop: 20,
+            marginTop: 25,
+          }}
+          onValueChange={value => this.setEnteredPin(value)}
+          onButtonPress={key => {
+            this.onButtonPress(key)
           }}
           inputAreaStyle={{
-            marginBottom: 20,
+            marginBottom: 25,
           }}
           inputViewEmptyStyle={{
             backgroundColor: "transparent",
@@ -94,15 +128,52 @@ export default class createPin extends Component {
           buttonTextStyle={{
             color: "#000",
           }}
-          customLeftButtonViewStyle	={{
+
+          customLeftButtonViewStyle={{
             borderWidth: 1,
-            borderRadius:1,
-              borderColor: "#000",
+            borderRadius: 1,
+            borderColor: "#000",
           }}
-          customLeftButton={this.state.visible ? <Icon name="cross" size={36} color={"#000"} /> : undefined}
+          customRightButtonViewStyle={{
+            borderWidth: 1,
+            borderRadius: 1,
+            borderColor: "#000",
+          }}
+          customLeftButton={this.state.visible ? <Icon name="times" size={30} color="#000" /> : undefined}
+          customRightButton={this.state.confirmVisible ? <Icon name="check" size={30} color="#000" /> : undefined}
         ></PinView>
       </View>
 
     )
   }
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "space-between",
+    backgroundColor: "#000",
+    padding: 20,
+    margin: 10,
+  },
+  top: {
+    flex: 0.3,
+    backgroundColor: "grey",
+    borderWidth: 5,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+  middle: {
+    flex: 0.3,
+    backgroundColor: "beige",
+    borderWidth: 5,
+  },
+  bottom: {
+    flex: 0.3,
+    backgroundColor: "pink",
+    borderWidth: 5,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+});
