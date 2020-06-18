@@ -1,5 +1,7 @@
-import {Animated, Image, SafeAreaView, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import { Animated, Image, SafeAreaView, Text, TouchableOpacity } from 'react-native';
+import React, { useState,useEffect } from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
+import { Actions } from 'react-native-router-flux';
 
 import {
   CodeField,
@@ -15,8 +17,9 @@ import styles, {
   DEFAULT_CELL_BG_COLOR,
   NOT_EMPTY_CELL_BG_COLOR,
 } from './styles';
+// import {  } from 'react-native-gesture-handler';
 
-const {Value, Text: AnimatedText} = Animated;
+const { Value, Text: AnimatedText } = Animated;
 
 const CELL_COUNT = 6;
 const source = {
@@ -26,7 +29,7 @@ const source = {
 
 const animationsColor = [...new Array(CELL_COUNT)].map(() => new Value(0));
 const animationsScale = [...new Array(CELL_COUNT)].map(() => new Value(1));
-const animateCell = ({hasValue, index, isFocused}) => {
+const animateCell = ({ hasValue, index, isFocused }) => {
   Animated.parallel([
     Animated.timing(animationsColor[index], {
       useNativeDriver: false,
@@ -41,26 +44,27 @@ const animateCell = ({hasValue, index, isFocused}) => {
   ]).start();
 };
 
-const AnimatedExample = () => {
+const Create_Pin = () => {
   const [value, setValue] = useState('');
-  const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
+  console.log("pin_no", value)
+  const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
 
-  const renderCell = ({index, symbol, isFocused}) => {
+  const renderCell = ({ index, symbol, isFocused }) => {
     const hasValue = Boolean(symbol);
     const animatedCellStyle = {
       backgroundColor: hasValue
         ? animationsScale[index].interpolate({
-            inputRange: [0, 1],
-            outputRange: [NOT_EMPTY_CELL_BG_COLOR, ACTIVE_CELL_BG_COLOR],
-          })
+          inputRange: [0, 1],
+          outputRange: [NOT_EMPTY_CELL_BG_COLOR, ACTIVE_CELL_BG_COLOR],
+        })
         : animationsColor[index].interpolate({
-            inputRange: [0, 1],
-            outputRange: [DEFAULT_CELL_BG_COLOR, ACTIVE_CELL_BG_COLOR],
-          }),
+          inputRange: [0, 1],
+          outputRange: [DEFAULT_CELL_BG_COLOR, ACTIVE_CELL_BG_COLOR],
+        }),
       borderRadius: animationsScale[index].interpolate({
         inputRange: [0, 1],
         outputRange: [CELL_SIZE, CELL_BORDER_RADIUS],
@@ -78,8 +82,9 @@ const AnimatedExample = () => {
     // Run animation on next event loop tik
     // Because we need first return new style prop and then animate this value
     setTimeout(() => {
-      animateCell({hasValue, index, isFocused});
+      animateCell({ hasValue, index, isFocused });
     }, 0);
+
 
     return (
       <AnimatedText
@@ -91,13 +96,34 @@ const AnimatedExample = () => {
     );
   };
 
+  useEffect(() => {
+    AsyncStorage.getItem('pin_code').then(resp => {
+      console.log("after getting data", resp)
+  })
+  })
+  function create_pin() {
+    if(value.length!==6){
+      alert("please enter 6 digit")
+    }
+    else{
+      // alert("yo")
+      var pin_code = {
+        "pin_code": value
+    }
+    AsyncStorage.setItem(
+      'pin_code', JSON.stringify(pin_code)
+  );
+  Actions.Confirm_Pin();
+      console.log("value in async", pin_code)
+    
+  }
+}
   return (
     <SafeAreaView style={styles.root}>
       <Text style={styles.title}>Verification</Text>
       <Image style={styles.icon} source={source} />
       <Text style={styles.subTitle}>
-        Please enter the verification code{'\n'}
-        we send to your email address
+        Please enter the verification code
       </Text>
 
       <CodeField
@@ -111,11 +137,14 @@ const AnimatedExample = () => {
         textContentType="oneTimeCode"
         renderCell={renderCell}
       />
-      <View style={styles.nextButton}>
+      <TouchableOpacity
+        onPress={create_pin }
+        style={styles.nextButton}
+      >
         <Text style={styles.nextButtonText}>Verify</Text>
-      </View>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
 
-export default AnimatedExample;
+export default Create_Pin;

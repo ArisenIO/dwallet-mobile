@@ -17,6 +17,8 @@ import Send_money from '../Send/Send_money'
 import Pin_Code from '../App_pincode/Pin_code'
 import Setting from '../Setting/Setting'
 import Splash1 from '../Splash/Splash1'
+import Create_Pin from '../App_Security/createPin'
+import Confirm_Pin from '../App_Security/confirmPin'
 
 const Scenes = Actions.create(
     <Scene key='root' >
@@ -36,10 +38,15 @@ const Scenes = Actions.create(
             hideNavBar={true}
             component={AppIntro}
         />
-        <Scene key="Pin_Code"
+        <Scene key="Create_Pin"
             initial={false}
             hideNavBar={true}
-            component={Pin_Code}
+            component={Create_Pin}
+        />
+           <Scene key="Confirm_Pin"
+            initial={false}
+            hideNavBar={true}
+            component={Confirm_Pin}
         />
           <Scene
             key="Createwallet"

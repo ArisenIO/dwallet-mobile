@@ -13,13 +13,14 @@ import Createwallet from './src/createwallet/createwallet'
 import RegisterScreen from './src/register/RegisterScreen'
 import Setting from './src/Setting/Setting'
 import CreatePin from './src/App_Security/createPin'
+import Test from './src/test'
 export default class App extends React.Component {
   render() {
     return (
       <View style={{ height: '100%', width: '100%' }}>
         <StatusBar backgroundColor="#4383fc">
         </StatusBar>
-        <CreatePin/>
+        <MainNavigator/>
       </View >
     )
   }
