@@ -1,153 +1,144 @@
 import Icon from "react-native-vector-icons/Ionicons"
-import React, { Component,useEffect, useRef, useState } from "react"
-import { ImageBackground, SafeAreaView, StatusBar, Text, View ,StyleSheet,Image} from "react-native"
-import PinView from "react-native-pin-view"
-import icon from "../assets/Icon"
+import React, { Component, useRef, useState } from "react"
+import { ImageBackground, SafeAreaView, StatusBar, Text, Image ,View} from "react-native"
+import ReactNativePinView from "react-native-pin-view"
+import AsyncStorage from '@react-native-community/async-storage';
+import Images from '../assets/Icon'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Actions } from 'react-native-router-flux';
 
-class createPin extends Component {
+class Create_Pin extends Component {
   constructor(props) {
     super(props);
-    this.pinView = null
     this.state = {
-      visible: false,
-      confirmVisible:false
+      showRemoveButton: false,
+      showCompletedButton: false,
+      enteredPin: '',
     };
-  
   }
+  componentDidMount() {
+    AsyncStorage.getItem('pin_code').then(resp => {
+      console.log("after getting data", resp)
+      if (resp != null) {
+        this.setState({ myData: JSON.parse(resp), myData_status: true }, () => {
+          console.log("save data in async Storage", this.state.myData.pin_code)
+        })
+      }
+      else {
+        this.setState({ myData_status: false }, () => {
+          console.log("there is any previous data?", this.state.myData_status)
+        })
+      }
+    })
 
- componentDidMount() {
   }
+  enterValue = (value) => {
+    this.setState({ enteredPin: value }, () => {
+      if (this.state.enteredPin.length > 0) {
+        this.setState({ showRemoveButton: true })
+      } else {
+        this.setState({ showRemoveButton: false })
+      }
+      if (this.state.enteredPin.length === 6) {
 
-  setEnteredPin = (value) =>{
-    console.log(value);
-    if (value.length > 0) {
-      this.setShowRemoveButton(true)
-    } else {
-      this.setShowRemoveButton(false)
-    }
-
-    if (value.length === 6){
-      this.setState({
-        confirmVisible:true
-      })
-    } 
-  }
-
-  setShowRemoveButton(val) {
-    this.setState({
-      visible:val
+        if (this.state.myData_status == true) {
+          if (this.state.myData.pin_code == this.state.enteredPin) {
+            Actions.Confirm_Pin();
+          }
+          else {
+            alert("Please enter correct pin")
+          }
+        }
+        else {
+          var pin_code = {
+            "pin_code": this.state.enteredPin
+          }
+          AsyncStorage.setItem(
+            'pin_code', JSON.stringify(pin_code)
+          );
+        }
+        console.log("data in async", pin_code)
+        this.setState({ showCompletedButton: true })
+      } else {
+        this.setState({ showCompletedButton: false })
+      }
+      console.log("Ok..", this.state.enteredPin)
     })
   }
-
-  onButtonPress = (key) => {
-
-    console.log("keys",key);
-
-    if (key === "custom_left") {
-     this.current.clear()
-    }
-    if (key === "custom_right") {
-
-      //send to confirm pin page with props value "pin value"
-
-    }
-  }
-    render() {
+  render() {
     return (
       <>
-      <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" />
         <SafeAreaView
-          style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.5)", justifyContent: "center", alignItems: "center" }}>
-          <Text
-            style={{
-              paddingTop: 24,
-              paddingBottom: 48,
-              color: "rgba(255,255,255,0.7)",
-              fontSize: 48,
-            }}>
-           dWallet
-          </Text>
+          style={{ flex: 1, backgroundColor: "white", justifyContent: "center", alignItems: "center" }}>
+          <Image
+            resizeMethod="resize"
+            resizeMode="contain"
+            source={Images.App_logo1}
+            style={{width:wp('40%'), height:hp('20%'),}}
+          />
+          <View style={{marginVertical:hp('5%')}}> 
+            <Text style={{fontSize:25}}>Create your security pincode</Text>
+          </View>
+          <ReactNativePinView
+            inputSize={32}
+            ref={this}
+            pinLength={6}
+            buttonSize={60}
+            onValueChange={value => { this.enterValue(value) }}
+            buttonAreaStyle={{
+              marginTop: 24,
+            }}
+            inputAreaStyle={{
+              marginBottom: 24,
+            }}
+            inputViewEmptyStyle={{
+              backgroundColor: "transparent",
+              borderWidth: 1,
+              borderColor: "black",
+            }}
+            inputViewFilledStyle={{
+              backgroundColor: "black",
+            }}
+            buttonViewStyle={{
+              borderWidth: 1,
+              borderColor: "black",
+            }}
+            buttonTextStyle={{
+              color: "black",
+            }}
+            onButtonPress={key => {
+              if (key === "custom_left") {
+                this.current.clear()
+              }
+              if (key === "custom_right") {
+                alert("Entered Pin: " + this.state.enteredPin)
+              }
 
-      <PinView 
-      ref={this}
-      pinLength={6} 
-      buttonAreaStyle={{
-        marginTop: 24,
-      }}
-      inputAreaStyle={{
-        marginBottom: 24,
-      }}
-      inputViewEmptyStyle={{
-        backgroundColor: "transparent",
-        borderWidth: 1,
-        borderColor: "#000",
-      }}
-      inputViewFilledStyle={{
-        backgroundColor: "#000",
-      }}
-      buttonViewStyle={{
-        borderWidth: 1,
-        borderColor: "#000",
-      }}
-      buttonTextStyle={{
-        color: "#000",
-      }}
-      onValueChange={value => this.setEnteredPin(value)}
-      onButtonPress={key => {
-        this.onButtonPress(key)
-      }}
-      customLeftButton={this.state.visible ?  <Text
-        style={{
-          paddingTop: 24,
-          paddingBottom: 48,
-          color: "#000",
-          fontSize: 20,
-        }}>
-        Del
-      </Text> : undefined}
-      
-      customRightButton={this.state.confirmVisible ? <Text
-        style={{
-          paddingTop: 24,
-          paddingBottom: 48,
-          color: "#000",
-          fontSize: 20,
-        }}>
-        Done
-      </Text> : undefined}
-      ></PinView>
-    </View>
+            }}
+            customLeftButton={this.state.showRemoveButton ?
+              <Image
+                source={Images.Back_Icn}
+                resizeMode="contain"
+                resizeMethod="resize"
+                style={{ width: wp('10%'), height: hp('5%') }}
+              />
+              :
+              undefined}
 
-    )
- }
+            customRightButton={this.state.showCompletedButton ?
+              <Image
+                source={Images.done_Icon}
+                resizeMode="contain"
+                resizeMethod="resize"
+                style={{ width: wp('10%'), height: hp('5%'), }}
+              /> :
+              undefined}
+          />
+        </SafeAreaView>
+      </>
+    );
+  }
 }
 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "space-between",
-    backgroundColor: "#000",
-    padding: 20,
-    margin: 10,
-  },
-  top: {
-    flex: 0.3,
-    backgroundColor: "grey",
-    borderWidth: 5,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-  middle: {
-    flex: 0.3,
-    backgroundColor: "beige",
-    borderWidth: 5,
-  },
-  bottom: {
-    flex: 0.3,
-    backgroundColor: "pink",
-    borderWidth: 5,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-  },
-});
+export default Create_Pin;

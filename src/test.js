@@ -3,7 +3,7 @@ import React, { Component, useRef, useState } from "react"
 import { ImageBackground, SafeAreaView, StatusBar, Text } from "react-native"
 import ReactNativePinView from "react-native-pin-view"
 import AsyncStorage from '@react-native-community/async-storage';
-import Pin_Code from "../App_pincode/Pin_code";
+
 
 class createPin extends Component {
   constructor(props) {
