@@ -23,15 +23,15 @@ class AppIntro extends Component {
   _onDone = () => {
     AsyncStorage.setItem('first_time', 'true').then(() => {
       this.setState({ showRealApp: true });
-      // Actions.Pin_Code();
-      Actions.Createwallet();
+       Actions.createPin();
+      //Actions.Createwallet();
     });
   };
   _onSkip = () => {
     AsyncStorage.setItem('first_time', 'true').then(() => {
       this.setState({ showRealApp: true });
-      // Actions.Pin_Code();
-      Actions.Createwallet();
+       Actions.createPin();
+     // Actions.Createwallet();
     });
   };
   render() {
