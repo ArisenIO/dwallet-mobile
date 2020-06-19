@@ -1,73 +1,34 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { StyleSheet, View, Text, ScrollView, Image, TouchableOpacity, BackHandler, Platform, TextInput, Clipboard, FlatList } from "react-native";
+import { StyleSheet, View, Text, ScrollView, Image, TouchableOpacity, BackHandler, Platform, TextInput, Clipboard } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 // import Icon from '../assets/Icon'
 import Modal from 'react-native-modal';
-// import { PrivateKey, PublicKey } from '@arisencore/ecc'
-import ethers from 'ethers'
+//import { PrivateKey } from '../../node_modules/@arisencore/ecc/lib/api_object'
 
-export default class Mnemonic extends Component {
+const ethers = require('ethers');
+
+export default class Createwallet extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Mnemonics: 'service',
+            Mnemonicslist: '',
             clipboardText: "",
-
-            data: [
-                {
-                    name: 'bird',
-                    count: '1'
-                },
-                {
-                    name: 'wolf',
-                    count: '2'
-                },
-                {
-                    name: 'stay',
-                    count: '3'
-                },
-                {
-                    name: 'parrot',
-                    count: '4'
-                },
-                {
-                    name: 'dirt',
-                    count: '5'
-                },
-                {
-                    name: 'bracket',
-                    count: '6'
-                },
-                {
-                    name: 'ridge',
-                    count: '7'
-                },
-                {
-                    name: 'clarify',
-                    count: '8'
-                },
-                {
-                    name: 'series',
-                    count: '9'
-                },
-                {
-                    name: 'ticket',
-                    count: '10'
-                },
-                {
-                    name: 'exclude',
-                    count: '11'
-                },
-                {
-                    name: 'true',
-                    count: '12'
-                },
-            ]
-
+            word1:'',
+            word2:'',
+            word3:'',
+            word4:'',
+            word5:'',
+            word6:'',
+            word7:'',
+            word8:'',
+            word9:'',
+            word10:'',
+            word11:'',
+            word12:''
         };
         console.disableYellowBox = true;
         this.backAction = this.backAction.bind(this);
@@ -75,44 +36,34 @@ export default class Mnemonic extends Component {
     }
 
     async componentDidMount() {
-        this.generate_mnemonic()
+        this.generate_mnemonics()
         BackHandler.addEventListener("hardwareBackPress", this.backAction);
     }
 
+    generate_mnemonics = () => {
+        wallet = ethers.Wallet.createRandom();
+        Mnemonic_List = wallet.mnemonic;
+        var array_list = Mnemonic_List.split(/\s+/);
+        this.setState({
+            Mnemonicslist:Mnemonic_List,
+            word1:array_list[0],
+            word2:array_list[1],
+            word3:array_list[2],
+            word4:array_list[3],
+            word5:array_list[4],
+            word6:array_list[5],
+            word7:array_list[6],
+            word8:array_list[7],
+            word9:array_list[8],
+            word10:array_list[9],
+            word11:array_list[10],
+            word12:array_list[11]
 
-    componentWillUnmount() {
-        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
-    }
-
-    generate_mnemonic = () => {
-        function dynamicSort(property) {
-            var sortOrder = 1;
-
-            if (property[0] === "-") {
-                sortOrder = -1;
-                property = property.substr(1);
-            }
-
-            return function (a, b) {
-                if (sortOrder == -1) {
-                    return b[property].localeCompare(a[property]);
-                } else {
-                    return a[property].localeCompare(b[property]);
-                }
-            }
-            // Sort the MyData array with the custom function
-            // that sorts alphabetically by the name key
-
-        }
-      var myData=  this.state.data.sort(dynamicSort("name"));
-        this.setState({myData})
-        console.log("data=======>", myData);
+        })
         
-        // wallet = ethers.Wallet.createRandom();
-        // Mnemonic_List = wallet.mnemonic
-        // console.log("12 words in mnemonic list", Mnemonic_List)
+        console.log("string list length", array_list[0]);
+        console.log("wallet mnemonic list", Mnemonic_List, ethers.utils.HDNode.isValidMnemonic(Mnemonic_List));
 
-        // console.log("wallet", Mnemonic_List, ethers.utils.HDNode.isValidMnemonic(Mnemonic_List));
 
         // master = PrivateKey.fromSeed(Mnemonic_List)
         // ownerPrivate = master.getChildKey('owner')
@@ -121,6 +72,11 @@ export default class Mnemonic extends Component {
 
 
         // console.log(ownerPrivate.toString(), " ", PrivateKey.fromString(ownerPrivate.toWif()).toPublic().toString(), "   ", activePrivate.toString(), PrivateKey.fromString(activePrivate.toWif()).toPublic().toString())
+    }
+
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
     }
 
     backAction = () => {
@@ -145,25 +101,17 @@ export default class Mnemonic extends Component {
     }
     copyClipboard = async () => {
 
-        let copiedText = await Clipboard.setString(this.state.Mnemonics);
-        alert('text copied', copiedText)
-    }
-    renderItem = (item) => {
-        return (<View style={{
-            flexDirection: 'row', flex: 1, justifyContent: 'space-around', height: hp('10%'), marginTop: hp('5%'),
-            width: wp('100%')
-        }}>
+        // let copiedText = await Clipboard.setString(this.state.Mnemonics);
+        // alert('text copied', copiedText)
+        var copied_data = {
+            "Mnemonics":this.state.Mnemonicslist
+        };
+        await Clipboard.setString(JSON.stringify(copied_data));
 
-            <Text
-                style={{
-                    textAlign: 'center', justifyContent: 'center',
-                    width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                    borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
-                }}
-            >{item.count}. {item.name}</Text>
-        </View>
-        )
+        Toast.show('Copied', Toast.SHORT);
+        console.log("copy_data====>", copied_data)
     }
+
     render() {
         return (
             <ScrollView>
@@ -172,52 +120,40 @@ export default class Mnemonic extends Component {
                     <View style={{ width: wp('95'), height: Platform.OS === 'ios' ? hp('7%') : hp('5%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('8%') }}>
                         <Text style={{ color: '#505050', fontFamily: 'Montserrat-Bold', fontSize: 22 }}>Your Mnemonic Phrase</Text>
                     </View>
-                    <FlatList
-                        data={this.state.myData}
-                        numColumns={3}
-                        renderItem={({ item }) => this.renderItem(item)}
 
-                    />
-
-                    {/* <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('5%'), width: wp('100%') }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('5%'), width: wp('100%') }}>
 
                         <TextInput
                             style={{
-                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 15,
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
-                            placeholder="Mnemonics"
-                            value={1 + '.' + this.state.Mnemonics}
+                            placeholder="1st word"
+                            value={1 + '.' + this.state.word1}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            minLength={7}
-                        // onChangeText={(text) => { this.set_to_account_name(text) }}
                         />
 
                         <TextInput
                             style={{
-                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 15,
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
-                            placeholder="Mnemonics"
-                            value={2 + '.' + this.state.Mnemonics}
+                            placeholder="2nd word"
+                            value={2 + '.' + this.state.word2}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            minLength={12}
-                        // onChangeText={(text) => { this.set_to_account_name(text) }}
                         />
 
                         <TextInput
                             style={{
-                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 15,
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
-                            placeholder="Mnemonics"
-                            value={3 + "." + this.state.Mnemonics}
+                            placeholder="3rd word"
+                            value={3 + "." + this.state.word3}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            minLength={12}
-                        // onChangeText={(text) => { this.set_to_account_name(text) }}
                         />
 
                     </View>
@@ -227,41 +163,35 @@ export default class Mnemonic extends Component {
 
                         <TextInput
                             style={{
-                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 15,
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
-                            placeholder="Mnemonics"
-                            value={4 + '.' + this.state.Mnemonics}
+                            placeholder="4th word"
+                            value={4 + '.' + this.state.word4}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            minLength={7}
-                        // onChangeText={(text) => { this.set_to_account_name(text) }}
                         />
 
                         <TextInput
                             style={{
-                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 15,
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
-                            placeholder="Mnemonics"
-                            value={5 + '.' + this.state.Mnemonics}
+                            placeholder="5th word"
+                            value={5 + '.' + this.state.word5}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            minLength={12}
-                        // onChangeText={(text) => { this.set_to_account_name(text) }}
                         />
 
                         <TextInput
                             style={{
-                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 15,
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
-                            placeholder="Mnemonics"
-                            value={6 + "." + this.state.Mnemonics}
+                            placeholder="6th word"
+                            value={6 + "." + this.state.word6}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            minLength={12}
-                        // onChangeText={(text) => { this.set_to_account_name(text) }}
                         />
 
                     </View>
@@ -270,41 +200,35 @@ export default class Mnemonic extends Component {
 
                         <TextInput
                             style={{
-                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 15,
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
-                            placeholder="Mnemonics"
-                            value={7 + '.' + this.state.Mnemonics}
+                            placeholder="7th word"
+                            value={7 + '.' + this.state.word7}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            minLength={7}
-                        // onChangeText={(text) => { this.set_to_account_name(text) }}
                         />
 
                         <TextInput
                             style={{
-                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 15,
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
-                            placeholder="Mnemonics"
-                            value={8 + '.' + this.state.Mnemonics}
+                            placeholder="8th word"
+                            value={8 + '.' + this.state.word8}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            minLength={12}
-                        // onChangeText={(text) => { this.set_to_account_name(text) }}
                         />
 
                         <TextInput
                             style={{
-                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 15,
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
-                            placeholder="Mnemonics"
-                            value={9 + "." + this.state.Mnemonics}
+                            placeholder="9th word"
+                            value={9 + "." + this.state.word9}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            minLength={12}
-                        // onChangeText={(text) => { this.set_to_account_name(text) }}
                         />
 
                     </View>
@@ -313,44 +237,38 @@ export default class Mnemonic extends Component {
 
                         <TextInput
                             style={{
-                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 15,
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
-                            placeholder="Mnemonics"
-                            value={10 + '.' + this.state.Mnemonics}
+                            placeholder="10th word"
+                            value={10 + '.' + this.state.word10}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            minLength={7}
-                        // onChangeText={(text) => { this.set_to_account_name(text) }}
                         />
 
                         <TextInput
                             style={{
-                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 15,
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
-                            placeholder="Mnemonics"
-                            value={11 + '.' + this.state.Mnemonics}
+                            placeholder="11th word"
+                            value={11 + '.' + this.state.word11}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            minLength={12}
-                        // onChangeText={(text) => { this.set_to_account_name(text) }}
                         />
 
                         <TextInput
                             style={{
-                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
+                                width: wp('30%'), borderBottomWidth: wp('0.1%'), fontSize: 15,
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
-                            placeholder="Mnemonics"
-                            value={12 + "." + this.state.Mnemonics}
+                            placeholder="12th word"
+                            value={12 + "." + this.state.word12}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            minLength={12}
-                        // onChangeText={(text) => { this.set_to_account_name(text) }}
                         />
 
-                    </View> */}
+                    </View>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: hp('10%'), marginTop: hp('10%'), width: wp('90%') }}>
                         <View
