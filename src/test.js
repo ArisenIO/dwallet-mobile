@@ -98,3 +98,34 @@ class createPin extends Component {
 }
 
 export default createPin;
+// if (this.state.myData_status == true) {
+//   if (this.state.myData.pin_code == this.state.enteredPin) {
+//     // Actions.Createwallet();
+//     AsyncStorage.getItem('items').then((value) => {
+
+//       if (value) {
+
+//         Actions.replace('homepage')
+//       }
+//       else {
+//         Actions.replace('Createwallet');
+//       }
+//     }).catch((errr) => {
+//       console.log("error in retri", errr);
+
+//     });
+//   }
+//   else {
+//     alert("Please enter correct pin")
+//   }
+// }
+// else {
+//   var pin_code = {
+//     "pin_code": this.state.enteredPin
+//   }
+//   AsyncStorage.setItem(
+//     'pin_code', JSON.stringify(pin_code)
+//   );
+//   Actions.Confirm_Pin();
+// }
+// console.log("data in async", pin_code)
