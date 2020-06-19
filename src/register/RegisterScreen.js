@@ -128,7 +128,6 @@ export default class RegisterScreen extends Component {
         }
         else {
             this.setState({ isLoading: false })
-            // alert("Account Name must be of 12 characters")
             this.toggleModal3()
         }
     }
@@ -148,13 +147,7 @@ export default class RegisterScreen extends Component {
         // })
         //     .then(response => response.json())
         //     .then((response) => {
-        //         console.log("resp_for_check_api", response)
-
-        //         //{"account": "loveaffair11", "active_private": "5J9dikvJnK3SmEHcoottXogsonjfBsDzQggYJDLmHFPGUve9vcB", 
-        //         //"active_public": "RSN75W8mipfTk4oSamxLWiBFQgUnHPvdwbbaRcNPDifhYd4YLGhJd",
-        //         // "owner_private": "5Ka2buLz2U39ae8Xe9PgAvq1hHhUdgXb5nvKxvawby39LUo2JEt", 
-        //         //"owner_public": "RSN7pjSWUaBSkv1J3ZJi5tbzuZWC8feTHbhtKt6ua5EqmsAGTaVdh"}
-
+        
         //         if (response.success == true) {
 
 
@@ -166,16 +159,14 @@ export default class RegisterScreen extends Component {
         //                 AccountName: response.account,
         //                 isLoading: false
         //             })
-        //             // this.showDialog();
-        //             // Actions.Mnemonics()
+        //             Actions.Mnemonics()
 
         //         }
         //         else {
-        //             // alert("Please enter valid Account Name")
         //             this.toggleModal4()
         //         }
         //     })
-        //     .catch(error => console.log(error)) //to catch the errors if any
+        //     .catch(error => console.log(error)) 
     }
 
     alphanumeric(inputtxt) {

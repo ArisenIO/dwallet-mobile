@@ -14,14 +14,14 @@ import RegisterScreen from './src/register/RegisterScreen'
 import Setting from './src/Setting/Setting'
 import Create_Pin from './src/App_Security/createPin'
 import Confirm_Pin from './src/App_Security/confirmPin'
-
+import Mnemonic from './src/Mnemonics/Mnemonics'
 export default class App extends React.Component {
   render() {
     return (
       <View style={{ height: '100%', width: '100%' }}>
         <StatusBar backgroundColor="#4383fc">
         </StatusBar>
-        <MainNavigator/>
+        <Mnemonic/>
       </View >
     )
   }
