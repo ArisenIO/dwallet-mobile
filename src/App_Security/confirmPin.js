@@ -1,6 +1,6 @@
 import Icon from "react-native-vector-icons/Ionicons"
 import React, { Component, useRef, useState } from "react"
-import { ImageBackground, SafeAreaView, StatusBar, Text, Image , View} from "react-native"
+import { ImageBackground, SafeAreaView, StatusBar, Text, Image, View } from "react-native"
 import ReactNativePinView from "react-native-pin-view"
 import AsyncStorage from '@react-native-community/async-storage';
 import Images from '../assets/Icon'
@@ -40,21 +40,20 @@ class Confirm_Pin extends Component {
       }
       if (this.state.enteredPin.length === 6) {
         this.setState({ showCompletedButton: true })
-
-        if (this.state.myData.pin_code == this.state.enteredPin) {
-          Actions.Createwallet();
-
-        }
-        else {
-          alert("Please enter correct app pin.")
-        }
-
-        this.setState({ showCompletedButton: true })
-      } else {
+      }
+      else {
         this.setState({ showCompletedButton: false })
       }
       console.log("Ok..", this.state.enteredPin)
     })
+  }
+  confirm = () => {
+    if (this.state.myData.pin_code == this.state.enteredPin) {
+      Actions.Createwallet();
+    }
+    else {
+      alert("Please enter correct app pin.")
+    }
   }
   render() {
     return (
@@ -62,14 +61,14 @@ class Confirm_Pin extends Component {
         <StatusBar barStyle="light-content" />
         <SafeAreaView
           style={{ flex: 1, backgroundColor: "white", justifyContent: "center", alignItems: "center" }}>
-                 <Image
+          <Image
             resizeMethod="resize"
             resizeMode="contain"
             source={Images.App_logo1}
-            style={{width:wp('40%'), height:hp('20%'),}}
+            style={{ width: wp('40%'), height: hp('20%'), }}
           />
-          <View style={{marginVertical:hp('5%')}}> 
-            <Text style={{fontSize:25}}>Confirm your security pincode</Text>
+          <View style={{ marginVertical: hp('5%') }}>
+            <Text style={{ fontSize: 25 }}>Confirm your security pincode</Text>
           </View>
           <ReactNativePinView
             inputSize={32}
@@ -102,9 +101,9 @@ class Confirm_Pin extends Component {
               if (key === "custom_left") {
                 this.current.clear()
               }
-              // if (key === "custom_right") {
-              //   alert("Entered Pin: " + this.state.enteredPin)
-              // }
+              if (key === "custom_right") {
+                this.confirm()
+              }
 
             }}
             customLeftButton={this.state.showRemoveButton ?
