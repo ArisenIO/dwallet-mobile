@@ -10,6 +10,7 @@ import { Actions } from 'react-native-router-flux';
 class Confirm_Pin extends Component {
   constructor(props) {
     super(props);
+    this.pinView = null
     this.state = {
       showRemoveButton: false,
       showCompletedButton: false,
