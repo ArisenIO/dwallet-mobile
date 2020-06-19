@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { StyleSheet, View, Text, ScrollView, Image, TouchableOpacity, BackHandler, Platform, TextInput, Clipboard } from "react-native";
+import { StyleSheet, View, Text, ScrollView, Image, TouchableOpacity, BackHandler, Platform, TextInput,  } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 // import Icon from '../assets/Icon'
+import Toast from 'react-native-simple-toast';
+import Clipboard from '@react-native-community/clipboard'
 import Modal from 'react-native-modal';
 //import { PrivateKey } from '../../node_modules/@arisencore/ecc/lib/api_object'
 
@@ -38,6 +40,9 @@ export default class Createwallet extends Component {
     async componentDidMount() {
         this.generate_mnemonics()
         BackHandler.addEventListener("hardwareBackPress", this.backAction);
+        AsyncStorage.getItem('items').then(resp => {
+            console.log("ij", resp)
+        })
     }
 
     generate_mnemonics = () => {
@@ -62,7 +67,8 @@ export default class Createwallet extends Component {
         })
         
         console.log("string list length", array_list[0]);
-        console.log("wallet mnemonic list", Mnemonic_List, ethers.utils.HDNode.isValidMnemonic(Mnemonic_List));
+
+        console.log("wallet mnemonic list", Mnemonic_List, ethers.utils.HDNode.isValidMnemonic("shikhar sri"));
 
 
         // master = PrivateKey.fromSeed(Mnemonic_List)
@@ -95,14 +101,41 @@ export default class Createwallet extends Component {
 
 
     createBtn = () => {
-        // this.setState({ b_2: !this.state.b_2 })
-        // Actions.AddAccount();
-        alert('button clicked')
+            fetch("https://dmobileapi.arisen.network/avote/account/pass/phrase", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    phrase:Mnemonic_List
+                })
+            })
+                .then(response => response.json())
+                .then((response) => {
+                    console.log("resp_for_check_api====>", response)
+                    this.setState({ActivePrivate:response.activePrivate,
+                        ActivePublic:response.activePublicKey,
+                        OwnerPrivate:response.ownerPrivate,
+                        OwnerPublic:response.ownerPublicKey
+                
+                    },()=>{console.log("active key", this.state.ActivePublic)})
+
+                    var items ={
+                        "ActivePrivateKey":this.state.ActivePrivate,
+                        "ActivePublicKey":this.state.ActivePublic,
+                        "OwnerPrivate":this.state.OwnerPrivate,
+                        "OwnerPublic":this.state.OwnerPublic
+                    }
+                    AsyncStorage.setItem(
+                        'items', JSON.stringify({ items })
+                    );            
+
+                })
+                .catch(error => console.log(error)) //to catch the errors if any
+        
     }
     copyClipboard = async () => {
-
-        // let copiedText = await Clipboard.setString(this.state.Mnemonics);
-        // alert('text copied', copiedText)
         var copied_data = {
             "Mnemonics":this.state.Mnemonicslist
         };
@@ -132,6 +165,7 @@ export default class Createwallet extends Component {
                             value={1 + '.' + this.state.word1}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
+                            editable={false}
                         />
 
                         <TextInput
@@ -143,6 +177,7 @@ export default class Createwallet extends Component {
                             value={2 + '.' + this.state.word2}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
+                            editable={false}
                         />
 
                         <TextInput
@@ -154,6 +189,7 @@ export default class Createwallet extends Component {
                             value={3 + "." + this.state.word3}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
+                            editable={false}
                         />
 
                     </View>
@@ -170,6 +206,7 @@ export default class Createwallet extends Component {
                             value={4 + '.' + this.state.word4}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
+                            editable={false}
                         />
 
                         <TextInput
@@ -181,6 +218,7 @@ export default class Createwallet extends Component {
                             value={5 + '.' + this.state.word5}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
+                            editable={false}
                         />
 
                         <TextInput
@@ -192,6 +230,7 @@ export default class Createwallet extends Component {
                             value={6 + "." + this.state.word6}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
+                            editable={false}
                         />
 
                     </View>
@@ -207,6 +246,7 @@ export default class Createwallet extends Component {
                             value={7 + '.' + this.state.word7}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
+                            editable={false}
                         />
 
                         <TextInput
@@ -218,6 +258,7 @@ export default class Createwallet extends Component {
                             value={8 + '.' + this.state.word8}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
+                            editable={false}
                         />
 
                         <TextInput
@@ -229,6 +270,7 @@ export default class Createwallet extends Component {
                             value={9 + "." + this.state.word9}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
+                            editable={false}
                         />
 
                     </View>
@@ -244,6 +286,7 @@ export default class Createwallet extends Component {
                             value={10 + '.' + this.state.word10}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
+                            editable={false}
                         />
 
                         <TextInput
@@ -255,6 +298,7 @@ export default class Createwallet extends Component {
                             value={11 + '.' + this.state.word11}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
+                            editable={false}
                         />
 
                         <TextInput
@@ -266,6 +310,7 @@ export default class Createwallet extends Component {
                             value={12 + "." + this.state.word12}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
+                            editable={false}
                         />
 
                     </View>
