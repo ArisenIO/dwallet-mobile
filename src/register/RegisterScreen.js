@@ -128,52 +128,46 @@ export default class RegisterScreen extends Component {
         }
         else {
             this.setState({ isLoading: false })
-            // alert("Account Name must be of 12 characters")
             this.toggleModal3()
         }
     }
     _proceed = () => {
-        this.setState({ isLoading: false })
-        fetch("https://dmobileapi.arisen.network/avote/account/keys", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                newAccountName: this.state.AccountName
-            })
-        })
-            .then(response => response.json())
-            .then((response) => {
-                console.log("resp_for_check_api", response)
 
-                //{"account": "loveaffair11", "active_private": "5J9dikvJnK3SmEHcoottXogsonjfBsDzQggYJDLmHFPGUve9vcB", 
-                //"active_public": "RSN75W8mipfTk4oSamxLWiBFQgUnHPvdwbbaRcNPDifhYd4YLGhJd",
-                // "owner_private": "5Ka2buLz2U39ae8Xe9PgAvq1hHhUdgXb5nvKxvawby39LUo2JEt", 
-                //"owner_public": "RSN7pjSWUaBSkv1J3ZJi5tbzuZWC8feTHbhtKt6ua5EqmsAGTaVdh"}
+        Actions.Mnemonics()
 
-                if (response.success == true) {
+        // this.setState({ isLoading: false })
+        // fetch("https://dmobileapi.arisen.network/avote/account/keys", {
+        //     method: 'POST',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         newAccountName: this.state.AccountName
+        //     })
+        // })
+        //     .then(response => response.json())
+        //     .then((response) => {
+        
+        //         if (response.success == true) {
 
 
-                    this.setState({
-                        owner_private_keys: response.owner_private,
-                        owner_public_keys: response.owner_public,
-                        active_private_keys: response.active_private,
-                        active_public_keys: response.active_public,
-                        AccountName: response.account,
-                        isLoading: false
-                    })
-                    // this.showDialog();
-                    Actions.Mnemonics()
+        //             this.setState({
+        //                 owner_private_keys: response.owner_private,
+        //                 owner_public_keys: response.owner_public,
+        //                 active_private_keys: response.active_private,
+        //                 active_public_keys: response.active_public,
+        //                 AccountName: response.account,
+        //                 isLoading: false
+        //             })
+        //             Actions.Mnemonics()
 
-                }
-                else {
-                    // alert("Please enter valid Account Name")
-                    this.toggleModal4()
-                }
-            })
-            .catch(error => console.log(error)) //to catch the errors if any
+        //         }
+        //         else {
+        //             this.toggleModal4()
+        //         }
+        //     })
+        //     .catch(error => console.log(error)) 
     }
 
     alphanumeric(inputtxt) {
