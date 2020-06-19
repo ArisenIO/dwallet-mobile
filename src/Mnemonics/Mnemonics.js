@@ -7,13 +7,28 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 // import Icon from '../assets/Icon'
 import Modal from 'react-native-modal';
+// let {PrivateKey, PublicKey } = require('@arisencore/ecc')
+const ethers = require('ethers');
 
-export default class Createwallet extends Component {
+
+export default class Mnemonics extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Mnemonics: 'service',
+            Mnemonics1: '',
+            Mnemonics2: '',
+            Mnemonics3: '',
+            Mnemonics4: '',
+            Mnemonics5: '',
+            Mnemonics6: '',
+            Mnemonics7: '',
+            Mnemonics8: '',
+            Mnemonics9: '',
+            Mnemonics10: '',
+            Mnemonics11: '',
+            Mnemonics12: '',
             clipboardText: "",
+            Mnemonicslist: '',
         };
         console.disableYellowBox = true;
         this.backAction = this.backAction.bind(this);
@@ -21,7 +36,35 @@ export default class Createwallet extends Component {
     }
 
     async componentDidMount() {
+        this.generatemnemonics()
         BackHandler.addEventListener("hardwareBackPress", this.backAction);
+    }
+
+    generatemnemonics = () => {
+        console.log('Generate Mnemonics')
+        var wallet = ethers.Wallet.createRandom();
+        var Mnemonic_List = wallet.mnemonic
+        var item = Mnemonic_List.split(" ");
+        this.setState({
+            Mnemonics1: item[0],
+            Mnemonics2: item[1],
+            Mnemonics3: item[2],
+            Mnemonics4: item[3],
+            Mnemonics5: item[4],
+            Mnemonics6: item[5],
+            Mnemonics7: item[6],
+            Mnemonics8: item[7],
+            Mnemonics9: item[8],
+            Mnemonics10: item[9],
+            Mnemonics11: item[10],
+            Mnemonics12: item[11],
+            Mnemonicslist:item
+        }, () => {
+            console.log('=========================pppppppp', item[0],this.state.Mnemonicslist)
+            // console.log("wallet===========1", Mnemonic_List, item, 'Second============', ethers.utils.HDNode.isValidMnemonic(Mnemonic_List));
+
+        })
+
     }
 
 
@@ -30,8 +73,8 @@ export default class Createwallet extends Component {
     }
 
     backAction = () => {
-        this.setState({ isModalVisible: !this.state.isModalVisible });
-        //   Actions.pop()
+        // this.setState({ isModalVisible: !this.state.isModalVisible });
+        Actions.pop()
         // Alert.alert("Hold on!", "Are you sure you want to go back?", [
         //   {
         //     text: "Cancel",
@@ -51,11 +94,16 @@ export default class Createwallet extends Component {
     }
     copyClipboard = async () => {
 
-        let copiedText = await Clipboard.setString(this.state.Mnemonics);
-           alert('text copied',copiedText)
+        let copiedText = await Clipboard.setString(this.state.Mnemonicslist);
+        console.log('text copied', copiedText)
     }
 
     render() {
+
+        // if (this.state.loading) return <ActivityIndicator size="large" />
+
+
+
         return (
             <ScrollView>
                 <View style={styles.container}>
@@ -72,7 +120,7 @@ export default class Createwallet extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="Mnemonics"
-                            value={1 + '.' + this.state.Mnemonics}
+                            value={1 + '.' + this.state.Mnemonics1}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
                             minLength={7}
@@ -85,7 +133,7 @@ export default class Createwallet extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="Mnemonics"
-                            value={2 + '.' + this.state.Mnemonics}
+                            value={2 + '.' + this.state.Mnemonics2}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
                             minLength={12}
@@ -98,7 +146,7 @@ export default class Createwallet extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="Mnemonics"
-                            value={3 + "." + this.state.Mnemonics}
+                            value={3 + "." + this.state.Mnemonics3}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
                             minLength={12}
@@ -116,7 +164,7 @@ export default class Createwallet extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="Mnemonics"
-                            value={4 + '.' + this.state.Mnemonics}
+                            value={4 + '.' + this.state.Mnemonics4}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
                             minLength={7}
@@ -129,7 +177,7 @@ export default class Createwallet extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="Mnemonics"
-                            value={5 + '.' + this.state.Mnemonics}
+                            value={5 + '.' + this.state.Mnemonics5}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
                             minLength={12}
@@ -142,7 +190,7 @@ export default class Createwallet extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="Mnemonics"
-                            value={6 + "." + this.state.Mnemonics}
+                            value={6 + "." + this.state.Mnemonics6}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
                             minLength={12}
@@ -159,7 +207,7 @@ export default class Createwallet extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="Mnemonics"
-                            value={7 + '.' + this.state.Mnemonics}
+                            value={7 + '.' + this.state.Mnemonics7}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
                             minLength={7}
@@ -172,7 +220,7 @@ export default class Createwallet extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="Mnemonics"
-                            value={8 + '.' + this.state.Mnemonics}
+                            value={8 + '.' + this.state.Mnemonics8}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
                             minLength={12}
@@ -185,7 +233,7 @@ export default class Createwallet extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="Mnemonics"
-                            value={9 + "." + this.state.Mnemonics}
+                            value={9 + "." + this.state.Mnemonics9}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
                             minLength={12}
@@ -202,7 +250,7 @@ export default class Createwallet extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="Mnemonics"
-                            value={10 + '.' + this.state.Mnemonics}
+                            value={10 + '.' + this.state.Mnemonics10}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
                             minLength={7}
@@ -215,7 +263,7 @@ export default class Createwallet extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="Mnemonics"
-                            value={11 + '.' + this.state.Mnemonics}
+                            value={11 + '.' + this.state.Mnemonics11}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
                             minLength={12}
@@ -228,7 +276,7 @@ export default class Createwallet extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="Mnemonics"
-                            value={12 + "." + this.state.Mnemonics}
+                            value={12 + "." + this.state.Mnemonics12}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
                             minLength={12}

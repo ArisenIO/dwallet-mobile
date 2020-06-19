@@ -14,6 +14,7 @@ import RegisterScreen from './src/register/RegisterScreen'
 import Setting from './src/Setting/Setting'
 import Create_Pin from './src/App_Security/createPin'
 import Confirm_Pin from './src/App_Security/confirmPin'
+
 export default class App extends React.Component {
   render() {
     return (
