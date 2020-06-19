@@ -52,7 +52,7 @@ class Confirm_Pin extends Component {
       Actions.Createwallet();
     }
     else {
-      alert("Please enter correct app pin.")
+      alert("Pin Mismatched.")
     }
   }
   render() {
