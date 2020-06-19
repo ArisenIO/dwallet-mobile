@@ -15,6 +15,7 @@
     "buffer": "^5.0.6",
     "css-select": "^2.1.0",
     "css-tree": "^1.0.0-alpha.39",
+    "ethers": "^4.0.27",
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-native-camera-kit": "^8.0.4",
