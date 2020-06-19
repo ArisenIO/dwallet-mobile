@@ -30,8 +30,8 @@ export default class Createwallet extends Component {
     }
 
     backAction = () => {
-        this.setState({ isModalVisible: !this.state.isModalVisible });
-        //   Actions.pop()
+        //this.setState({ isModalVisible: !this.state.isModalVisible });
+           Actions.pop()
         // Alert.alert("Hold on!", "Are you sure you want to go back?", [
         //   {
         //     text: "Cancel",
