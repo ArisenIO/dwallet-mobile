@@ -40,6 +40,43 @@ class Create_Pin extends Component {
         this.setState({ showRemoveButton: false })
       }
       if (this.state.enteredPin.length === 6) {
+<<<<<<< HEAD
+=======
+
+        this.setState({ showCompletedButton: true })
+
+        if (this.state.myData_status == true) {
+          if (this.state.myData.pin_code == this.state.enteredPin) {
+            // Actions.Createwallet();
+            AsyncStorage.getItem('items').then((value) => {
+
+              if (value) {
+
+                Actions.replace('homepage')
+              }
+              else {
+                Actions.replace('Createwallet');
+              }
+            }).catch((errr) => {
+              console.log("error in retri", errr);
+
+            });
+          }
+          else {
+            alert("Please enter correct pin")
+          }
+        }
+        else {
+          var pin_code = {
+            "pin_code": this.state.enteredPin
+          }
+          AsyncStorage.setItem(
+            'pin_code', JSON.stringify(pin_code)
+          );
+          Actions.Confirm_Pin();
+        }
+        console.log("data in async", pin_code)
+>>>>>>> b3e5151524418cf830d850248869673041e72d91
         this.setState({ showCompletedButton: true })
       } else {
         this.setState({ showCompletedButton: false })
@@ -47,6 +84,7 @@ class Create_Pin extends Component {
       console.log("Ok..", this.state.enteredPin)
     })
   }
+<<<<<<< HEAD
   Create=()=>{
     if (this.state.myData_status == true) {
         if (this.state.myData.pin_code == this.state.enteredPin) {
@@ -79,6 +117,22 @@ class Create_Pin extends Component {
         Actions.Confirm_Pin();
       }
       console.log("data in async", pin_code)
+=======
+
+  onButtonPress = (key) => {
+
+    console.log("keys",key);
+
+    if (key === "custom_left") {
+     this.current.clear()
+    }
+    if (key === "custom_right") {
+
+      //send to confirm pin page with props value "pin value"
+      console.log("right");
+
+    }
+>>>>>>> b3e5151524418cf830d850248869673041e72d91
   }
   render() {
     return (
