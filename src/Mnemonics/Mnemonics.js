@@ -81,33 +81,6 @@ export default class Mnemonics extends Component {
         // console.log(ownerPrivate.toString(), " ", PrivateKey.fromString(ownerPrivate.toWif()).toPublic().toString(), "   ", activePrivate.toString(), PrivateKey.fromString(activePrivate.toWif()).toPublic().toString())
     }
 
-    generatemnemonics = () => {
-        console.log('Generate Mnemonics')
-        var wallet = ethers.Wallet.createRandom();
-        var Mnemonic_List = wallet.mnemonic
-        var item = Mnemonic_List.split(" ");
-        this.setState({
-            Mnemonics1: item[0],
-            Mnemonics2: item[1],
-            Mnemonics3: item[2],
-            Mnemonics4: item[3],
-            Mnemonics5: item[4],
-            Mnemonics6: item[5],
-            Mnemonics7: item[6],
-            Mnemonics8: item[7],
-            Mnemonics9: item[8],
-            Mnemonics10: item[9],
-            Mnemonics11: item[10],
-            Mnemonics12: item[11],
-            Mnemonicslist:item
-        }, () => {
-            console.log('=========================pppppppp', item[0],this.state.Mnemonicslist)
-            // console.log("wallet===========1", Mnemonic_List, item, 'Second============', ethers.utils.HDNode.isValidMnemonic(Mnemonic_List));
-
-        })
-
-    }
-
 
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.backAction);
