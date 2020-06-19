@@ -1,6 +1,6 @@
 import Icon from "react-native-vector-icons/Ionicons"
 import React, { Component, useRef, useState } from "react"
-import { ImageBackground, SafeAreaView, StatusBar, Text, Image ,View} from "react-native"
+import { ImageBackground, SafeAreaView, StatusBar, Text, Image, View } from "react-native"
 import ReactNativePinView from "react-native-pin-view"
 import AsyncStorage from '@react-native-community/async-storage';
 import Images from '../assets/Icon'
@@ -30,7 +30,6 @@ class Create_Pin extends Component {
         })
       }
     })
-
   }
   enterValue = (value) => {
     this.setState({ enteredPin: value }, () => {
@@ -43,7 +42,20 @@ class Create_Pin extends Component {
 
         if (this.state.myData_status == true) {
           if (this.state.myData.pin_code == this.state.enteredPin) {
-            Actions.Confirm_Pin();
+            // Actions.Createwallet();
+            AsyncStorage.getItem('items').then((value) => {
+
+              if (value) {
+
+                Actions.replace('homepage')
+              }
+              else {
+                Actions.replace('Createwallet');
+              }
+            }).catch((errr) => {
+              console.log("error in retri", errr);
+
+            });
           }
           else {
             alert("Please enter correct pin")
@@ -56,6 +68,7 @@ class Create_Pin extends Component {
           AsyncStorage.setItem(
             'pin_code', JSON.stringify(pin_code)
           );
+          Actions.Confirm_Pin();
         }
         console.log("data in async", pin_code)
         this.setState({ showCompletedButton: true })
@@ -75,10 +88,15 @@ class Create_Pin extends Component {
             resizeMethod="resize"
             resizeMode="contain"
             source={Images.App_logo1}
-            style={{width:wp('40%'), height:hp('20%'),}}
+            style={{ width: wp('40%'), height: hp('20%'), }}
           />
-          <View style={{marginVertical:hp('5%')}}> 
-            <Text style={{fontSize:25}}>Create your security pincode</Text>
+          <View style={{ marginVertical: hp('5%') }}>
+            {
+              this.state.myData_status == true ?
+                <Text style={{ fontSize: 25 }}>Enter your security pincode</Text>
+                :
+                <Text style={{ fontSize: 25 }}>Create your security pincode</Text>
+            }
           </View>
           <ReactNativePinView
             inputSize={32}
