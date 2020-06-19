@@ -47,38 +47,38 @@ class Create_Pin extends Component {
       console.log("Ok..", this.state.enteredPin)
     })
   }
-  Create=()=>{
+  Create = () => {
     if (this.state.myData_status == true) {
-        if (this.state.myData.pin_code == this.state.enteredPin) {
-          // Actions.Createwallet();
-          AsyncStorage.getItem('items').then((value) => {
-      
-            if (value) {
-      
-              Actions.replace('homepage')
-            }
-            else {
-              Actions.replace('Createwallet');
-            }
-          }).catch((errr) => {
-            console.log("error in retri", errr);
-      
-          });
-        }
-        else {
-          alert("Please enter correct pin")
-        }
+      if (this.state.myData.pin_code == this.state.enteredPin) {
+        // Actions.Createwallet();
+        AsyncStorage.getItem('items').then((value) => {
+
+          if (value) {
+
+            Actions.replace('homepage')
+          }
+          else {
+            Actions.replace('Createwallet');
+          }
+        }).catch((errr) => {
+          console.log("error in retri", errr);
+
+        });
       }
       else {
-        var pin_code = {
-          "pin_code": this.state.enteredPin
-        }
-        AsyncStorage.setItem(
-          'pin_code', JSON.stringify(pin_code)
-        );
-        Actions.Confirm_Pin();
+        alert("Please enter correct pin")
       }
-      console.log("data in async", pin_code)
+    }
+    else {
+      var pin_code = {
+        "pin_code": this.state.enteredPin
+      }
+      AsyncStorage.setItem(
+        'pin_code', JSON.stringify(pin_code)
+      );
+      Actions.Confirm_Pin();
+    }
+    console.log("data in async", pin_code)
   }
   render() {
     return (
@@ -132,7 +132,7 @@ class Create_Pin extends Component {
                 this.current.clear()
               }
               if (key === "custom_right") {
-               this.Create()
+                this.Create()
               }
 
             }}
@@ -147,15 +147,15 @@ class Create_Pin extends Component {
               undefined}
 
             customRightButton={this.state.showCompletedButton ?
-             
-             <TouchableOpacity onPress={()=>{alert("ok")}}>
+
+              <TouchableOpacity onPress={() => { alert("ok") }}>
                 <Image
-                source={Images.done_Icon}
-                resizeMode="contain"
-                resizeMethod="resize"
-                style={{ width: wp('10%'), height: hp('5%'), }}
-              /> 
-             </TouchableOpacity> :
+                  source={Images.done_Icon}
+                  resizeMode="contain"
+                  resizeMethod="resize"
+                  style={{ width: wp('10%'), height: hp('5%'), }}
+                />
+              </TouchableOpacity> :
               undefined}
           />
         </SafeAreaView>
