@@ -49,7 +49,7 @@ export default class Splash extends Component {
             AsyncStorage.getItem('items').then((value) =>{
 
                 if(value){
-                    Actions.replace('homepage')
+                    Actions.replace('Create_Pin')
                 }
                 else{
                     Actions.replace('AppIntro');
@@ -62,7 +62,7 @@ export default class Splash extends Component {
         }, 2000);
         //     console.log("inside set timeout");
 
-        //     AsyncStorage.getItem('creds').then((value) =>{
+        //     AsyncStorage.getItem('creds')homepage.then((value) =>{
 
         //         if(value){
         //             Actions.homepage()

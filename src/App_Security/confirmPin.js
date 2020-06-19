@@ -1,258 +1,135 @@
-import React, { Component } from 'react';
-import {
-  Animated, Image, Text, View,
-  KeyboardAvoidingView, ScrollView, StyleSheet, ActivityIndicator, BackHandler, Platform
-} from 'react-native';
-import { Button } from 'react-native-elements';
-import { Actions } from 'react-native-router-flux';
-import CodeFiled from 'react-native-confirmation-code-field';
-import { Dimensions } from 'react-native'
-var width_screen = Dimensions.get('screen').width;
-var height_screen = Dimensions.get('screen').height;
-import Toast from 'react-native-simple-toast';
+import Icon from "react-native-vector-icons/Ionicons"
+import React, { Component, useRef, useState } from "react"
+import { ImageBackground, SafeAreaView, StatusBar, Text, Image , View} from "react-native"
+import ReactNativePinView from "react-native-pin-view"
 import AsyncStorage from '@react-native-community/async-storage';
+import Images from '../assets/Icon'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Actions } from 'react-native-router-flux';
 
-import styles, {
-  ACTIVE_CELL_BG_COLOR,
-  CELL_BORDER_RADIUS,
-  CELL_SIZE,
-  DEFAULT_CELL_BG_COLOR,
-  NOT_EMPTY_CELL_BG_COLOR,
-} from './styles';
-
-
-
-const codeLength = 4;
-const source = {
-  uri:
-    'https://user-images.githubusercontent.com/4661784/56352614-4631a680-61d8-11e9-880d-86ecb053413d.png',
-};
-
-
-export default class confirmPin extends Component {
+class Confirm_Pin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstpin: '',
-      secondpin: '',
-      codelist: '',
-      visible: false,
-      walletRestore: ''
+      showRemoveButton: false,
+      showCompletedButton: false,
+      enteredPin: '',
     };
-
-    const value = this.props.firstpin;
-    this.state.firstpin = value;
-    console.disableYellowBox = true;
-    this.BackButton = this.BackButton.bind(this);
   }
-
-  async componentDidMount() {
-    wordpin = await AsyncStorage.getItem("forgotMnemonicPin");
-    console.log("wordpin---", wordpin);
-    var restorewholewallet = await AsyncStorage.getItem("created");
-    console.log("restore_wholewallet", restorewholewallet);
-    this.setState({ walletRestore: restorewholewallet })
-    console.log("this.state.wallet restoring", this.state.walletRestore);
-    BackHandler.addEventListener('hardwareBackPress', this.BackButton);
-  }
-
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.BackButton);
-  }
-
-  BackButton = () => {
-    Actions.replace('createPin');
-  }
-
-  _animationsColor = [...new Array(codeLength)].map(
-    () => new Animated.Value(0),
-  );
-  _animationsScale = [...new Array(codeLength)].map(
-    () => new Animated.Value(1),
-  );
-
-  onFinishCheckingCode = code => {
-    this.state.secondpin = code;
-  };
-
-  // storeData = async (key, value) => {
-  //   try {
-  //     return await AsyncStorage.setItem(key, value)
-  //   } catch (e) {
-  //     return e;
-  //   }
-  // }
-
-  checkPin = async () => {
-    var forgot = await AsyncStorage.getItem("fromForgotPin");
-    var fromForget = await AsyncStorage.getItem("fromForget");
-
-    if (this.state.firstpin == this.state.secondpin && this.state.walletRestore == 0) {
-      this.setState({
-        visible: true
-      });
-      await AsyncStorage.setItem("pin", this.state.firstpin);
-      Actions.replace("HomeScreen");
-    }
-    else if (this.state.firstpin == this.state.secondpin && forgot == 1) {
-      this.setState({
-        visible: true
-      });
-      await AsyncStorage.setItem("pin", this.state.firstpin);
-      Actions.replace("HomeScreen");
-    }
-
-    else if (this.state.firstpin == this.state.secondpin && fromForget === "1") {
-      await AsyncStorage.setItem("pin", this.state.firstpin);
-      Actions.replace("HomeScreen");
-    }
-    else if (this.state.firstpin == this.state.secondpin && wordpin === "1") {
-      await AsyncStorage.setItem("pin", this.state.firstpin);
-      Actions.replace("HomeScreen");
-    }
-
-    else if (this.state.firstpin != this.state.secondpin && forgot == 1) {
-      Toast.show("Please Enter The Correct Pin", Toast.SHORT);
-    }
-    else if (this.state.firstpin == this.state.secondpin) {
-      this.setState({
-        visible: true
-      });
-
-      var restore = await AsyncStorage.getItem("restore")
-      if (restore == "0" || restore == null) {
-
-        await AsyncStorage.setItem("pin", this.state.firstpin)
-        wallet = ethers.Wallet.createRandom();
-        Mnemonic_List = wallet.mnemonic;
-        console.log("mnemonic_list", Mnemonic_List);
-        // var a = this.storeData("phrase", Mnemonic_List);
-        await AsyncStorage.setItem("phrase", Mnemonic_List);
-        AsyncStorage.getItem("phrase").then((a) => {
-          if (a) {
-            console.log("value of a on confirm pin", a);
-            this.setState({
-              visible: false
-            });
-            Actions.replace("mnemonic");
-          }
+  componentDidMount() {
+    AsyncStorage.getItem('pin_code').then(resp => {
+      console.log("after getting data", resp)
+      if (resp != null) {
+        this.setState({ myData: JSON.parse(resp), myData_status: true }, () => {
+          console.log("app pin from last page.", this.state.myData.pin_code)
         })
       }
       else {
-        await AsyncStorage.setItem("pin", this.state.firstpin)
-        this.setState({
-          visible: false
-        });
-        Actions.replace('restoreScreen');
-      }
-    }
-    else {
-      Toast.show("Please Enter The Correct Pin", Toast.SHORT);
-    }
-  }
-
-  animateCell({ hasValue, index, isFocused }) {
-    Animated.parallel([
-      Animated.timing(this._animationsColor[index], {
-        toValue: isFocused ? 1 : 0,
-        duration: 250,
-      }),
-      Animated.spring(this._animationsScale[index], {
-        toValue: hasValue ? 0 : 1,
-        duration: hasValue ? 300 : 250,
-      }),
-    ]).start();
-  }
-
-  cellProps = ({ hasValue, index, isFocused }) => {
-    const animatedCellStyle = {
-      backgroundColor: hasValue
-        ? this._animationsScale[index].interpolate({
-          inputRange: [0, 1],
-          outputRange: [NOT_EMPTY_CELL_BG_COLOR, ACTIVE_CELL_BG_COLOR],
+        this.setState({ myData_status: false }, () => {
+          console.log("there is any previous data?", this.state.myData_status)
         })
-        : this._animationsColor[index].interpolate({
-          inputRange: [0, 1],
-          outputRange: [DEFAULT_CELL_BG_COLOR, ACTIVE_CELL_BG_COLOR],
-        }),
-      borderRadius: this._animationsScale[index].interpolate({
-        inputRange: [0, 1],
-        outputRange: [CELL_SIZE, CELL_BORDER_RADIUS],
-      }),
-      transform: [
-        {
-          scale: this._animationsScale[index].interpolate({
-            inputRange: [0, 1],
-            outputRange: [0.2, 1],
-          }),
-        },
-      ],
-    };
-    setTimeout(() => {
-      this.animateCell({ hasValue, index, isFocused });
-    }, 0);
+      }
+    })
+  }
+  enterValue = (value) => {
+    this.setState({ enteredPin: value }, () => {
+      if (this.state.enteredPin.length > 0) {
+        this.setState({ showRemoveButton: true })
+      } else {
+        this.setState({ showRemoveButton: false })
+      }
+      if (this.state.enteredPin.length === 6) {
+        this.setState({ showCompletedButton: true })
 
-    return {
-      style: [styles.input, animatedCellStyle],
-    };
-  };
+        if (this.state.myData.pin_code == this.state.enteredPin) {
+          Actions.Createwallet();
 
-  containerProps = { style: styles.inputWrapStyle };
+        }
+        else {
+          alert("Please enter correct app pin.")
+        }
 
+        this.setState({ showCompletedButton: true })
+      } else {
+        this.setState({ showCompletedButton: false })
+      }
+      console.log("Ok..", this.state.enteredPin)
+    })
+  }
   render() {
     return (
-      this.state.visible ? <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center', flexDirection: 'column', backgroundColor: 'white' }}>
-        <ActivityIndicator
-          color='black'
-          size="large" />
-        <Text style={{ fontSize: 12, color: 'black', fontWeight: '500', textAlign: 'center', margin: 10 }}>Hold on! Your 12 Word Mnemonics For Ethereum is being generated. Do not go back or cancel this process.</Text>
-      </View> :
-        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} keyboardVerticalOffset={Platform.OS === "ios" ? 0 : null}>
-          <ScrollView style={Platform.OS === "ios" ? "flex:1" : null}>
-            <View style={{ height: height_screen, width: width_screen, backgroundColor: 'white' }}>
+      <>
+        <StatusBar barStyle="light-content" />
+        <SafeAreaView
+          style={{ flex: 1, backgroundColor: "white", justifyContent: "center", alignItems: "center" }}>
+                 <Image
+            resizeMethod="resize"
+            resizeMode="contain"
+            source={Images.App_logo1}
+            style={{width:wp('40%'), height:hp('20%'),}}
+          />
+          <View style={{marginVertical:hp('5%')}}> 
+            <Text style={{fontSize:25}}>Confirm your security pincode</Text>
+          </View>
+          <ReactNativePinView
+            inputSize={32}
+            ref={this}
+            pinLength={6}
+            buttonSize={60}
+            onValueChange={value => { this.enterValue(value) }}
+            buttonAreaStyle={{
+              marginTop: 24,
+            }}
+            inputAreaStyle={{
+              marginBottom: 24,
+            }}
+            inputViewEmptyStyle={{
+              backgroundColor: "transparent",
+              borderWidth: 1,
+              borderColor: "black",
+            }}
+            inputViewFilledStyle={{
+              backgroundColor: "black",
+            }}
+            buttonViewStyle={{
+              borderWidth: 1,
+              borderColor: "black",
+            }}
+            buttonTextStyle={{
+              color: "black",
+            }}
+            onButtonPress={key => {
+              if (key === "custom_left") {
+                this.current.clear()
+              }
+              // if (key === "custom_right") {
+              //   alert("Entered Pin: " + this.state.enteredPin)
+              // }
 
-              <View style={styles.inputWrapper}>
-                <View style={{ flex: 1, marginBottom: '10%' }}>
-                  <Text style={styles.inputLabel}>Re-enter the Application Pin</Text>
-                  <Image style={styles.icon} source={source} />
-                  <Text style={styles.inputSubLabel}>{'Please re-enter the Application Pin'}</Text>
-                  <Text style={styles.inputSubLabel}>{'It can be used to send Ethers,Bitcoins And ERC20 Tokens.'}</Text>
-                  <Text style={styles.inputSubLabel}>{'So Make Sure You Save This Pin Somewhere .'}</Text>
-                  <CodeFiled
-                    maskSymbol=""
-                    variant="clear"
-                    codeLength={codeLength}
-                    keyboardType="numeric"
-                    cellProps={this.cellProps}
-                    containerProps={this.containerProps}
-                    onFulfill={this.onFinishCheckingCode}
-                    CellComponent={Animated.Text} />
+            }}
+            customLeftButton={this.state.showRemoveButton ?
+              <Image
+                source={Images.Back_Icn}
+                resizeMode="contain"
+                resizeMethod="resize"
+                style={{ width: wp('10%'), height: hp('5%') }}
+              />
+              :
+              undefined}
 
-                  <Button
-                    onPress={this.checkPin}
-                    title="Confirm"
-                    titleStyle={{ color: 'white', fontSize: 18, textAlign: 'center', padding: 5 }}
-                    buttonStyle={{
-                      borderWidth: 1, borderColor: '#5364CD', borderRadius: 25, width: 180,
-                      alignSelf: 'center', backgroundColor: '#5364CD', height: 50
-                    }} />
-
-                </View>
-              </View>
-            </View>
-          </ScrollView>
-        </KeyboardAvoidingView>
-
+            customRightButton={this.state.showCompletedButton ?
+              <Image
+                source={Images.done_Icon}
+                resizeMode="contain"
+                resizeMethod="resize"
+                style={{ width: wp('10%'), height: hp('5%'), }}
+              /> :
+              undefined}
+          />
+        </SafeAreaView>
+      </>
     );
   }
 }
 
-const styless = StyleSheet.create({
-
-  activityIndicator: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 200
-  }
-});
+export default Confirm_Pin;

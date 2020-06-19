@@ -20,7 +20,10 @@ export default Images ={
     Reset_icon:require('./Image/reset.png'),
     Backup_icon:require('./Image/backup.png'),
     lOgout_icon:require('./Image/logout.png'),
-    Camera_icon:require('./Image/camera.png')
+    Camera_icon:require('./Image/camera.png'),
+    Back_Icn:require('./Image/backIcon.png'),
+    done_Icon:require('./Image/done.png'),
+
     // Loader:require('./Image/loader.gif')
 }
 export const Loader1=require('./Image/loader.gif')
