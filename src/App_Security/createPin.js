@@ -52,6 +52,7 @@ export default class createPin extends Component {
     if (key === "custom_right") {
 
       //send to confirm pin page with props value "pin value"
+      console.log("right");
 
     }
   }
