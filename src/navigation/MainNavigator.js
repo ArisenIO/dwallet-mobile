@@ -13,18 +13,19 @@ import RegisterScreen from '../register/RegisterScreen';
 import AddAccount from '../AddAccount/AddAccount';
 import AppIntro from '../slider/slider'
 import Recieve from '../Recieved/recieve'
-import Send_money from '../Send/Send_money' 
+import Send_money from '../Send/Send_money'
 import Pin_Code from '../App_pincode/Pin_code'
 import Setting from '../Setting/Setting'
 import Splash1 from '../Splash/Splash1'
-import createPin from '../App_Security/createPin'
-import confirmPin from '../App_Security/confirmPin'
+import Create_Pin from '../App_Security/createPin'
+import Confirm_Pin from '../App_Security/confirmPin'
+import Mnemonics from '../Mnemonics/Mnemonics'
 
 
 const Scenes = Actions.create(
     <Scene key='root' >
 
-<Scene key="Splash1"
+        <Scene key="Splash1"
             initial={true}
             hideNavBar={true}
             component={Splash1}
@@ -34,40 +35,41 @@ const Scenes = Actions.create(
             hideNavBar={true}
             component={Splash}
         />
-         <Scene key="AppIntro"
+        <Scene key="AppIntro"
             initial={false}
             hideNavBar={true}
             component={AppIntro}
         />
-        <Scene key="Pin_Code"
+        <Scene key="Create_Pin"
             initial={false}
             hideNavBar={true}
-            component={Pin_Code}
+            component={Create_Pin}
         />
-         <Scene key="confirmPin"
+        <Scene key="Confirm_Pin"
             initial={false}
             hideNavBar={true}
-            component={confirmPin}
+            component={Confirm_Pin}
         />
-        <Scene key="createPin"
-            initial={false}
-            hideNavBar={true}
-            component={createPin}
-        />
-          <Scene
+        <Scene
             key="Createwallet"
             initial={false}
             hideNavBar={true}
             component={Createwallet}
         />
-       
+
+        <Scene key="Mnemonics"
+            initial={false}
+            hideNavBar={true}
+            component={Mnemonics}
+        />
+
         <Scene key="homepage"
             component={Homepage}
             hideNavBar={true}
         />
 
         <Scene key="AddAccount"
-        initial={false}
+            initial={false}
             component={AddAccount}
             hideNavBar={true}
         />
@@ -76,14 +78,14 @@ const Scenes = Actions.create(
             component={RegisterScreen}
             hideNavBar={true}
         />
-          <Scene key="Recieve"
+        <Scene key="Recieve"
             initial={false}
             hideNavBar={true}
             component={Recieve}
         />
-       
 
-       <Scene key="Send_money"
+
+        <Scene key="Send_money"
             initial={false}
             hideNavBar={true}
             component={Send_money}

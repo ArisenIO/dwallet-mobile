@@ -5,7 +5,8 @@ import Onboarding from 'react-native-onboarding-swiper';
 import { Actions } from 'react-native-router-flux';
 import AsyncStorage from '@react-native-community/async-storage';
 import Createwallet from '../createwallet/createwallet'
-// import Pin_Code from '../App_pincode/Pin_code'
+import Pin_Code from '../App_pincode/Pin_code'
+import Create_Pin from '../App_Security/createPin'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 class AppIntro extends Component {
@@ -39,7 +40,7 @@ class AppIntro extends Component {
 
     if (this.state.showRealApp) {
          return (
-        <Createwallet />
+        <Create_Pin />
       );
     }
     else {
