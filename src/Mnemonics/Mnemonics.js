@@ -145,7 +145,18 @@ export default class Mnemonics extends Component {
 
     copyClipboard = async () => {
         var copied_data = {
-            "Mnemonics": this.state.Mnemonicslist
+            "1- ":this.state.word1,
+            "2- ":this.state.word2,
+            "3- ":this.state.word3,
+            "4- ":this.state.word4,
+            "5- ":this.state.word5,
+            "6- ":this.state.word6,
+            "7- ":this.state.word7,
+            "8- ":this.state.word8,
+            "9- ":this.state.word9,
+            "10- ":this.state.word10,
+            "11- ":this.state.word11,
+            "12- ":this.state.word12
         };
         await Clipboard.setString(JSON.stringify(copied_data));
 
@@ -342,7 +353,7 @@ export default class Mnemonics extends Component {
                                 }}
                             >
                                 <Text style={{ color: this.state.b_2 ? '#379aff' : 'white', fontSize: 13, fontFamily: 'Montserrat-Bold', }}>
-                                    I Wrote Down My Mnemonics Phrase
+                                I Wrote It Down
                             </Text>
                             </TouchableOpacity>
                         </View>
