@@ -20,7 +20,7 @@ import Splash1 from '../Splash/Splash1'
 import Create_Pin from '../App_Security/createPin'
 import Confirm_Pin from '../App_Security/confirmPin'
 import Mnemonics from '../Mnemonics/Mnemonics'
-
+import ConfirmMnemonics from '../Mnemonics/ConfirmMnemonic'
 
 const Scenes = Actions.create(
     <Scene key='root' >
@@ -61,6 +61,12 @@ const Scenes = Actions.create(
             initial={false}
             hideNavBar={true}
             component={Mnemonics}
+        />
+
+        <Scene key="ConfirmMnemonics"
+            initial={false}
+            hideNavBar={true}
+            component={ConfirmMnemonics}
         />
 
         <Scene key="homepage"

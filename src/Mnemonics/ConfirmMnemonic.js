@@ -41,9 +41,15 @@ export default class Mnemonics extends Component {
     async componentDidMount() {
         this.generate_mnemonics()
         BackHandler.addEventListener("hardwareBackPress", this.backAction);
-        // AsyncStorage.getItem('items').then(resp => {
-        //     console.log("ij", resp)
-        // })
+        AsyncStorage.getItem('MnemonicsList').then(resp => {
+            if (resp) {
+                var MnemonicsList = resp.split('')
+                console.log('===================if case MnemonicsList',MnemonicsList)
+            } else {
+                console.log("MnemonicsList=====elsecase", resp)
+
+            }
+        })
     }
 
     generate_mnemonics = () => {
@@ -65,12 +71,9 @@ export default class Mnemonics extends Component {
             word11: array_list[10],
             word12: array_list[11]
 
-        },()=>{
-            AsyncStorage.setItem('MnemonicsList',this.state.Mnemonicslist)
-            console.log("string list length", array_list[0],'second item asyncstorage',this.state.Mnemonicslist);
-
         })
 
+        console.log("string list length", array_list[0]);
 
         console.log("wallet mnemonic list", Mnemonic_List, ethers.utils.HDNode.isValidMnemonic("shikhar sri"));
 
@@ -105,53 +108,88 @@ export default class Mnemonics extends Component {
 
 
     createBtn = () => {
-        fetch("https://dmobileapi.arisen.network/avote/account/pass/phrase", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                phrase: Mnemonic_List
-            })
-        })
-            .then(response => response.json())
-            .then((response) => {
-                console.log("resp_for_check_api====>", response)
-                this.setState({
-                    ActivePrivate: response.activePrivate,
-                    ActivePublic: response.activePublicKey,
-                    OwnerPrivate: response.ownerPrivate,
-                    OwnerPublic: response.ownerPublicKey
 
-                }, () => { console.log("active key", this.state.ActivePublic) })
+        let word1 = this.state.word1
+        let word2 = this.state.word2
+        let word3 = this.state.word3
+        let word4 = this.state.word4
+        let word5 = this.state.word5
+        let word6 = this.state.word6
+        let word7 = this.state.word7
+        let word8 = this.state.word8
+        let word9 = this.state.word9
+        let word10 = this.state.word10
+        let word11 = this.state.word11
+        let word12 = this.state.word12
 
-                var items = {
-                    "ActivePrivateKey": this.state.ActivePrivate,
-                    "ActivePublicKey": this.state.ActivePublic,
-                    "OwnerPrivate": this.state.OwnerPrivate,
-                    "OwnerPublic": this.state.OwnerPublic
-                }
-                AsyncStorage.setItem(
-                    'items', JSON.stringify({ items })
-                );
-                Actions.ConfirmMnemonics()
+        if (word1 == "" || word1 == null) {
+            alert('Enter 1 Mnemonics')
+        } else if (word2 == "" || word2 == null) {
+            alert('Enter 2 Mnemonics')
+        } else if (word3 == "" || word3 == null) {
+            alert('Enter 3 Mnemonics')
+        } else if (word4 == "" || word4 == null) {
+            alert('Enter 4 Mnemonics')
+        } else if (word5 == "" || word5 == null) {
+            alert('Enter 5 Mnemonics')
+        } else if (word6 == "" || word6 == null) {
+            alert('Enter 6 Mnemonics')
+        } else if (word7 == "" || word7 == null) {
+            alert('Enter 7 Mnemonics')
+        } else if (word8 == "" || word8 == null) {
+            alert('Enter 8 Mnemonics')
+        } else if (word9 == "" || word9 == null) {
+            alert('Enter 9 Mnemonics')
+        } else if (word10 == "" || word10 == null) {
+            alert('Enter 10 Mnemonics')
+        } else if (word11 == "" || word11 == null) {
+            alert('Enter 11 Mnemonics')
+        } else if (word12 == "" || word12 == null) {
+            alert('Enter 12 Mnemonics')
+        } else {
+            console.log('===========word1', word1)
 
-            })
-            .catch(error => console.log(error)) //to catch the errors if any
+
+        }
+
+        // fetch("https://dmobileapi.arisen.network/avote/account/pass/phrase", {
+        //     method: 'POST',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         phrase: Mnemonic_List
+        //     })
+        // })
+        //     .then(response => response.json())
+        //     .then((response) => {
+        //         console.log("resp_for_check_api====>", response)
+        //         this.setState({
+        //             ActivePrivate: response.activePrivate,
+        //             ActivePublic: response.activePublicKey,
+        //             OwnerPrivate: response.ownerPrivate,
+        //             OwnerPublic: response.ownerPublicKey
+
+        //         }, () => { console.log("active key", this.state.ActivePublic) })
+
+        //         var items = {
+        //             "ActivePrivateKey": this.state.ActivePrivate,
+        //             "ActivePublicKey": this.state.ActivePublic,
+        //             "OwnerPrivate": this.state.OwnerPrivate,
+        //             "OwnerPublic": this.state.OwnerPublic
+        //         }
+        //         AsyncStorage.setItem(
+        //             'items', JSON.stringify({ items })
+        //         );
+
+        //     })
+        //     .catch(error => console.log(error)) //to catch the errors if any
 
     }
 
 
-    copyClipboard = async () => {
-        var copied_data = {
-            "Mnemonics": this.state.Mnemonicslist
-        };
-        await Clipboard.setString(JSON.stringify(copied_data));
 
-        Toast.show('Copied', Toast.SHORT);
-        console.log("copy_data====>", copied_data)
-    }
 
     render() {
 
@@ -161,15 +199,11 @@ export default class Mnemonics extends Component {
             <ScrollView>
                 <View style={styles.container}>
 
-                    <View style={{ width: wp('100%'), height: Platform.OS === 'ios' ? hp('7%') : hp('5%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('3%') }}>
-                        <Text style={{ color: '#505050', fontFamily: 'Montserrat-Bold', fontSize: 22 }}>Your Mnemonic Phrase</Text>
+                    <View style={{ width: wp('95'), height: Platform.OS === 'ios' ? hp('7%') : hp('5%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('3%') }}>
+                        <Text style={{ color: '#505050', fontFamily: 'Montserrat-Bold', fontSize: 22 }}>Confirm Mnemonic Phrase</Text>
                     </View>
 
-                    <View style={{ width: wp('100%'), height: Platform.OS === 'ios' ? hp('7%') : hp('5%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('3%') }}>
-                        <Text style={{ color: '#505050', fontFamily: 'Montserrat-Bold', fontSize: 14,textAlign:'center' }}>Below is your twelve word backup phrase.Please write it down and keep it in a safe place.</Text>
-                    </View>
-
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('5%'), width: wp('100%') }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('3%'), width: wp('100%') }}>
 
                         <TextInput
                             style={{
@@ -177,10 +211,13 @@ export default class Mnemonics extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="1st word"
-                            value={1 + '.' + this.state.word1}
+                            value={this.state.word1}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            editable={false}
+                            disabled={true}
+                            editable={true}
+                            onChangeText={text => this.setState({ word1: text })}
+
                         />
 
                         <TextInput
@@ -189,10 +226,12 @@ export default class Mnemonics extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="2nd word"
-                            value={2 + '.' + this.state.word2}
+                            value={this.state.word2}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            editable={false}
+                            editable={true}
+                            onChangeText={text => this.setState({ word2: text })}
+
                         />
 
                         <TextInput
@@ -201,16 +240,18 @@ export default class Mnemonics extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="3rd word"
-                            value={3 + "." + this.state.word3}
+                            value={this.state.word3}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            editable={false}
+                            editable={true}
+                            onChangeText={text => this.setState({ word3: text })}
+
                         />
 
                     </View>
 
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('5%'), width: wp('100%') }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('3%'), width: wp('100%') }}>
 
                         <TextInput
                             style={{
@@ -218,10 +259,12 @@ export default class Mnemonics extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="4th word"
-                            value={4 + '.' + this.state.word4}
+                            value={this.state.word4}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            editable={false}
+                            editable={true}
+                            onChangeText={text => this.setState({ word4: text })}
+
                         />
 
                         <TextInput
@@ -230,10 +273,12 @@ export default class Mnemonics extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="5th word"
-                            value={5 + '.' + this.state.word5}
+                            value={this.state.word5}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            editable={false}
+                            editable={true}
+                            onChangeText={text => this.setState({ word5: text })}
+
                         />
 
                         <TextInput
@@ -242,15 +287,17 @@ export default class Mnemonics extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="6th word"
-                            value={6 + "." + this.state.word6}
+                            value={this.state.word6}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            editable={false}
+                            editable={true}
+                            onChangeText={text => this.setState({ word6: text })}
+
                         />
 
                     </View>
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('5%'), width: wp('100%') }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('3%'), width: wp('100%') }}>
 
                         <TextInput
                             style={{
@@ -258,10 +305,12 @@ export default class Mnemonics extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="7th word"
-                            value={7 + '.' + this.state.word7}
+                            value={this.state.word7}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            editable={false}
+                            editable={true}
+                            onChangeText={text => this.setState({ word7: text })}
+
                         />
 
                         <TextInput
@@ -270,10 +319,12 @@ export default class Mnemonics extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="8th word"
-                            value={8 + '.' + this.state.word8}
+                            value={this.state.word8}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            editable={false}
+                            editable={true}
+                            onChangeText={text => this.setState({ word8: text })}
+
                         />
 
                         <TextInput
@@ -282,15 +333,17 @@ export default class Mnemonics extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="9th word"
-                            value={9 + "." + this.state.word9}
+                            value={this.state.word9}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            editable={false}
+                            editable={true}
+                            onChangeText={text => this.setState({ word9: text })}
+
                         />
 
                     </View>
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('5%'), width: wp('100%') }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('3%'), width: wp('100%') }}>
 
                         <TextInput
                             style={{
@@ -298,10 +351,12 @@ export default class Mnemonics extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="10th word"
-                            value={10 + '.' + this.state.word10}
+                            value={this.state.word10}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            editable={false}
+                            editable={true}
+                            onChangeText={text => this.setState({ word10: text })}
+
                         />
 
                         <TextInput
@@ -310,10 +365,12 @@ export default class Mnemonics extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="11th word"
-                            value={11 + '.' + this.state.word11}
+                            value={this.state.word11}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            editable={false}
+                            editable={true}
+                            onChangeText={text => this.setState({ word11: text })}
+
                         />
 
                         <TextInput
@@ -322,98 +379,35 @@ export default class Mnemonics extends Component {
                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="12th word"
-                            value={12 + "." + this.state.word12}
+                            value={this.state.word12}
                             placeholderTextColor='#a8a9ae'
                             autoCapitalize="none"
-                            editable={false}
+                            editable={true}
+                            onChangeText={text => this.setState({ word12: text })}
+
                         />
 
                     </View>
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: hp('10%'), marginTop: hp('7%'), width: wp('90%') }}>
-                        <View
-                            style={{ width: wp('85%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center' }}
+                    {/* <View style={{  justifyContent: 'space-between', height: hp('10%'), marginTop: hp('10%'), width: wp('90%') }}> */}
+                    <View
+                        style={{ width: wp('100%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('7%') }}
+                    >
+                        <TouchableOpacity
+                            onPress={this.createBtn}
+                            style={{
+                                backgroundColor: this.state.b_2 ? null : '#2dd5c9', width: wp('75%'), height: hp('6%'),
+                                justifyContent: 'center', alignItems: 'center', borderRadius: 5
+                            }}
                         >
-                            <TouchableOpacity
-                                onPress={this.createBtn}
-                                style={{
-                                    backgroundColor: this.state.b_2 ? null : '#2dd5c9', width: wp('75%'), height: hp('6%'),
-                                    justifyContent: 'center', alignItems: 'center', borderRadius: 5
-                                }}
-                            >
-                                <Text style={{ color: this.state.b_2 ? '#379aff' : 'white', fontSize: 13, fontFamily: 'Montserrat-Bold', }}>
-                                    I Wrote Down My Mnemonics Phrase
+                            <Text style={{ color: this.state.b_2 ? '#379aff' : 'white', fontSize: 13, fontFamily: 'Montserrat-Bold', }}>
+                                I Wrote Down My Mnemonics Phrase
                             </Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <View
-                            style={{ width: wp('10%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center' }}
-                        >
-                            <TouchableOpacity
-                                onPress={this.copyClipboard}
-                                style={{
-                                    backgroundColor: this.state.b_2 ? '#2dd5c9' : null,
-                                    width: wp('25%'), height: hp('6%'),
-                                    justifyContent: 'center', alignItems: 'center'
-                                }}
-                            >
-                                <Icon name="copy" size={30} color="#000" />
-                            </TouchableOpacity>
-                        </View>
-
-
-
+                        </TouchableOpacity>
                     </View>
 
 
-
-                    {/* Modal Start */}
-                    <Modal isVisible={this.state.isModalVisible}
-                        backdropColor='rgba(0,0,0,1)'
-                        style={{
-                            backgroundColor: 'white',
-                            marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
-                            alignItems: 'center'
-                        }}>
-                        <View style={{ height: hp('28%') }}>
-                            <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold', }}>Exit?</Text>
-                            </View>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                                <Text style={{ fontSize: 18, textAlign: 'center', fontFamily: 'Montserrat-Regular', }}>Are you sure you want exit app?</Text>
-                            </View>
-                            <View style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between', height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
-                            }}>
-                                <TouchableOpacity
-                                    style={{
-                                        justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
-                                        borderRadius: 20, width: wp('40%')
-                                    }}
-
-                                    // onPress={() => BackHandler.exitApp()}
-                                    onPress={() => { this.setState({ isModalVisible: false }) }}
-                                >
-                                    <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Bold', }}>No</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity
-                                    style={{
-                                        justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
-                                        borderRadius: 20, width: wp('40%')
-                                    }}
-
-                                    // onPress={() => BackHandler.exitApp()}
-                                    onPress={() => { BackHandler.exitApp() }}
-                                >
-                                    <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Bold', }}>Yes</Text>
-                                </TouchableOpacity>
-                            </View>
-
-                        </View>
-                    </Modal>
-                    {/* Modal end */}
+                    {/* </View> */}
                 </View>
             </ScrollView>
 
@@ -425,12 +419,5 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white'
-    },
-    button1: {
-
-        height: hp('13%'),
-        // justifyContent: 'space-between',
-        // marginHorizontal: hp('1%'),
-        flexDirection: "row"
     }
 });
