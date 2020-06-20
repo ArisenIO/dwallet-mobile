@@ -13,7 +13,7 @@ import Modal from 'react-native-modal';
 
 const ethers = require('ethers');
 
-export default class Createwallet extends Component {
+export default class ConfirmMnemonics extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -99,62 +99,6 @@ export default class Createwallet extends Component {
         return true;
     };
 
-
-    createBtn = () => {
-            fetch("https://dmobileapi.arisen.network/avote/account/pass/phrase", {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    phrase:Mnemonic_List
-                })
-            })
-                .then(response => response.json())
-                .then((response) => {
-                    console.log("resp_for_check_api====>", response)
-                    this.setState({ActivePrivate:response.activePrivate,
-                        ActivePublic:response.activePublicKey,
-                        OwnerPrivate:response.ownerPrivate,
-                        OwnerPublic:response.ownerPublicKey
-                
-                    },()=>{console.log("active key", this.state.ActivePublic)})
-
-                    var items ={
-                        "ActivePrivateKey":this.state.ActivePrivate,
-                        "ActivePublicKey":this.state.ActivePublic,
-                        "OwnerPrivate":this.state.OwnerPrivate,
-                        "OwnerPublic":this.state.OwnerPublic
-                    }
-                    AsyncStorage.setItem(
-                        'items', JSON.stringify({ items })
-                    );            
-
-                })
-                .catch(error => console.log(error)) //to catch the errors if any
-        
-    }
-    copyClipboard = async () => {
-        var copied_data = {
-            "1- ":this.state.word1,
-            "2- ":this.state.word2,
-            "3- ":this.state.word3,
-            "4- ":this.state.word4,
-            "5- ":this.state.word5,
-            "6- ":this.state.word6,
-            "7- ":this.state.word7,
-            "8- ":this.state.word8,
-            "9- ":this.state.word9,
-            "10- ":this.state.word10,
-            "11- ":this.state.word11,
-            "12- ":this.state.word12
-        };
-        await Clipboard.setString(JSON.stringify(copied_data));
-
-        Toast.show('Copied', Toast.SHORT);
-        console.log("copy_data====>", copied_data)
-    }
 
     render() {
         return (
@@ -342,78 +286,12 @@ export default class Createwallet extends Component {
                                 }}
                             >
                                 <Text style={{ color: this.state.b_2 ? '#379aff' : 'white', fontSize: 13, fontFamily: 'Montserrat-Bold', }}>
-                                I Wrote It Down
+                                {}
                             </Text>
                             </TouchableOpacity>
                         </View>
 
-                        <View
-                            style={{ width: wp('10%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center' }}
-                        >
-                            <TouchableOpacity
-                                onPress={this.copyClipboard}
-                                style={{
-                                    backgroundColor: this.state.b_2 ? '#2dd5c9' : null,
-                                    width: wp('25%'), height: hp('6%'),
-                                    justifyContent: 'center', alignItems: 'center'
-                                }}
-                            >
-                                <Icon name="copy" size={30} color="#000" />
-                            </TouchableOpacity>
-                        </View>
-
-
-
                     </View>
-
-
-
-                    {/* Modal Start */}
-                    <Modal isVisible={this.state.isModalVisible}
-                        backdropColor='rgba(0,0,0,1)'
-                        style={{
-                            backgroundColor: 'white',
-                            marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
-                            alignItems: 'center'
-                        }}>
-                        <View style={{ height: hp('28%') }}>
-                            <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold', }}>Exit?</Text>
-                            </View>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                                <Text style={{ fontSize: 18, textAlign: 'center', fontFamily: 'Montserrat-Regular', }}>Are you sure you want exit app?</Text>
-                            </View>
-                            <View style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between', height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
-                            }}>
-                                <TouchableOpacity
-                                    style={{
-                                        justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
-                                        borderRadius: 20, width: wp('40%')
-                                    }}
-
-                                    // onPress={() => BackHandler.exitApp()}
-                                    onPress={() => { this.setState({ isModalVisible: false }) }}
-                                >
-                                    <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Bold', }}>No</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity
-                                    style={{
-                                        justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
-                                        borderRadius: 20, width: wp('40%')
-                                    }}
-
-                                    // onPress={() => BackHandler.exitApp()}
-                                    onPress={() => { BackHandler.exitApp() }}
-                                >
-                                    <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Bold', }}>Yes</Text>
-                                </TouchableOpacity>
-                            </View>
-
-                        </View>
-                    </Modal>
-                    {/* Modal end */}
                 </View>
             </ScrollView>
 

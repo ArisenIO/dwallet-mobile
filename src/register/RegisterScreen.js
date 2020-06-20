@@ -408,7 +408,7 @@ export default class RegisterScreen extends Component {
                                 onPress={() => { this._proceed() }}
                             >
                                 <Text style={{ color: '#fff', fontFamily: 'Montserrat-Bold', fontSize: 15 }}>
-                                    Register PeepsID
+                                Generate keys
                     </Text>
                             </TouchableOpacity>
                         </View>
