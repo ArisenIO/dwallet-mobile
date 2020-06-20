@@ -105,41 +105,8 @@ export default class Mnemonics extends Component {
 
 
     createBtn = () => {
-        fetch("https://dmobileapi.arisen.network/avote/account/pass/phrase", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                phrase: Mnemonic_List
-            })
-        })
-            .then(response => response.json())
-            .then((response) => {
-                console.log("resp_for_check_api====>", response)
-                this.setState({
-                    ActivePrivate: response.activePrivate,
-                    ActivePublic: response.activePublicKey,
-                    OwnerPrivate: response.ownerPrivate,
-                    OwnerPublic: response.ownerPublicKey
-
-                }, () => { console.log("active key", this.state.ActivePublic) })
-
-                var items = {
-                    "ActivePrivateKey": this.state.ActivePrivate,
-                    "ActivePublicKey": this.state.ActivePublic,
-                    "OwnerPrivate": this.state.OwnerPrivate,
-                    "OwnerPublic": this.state.OwnerPublic
-                }
-                AsyncStorage.setItem(
-                    'items', JSON.stringify({ items })
-                );
-                Actions.ConfirmMnemonics()
-
-            })
-            .catch(error => console.log(error)) //to catch the errors if any
-
+      
+        Actions.replace('ConfirmMnemonics')
     }
 
 

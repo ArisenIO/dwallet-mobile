@@ -132,7 +132,7 @@ export default class RegisterScreen extends Component {
         }
     }
     _proceed = () => {
-        Actions.Mnemonics()
+        Actions.replace('Mnemonics')
 
         // this.setState({ isLoading: false })
         // fetch("https://dmobileapi.arisen.network/avote/account/keys", {
