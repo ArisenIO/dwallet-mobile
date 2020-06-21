@@ -19,7 +19,7 @@ export default class Mnemonics extends Component {
         super(props);
         this.state = {
             Mnemonicslist: [],
-            list:"",
+            list: "",
             clipboardText: "",
             word1: '',
             word2: '',
@@ -32,7 +32,8 @@ export default class Mnemonics extends Component {
             word9: '',
             word10: '',
             word11: '',
-            word12: ''
+            word12: '',
+            AccountName: ''
         };
         console.disableYellowBox = true;
         this.backAction = this.backAction.bind(this);
@@ -41,17 +42,24 @@ export default class Mnemonics extends Component {
 
     async componentDidMount() {
         // this.generate_mnemonics()
-        BackHandler.addEventListener("hardwareBackPress", this.backAction);
-        AsyncStorage.getItem('MnemonicsList').then(resp => {
-            if (resp) {
-                var MnemonicsList = resp.split(/\s+/)
-                this.setState({list:MnemonicsList})
-                console.log('=if case MnemonicsList', MnemonicsList)
-            } else {
-                console.log("MnemonicsList=====elsecase", resp)
+        try {
 
-            }
-        })
+            var accountname = await AsyncStorage.getItem('accountName')
+            this.setState({ AccountName: JSON.parse(accountname) })
+            console.log('================================accountname', JSON.parse(accountname))
+            BackHandler.addEventListener("hardwareBackPress", this.backAction);
+            AsyncStorage.getItem('MnemonicsList').then(resp => {
+                if (resp) {
+                    var MnemonicsList = resp.split(/\s+/)
+                    this.setState({ list: MnemonicsList })
+                    console.log('=if case MnemonicsList', MnemonicsList)
+                } else {
+                    console.log("MnemonicsList=====elsecase", resp)
+                }
+            })
+        } catch (err) {
+            console.log('Error', err)
+        }
     }
 
     // generate_mnemonics = () => {
@@ -71,15 +79,15 @@ export default class Mnemonics extends Component {
     //         word9: array_list[8],
     //         word10: array_list[9],
     //         word11: array_list[10],
-            // word12: array_list[11]
-        // })
+    // word12: array_list[11]
+    // })
 
-        // console.log("wallet mnemonic list",array_list[0], Mnemonic_List, ethers.utils.HDNode.isValidMnemonic("shikhar sri"));
+    // console.log("wallet mnemonic list",array_list[0], Mnemonic_List, ethers.utils.HDNode.isValidMnemonic("shikhar sri"));
 
-        // master = PrivateKey.fromSeed(Mnemonic_List)
-        // ownerPrivate = master.getChildKey('owner')
-        // activePrivate = ownerPrivate.getChildKey('active')
-        // console.log(ownerPrivate.toString(), " ", PrivateKey.fromString(ownerPrivate.toWif()).toPublic().toString(), "   ", activePrivate.toString(), PrivateKey.fromString(activePrivate.toWif()).toPublic().toString())
+    // master = PrivateKey.fromSeed(Mnemonic_List)
+    // ownerPrivate = master.getChildKey('owner')
+    // activePrivate = ownerPrivate.getChildKey('active')
+    // console.log(ownerPrivate.toString(), " ", PrivateKey.fromString(ownerPrivate.toWif()).toPublic().toString(), "   ", activePrivate.toString(), PrivateKey.fromString(activePrivate.toWif()).toPublic().toString())
     // }
 
 
@@ -103,19 +111,19 @@ export default class Mnemonics extends Component {
 
 
     createBtn = () => {
-
-        let word1 = this.state.word1
-        let word2 = this.state.word2
-        let word3 = this.state.word3
-        let word4 = this.state.word4
-        let word5 = this.state.word5
-        let word6 = this.state.word6
-        let word7 = this.state.word7
-        let word8 = this.state.word8
-        let word9 = this.state.word9
-        let word10 = this.state.word10
-        let word11 = this.state.word11
-        let word12 = this.state.word12
+        console.log('button clicked', this.state.AccountName)
+        let word1 = this.state.word1.trim()
+        let word2 = this.state.word2.trim()
+        let word3 = this.state.word3.trim()
+        let word4 = this.state.word4.trim()
+        let word5 = this.state.word5.trim()
+        let word6 = this.state.word6.trim()
+        let word7 = this.state.word7.trim()
+        let word8 = this.state.word8.trim()
+        let word9 = this.state.word9.trim()
+        let word10 = this.state.word10.trim()
+        let word11 = this.state.word11.trim()
+        let word12 = this.state.word12.trim()
 
         if (word1 == "" || word1 == null) {
             Toast.show('Enter 1st Mnemonics', Toast.SHORT);
@@ -142,58 +150,56 @@ export default class Mnemonics extends Component {
         } else if (word12 == "" || word12 == null) {
             Toast.show('Enter 12th Mnemonics', Toast.SHORT);
         }
-        else if(word1 != this.state.list[0]) {
-            Toast.show('1st word is not correct',Toast.SHORT)
+        else if (word1 != this.state.list[0]) {
+            Toast.show('1st word is not correct', Toast.SHORT)
         }
-        else if(word2 != this.state.list[1]) {
-            Toast.show('2nd word is not correct',Toast.SHORT)
+        else if (word2 != this.state.list[1]) {
+            Toast.show('2nd word is not correct', Toast.SHORT)
 
         }
-        else if(word3 != this.state.list[2]) {
-            Toast.show('3rd word is not correct',Toast.SHORT)
+        else if (word3 != this.state.list[2]) {
+            Toast.show('3rd word is not correct', Toast.SHORT)
 
         }
-        else if(word4 != this.state.list[3]) {
-            Toast.show('4th word is not correct',Toast.SHORT)
+        else if (word4 != this.state.list[3]) {
+            Toast.show('4th word is not correct', Toast.SHORT)
 
         }
-        else if(word5 != this.state.list[4]) {
-            Toast.show('5th word is not correct',Toast.SHORT)
+        else if (word5 != this.state.list[4]) {
+            Toast.show('5th word is not correct', Toast.SHORT)
 
         }
-        else if(word6 != this.state.list[5]) {
-            Toast.show('6th word is not correct',Toast.SHORT)
+        else if (word6 != this.state.list[5]) {
+            Toast.show('6th word is not correct', Toast.SHORT)
 
         }
-        else if(word7 != this.state.list[6]) {
-            Toast.show('7th word is not correct',Toast.SHORT)
+        else if (word7 != this.state.list[6]) {
+            Toast.show('7th word is not correct', Toast.SHORT)
 
         }
-        else if(word8 != this.state.list[7]) {
-            Toast.show('8th word is not correct',Toast.SHORT)
+        else if (word8 != this.state.list[7]) {
+            Toast.show('8th word is not correct', Toast.SHORT)
 
         }
-        else if(word9 != this.state.list[8]) {
-            Toast.show('9th word is not correct',Toast.SHORT)
+        else if (word9 != this.state.list[8]) {
+            Toast.show('9th word is not correct', Toast.SHORT)
 
         }
-        else if(word10 != this.state.list[9]) {
-            Toast.show('10th word is not correct',Toast.SHORT)
+        else if (word10 != this.state.list[9]) {
+            Toast.show('10th word is not correct', Toast.SHORT)
 
         }
-        else if(word11 != this.state.list[10]) {
-            Toast.show('11th word is not correct',Toast.SHORT)
+        else if (word11 != this.state.list[10]) {
+            Toast.show('11th word is not correct', Toast.SHORT)
 
         }
-        else if(word12 != this.state.list[11]) {
-            Toast.show('12th word is not correct',Toast.SHORT)
+        else if (word12 != this.state.list[11]) {
+            Toast.show('12th word is not correct', Toast.SHORT)
 
         }
-        
+
         else {
-          
-            
-         
+
             this.state.Mnemonicslist.push(word1)
             this.state.Mnemonicslist.push(word2)
             this.state.Mnemonicslist.push(word3)
@@ -207,14 +213,10 @@ export default class Mnemonics extends Component {
             this.state.Mnemonicslist.push(word11)
             this.state.Mnemonicslist.push(word12)
 
-
-
-         
-
-           console.log('both array compare',this.state.Mnemonicslist,"===========",this.state.list)
+            console.log('both array compare', this.state.Mnemonicslist, "===========", this.state.list)
             // console.log('===========word1', word1, word2, word3, word4, word5, word6, word7, word8, word9, word10, word11, word12,'=====',Mnemonics)
 
-            if(JSON.stringify(this.state.list) === JSON.stringify(this.state.Mnemonicslist)){
+            if (JSON.stringify(this.state.list) === JSON.stringify(this.state.Mnemonicslist)) {
                 fetch("https://dmobileapi.arisen.network/avote/account/pass/phrase", {
                     method: 'POST',
                     headers: {
@@ -233,22 +235,68 @@ export default class Mnemonics extends Component {
                             ActivePublic: response.activePublicKey,
                             OwnerPrivate: response.ownerPrivate,
                             OwnerPublic: response.ownerPublicKey
-        
-                        }, () => { console.log("active key", this.state.ActivePublic) })
-        
-                        var items = {
-                            "ActivePrivateKey": this.state.ActivePrivate,
-                            "ActivePublicKey": this.state.ActivePublic,
-                            "OwnerPrivate": this.state.OwnerPrivate,
-                            "OwnerPublic": this.state.OwnerPublic
-                        }
-                        AsyncStorage.setItem(
-                            'items', JSON.stringify({ items })
-                        );
-        
+
+                        }, () => {
+
+
+                            console.log("active key", this.state.ActivePublic)
+                        })
+                        fetch("https://dmobileapi.arisen.network/avote/register", {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                newAccountName: this.state.AccountName,
+                                ownerPubKey: this.state.OwnerPublic,
+                                activePubKey: this.state.ActivePublic
+                            })
+                        })
+                            .then(response => response.json())
+                            .then((response) => {
+
+                                // this.hideDialog();
+
+                                if (response.success) {
+                                    Toast.show("Registered successfully on Blockchain", Toast.LONG);
+                                    // AsyncStorage.setItem(
+                                    //       'creds',
+                                    //       JSON.stringify(copied_data));
+
+                                    var items = {
+                                        'accountName': this.state.AccountName,
+                                        'active_keys': this.state.ActivePrivate,
+                                        'active_public_keys': this.state.ActivePublic,
+                                        'new_wallet': "1"
+                                    }
+
+                                    AsyncStorage.setItem(
+                                        'items', JSON.stringify({ items })
+                                    );
+
+                                    //   AsyncStorage.setItem(
+                                    //     'active_keys',this.state.active_private_keys
+                                    //     );
+                                    //     AsyncStorage.setItem(
+                                    //         'new_wallet',"1"
+                                    //         );
+
+
+
+                                    Actions.replace('homepage');
+                                }
+                                else {
+                                    Toast.show("Not Registered try later", Toast.LONG);
+                                }
+
+                            })
+
+
+
                     })
                     .catch(error => console.log(error)) //to catch the errors if any
-            }else{
+            } else {
                 Toast.show('Your Mnemonics dont matches,Try again', Toast.SHORT);
 
             }
@@ -302,282 +350,294 @@ export default class Mnemonics extends Component {
             <ScrollView>
                 <View style={styles.container}>
 
-                <View style={styles.header}>
-                    <TouchableOpacity
-                        style={{ justifyContent: 'center', alignItems: 'center' }}
-                        onPress={() => { this.backAction() }}>
-                        <Image source={Icons.Back_icon} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
-                    </TouchableOpacity>
-                    <Text style={{
-                        fontSize: 22, color: 'white', textAlign: 'center',
-                        justifyContent: 'center', alignSelf: 'center', marginStart: '2%', fontFamily: 'Montserrat-Bold',
-                    }}>Confirm Mnemonic Phrase</Text>
-                </View>
+                    <View style={styles.header}>
+                        <TouchableOpacity
+                            style={{ justifyContent: 'center', alignItems: 'center' }}
+                            onPress={() => { this.backAction() }}>
+                            <Image source={Icons.Back_icon} style={{ height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
+                        </TouchableOpacity>
+                        <Text style={{
+                            fontSize: 22, color: 'white', textAlign: 'center',
+                            justifyContent: 'center', alignSelf: 'center', marginStart: '2%', fontFamily: 'Montserrat-Bold',
+                        }}>Confirm Mnemonic Phrase</Text>
+                    </View>
 
                     {/* <View style={{ width: wp('95'), height: Platform.OS === 'ios' ? hp('7%') : hp('5%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('3%') }}>
                         <Text style={{ color: '#505050', fontFamily: 'Montserrat-Bold', fontSize: 22 }}>Confirm Mnemonic Phrase</Text>
                     </View> */}
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('3%'), width: wp('100%') }}>
-                      
-                      <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-                      <Text style={{
-                                width: wp('4%'),  fontSize: 10,
-                                borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',}}>1.</Text>
-                        <TextInput
-                            style={{
-                                width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                            <Text style={{
+                                width: wp('4%'), fontSize: 10,
                                 borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
-                            }}
-                            placeholder="1st Mnemonics"
-                            value={this.state.word1}
-                            placeholderTextColor='#a8a9ae'
-                            autoCapitalize="none"
-                            disabled={true}
-                            editable={true}
-                            onChangeText={text => this.setState({ word1: text })}
+                            }}>1.</Text>
+                            <TextInput
+                                style={{
+                                    width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                                    borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
+                                }}
+                                placeholder="Mnemonics"
+                                value={this.state.word1}
+                                placeholderTextColor='#a8a9ae'
+                                autoCapitalize="none"
+                                disabled={true}
+                                editable={true}
+                                onChangeText={text => this.setState({ word1: text })}
 
-                        />
-                      </View>
-                        
+                            />
+                        </View>
 
-                      <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-                      <Text style={{
-                                width: wp('4%'),  fontSize: 10,
-                                borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',}}>2.</Text>
-                        <TextInput
-                            style={{
-                                width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                            <Text style={{
+                                width: wp('4%'), fontSize: 10,
                                 borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
-                            }}
-                            placeholder="2nd Mnemonics"
-                            value={this.state.word2}
-                            placeholderTextColor='#a8a9ae'
-                            autoCapitalize="none"
-                            disabled={true}
-                            editable={true}
-                            onChangeText={text => this.setState({ word2: text })}
+                            }}>2.</Text>
+                            <TextInput
+                                style={{
+                                    width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                                    borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
+                                }}
+                                placeholder="Mnemonics"
+                                value={this.state.word2}
+                                placeholderTextColor='#a8a9ae'
+                                autoCapitalize="none"
+                                disabled={true}
+                                editable={true}
+                                onChangeText={text => this.setState({ word2: text })}
 
-                        />
-                      </View>
+                            />
+                        </View>
 
-                      <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-                      <Text style={{
-                                width: wp('4%'),  fontSize: 10,
-                                borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',}}>3.</Text>
-                        <TextInput
-                            style={{
-                                width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                            <Text style={{
+                                width: wp('4%'), fontSize: 10,
                                 borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
-                            }}
-                            placeholder="3rd Mnemonics"
-                            value={this.state.word3}
-                            placeholderTextColor='#a8a9ae'
-                            autoCapitalize="none"
-                            disabled={true}
-                            editable={true}
-                            onChangeText={text => this.setState({ word3: text })}
+                            }}>3.</Text>
+                            <TextInput
+                                style={{
+                                    width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                                    borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
+                                }}
+                                placeholder="Mnemonics"
+                                value={this.state.word3}
+                                placeholderTextColor='#a8a9ae'
+                                autoCapitalize="none"
+                                disabled={true}
+                                editable={true}
+                                onChangeText={text => this.setState({ word3: text })}
 
-                        />
-                      </View>
+                            />
+                        </View>
 
                     </View>
 
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('3%'), width: wp('100%') }}>
-                      
-                      <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-                      <Text style={{
-                                width: wp('4%'),  fontSize: 10,
-                                borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',}}>4.</Text>
-                        <TextInput
-                            style={{
-                                width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                            <Text style={{
+                                width: wp('4%'), fontSize: 10,
                                 borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
-                            }}
-                            placeholder="4th Mnemonics"
-                            value={this.state.word4}
-                            placeholderTextColor='#a8a9ae'
-                            autoCapitalize="none"
-                            disabled={true}
-                            editable={true}
-                            onChangeText={text => this.setState({ word4: text })}
+                            }}>4.</Text>
+                            <TextInput
+                                style={{
+                                    width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                                    borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
+                                }}
+                                placeholder="Mnemonics"
+                                value={this.state.word4}
+                                placeholderTextColor='#a8a9ae'
+                                autoCapitalize="none"
+                                disabled={true}
+                                editable={true}
+                                onChangeText={text => this.setState({ word4: text })}
 
-                        />
-                      </View>
-                        
+                            />
+                        </View>
 
-                      <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-                      <Text style={{
-                                width: wp('4%'),  fontSize: 10,
-                                borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',}}>5.</Text>
-                        <TextInput
-                            style={{
-                                width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                            <Text style={{
+                                width: wp('4%'), fontSize: 10,
                                 borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
-                            }}
-                            placeholder="5th Mnemonics"
-                            value={this.state.word5}
-                            placeholderTextColor='#a8a9ae'
-                            autoCapitalize="none"
-                            disabled={true}
-                            editable={true}
-                            onChangeText={text => this.setState({ word5: text })}
+                            }}>5.</Text>
+                            <TextInput
+                                style={{
+                                    width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                                    borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
+                                }}
+                                placeholder="Mnemonics"
+                                value={this.state.word5}
+                                placeholderTextColor='#a8a9ae'
+                                autoCapitalize="none"
+                                disabled={true}
+                                editable={true}
+                                onChangeText={text => this.setState({ word5: text })}
 
-                        />
-                      </View>
+                            />
+                        </View>
 
-                      <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-                      <Text style={{
-                                width: wp('4%'),  fontSize: 10,
-                                borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',}}>6.</Text>
-                        <TextInput
-                            style={{
-                                width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                            <Text style={{
+                                width: wp('4%'), fontSize: 10,
                                 borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
-                            }}
-                            placeholder="6th Mnemonics"
-                            value={this.state.word6}
-                            placeholderTextColor='#a8a9ae'
-                            autoCapitalize="none"
-                            disabled={true}
-                            editable={true}
-                            onChangeText={text => this.setState({ word6: text })}
+                            }}>6.</Text>
+                            <TextInput
+                                style={{
+                                    width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                                    borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
+                                }}
+                                placeholder="Mnemonics"
+                                value={this.state.word6}
+                                placeholderTextColor='#a8a9ae'
+                                autoCapitalize="none"
+                                disabled={true}
+                                editable={true}
+                                onChangeText={text => this.setState({ word6: text })}
 
-                        />
-                      </View>
+                            />
+                        </View>
 
                     </View>
 
 
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('3%'), width: wp('100%') }}>
-                      
-                      <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-                      <Text style={{
-                                width: wp('4%'),  fontSize: 10,
-                                borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',}}>7.</Text>
-                        <TextInput
-                            style={{
-                                width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('3%'), width: wp('100%') }}>
+
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                            <Text style={{
+                                width: wp('4%'), fontSize: 10,
                                 borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
-                            }}
-                            placeholder="7th Mnemonics"
-                            value={this.state.word7}
-                            placeholderTextColor='#a8a9ae'
-                            autoCapitalize="none"
-                            disabled={true}
-                            editable={true}
-                            onChangeText={text => this.setState({ word7: text })}
+                            }}>7.</Text>
+                            <TextInput
+                                style={{
+                                    width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                                    borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
+                                }}
+                                placeholder="Mnemonics"
+                                value={this.state.word7}
+                                placeholderTextColor='#a8a9ae'
+                                autoCapitalize="none"
+                                disabled={true}
+                                editable={true}
+                                onChangeText={text => this.setState({ word7: text })}
 
-                        />
-                      </View>
-                        
+                            />
+                        </View>
 
-                      <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-                      <Text style={{
-                                width: wp('4%'),  fontSize: 10,
-                                borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',}}>8.</Text>
-                        <TextInput
-                            style={{
-                                width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                            <Text style={{
+                                width: wp('4%'), fontSize: 10,
                                 borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
-                            }}
-                            placeholder="8th Mnemonics"
-                            value={this.state.word8}
-                            placeholderTextColor='#a8a9ae'
-                            autoCapitalize="none"
-                            disabled={true}
-                            editable={true}
-                            onChangeText={text => this.setState({ word8: text })}
+                            }}>8.</Text>
+                            <TextInput
+                                style={{
+                                    width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                                    borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
+                                }}
+                                placeholder="Mnemonics"
+                                value={this.state.word8}
+                                placeholderTextColor='#a8a9ae'
+                                autoCapitalize="none"
+                                disabled={true}
+                                editable={true}
+                                onChangeText={text => this.setState({ word8: text })}
 
-                        />
-                      </View>
+                            />
+                        </View>
 
-                      <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-                      <Text style={{
-                                width: wp('4%'),  fontSize: 10,
-                                borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',}}>9.</Text>
-                        <TextInput
-                            style={{
-                                width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                            <Text style={{
+                                width: wp('4%'), fontSize: 10,
                                 borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
-                            }}
-                            placeholder="9th Mnemonics"
-                            value={this.state.word9}
-                            placeholderTextColor='#a8a9ae'
-                            autoCapitalize="none"
-                            disabled={true}
-                            editable={true}
-                            onChangeText={text => this.setState({ word9: text })}
+                            }}>9.</Text>
+                            <TextInput
+                                style={{
+                                    width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                                    borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
+                                }}
+                                placeholder="Mnemonics"
+                                value={this.state.word9}
+                                placeholderTextColor='#a8a9ae'
+                                autoCapitalize="none"
+                                disabled={true}
+                                editable={true}
+                                onChangeText={text => this.setState({ word9: text })}
 
-                        />
-                      </View>
+                            />
+                        </View>
 
                     </View>
 
 
-                           <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('3%'), width: wp('100%') }}>
-                      
-                      <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-                      <Text style={{
-                                width: wp('4%'),  fontSize: 10,
-                                borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',}}>10.</Text>
-                        <TextInput
-                            style={{
-                                width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('3%'), width: wp('100%') }}>
+
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                            <Text style={{
+                                width: wp('4%'), fontSize: 10,
                                 borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
-                            }}
-                            placeholder="10th Mnemonics"
-                            value={this.state.word10}
-                            placeholderTextColor='#a8a9ae'
-                            autoCapitalize="none"
-                            disabled={true}
-                            editable={true}
-                            onChangeText={text => this.setState({ word10: text })}
+                            }}>10.</Text>
+                            <TextInput
+                                style={{
+                                    width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                                    borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
+                                }}
+                                placeholder="Mnemonics"
+                                value={this.state.word10}
+                                placeholderTextColor='#a8a9ae'
+                                autoCapitalize="none"
+                                disabled={true}
+                                editable={true}
+                                onChangeText={text => this.setState({ word10: text })}
 
-                        />
-                      </View>
-                        
+                            />
+                        </View>
 
-                      <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-                      <Text style={{
-                                width: wp('4%'),  fontSize: 10,
-                                borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',}}>11.</Text>
-                        <TextInput
-                            style={{
-                                width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                            <Text style={{
+                                width: wp('4%'), fontSize: 10,
                                 borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
-                            }}
-                            placeholder="11th Mnemonics"
-                            value={this.state.word11}
-                            placeholderTextColor='#a8a9ae'
-                            autoCapitalize="none"
-                            disabled={true}
-                            editable={true}
-                            onChangeText={text => this.setState({ word11: text })}
+                            }}>11.</Text>
+                            <TextInput
+                                style={{
+                                    width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                                    borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
+                                }}
+                                placeholder="Mnemonics"
+                                value={this.state.word11}
+                                placeholderTextColor='#a8a9ae'
+                                autoCapitalize="none"
+                                disabled={true}
+                                editable={true}
+                                onChangeText={text => this.setState({ word11: text })}
 
-                        />
-                      </View>
+                            />
+                        </View>
 
-                      <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-                      <Text style={{
-                                width: wp('4%'),  fontSize: 10,
-                                borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',}}>12.</Text>
-                        <TextInput
-                            style={{
-                                width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                            <Text style={{
+                                width: wp('4%'), fontSize: 10,
                                 borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
-                            }}
-                            placeholder="12th Mnemonics"
-                            value={this.state.word12}
-                            placeholderTextColor='#a8a9ae'
-                            autoCapitalize="none"
-                            disabled={true}
-                            editable={true}
-                            onChangeText={text => this.setState({ word12: text })}
+                            }}>12.</Text>
+                            <TextInput
+                                style={{
+                                    width: wp('25%'), borderBottomWidth: wp('0.1%'), fontSize: 10,
+                                    borderColor: 'gray', color: 'black', fontFamily: 'Montserrat-Regular',
+                                }}
+                                placeholder="Mnemonics"
+                                value={this.state.word12}
+                                placeholderTextColor='#a8a9ae'
+                                autoCapitalize="none"
+                                disabled={true}
+                                editable={true}
+                                onChangeText={text => this.setState({ word12: text })}
 
-                        />
-                      </View>
+                            />
+                        </View>
 
                     </View>
                     {/* <View style={{  justifyContent: 'space-between', height: hp('10%'), marginTop: hp('10%'), width: wp('90%') }}> */}
@@ -592,7 +652,7 @@ export default class Mnemonics extends Component {
                             }}
                         >
                             <Text style={{ color: this.state.b_2 ? '#379aff' : 'white', fontSize: 13, fontFamily: 'Montserrat-Bold', }}>
-                                I Wrote Down My Mnemonics Phrase
+                                Create PeepsID
                             </Text>
                         </TouchableOpacity>
                     </View>

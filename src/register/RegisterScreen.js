@@ -90,7 +90,9 @@ export default class RegisterScreen extends Component {
                 console.log("resp_genrate_page__", response.account)
                 this.setState({
                     AccountName: response.account, isLoading: false
-                }, () => { console.log("resp_in_for_account_token", this.state.AccountName) })
+                }, () => {
+                       AsyncStorage.setItem('accountName',JSON.stringify(this.state.AccountName) )
+                     console.log("resp_in_for_account_token========", JSON.stringify(this.state.AccountName)) })
             })
             .catch(error => console.log(error)) //to catch the errors if any
     }
