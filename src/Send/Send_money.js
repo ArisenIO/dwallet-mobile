@@ -84,60 +84,61 @@ class Send_money extends Component {
     }
 
     _transfer = () => {
-        if (this.state.AccountName_status) {
-            if (this.state.txtStatus) {
-                this.setState({ isLoading: true })
-                var to_name = this.state.to_account_name;
-                var quantity_ = parseFloat(this.state.quantity).toFixed(4);
+        Actions.PhrasePin()
+        // if (this.state.AccountName_status) {
+        //     if (this.state.txtStatus) {
+        //         this.setState({ isLoading: true })
+        //         var to_name = this.state.to_account_name;
+        //         var quantity_ = parseFloat(this.state.quantity).toFixed(4);
 
-                console.log("account name", to_name, quantity_);
+        //         console.log("account name", to_name, quantity_);
 
-                fetch("https://dmobileapi.arisen.network/avote/transfer/v1", {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        from: this.state.AccountName,
-                        to: to_name,
-                        quantity: quantity_,
-                        memo: "",
-                        private_key: this.state.active_private_key
-                    })
-                })
-                    .then(response => response.json())
-                    .then((response) => {
-                        this.setState({ isLoading: false })
-                        console.log("_resp_for_transfer_", response, " TRANSACTION ", response)
-                        if (response.success) {
+        //         fetch("https://dmobileapi.arisen.network/avote/transfer/v1", {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Accept': 'application/json',
+        //                 'Content-Type': 'application/json'
+        //             },
+        //             body: JSON.stringify({
+        //                 from: this.state.AccountName,
+        //                 to: to_name,
+        //                 quantity: quantity_,
+        //                 memo: "",
+        //                 private_key: this.state.active_private_key
+        //             })
+        //         })
+        //             .then(response => response.json())
+        //             .then((response) => {
+        //                 this.setState({ isLoading: false })
+        //                 console.log("_resp_for_transfer_", response, " TRANSACTION ", response)
+        //                 if (response.success) {
 
-                            var hash = response.transfer.transaction_id;
-                            this.setState({
-                                isModalVisible1: true,
-                                transaction_hash: hash
-                            })
+        //                     var hash = response.transfer.transaction_id;
+        //                     this.setState({
+        //                         isModalVisible1: true,
+        //                         transaction_hash: hash
+        //                     })
 
-                        }
-                        else {
-                            var error = JSON.parse(response.error);
-                            var err = error.error.details[0].message;
-                            // alert(err)
-                            this.setState({ error_msg: err })
-                            this.toggleModal()
-                        }
+        //                 }
+        //                 else {
+        //                     var error = JSON.parse(response.error);
+        //                     var err = error.error.details[0].message;
+        //                     // alert(err)
+        //                     this.setState({ error_msg: err })
+        //                     this.toggleModal()
+        //                 }
 
-                    })
-                    .catch(error => console.log(error)) //to catch the errors if any
-            }
-            else {
-                this.setState({ txtStatus: false, txtErrorMessage: '*please enter quantity.' })
-            }
-        }
+        //             })
+        //             .catch(error => console.log(error)) //to catch the errors if any
+        //     }
+        //     else {
+        //         this.setState({ txtStatus: false, txtErrorMessage: '*please enter quantity.' })
+        //     }
+        // }
 
-        else {
-            this.setState({ AccountName_status: false, AccountName_error: '*please enter your name.' })
-        }
+        // else {
+        //     this.setState({ AccountName_status: false, AccountName_error: '*please enter your name.' })
+        // }
 
     }
     toggleModal = () => {

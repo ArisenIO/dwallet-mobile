@@ -8,7 +8,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { Actions } from 'react-native-router-flux';
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-class Create_Pin extends Component {
+class PhrasePin extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,20 +18,23 @@ class Create_Pin extends Component {
     };
   }
   componentDidMount() {
-    AsyncStorage.getItem('pin_code').then(resp => {
-      console.log("after getting data", resp)
-      if (resp != null) {
-        this.setState({ myData: JSON.parse(resp), myData_status: true }, () => {
-          console.log("save data in async Storage", this.state.myData.pin_code)
-        })
-      }
-      else {
-        this.setState({ myData_status: false }, () => {
-          console.log("there is any previous data?", this.state.myData_status)
-        })
-      }
-    })
+      console.log('Componentdidmount Phrasepin')
+    // AsyncStorage.getItem('pin_code').then(resp => {
+    //   console.log("after getting data", resp)
+    //   if (resp != null) {
+    //     this.setState({ myData: JSON.parse(resp), myData_status: true }, () => {
+    //       console.log("save data in async Storage", this.state.myData.pin_code)
+    //     })
+    //   }
+    //   else {
+    //     this.setState({ myData_status: false }, () => {
+    //       console.log("there is any previous data?", this.state.myData_status)
+    //     })
+    //   }
+    // })
   }
+
+
   enterValue = (value) => {
     this.setState({ enteredPin: value }, () => {
       if (this.state.enteredPin.length > 0) {
@@ -76,7 +79,7 @@ class Create_Pin extends Component {
       AsyncStorage.setItem(
         'pin_code', JSON.stringify(pin_code)
       );
-      Actions.Confirm_Pin();
+      Actions.Send_money();
     }
     console.log("data in async", pin_code)
   }
@@ -93,12 +96,7 @@ class Create_Pin extends Component {
             style={{ width: wp('40%'), height: hp('20%'), }}
           />
           <View style={{ marginVertical: hp('5%') }}>
-            {
-              this.state.myData_status == true ?
-                <Text style={{ fontSize: 20,fontFamily: 'Montserrat-Bold' }}>Enter your security pincode</Text>
-                :
-                <Text style={{ fontSize: 20,fontFamily: 'Montserrat-Bold' }}>Create your security pincode</Text>
-            }
+          <Text style={{ fontSize: 20,fontFamily: 'Montserrat-Bold' }}>Enter your security pincode</Text>
           </View>
           <ReactNativePinView
             inputSize={32}
@@ -164,4 +162,4 @@ class Create_Pin extends Component {
   }
 }
 
-export default Create_Pin;
+export default PhrasePin;

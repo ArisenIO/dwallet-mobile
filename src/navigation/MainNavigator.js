@@ -23,10 +23,10 @@ import Mnemonics from '../Mnemonics/Mnemonics'
 import ConfirmMnemonics from '../Mnemonics/ConfirmMnemonic'
 import BackupphraseMnemonics from '../BackupPhrase/BackupphraseMnemonics'
 import ActiveKeys from '../BackupPhrase/ActiveKeys'
+import PhrasePin from '../BackupPhrase/PhrasePin'
 
 const Scenes = Actions.create(
     <Scene key='root' >
-
         <Scene key="Splash1"
             initial={true}
             hideNavBar={true}
@@ -58,30 +58,25 @@ const Scenes = Actions.create(
             hideNavBar={true}
             component={Createwallet}
         />
-
         <Scene key="Mnemonics"
             initial={false}
             hideNavBar={true}
             component={Mnemonics}
         />
-
         <Scene key="ConfirmMnemonics"
             initial={false}
             hideNavBar={true}
             component={ConfirmMnemonics}
         />
-
         <Scene key="homepage"
             component={Homepage}
             hideNavBar={true}
         />
-
         <Scene key="AddAccount"
             initial={false}
             component={AddAccount}
             hideNavBar={true}
         />
-
         <Scene key="RegisterScreen"
             component={RegisterScreen}
             hideNavBar={true}
@@ -91,8 +86,6 @@ const Scenes = Actions.create(
             hideNavBar={true}
             component={Recieve}
         />
-
-
         <Scene key="Send_money"
             initial={false}
             hideNavBar={true}
@@ -103,7 +96,7 @@ const Scenes = Actions.create(
             hideNavBar={true}
             component={Setting}
         />
-         <Scene key="BackupphraseMnemonics"
+        <Scene key="BackupphraseMnemonics"
             initial={false}
             hideNavBar={true}
             component={BackupphraseMnemonics}
@@ -113,6 +106,12 @@ const Scenes = Actions.create(
             hideNavBar={true}
             component={ActiveKeys}
         />
+        <Scene key="PhrasePin"
+            initial={false}
+            hideNavBar={true}
+            component={PhrasePin}
+        />
+
     </Scene>
 )
 

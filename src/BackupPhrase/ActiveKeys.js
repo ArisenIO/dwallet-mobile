@@ -81,18 +81,14 @@ export default class ActiveKeys extends Component {
                     .then(response => response.json())
                     .then((response) => {
                         if (response.success == true) {
-
                             var items = {
                                 'accountName': (this.state.account).trim(),
                                 'active_keys': (this.state.private_key).trim(),
                                 'new_wallet': "0"
                             }
-
                             AsyncStorage.setItem(
                                 'items', JSON.stringify({ items })
                             );
-
-
                             Actions.replace('homepage')
                         }
                         else if (response.success == false) {
@@ -202,16 +198,16 @@ export default class ActiveKeys extends Component {
                     </View>
 
                     <View
-                        style={{ width: wp('100%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('7%') }}
+                        style={{ width: wp('100%'), height: hp('12%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('7%') }}
                     >
                         <TouchableOpacity
-                            onPress={()=>{this.nextbtn()}}
+                            onPress={() => { this.nextbtn() }}
                             style={{
-                                backgroundColor: this.state.b_2 ? null : '#2dd5c9', width: wp('75%'), height: hp('6%'),
-                                justifyContent: 'center', alignItems: 'center', borderRadius: 5
+                                backgroundColor: '#2dd5c9', width: wp('75%'), height: hp('6%'),
+                                justifyContent: 'center', alignItems: 'center', borderRadius: 25
                             }}
                         >
-                            <Text style={{ color: this.state.b_2 ? '#379aff' : 'white', fontSize: 15, fontFamily: 'Montserrat-Bold', }}>
+                            <Text style={{ color: 'white', fontSize: 17, fontFamily: 'Montserrat-Bold', }}>
                                 Next
                             </Text>
                         </TouchableOpacity>
@@ -295,19 +291,19 @@ export default class ActiveKeys extends Component {
                     backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
-                        marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: hp('28%'), justifyContent: 'center',
+                        marginTop: 240, borderRadius: 10, width: wp('90%'), maxHeight: hp('40%'), justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                    <View style={{ height: hp('28%') }}>
-                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ height: hp('30%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('6%'), justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={{ fontSize: 20, fontWeight: '700', fontFamily: 'Montserrat-Bold', }}>Whoops!</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center', fontFamily: 'Montserrat-Regular', }}>The account information you entered does not match the username or simply doesn't exist. Check the username and the active key, to make sure they match and if they're registered</Text>
+                            <Text style={{ fontSize: 16, textAlign: 'center', fontFamily: 'Montserrat-Regular', }}>The account information you entered does not match the username or simply doesn't exist. Check the username and the active key, to make sure they match and if they're registered</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
-                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
+                            height: hp('5%'), marginTop: hp('3%'), width: wp('88%')
                         }}>
                             <TouchableOpacity
                                 style={{

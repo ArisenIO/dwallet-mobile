@@ -65,6 +65,11 @@ export default class BackupphraseMnemonics extends Component {
         return true;
     };
 
+    toggleModal3 = () => {
+        console.log("pressed ok");
+        this.setState({ isModalVisible3: !this.state.isModalVisible3 });
+    };
+
 
     createBtn = () => {
         console.log('button clicked', this.state.AccountName)
@@ -128,7 +133,10 @@ export default class BackupphraseMnemonics extends Component {
                     .then((response) => {
                         console.log("resp_for_check_api====>", response)
                         if(response.message){
-                            Toast.show("Backup phrase did not match any PeepsID. Try again.", Toast.SHORT);
+                            this.setState({ error_msg: response.message })
+                            this.toggleModal3()
+
+                            // Toast.show("Backup phrase did not match any PeepsID. Try again.", Toast.SHORT);
 
                         }
                         else{
@@ -494,16 +502,16 @@ export default class BackupphraseMnemonics extends Component {
                     </View>
                     {/* <View style={{  justifyContent: 'space-between', height: hp('10%'), marginTop: hp('10%'), width: wp('90%') }}> */}
                     <View
-                        style={{ width: wp('100%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('7%') }}
+                        style={{ width: wp('100%'), height: hp('12%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('7%') }}
                     >
                         <TouchableOpacity
                             onPress={this.createBtn}
                             style={{
                                 backgroundColor: this.state.b_2 ? null : '#2dd5c9', width: wp('75%'), height: hp('6%'),
-                                justifyContent: 'center', alignItems: 'center', borderRadius: 5
+                                justifyContent: 'center', alignItems: 'center', borderRadius: 25
                             }}
                         >
-                            <Text style={{ color: this.state.b_2 ? '#379aff' : 'white', fontSize: 15, fontFamily: 'Montserrat-Bold', }}>
+                            <Text style={{ color:'white', fontSize: 17, fontFamily: 'Montserrat-Bold' }}>
                                 Next
                             </Text>
                         </TouchableOpacity>
@@ -512,6 +520,45 @@ export default class BackupphraseMnemonics extends Component {
 
                     {/* </View> */}
                 </View>
+
+  {/* Modal Start */}
+  <Modal isVisible={this.state.isModalVisible3}
+                    backdropColor='rgba(0,0,0,1)'
+                    style={{
+                        backgroundColor: 'white',
+                        marginTop: 240, borderRadius: 10, width: wp('90%'), maxHeight: hp('30%'), justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                    <View style={{ height: hp('25%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('6%'), justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700', fontFamily: 'Montserrat-Bold' }}>Error!</Text>
+                        </View>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                            <Text style={{ fontSize: 16, textAlign: 'center', fontFamily: 'Montserrat-Regular', }}>Backup phrase did not match any PeepsID. Try again.</Text>
+                        </View>
+                        <View style={{
+                            justifyContent: 'center', alignItems: 'center',
+                            height: hp('5%'), marginTop: hp('3%'), width: wp('88%')
+                        }}>
+                            <TouchableOpacity
+                                style={{
+                                    justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                    borderRadius: 20, width: wp('40%'), height: hp('5%'),
+                                }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.toggleModal3() }}
+                            >
+                                <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Regular', }}>Ok</Text>
+                            </TouchableOpacity>
+
+                        </View>
+
+                    </View>
+                </Modal>
+
+                {/* Modal Ends */}
+
             </ScrollView>
 
         );
