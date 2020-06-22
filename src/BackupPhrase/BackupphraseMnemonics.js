@@ -18,7 +18,7 @@ export default class BackupphraseMnemonics extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Mnemonicslist: [],
+            Mnemonicslist: '',
             list: "",
             clipboardText: "",
             word1: '',
@@ -41,23 +41,9 @@ export default class BackupphraseMnemonics extends Component {
     }
 
     async componentDidMount() {
-        try {
-            var accountname = await AsyncStorage.getItem('accountName')
-            this.setState({ AccountName: JSON.parse(accountname) })
-            console.log('================================accountname', JSON.parse(accountname))
-            BackHandler.addEventListener("hardwareBackPress", this.backAction);
-            AsyncStorage.getItem('MnemonicsList').then(resp => {
-                if (resp) {
-                    var MnemonicsList = resp.split(/\s+/)
-                    this.setState({ list: MnemonicsList })
-                    console.log('=if case MnemonicsList', MnemonicsList)
-                } else {
-                    console.log("MnemonicsList=====elsecase", resp)
-                }
-            })
-        } catch (err) {
-            console.log('Error', err)
-        }
+       
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
+
     }
 
 
@@ -120,72 +106,14 @@ export default class BackupphraseMnemonics extends Component {
         } else if (word12 == "" || word12 == null) {
             Toast.show('Enter 12th Mnemonics', Toast.SHORT);
         }
-        else if (word1 != this.state.list[0]) {
-            Toast.show('1st word is not correct', Toast.SHORT)
-        }
-        else if (word2 != this.state.list[1]) {
-            Toast.show('2nd word is not correct', Toast.SHORT)
-
-        }
-        else if (word3 != this.state.list[2]) {
-            Toast.show('3rd word is not correct', Toast.SHORT)
-
-        }
-        else if (word4 != this.state.list[3]) {
-            Toast.show('4th word is not correct', Toast.SHORT)
-
-        }
-        else if (word5 != this.state.list[4]) {
-            Toast.show('5th word is not correct', Toast.SHORT)
-
-        }
-        else if (word6 != this.state.list[5]) {
-            Toast.show('6th word is not correct', Toast.SHORT)
-
-        }
-        else if (word7 != this.state.list[6]) {
-            Toast.show('7th word is not correct', Toast.SHORT)
-
-        }
-        else if (word8 != this.state.list[7]) {
-            Toast.show('8th word is not correct', Toast.SHORT)
-
-        }
-        else if (word9 != this.state.list[8]) {
-            Toast.show('9th word is not correct', Toast.SHORT)
-
-        }
-        else if (word10 != this.state.list[9]) {
-            Toast.show('10th word is not correct', Toast.SHORT)
-
-        }
-        else if (word11 != this.state.list[10]) {
-            Toast.show('11th word is not correct', Toast.SHORT)
-
-        }
-        else if (word12 != this.state.list[11]) {
-            Toast.show('12th word is not correct', Toast.SHORT)
-
-        }
+       
         else {
 
-            this.state.Mnemonicslist.push(word1)
-            this.state.Mnemonicslist.push(word2)
-            this.state.Mnemonicslist.push(word3)
-            this.state.Mnemonicslist.push(word4)
-            this.state.Mnemonicslist.push(word5)
-            this.state.Mnemonicslist.push(word6)
-            this.state.Mnemonicslist.push(word7)
-            this.state.Mnemonicslist.push(word8)
-            this.state.Mnemonicslist.push(word9)
-            this.state.Mnemonicslist.push(word10)
-            this.state.Mnemonicslist.push(word11)
-            this.state.Mnemonicslist.push(word12)
+            let mnemonic_list = word1 + " " + word2 + " " + word3 + " " + word4 + " " + word5 + " " + word6 + " " +word7 + " " + word8 + " " + word9 + " " +word10 + " " + word11 + " " + word12
 
-            console.log('both array compare', this.state.Mnemonicslist, "===========", this.state.list)
-            console.log('===========word1', word1, word2, word3, word4, word5, word6, word7, word8, word9, word10, word11, word12, '=====', Mnemonics)
-
-            if (JSON.stringify(this.state.list) === JSON.stringify(this.state.Mnemonicslist)) {
+            this.state.Mnemonicslist = mnemonic_list;
+        console.log("list words",mnemonic_list);
+            
                 fetch("https://dmobileapi.arisen.network/avote/account/pass/phrase", {
                     method: 'POST',
                     headers: {
@@ -193,12 +121,17 @@ export default class BackupphraseMnemonics extends Component {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        phrase: Mnemonic_List
+                        phrase: mnemonic_list
                     })
                 })
                     .then(response => response.json())
                     .then((response) => {
                         console.log("resp_for_check_api====>", response)
+                        if(response.message){
+                            Toast.show("Backup phrase did not match any PeepsID. Try again.", Toast.SHORT);
+
+                        }
+                        else{
                         this.setState({
                             ActivePrivate: response.activePrivate,
                             ActivePublic: response.activePublicKey,
@@ -206,53 +139,59 @@ export default class BackupphraseMnemonics extends Component {
                             OwnerPublic: response.ownerPublicKey
 
                         }, () => {
-                            console.log("active key", this.state.ActivePublic)
+
+
+                            fetch("https://dmobileapi.arisen.network/avote/search", {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                text: this.state.ActivePublic
+                            })
                         })
+                            .then(response => response.json())
+                            .then((response) => {
+
+                                console.log("account name", response.account_names[0]);
+                                if (response.account_names[0]) {
+                                    Toast.show("Imported successfully", Toast.LONG);
+                                   
+                                    var items = {
+                                        'accountName': response.account_names[0],
+                                        'active_keys': this.state.ActivePrivate,
+                                        'active_public_keys': this.state.ActivePublic,
+                                        'new_wallet': "1"
+                                    }
+
+                                    AsyncStorage.setItem(
+                                        'items', JSON.stringify({ items })
+                                    );
+
+                               
+                                    Actions.replace('homepage');
+                                }
+                                else {
+                                    Toast.show("Try later", Toast.LONG);
+                                }
+
+                            })
+
+
+                        })
+                    }
                     })
+                
                     .catch(error => {
                         Toast.show(error, Toast.SHORT)
                     }) 
-            } else {
-                Toast.show('Your Mnemonics dont matches,Try again', Toast.SHORT);
-
-            }
+                
+           
 
         }
 
-        // fetch("https://dmobileapi.arisen.network/avote/account/pass/phrase", {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         phrase: Mnemonic_List
-        //     })
-        // })
-        //     .then(response => response.json())
-        //     .then((response) => {
-        //         console.log("resp_for_check_api====>", response)
-        //         this.setState({
-        //             ActivePrivate: response.activePrivate,
-        //             ActivePublic: response.activePublicKey,
-        //             OwnerPrivate: response.ownerPrivate,
-        //             OwnerPublic: response.ownerPublicKey
-
-        //         }, () => { console.log("active key", this.state.ActivePublic) })
-
-        //         var items = {
-        //             "ActivePrivateKey": this.state.ActivePrivate,
-        //             "ActivePublicKey": this.state.ActivePublic,
-        //             "OwnerPrivate": this.state.OwnerPrivate,
-        //             "OwnerPublic": this.state.OwnerPublic
-        //         }
-        //         AsyncStorage.setItem(
-        //             'items', JSON.stringify({ items })
-        //         );
-
-        //     })
-        //     .catch(error => console.log(error)) //to catch the errors if any
-
+     
     }
 
 
@@ -272,7 +211,7 @@ export default class BackupphraseMnemonics extends Component {
                         <Text style={{
                             fontSize: 22, color: 'white', textAlign: 'center',
                             justifyContent: 'center', alignSelf: 'center', marginStart: '1%', fontFamily: 'Montserrat-Bold',
-                        }}>Backup Phrase Mnemonics</Text>
+                        }}>Import Phrase Mnemonics</Text>
                     </View>
 
                     {/* <View style={{ width: wp('95'), height: Platform.OS === 'ios' ? hp('7%') : hp('5%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('3%') }}>

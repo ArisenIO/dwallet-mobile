@@ -136,6 +136,7 @@ export default class ActiveKeys extends Component {
         this.setState({ isModalVisible2: !this.state.isModalVisible2 });
     };
     toggleModal3 = () => {
+        console.log("pressed ok");
         this.setState({ isModalVisible3: !this.state.isModalVisible3 });
     };
     render() {
@@ -299,10 +300,10 @@ export default class ActiveKeys extends Component {
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700', fontFamily: 'Montserrat-Bold', }}>Error?</Text>
+                            <Text style={{ fontSize: 20, fontWeight: '700', fontFamily: 'Montserrat-Bold', }}>Whoops!</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center', fontFamily: 'Montserrat-Regular', }}>{this.state.error_msg}</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center', fontFamily: 'Montserrat-Regular', }}>The account information you entered does not match the username or simply doesn't exist. Check the username and the active key, to make sure they match and if they're registered</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
