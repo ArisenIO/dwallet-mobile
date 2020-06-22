@@ -358,8 +358,8 @@ export default class BackupphraseMnemonics extends Component {
                         </TouchableOpacity>
                         <Text style={{
                             fontSize: 22, color: 'white', textAlign: 'center',
-                            justifyContent: 'center', alignSelf: 'center', marginStart: '2%', fontFamily: 'Montserrat-Bold',
-                        }}>Confirm Mnemonic Phrase</Text>
+                            justifyContent: 'center', alignSelf: 'center', marginStart: '1%', fontFamily: 'Montserrat-Bold',
+                        }}>Backup Phrase Mnemonics</Text>
                     </View>
 
                     {/* <View style={{ width: wp('95'), height: Platform.OS === 'ios' ? hp('7%') : hp('5%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('3%') }}>
