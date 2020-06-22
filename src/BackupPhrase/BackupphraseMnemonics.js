@@ -41,9 +41,7 @@ export default class BackupphraseMnemonics extends Component {
     }
 
     async componentDidMount() {
-        // this.generate_mnemonics()
         try {
-
             var accountname = await AsyncStorage.getItem('accountName')
             this.setState({ AccountName: JSON.parse(accountname) })
             console.log('================================accountname', JSON.parse(accountname))
@@ -61,34 +59,6 @@ export default class BackupphraseMnemonics extends Component {
             console.log('Error', err)
         }
     }
-
-    // generate_mnemonics = () => {
-    //     wallet = ethers.Wallet.createRandom();
-    //     Mnemonic_List = wallet.mnemonic;
-    //     var array_list = Mnemonic_List.split(/\s+/);
-    //     this.setState({
-    //         Mnemonicslist: Mnemonic_List,
-    //         word1: array_list[0],
-    //         word2: array_list[1],
-    //         word3: array_list[2],
-    //         word4: array_list[3],
-    //         word5: array_list[4],
-    //         word6: array_list[5],
-    //         word7: array_list[6],
-    //         word8: array_list[7],
-    //         word9: array_list[8],
-    //         word10: array_list[9],
-    //         word11: array_list[10],
-    // word12: array_list[11]
-    // })
-
-    // console.log("wallet mnemonic list",array_list[0], Mnemonic_List, ethers.utils.HDNode.isValidMnemonic("shikhar sri"));
-
-    // master = PrivateKey.fromSeed(Mnemonic_List)
-    // ownerPrivate = master.getChildKey('owner')
-    // activePrivate = ownerPrivate.getChildKey('active')
-    // console.log(ownerPrivate.toString(), " ", PrivateKey.fromString(ownerPrivate.toWif()).toPublic().toString(), "   ", activePrivate.toString(), PrivateKey.fromString(activePrivate.toWif()).toPublic().toString())
-    // }
 
 
     componentWillUnmount() {
@@ -197,7 +167,6 @@ export default class BackupphraseMnemonics extends Component {
             Toast.show('12th word is not correct', Toast.SHORT)
 
         }
-
         else {
 
             this.state.Mnemonicslist.push(word1)
@@ -214,7 +183,7 @@ export default class BackupphraseMnemonics extends Component {
             this.state.Mnemonicslist.push(word12)
 
             console.log('both array compare', this.state.Mnemonicslist, "===========", this.state.list)
-            console.log('===========word1', word1, word2, word3, word4, word5, word6, word7, word8, word9, word10, word11, word12,'=====',Mnemonics)
+            console.log('===========word1', word1, word2, word3, word4, word5, word6, word7, word8, word9, word10, word11, word12, '=====', Mnemonics)
 
             if (JSON.stringify(this.state.list) === JSON.stringify(this.state.Mnemonicslist)) {
                 fetch("https://dmobileapi.arisen.network/avote/account/pass/phrase", {
@@ -237,65 +206,12 @@ export default class BackupphraseMnemonics extends Component {
                             OwnerPublic: response.ownerPublicKey
 
                         }, () => {
-
-
                             console.log("active key", this.state.ActivePublic)
                         })
-                        fetch("https://dmobileapi.arisen.network/avote/register", {
-                            method: 'POST',
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                newAccountName: this.state.AccountName,
-                                ownerPubKey: this.state.OwnerPublic,
-                                activePubKey: this.state.ActivePublic
-                            })
-                        })
-                            .then(response => response.json())
-                            .then((response) => {
-
-                                // this.hideDialog();
-
-                                if (response.success) {
-                                    Toast.show("Registered successfully on Blockchain", Toast.LONG);
-                                    // AsyncStorage.setItem(
-                                    //       'creds',
-                                    //       JSON.stringify(copied_data));
-
-                                    var items = {
-                                        'accountName': this.state.AccountName,
-                                        'active_keys': this.state.ActivePrivate,
-                                        'active_public_keys': this.state.ActivePublic,
-                                        'new_wallet': "1"
-                                    }
-
-                                    AsyncStorage.setItem(
-                                        'items', JSON.stringify({ items })
-                                    );
-
-                                    //   AsyncStorage.setItem(
-                                    //     'active_keys',this.state.active_private_keys
-                                    //     );
-                                    //     AsyncStorage.setItem(
-                                    //         'new_wallet',"1"
-                                    //         );
-
-
-
-                                    Actions.replace('homepage');
-                                }
-                                else {
-                                    Toast.show("Not Registered try later", Toast.LONG);
-                                }
-
-                            })
-
-
-
                     })
-                    .catch(error => console.log(error)) //to catch the errors if any
+                    .catch(error => {
+                        Toast.show(error, Toast.SHORT)
+                    }) 
             } else {
                 Toast.show('Your Mnemonics dont matches,Try again', Toast.SHORT);
 
@@ -343,9 +259,6 @@ export default class BackupphraseMnemonics extends Component {
 
 
     render() {
-
-        // if (this.state.loading) return <ActivityIndicator size="large" />
-
         return (
             <ScrollView>
                 <View style={styles.container}>

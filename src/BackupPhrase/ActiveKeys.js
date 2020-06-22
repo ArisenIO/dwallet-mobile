@@ -13,7 +13,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import Icon from '../assets/Icon'
 import Modal from 'react-native-modal';
 
-export default class AddAccount extends Component {
+export default class ActiveKeys extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -61,62 +61,59 @@ export default class AddAccount extends Component {
         console.log("confirmpvtkey>>>>>", text, this.state.confirmpvtkey);
     }
 
-    activekey=()=>{
-        Actions.replace('ActiveKeys')
-    }
 
     nextbtn = () => {
 
-        Actions.replace('BackupphraseMnemonics')
-        // if (this.state.AccountName_status) {
-        //     if (this.state.txtStatus) {
-        //         fetch("https://dmobileapi.arisen.network/avote/account/info", {
-        //             method: 'POST',
-        //             headers: {
-        //                 'Accept': 'application/json',
-        //                 'Content-Type': 'application/json'
-        //             },
-        //             body: JSON.stringify({
-        //                 account: (this.state.account).trim(),
-        //                 private_key: (this.state.private_key).trim()
-        //             })
-        //         })
-        //             .then(response => response.json())
-        //             .then((response) => {
-        //                 if (response.success == true) {
+        console.log('import key screen')
+        if (this.state.AccountName_status) {
+            if (this.state.txtStatus) {
+                fetch("https://dmobileapi.arisen.network/avote/account/info", {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        account: (this.state.account).trim(),
+                        private_key: (this.state.private_key).trim()
+                    })
+                })
+                    .then(response => response.json())
+                    .then((response) => {
+                        if (response.success == true) {
 
-        //                     var items = {
-        //                         'accountName': (this.state.account).trim(),
-        //                         'active_keys': (this.state.private_key).trim(),
-        //                         'new_wallet': "0"
-        //                     }
+                            var items = {
+                                'accountName': (this.state.account).trim(),
+                                'active_keys': (this.state.private_key).trim(),
+                                'new_wallet': "0"
+                            }
 
-        //                     AsyncStorage.setItem(
-        //                         'items', JSON.stringify({ items })
-        //                     );
+                            AsyncStorage.setItem(
+                                'items', JSON.stringify({ items })
+                            );
 
 
-        //                     Actions.replace('homepage')
-        //                 }
-        //                 else if (response.success == false) {
-        //                     this.setState({ error_msg: response.message })
-        //                     this.toggleModal3()
-        //                     console.log("error_msg_in_addAcount_", response.message)
-        //                 }
-        //             })
-        //             .catch(error => console.log(error)) //to catch the errors if any
-        //     }
-        //     else {
-        //         this.setState({ txtStatus: false })
-        //         // alert("Please enter private key.")
-        //         this.toggleModal2()
-        //     }
-        // }
-        // else {
-        //     this.setState({ AccountName_status: false })
-        //     // alert("Please enter account name.")
-        //     this.toggleModal()
-        // }
+                            Actions.replace('homepage')
+                        }
+                        else if (response.success == false) {
+                            this.setState({ error_msg: response.message })
+                            this.toggleModal3()
+                            console.log("error_msg_in_addAcount_", response.message)
+                        }
+                    })
+                    .catch(error => console.log(error)) //to catch the errors if any
+            }
+            else {
+                this.setState({ txtStatus: false })
+                // alert("Please enter private key.")
+                this.toggleModal2()
+            }
+        }
+        else {
+            this.setState({ AccountName_status: false })
+            // alert("Please enter account name.")
+            this.toggleModal()
+        }
     }
     set_to_account_name(txt) {
         this.setState({ account: txt });
@@ -157,10 +154,10 @@ export default class AddAccount extends Component {
                                 fontSize: 22, color: 'white', textAlign: 'center',
                                 fontFamily: 'Montserrat-Bold',
                                 justifyContent: 'center', alignSelf: 'center', marginStart: '5%'
-                            }}>Add PeepsID</Text>
+                            }}>Add Account</Text>
                         </View>
                     </View>
-                    {/* <View
+                    <View
                         style={{
                             width: wp('100%'), height: hp('8%'),
                             justifyContent: 'center', alignItems: 'center', marginTop: hp('5%')
@@ -177,8 +174,8 @@ export default class AddAccount extends Component {
                             minLength={12}
                             onChangeText={(text) => { this.set_to_account_name(text) }}
                         />
-                    </View> */}
-                    {/* <View style={{ marginLeft: 15 }}>
+                    </View>
+                    <View style={{ marginLeft: 15 }}>
                         <Text style={{ color: 'red', fontFamily: 'Montserrat-Regular', }}>{this.state.AccountName_error} </Text>
                     </View>
                     <View style={{
@@ -201,42 +198,23 @@ export default class AddAccount extends Component {
                     </View>
                     <View style={{ marginLeft: 15 }}>
                         <Text style={{ color: 'red', fontFamily: 'Montserrat-Regular', }}>{this.state.txtErrorMessage} </Text>
-                    </View> */}
-
-                    <View style={{ height: hp('15%'),justifyContent: 'space-between', marginVertical: hp('30%')}}>
-
-                        <View style={{ width: wp('100%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <TouchableOpacity
-                                style={{
-                                    backgroundColor:'#2dd5c9' ,
-                                    width: wp('60%'), height: hp('6%'),
-                                    justifyContent: 'center', alignItems: 'center', borderRadius: 25
-                                }}
-
-                                // onPress={() => BackHandler.exitApp()}
-                                onPress={() => { this.nextbtn() }}
-                            >
-                                <Text style={{  color:'white' , fontSize: 16,fontFamily: 'Montserrat-Bold' }}>Import Backup Phrase</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <View style={{ width: wp('100%'), height: hp('12%'), justifyContent: 'center', alignItems: 'center' }} >
-
-                            <TouchableOpacity
-                                style={{
-                                    backgroundColor:'#2dd5c9' ,
-                                    width: wp('60%'), height: hp('6%'),
-                                    justifyContent: 'center', alignItems: 'center', borderRadius: 25
-                                }}
-
-                                // onPress={() => BackHandler.exitApp()}
-                                onPress={() => { this.activekey() }}
-                            >
-                                <Text style={{  color:'white' , fontSize: 16,fontFamily: 'Montserrat-Bold'}}>Import Active Key</Text>
-                            </TouchableOpacity>
-                        </View>
                     </View>
 
+                    <View
+                        style={{ width: wp('100%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('7%') }}
+                    >
+                        <TouchableOpacity
+                            onPress={()=>{this.nextbtn()}}
+                            style={{
+                                backgroundColor: this.state.b_2 ? null : '#2dd5c9', width: wp('75%'), height: hp('6%'),
+                                justifyContent: 'center', alignItems: 'center', borderRadius: 5
+                            }}
+                        >
+                            <Text style={{ color: this.state.b_2 ? '#379aff' : 'white', fontSize: 15, fontFamily: 'Montserrat-Bold', }}>
+                                Next
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
 
                 </View>
                 {/* Modal 1 Start */}
