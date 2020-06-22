@@ -651,8 +651,8 @@ export default class BackupphraseMnemonics extends Component {
                                 justifyContent: 'center', alignItems: 'center', borderRadius: 5
                             }}
                         >
-                            <Text style={{ color: this.state.b_2 ? '#379aff' : 'white', fontSize: 13, fontFamily: 'Montserrat-Bold', }}>
-                                Create PeepsID
+                            <Text style={{ color: this.state.b_2 ? '#379aff' : 'white', fontSize: 15, fontFamily: 'Montserrat-Bold', }}>
+                                Next
                             </Text>
                         </TouchableOpacity>
                     </View>
