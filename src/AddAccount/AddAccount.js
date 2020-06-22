@@ -61,56 +61,62 @@ export default class AddAccount extends Component {
         console.log("confirmpvtkey>>>>>", text, this.state.confirmpvtkey);
     }
 
+    activekey=()=>{
+        alert('import key screen')
+    }
+
     nextbtn = () => {
-        if (this.state.AccountName_status) {
-            if (this.state.txtStatus) {
-                fetch("https://dmobileapi.arisen.network/avote/account/info", {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        account: (this.state.account).trim(),
-                        private_key: (this.state.private_key).trim()
-                    })
-                })
-                    .then(response => response.json())
-                    .then((response) => {
-                        if (response.success == true) {
 
-                            var items = {
-                                'accountName': (this.state.account).trim(),
-                                'active_keys': (this.state.private_key).trim(),
-                                'new_wallet': "0"
-                            }
+        Actions.replace('BackupphraseMnemonics')
+        // if (this.state.AccountName_status) {
+        //     if (this.state.txtStatus) {
+        //         fetch("https://dmobileapi.arisen.network/avote/account/info", {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Accept': 'application/json',
+        //                 'Content-Type': 'application/json'
+        //             },
+        //             body: JSON.stringify({
+        //                 account: (this.state.account).trim(),
+        //                 private_key: (this.state.private_key).trim()
+        //             })
+        //         })
+        //             .then(response => response.json())
+        //             .then((response) => {
+        //                 if (response.success == true) {
 
-                            AsyncStorage.setItem(
-                                'items', JSON.stringify({ items })
-                            );
+        //                     var items = {
+        //                         'accountName': (this.state.account).trim(),
+        //                         'active_keys': (this.state.private_key).trim(),
+        //                         'new_wallet': "0"
+        //                     }
+
+        //                     AsyncStorage.setItem(
+        //                         'items', JSON.stringify({ items })
+        //                     );
 
 
-                            Actions.replace('homepage')
-                        }
-                        else if (response.success == false) {
-                            this.setState({ error_msg: response.message })
-                            this.toggleModal3()
-                            console.log("error_msg_in_addAcount_", response.message)
-                        }
-                    })
-                    .catch(error => console.log(error)) //to catch the errors if any
-            }
-            else {
-                this.setState({ txtStatus: false })
-                // alert("Please enter private key.")
-                this.toggleModal2()
-            }
-        }
-        else {
-            this.setState({ AccountName_status: false })
-            // alert("Please enter account name.")
-            this.toggleModal()
-        }
+        //                     Actions.replace('homepage')
+        //                 }
+        //                 else if (response.success == false) {
+        //                     this.setState({ error_msg: response.message })
+        //                     this.toggleModal3()
+        //                     console.log("error_msg_in_addAcount_", response.message)
+        //                 }
+        //             })
+        //             .catch(error => console.log(error)) //to catch the errors if any
+        //     }
+        //     else {
+        //         this.setState({ txtStatus: false })
+        //         // alert("Please enter private key.")
+        //         this.toggleModal2()
+        //     }
+        // }
+        // else {
+        //     this.setState({ AccountName_status: false })
+        //     // alert("Please enter account name.")
+        //     this.toggleModal()
+        // }
     }
     set_to_account_name(txt) {
         this.setState({ account: txt });
@@ -147,12 +153,14 @@ export default class AddAccount extends Component {
                                 <Image source={Icon.Back_icon} style={{ tintColor: 'white', height: 20, width: 20, alignSelf: 'center', marginLeft: '4%' }} />
 
                             </TouchableOpacity>
-                            <Text style={{ fontSize: 22, color: 'white', textAlign: 'center', 
-                            fontFamily: 'Montserrat-Bold',
-                             justifyContent: 'center', alignSelf: 'center', marginStart: '2%' }}>Add Account</Text>
+                            <Text style={{
+                                fontSize: 22, color: 'white', textAlign: 'center',
+                                fontFamily: 'Montserrat-Bold',
+                                justifyContent: 'center', alignSelf: 'center', marginStart: '5%'
+                            }}>Add PeepsID</Text>
                         </View>
                     </View>
-                    <View
+                    {/* <View
                         style={{
                             width: wp('100%'), height: hp('8%'),
                             justifyContent: 'center', alignItems: 'center', marginTop: hp('5%')
@@ -160,7 +168,7 @@ export default class AddAccount extends Component {
                         <TextInput
                             style={{
                                 width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                                borderColor: 'gray', height: hp('8%'), color: 'black',fontFamily: 'Montserrat-Regular',
+                                borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="Enter your name"
                             value={this.state.to_account_name}
@@ -169,9 +177,9 @@ export default class AddAccount extends Component {
                             minLength={12}
                             onChangeText={(text) => { this.set_to_account_name(text) }}
                         />
-                    </View>
-                    <View style={{ marginLeft: 15 }}>
-                        <Text style={{ color: 'red' ,fontFamily: 'Montserrat-Regular',}}>{this.state.AccountName_error} </Text>
+                    </View> */}
+                    {/* <View style={{ marginLeft: 15 }}>
+                        <Text style={{ color: 'red', fontFamily: 'Montserrat-Regular', }}>{this.state.AccountName_error} </Text>
                     </View>
                     <View style={{
                         width: wp('100%'), height: hp('8%'),
@@ -180,7 +188,7 @@ export default class AddAccount extends Component {
                         <TextInput
                             style={{
                                 width: wp('90%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
-                                borderColor: 'gray', height: hp('8%'), color: 'black',fontFamily: 'Montserrat-Regular',
+                                borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular',
                             }}
                             placeholder="Enter Active Private Key"
                             value={this.state.private_key}
@@ -192,20 +200,44 @@ export default class AddAccount extends Component {
                         />
                     </View>
                     <View style={{ marginLeft: 15 }}>
-                        <Text style={{ color: 'red',fontFamily: 'Montserrat-Regular', }}>{this.state.txtErrorMessage} </Text>
+                        <Text style={{ color: 'red', fontFamily: 'Montserrat-Regular', }}>{this.state.txtErrorMessage} </Text>
+                    </View> */}
+
+                    <View style={{ height: hp('15%'),justifyContent: 'space-between', marginVertical: hp('30%')}}>
+
+                        <View style={{ width: wp('100%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center' }}>
+                            <TouchableOpacity
+                                style={{
+                                    backgroundColor:'#2dd5c9' ,
+                                    width: wp('60%'), height: hp('6%'),
+                                    justifyContent: 'center', alignItems: 'center', borderRadius: 25
+                                }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.nextbtn() }}
+                            >
+                                <Text style={{  color:'white' , fontSize: 16,fontFamily: 'Montserrat-Bold' }}>Import Backup Phrase</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={{ width: wp('100%'), height: hp('12%'), justifyContent: 'center', alignItems: 'center' }} >
+
+                            <TouchableOpacity
+                                style={{
+                                    backgroundColor:'#2dd5c9' ,
+                                    width: wp('60%'), height: hp('6%'),
+                                    justifyContent: 'center', alignItems: 'center', borderRadius: 25
+                                }}
+
+                                // onPress={() => BackHandler.exitApp()}
+                                onPress={() => { this.activekey() }}
+                            >
+                                <Text style={{  color:'white' , fontSize: 16,fontFamily: 'Montserrat-Bold'}}>Import Active Key</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
 
-                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                        <TouchableOpacity
-                            onPress={() => { this.nextbtn() }}
-                        >
-                            <Image
-                                resizeMode="contain"
-                                source={Icon.Next_btn}
-                                style={{ width: wp('40%'), }}
-                            />
-                        </TouchableOpacity>
-                    </View>
+
                 </View>
                 {/* Modal 1 Start */}
                 <Modal isVisible={this.state.isModalVisible}
@@ -217,10 +249,10 @@ export default class AddAccount extends Component {
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20,   fontFamily: 'Montserrat-Bold',}}>Error?</Text>
+                            <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold', }}>Error?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center',fontWeight:'100',fontFamily: 'Montserrat-Regular' }}>Please enter your name</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center', fontWeight: '100', fontFamily: 'Montserrat-Regular' }}>Please enter your name</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
@@ -235,7 +267,7 @@ export default class AddAccount extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal() }}
                             >
-                                <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Regular' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Regular' }}>Ok</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -256,7 +288,7 @@ export default class AddAccount extends Component {
                             <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold', }}>Error?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center' ,fontWeight:'100',fontFamily: 'Montserrat-Regular',}}>Please enter your Active private key</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center', fontWeight: '100', fontFamily: 'Montserrat-Regular', }}>Please enter your Active private key</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
@@ -271,7 +303,7 @@ export default class AddAccount extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal2() }}
                             >
-                                <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Regular', }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Regular', }}>Ok</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -289,10 +321,10 @@ export default class AddAccount extends Component {
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontWeight: '700',fontFamily: 'Montserrat-Bold', }}>Error?</Text>
+                            <Text style={{ fontSize: 20, fontWeight: '700', fontFamily: 'Montserrat-Bold', }}>Error?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 18, textAlign: 'center' ,fontFamily: 'Montserrat-Regular', }}>{this.state.error_msg}</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center', fontFamily: 'Montserrat-Regular', }}>{this.state.error_msg}</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
@@ -307,7 +339,7 @@ export default class AddAccount extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal3() }}
                             >
-                                <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Regular',  }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Regular', }}>Ok</Text>
                             </TouchableOpacity>
 
                         </View>

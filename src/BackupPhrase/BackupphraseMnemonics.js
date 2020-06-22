@@ -14,7 +14,7 @@ import Modal from 'react-native-modal';
 const ethers = require('ethers');
 
 
-export default class Mnemonics extends Component {
+export default class BackupphraseMnemonics extends Component {
     constructor(props) {
         super(props);
         this.state = {

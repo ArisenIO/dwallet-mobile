@@ -87,11 +87,11 @@ export default class Createwallet extends Component {
                         <TouchableOpacity
                             onPress={this.createBtn}
                             style={{
-                                backgroundColor: this.state.b_2 ? null : '#2dd5c9', width: wp('50%'), height: hp('6%'),
-                                justifyContent: 'center', alignItems: 'center', borderRadius: 25
+                             width: wp('50%'), height: hp('6%'),
+                                justifyContent: 'center', alignItems: 'center'
                             }}
                         >
-                            <Text style={{ color: this.state.b_2 ? '#379aff' : 'white', fontSize: 16, fontFamily: 'Montserrat-Bold', }}>
+                            <Text style={{ color:'#379aff', fontSize: 16, fontFamily: 'Montserrat-Bold', }}>
                             Login With PeepsID
                             </Text>
                         </TouchableOpacity>
@@ -102,12 +102,12 @@ export default class Createwallet extends Component {
                         <TouchableOpacity
                             onPress={this.restoreBtn}
                             style={{
-                                backgroundColor: this.state.b_2 ? '#2dd5c9' : null,
+                                backgroundColor:'#2dd5c9' ,
                                 width: wp('50%'), height: hp('6%'),
                                 justifyContent: 'center', alignItems: 'center', borderRadius: 25
                             }}
                         >
-                            <Text style={{ color: this.state.b_2 ? 'white' : '#379aff', fontSize: 16,fontFamily: 'Montserrat-Bold',}}>
+                            <Text style={{ color:'white' , fontSize: 16,fontFamily: 'Montserrat-Bold',}}>
                             Create New PeepsID
                                 </Text>
                         </TouchableOpacity>

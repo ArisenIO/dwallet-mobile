@@ -21,6 +21,7 @@ import Create_Pin from '../App_Security/createPin'
 import Confirm_Pin from '../App_Security/confirmPin'
 import Mnemonics from '../Mnemonics/Mnemonics'
 import ConfirmMnemonics from '../Mnemonics/ConfirmMnemonic'
+import BackupphraseMnemonics from '../BackupPhrase/BackupphraseMnemonics'
 
 const Scenes = Actions.create(
     <Scene key='root' >
@@ -100,6 +101,11 @@ const Scenes = Actions.create(
             initial={false}
             hideNavBar={true}
             component={Setting}
+        />
+         <Scene key="BackupphraseMnemonics"
+            initial={false}
+            hideNavBar={true}
+            component={BackupphraseMnemonics}
         />
     </Scene>
 )
