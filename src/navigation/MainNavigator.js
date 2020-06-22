@@ -23,7 +23,6 @@ import Mnemonics from '../Mnemonics/Mnemonics'
 import ConfirmMnemonics from '../Mnemonics/ConfirmMnemonic'
 import BackupphraseMnemonics from '../BackupPhrase/BackupphraseMnemonics'
 import ActiveKeys from '../BackupPhrase/ActiveKeys'
-import PhrasePin from '../BackupPhrase/PhrasePin'
 
 const Scenes = Actions.create(
     <Scene key='root' >
@@ -105,11 +104,6 @@ const Scenes = Actions.create(
             initial={false}
             hideNavBar={true}
             component={ActiveKeys}
-        />
-        <Scene key="PhrasePin"
-            initial={false}
-            hideNavBar={true}
-            component={PhrasePin}
         />
 
     </Scene>
