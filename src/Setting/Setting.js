@@ -81,8 +81,8 @@ class Setting extends Component {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: hp('8%'), width: wp('55%') }}>
                         <Image
                             resizeMode="contain"
-                            source={Icon.lOgout_icon}
-                            style={{ width: wp('5%'), marginTop: 5 }}
+                            source={Icon.changepin_icon}
+                            style={{ width:22,height:22, marginTop: 20}}
                         />
                         <View style={{ justifyContent: 'center', width: wp('75%'), marginLeft: wp('2%') }}>
                             <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold' }}>Change Pin</Text>

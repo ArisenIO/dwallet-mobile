@@ -23,6 +23,8 @@ export default Images ={
     Camera_icon:require('./Image/camera.png'),
     Back_Icn:require('./Image/backIcon.png'),
     done_Icon:require('./Image/done.png'),
+    changepin_icon:require('./Image/changepin.png')
+
 
     // Loader:require('./Image/loader.gif')
 }
