@@ -51,6 +51,9 @@ class Send_money extends Component {
             console.log("after getting data", jsonvalue.pin_code)
             this.setState({ pincode: jsonvalue.pin_code })
         })
+
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
+
     }
 
     componentWillUnmount() {
