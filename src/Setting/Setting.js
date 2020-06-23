@@ -108,11 +108,11 @@ class Setting extends Component {
                     marginTop: 250, borderRadius: 10, width: wp('92%'), maxHeight: Platform.OS === 'ios' ? hp('37%') : hp('30%'), justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    <View style={{ height: hp('28%') }}>
-                        <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ height: hp('35%') }}>
+                        <View style={{ borderBottomWidth: 1, height: hp('10%'), justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={{ fontSize: 20,fontFamily: 'Montserrat-Bold' }}>Alert?</Text>
                         </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 18 }}>
                             <Text style={{ fontSize: 18, textAlign:'center' ,fontFamily: 'Montserrat-Regular'}}>Are you sure you want logout your app?</Text>
                         </View>
                         <View style={{justifyContent:'center', alignItems:'center'}}>
@@ -120,7 +120,7 @@ class Setting extends Component {
                     
                         <View style={{
                             flexDirection: 'row',width:wp('80%'),
-                            justifyContent: 'space-between', height: hp('5%'), marginTop: hp('5%')
+                            justifyContent: 'space-between', height: hp('5%'), marginTop: hp('4%')
                         }}>
                             <TouchableOpacity
                                 style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", 
