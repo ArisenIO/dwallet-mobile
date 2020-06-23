@@ -23,6 +23,8 @@ import Mnemonics from '../Mnemonics/Mnemonics'
 import ConfirmMnemonics from '../Mnemonics/ConfirmMnemonic'
 import BackupphraseMnemonics from '../BackupPhrase/BackupphraseMnemonics'
 import ActiveKeys from '../BackupPhrase/ActiveKeys'
+import ChangePin from '../ChangePin/ChangePin'
+import ConfirmchangePin from '../ChangePin/ConfirmchangePin'
 
 const Scenes = Actions.create(
     <Scene key='root' >
@@ -104,6 +106,16 @@ const Scenes = Actions.create(
             initial={false}
             hideNavBar={true}
             component={ActiveKeys}
+        />
+         <Scene key="ChangePin"
+            initial={false}
+            hideNavBar={true}
+            component={ChangePin}
+        />
+         <Scene key="ConfirmchangePin"
+            initial={false}
+            hideNavBar={true}
+            component={ConfirmchangePin}
         />
 
     </Scene>

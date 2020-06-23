@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image ,BackHandler, Platform} from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Image, BackHandler, Platform } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Icon from '../assets/Icon'
 import { Actions } from 'react-native-router-flux';
@@ -32,11 +32,11 @@ class Setting extends Component {
     }
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.backAction);
-      }
-      backAction = () => {
+    }
+    backAction = () => {
         Actions.pop();
         return true;
-      };
+    };
     writeToClipboard = async () => {
         var copied_data = {
             "Account_name": this.state.account_name,
@@ -44,12 +44,18 @@ class Setting extends Component {
         };
         await Clipboard.setString(JSON.stringify(copied_data));
         Toast.show('Copied', Toast.SHORT);
-        this.setState({isModalVisible2:false})
+        this.setState({ isModalVisible2: false })
     }
     reset_data = () => {
         AsyncStorage.removeItem('items')
         Actions.reset('Splash')
     }
+
+    changePin = () => {
+        Actions.ChangePin()
+    }
+
+
     render() {
         { console.log("resp_name", this.state.account_name) }
         return (
@@ -58,31 +64,48 @@ class Setting extends Component {
                 <View style={styles.header}>
                     <TouchableOpacity
                         onPress={() => { this.backAction() }}
-                        style={{ justifyContent: 'center' , alignItems:'center', }}>
+                        style={{ justifyContent: 'center', alignItems: 'center', }}>
                         <Image source={Icon.Back_icon}
                             style={{ height: 20, tintColor: 'white', width: 20, alignSelf: 'center', marginLeft: '4%' }} />
 
                     </TouchableOpacity>
                     <Text style={{
-                        fontSize: 22, color: 'white', textAlign: 'center', fontFamily: 'Montserrat-Bold' ,
-                        justifyContent: 'center', alignSelf: 'center', marginStart: '2%', 
+                        fontSize: 22, color: 'white', textAlign: 'center', fontFamily: 'Montserrat-Bold',
+                        justifyContent: 'center', alignSelf: 'center', marginStart: '2%',
                     }}>Setting Screen</Text>
                 </View>
+
                 <TouchableOpacity
-                            onPress={() => { this.setState({ isModalVisible: true }) }}
-                            style={{ width: wp('100%'), height: hp('8%'),  justifyContent: 'center' , marginLeft:20}}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: hp('8%'), width: wp('55%')}}>
+                    onPress={() => { this.changePin() }}
+                    style={{ width: wp('100%'), height: hp('8%'), justifyContent: 'center', marginLeft: 20 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: hp('8%'), width: wp('55%') }}>
                         <Image
                             resizeMode="contain"
                             source={Icon.lOgout_icon}
-                            style={{width:wp('5%'), marginTop:5 }}
+                            style={{ width: wp('5%'), marginTop: 5 }}
                         />
-                        <View style={{  justifyContent: 'center', width:wp('75%'), marginLeft:wp('2%')}}>
-                            <Text style={{ fontSize: 20,  fontFamily: 'Montserrat-Bold'  }}>Logout</Text>
+                        <View style={{ justifyContent: 'center', width: wp('75%'), marginLeft: wp('2%') }}>
+                            <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold' }}>Change Pin</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
-                <View style={{width:wp('100%'), height:hp('0.03%'), backgroundColor:'gray'}}></View>
+                <View style={{ width: wp('100%'), height: hp('0.03%'), backgroundColor: 'gray' }}></View>
+
+                <TouchableOpacity
+                    onPress={() => { this.setState({ isModalVisible: true }) }}
+                    style={{ width: wp('100%'), height: hp('8%'), justifyContent: 'center', marginLeft: 20 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: hp('8%'), width: wp('55%') }}>
+                        <Image
+                            resizeMode="contain"
+                            source={Icon.lOgout_icon}
+                            style={{ width: wp('5%'), marginTop: 5 }}
+                        />
+                        <View style={{ justifyContent: 'center', width: wp('75%'), marginLeft: wp('2%') }}>
+                            <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold' }}>Logout</Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
+                <View style={{ width: wp('100%'), height: hp('0.03%'), backgroundColor: 'gray' }}></View>
                 {/* <TouchableOpacity
                  onPress={() => { this.setState({isModalVisible2:true}) }}
                 style={{ width: wp('100%'), height: hp('8%'),  justifyContent: 'center' , marginLeft:20}}>
@@ -102,45 +125,49 @@ class Setting extends Component {
                 </TouchableOpacity> */}
                 {/* reset modal start */}
                 <Modal isVisible={this.state.isModalVisible}
-                 backdropColor='rgba(0,0,0,1)'
-                style={{
-                    backgroundColor: 'white',
-                    marginTop: 250, borderRadius: 10, width: wp('92%'), maxHeight: Platform.OS === 'ios' ? hp('37%') : hp('30%'), justifyContent: 'center',
-                    alignItems: 'center'
-                }}>
+                    backdropColor='rgba(0,0,0,1)'
+                    style={{
+                        backgroundColor: 'white',
+                        marginTop: 250, borderRadius: 10, width: wp('92%'), maxHeight: Platform.OS === 'ios' ? hp('37%') : hp('30%'), justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
                     <View style={{ height: hp('35%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('10%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20,fontFamily: 'Montserrat-Bold' }}>Alert?</Text>
+                            <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold' }}>Alert?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 18 }}>
-                            <Text style={{ fontSize: 18, textAlign:'center' ,fontFamily: 'Montserrat-Regular'}}>Are you sure you want logout your app?</Text>
+                            <Text style={{ fontSize: 18, textAlign: 'center', fontFamily: 'Montserrat-Regular' }}>Are you sure you want logout your app?</Text>
                         </View>
-                        <View style={{justifyContent:'center', alignItems:'center'}}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
 
-                    
-                        <View style={{
-                            flexDirection: 'row',width:wp('80%'),
-                            justifyContent: 'space-between', height: hp('5%'), marginTop: hp('4%')
-                        }}>
-                            <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", 
-                                borderRadius: 20, width: wp('37%') }}
 
-                                // onPress={() => BackHandler.exitApp()}
-                                onPress={() => { this.setState({isModalVisible:false})}}
-                            >
-                                <Text style={{ fontSize: 18,  color: 'white' ,fontFamily: 'Montserrat-Bold' }}>No</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", 
-                                borderRadius: 20, width: wp('37%') }}
+                            <View style={{
+                                flexDirection: 'row', width: wp('80%'),
+                                justifyContent: 'space-between', height: hp('5%'), marginTop: hp('4%')
+                            }}>
+                                <TouchableOpacity
+                                    style={{
+                                        justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                        borderRadius: 20, width: wp('37%')
+                                    }}
 
-                                // onPress={() => BackHandler.exitApp()}
-                                onPress={() => { this.reset_data() }}
-                            >
-                                <Text style={{ fontSize: 18,  color: 'white' ,fontFamily: 'Montserrat-Bold' }}>Yes</Text>
-                            </TouchableOpacity>
-                        </View>
+                                    // onPress={() => BackHandler.exitApp()}
+                                    onPress={() => { this.setState({ isModalVisible: false }) }}
+                                >
+                                    <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Bold' }}>No</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    style={{
+                                        justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                                        borderRadius: 20, width: wp('37%')
+                                    }}
+
+                                    // onPress={() => BackHandler.exitApp()}
+                                    onPress={() => { this.reset_data() }}
+                                >
+                                    <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Bold' }}>Yes</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
 
                     </View>
