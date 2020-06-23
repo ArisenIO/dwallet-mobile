@@ -62,50 +62,13 @@ export default class Mnemonics extends Component {
         }
     }
 
-    // generate_mnemonics = () => {
-    //     wallet = ethers.Wallet.createRandom();
-    //     Mnemonic_List = wallet.mnemonic;
-    //     var array_list = Mnemonic_List.split(/\s+/);
-    //     this.setState({
-    //         Mnemonicslist: Mnemonic_List,
-    //         word1: array_list[0],
-    //         word2: array_list[1],
-    //         word3: array_list[2],
-    //         word4: array_list[3],
-    //         word5: array_list[4],
-    //         word6: array_list[5],
-    //         word7: array_list[6],
-    //         word8: array_list[7],
-    //         word9: array_list[8],
-    //         word10: array_list[9],
-    //         word11: array_list[10],
-    // word12: array_list[11]
-    // })
-
-    // console.log("wallet mnemonic list",array_list[0], Mnemonic_List, ethers.utils.HDNode.isValidMnemonic("shikhar sri"));
-
-    // master = PrivateKey.fromSeed(Mnemonic_List)
-    // ownerPrivate = master.getChildKey('owner')
-    // activePrivate = ownerPrivate.getChildKey('active')
-    // console.log(ownerPrivate.toString(), " ", PrivateKey.fromString(ownerPrivate.toWif()).toPublic().toString(), "   ", activePrivate.toString(), PrivateKey.fromString(activePrivate.toWif()).toPublic().toString())
-    // }
-
-
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.backAction);
     }
 
     backAction = () => {
-        //this.setState({ isModalVisible: !this.state.isModalVisible });
         Actions.pop()
-        // Alert.alert("Hold on!", "Are you sure you want to go back?", [
-        //   {
-        //     text: "Cancel",
-        //     onPress: () => null,
-        //     style: "cancel"
-        //   },
-        //   { text: "YES", onPress: () => BackHandler.exitApp() }
-        // ]);
+      
         return true;
     };
 
@@ -213,10 +176,11 @@ export default class Mnemonics extends Component {
             this.state.Mnemonicslist.push(word11)
             this.state.Mnemonicslist.push(word12)
 
-            console.log('both array compare', this.state.Mnemonicslist, "===========", this.state.list)
             console.log('===========word1', word1, word2, word3, word4, word5, word6, word7, word8, word9, word10, word11, word12,'=====',Mnemonics)
 
             if (JSON.stringify(this.state.list) === JSON.stringify(this.state.Mnemonicslist)) {
+                console.log('Mnemonic_List array compare', Mnemonic_List)
+
                 fetch("https://dmobileapi.arisen.network/avote/account/pass/phrase", {
                     method: 'POST',
                     headers: {
@@ -256,13 +220,10 @@ export default class Mnemonics extends Component {
                             .then(response => response.json())
                             .then((response) => {
 
-                                // this.hideDialog();
 
                                 if (response.success) {
                                     Toast.show("Registered successfully on Blockchain", Toast.LONG);
-                                    // AsyncStorage.setItem(
-                                    //       'creds',
-                                    //       JSON.stringify(copied_data));
+
 
                                     var items = {
                                         'accountName': this.state.AccountName,
@@ -275,15 +236,7 @@ export default class Mnemonics extends Component {
                                         'items', JSON.stringify({ items })
                                     );
 
-                                    //   AsyncStorage.setItem(
-                                    //     'active_keys',this.state.active_private_keys
-                                    //     );
-                                    //     AsyncStorage.setItem(
-                                    //         'new_wallet',"1"
-                                    //         );
-
-
-
+                            
                                     Actions.replace('homepage');
                                 }
                                 else {
@@ -303,40 +256,6 @@ export default class Mnemonics extends Component {
 
         }
 
-        // fetch("https://dmobileapi.arisen.network/avote/account/pass/phrase", {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         phrase: Mnemonic_List
-        //     })
-        // })
-        //     .then(response => response.json())
-        //     .then((response) => {
-        //         console.log("resp_for_check_api====>", response)
-        //         this.setState({
-        //             ActivePrivate: response.activePrivate,
-        //             ActivePublic: response.activePublicKey,
-        //             OwnerPrivate: response.ownerPrivate,
-        //             OwnerPublic: response.ownerPublicKey
-
-        //         }, () => { console.log("active key", this.state.ActivePublic) })
-
-        //         var items = {
-        //             "ActivePrivateKey": this.state.ActivePrivate,
-        //             "ActivePublicKey": this.state.ActivePublic,
-        //             "OwnerPrivate": this.state.OwnerPrivate,
-        //             "OwnerPublic": this.state.OwnerPublic
-        //         }
-        //         AsyncStorage.setItem(
-        //             'items', JSON.stringify({ items })
-        //         );
-
-        //     })
-        //     .catch(error => console.log(error)) //to catch the errors if any
-
     }
 
 
@@ -344,7 +263,6 @@ export default class Mnemonics extends Component {
 
     render() {
 
-        // if (this.state.loading) return <ActivityIndicator size="large" />
 
         return (
             <ScrollView>
