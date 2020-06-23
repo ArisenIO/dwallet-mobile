@@ -229,7 +229,10 @@ export default class Mnemonics extends Component {
                                         'accountName': this.state.AccountName,
                                         'active_keys': this.state.ActivePrivate,
                                         'active_public_keys': this.state.ActivePublic,
-                                        'new_wallet': "1"
+                                        'new_wallet': "1",
+                                        'mnemonic':JSON.stringify({
+                                            phrase: Mnemonic_List
+                                        })
                                     }
 
                                     AsyncStorage.setItem(

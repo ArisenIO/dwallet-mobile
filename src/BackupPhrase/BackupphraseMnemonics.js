@@ -170,7 +170,10 @@ export default class BackupphraseMnemonics extends Component {
                                         'accountName': response.account_names[0],
                                         'active_keys': this.state.ActivePrivate,
                                         'active_public_keys': this.state.ActivePublic,
-                                        'new_wallet': "1"
+                                        'new_wallet': "1",
+                                        'mnemonic': JSON.stringify({
+                                            phrase: mnemonic_list
+                                        })
                                     }
 
                                     AsyncStorage.setItem(
