@@ -15,6 +15,8 @@ import Toast from 'react-native-simple-toast';
 import Loader1 from '../assets/Loader'
 import Icon from '../assets/Icon';
 import Modal from 'react-native-modal';
+import Spinner from 'react-native-loading-spinner-overlay';
+
 
 
 export default class RegisterScreen extends Component {
@@ -31,8 +33,7 @@ export default class RegisterScreen extends Component {
             owner_public_keys: '',
             active_private_keys: '',
             active_public_keys: '',
-            loader_visible: false,
-            isLoading: false
+            spinner: false,
         };
         this.backAction = this.backAction.bind(this);
         console.disableYellowBox = true;
@@ -46,16 +47,9 @@ export default class RegisterScreen extends Component {
     }
     backAction = () => {
         Actions.pop()
-        // Alert.alert("Hold on!", "Are you sure you want to go back?", [
-        //   {
-        //     text: "Cancel",
-        //     onPress: () => null,
-        //     style: "cancel"
-        //   },
-        //   { text: "YES", onPress: () => BackHandler.exitApp() }
-        // ]);
         return true;
     };
+
     // goback = () => {
     //     Actions.Createwallet();
     //     // alert("ok")
@@ -67,21 +61,19 @@ export default class RegisterScreen extends Component {
             this.setState({ checked: true })
         }
     }
+
     getAccountName(AccountName) {
-
         this.setState({ Proceed: false })
-
         var x = this.alphanumeric(AccountName);
         if (x) {
             this.setState({ AccountName: AccountName });
         }
         else {
-            // alert("Not a valid character to enter");
             this.toggleModal()
         }
     }
     _genrate = () => {
-        this.setState({ Proceed: false, isLoading: true })
+        this.setState({ Proceed: false, spinner: true })
         fetch("https://dmobileapi.arisen.network/avote/random/word", {
             method: 'GET'
         })
@@ -89,16 +81,17 @@ export default class RegisterScreen extends Component {
             .then((response) => {
                 console.log("resp_genrate_page__", response.account)
                 this.setState({
-                    AccountName: response.account, isLoading: false
+                    AccountName: response.account, spinner: false
                 }, () => {
-                       AsyncStorage.setItem('accountName',JSON.stringify(this.state.AccountName) )
-                     console.log("resp_in_for_account_token========", JSON.stringify(this.state.AccountName)) })
+                    AsyncStorage.setItem('accountName', JSON.stringify(this.state.AccountName))
+                    console.log("resp_in_for_account_token========", JSON.stringify(this.state.AccountName))
+                })
             })
             .catch(error => console.log(error)) //to catch the errors if any
     }
-    _checkloop = () => {
-        this.setState({ isLoading: true })
 
+    _checkloop = () => {
+        this.setState({ spinner: true })
         var accountname = this.state.AccountName;
         if (accountname.length == 12) {
             Keyboard.dismiss();
@@ -117,10 +110,10 @@ export default class RegisterScreen extends Component {
                     console.log("resp_for_check_api", response)
                     if (response.success == true) {
 
-                        this.setState({ Proceed: true, isLoading: false })
+                        this.setState({ Proceed: true, spinner: false })
                     }
                     else {
-                        this.setState({ Proceed: false, isLoading: false, error_msg: response.message })
+                        this.setState({ Proceed: false, spinner: false, error_msg: response.message })
                         // alert(response.message)
                         // this.setState({})
                         this.toggleModal2()
@@ -129,12 +122,14 @@ export default class RegisterScreen extends Component {
                 .catch(error => console.log(error)) //to catch the errors if any
         }
         else {
-            this.setState({ isLoading: false })
+            this.setState({ spinner: false })
             this.toggleModal3()
         }
     }
     _proceed = () => {
+        this.setState({ spinner: true })
         Actions.replace('Mnemonics')
+        this.setState({ spinner: false })
 
         // this.setState({ isLoading: false })
         // fetch("https://dmobileapi.arisen.network/avote/account/keys", {
@@ -149,7 +144,7 @@ export default class RegisterScreen extends Component {
         // })
         //     .then(response => response.json())
         //     .then((response) => {
-        
+
         //         if (response.success == true) {
 
 
@@ -191,7 +186,7 @@ export default class RegisterScreen extends Component {
     };
 
     hideDialog = () => {
-        this.setState({ isLoading: false });
+        this.setState({ spinner: false });
     };
 
     //   handleCancel = () => {
@@ -206,10 +201,6 @@ export default class RegisterScreen extends Component {
     };
 
     writeToClipboard = async () => {
-        //To copy the text to clipboard
-
-        //  this.setState({loader_visible:true})
-
         var copied_data = {
             "Account_name": this.state.AccountName,
             "owner_public_keys": this.state.owner_public_keys,
@@ -219,11 +210,8 @@ export default class RegisterScreen extends Component {
 
         };
         await Clipboard.setString(JSON.stringify(copied_data));
-
         Toast.show('Copied', Toast.SHORT);
-
-
-
+        this.setState({ spinner: true })
         fetch("https://dmobileapi.arisen.network/avote/register", {
             method: 'POST',
             headers: {
@@ -238,65 +226,69 @@ export default class RegisterScreen extends Component {
         })
             .then(response => response.json())
             .then((response) => {
-
                 this.hideDialog();
-
                 if (response.success) {
-                    Toast.show("Registered successfully on Blockchain", Toast.LONG);
-                    // AsyncStorage.setItem(
-                    //       'creds',
-                    //       JSON.stringify(copied_data));
-
-                    var items = {
-                        'accountName': this.state.AccountName,
-                        'active_keys': this.state.active_private_keys,
-                        'active_public_keys': this.state.active_public_keys,
-                        'new_wallet': "1"
-                    }
-
-                    AsyncStorage.setItem(
-                        'items', JSON.stringify({ items })
-                    );
-
-                    //   AsyncStorage.setItem(
-                    //     'active_keys',this.state.active_private_keys
-                    //     );
-                    //     AsyncStorage.setItem(
-                    //         'new_wallet',"1"
-                    //         );
-
-
-
-                    Actions.replace('homepage');
+                    this.setState({spinner:false},()=>{
+                        Toast.show("Registered successfully on Blockchain", Toast.LONG);
+                        // AsyncStorage.setItem(
+                        //       'creds',
+                        //       JSON.stringify(copied_data));
+                        var items = {
+                            'accountName': this.state.AccountName,
+                            'active_keys': this.state.active_private_keys,
+                            'active_public_keys': this.state.active_public_keys,
+                            'new_wallet': "1"
+                        }
+                        AsyncStorage.setItem(
+                            'items', JSON.stringify({ items })
+                        );
+                        //   AsyncStorage.setItem(
+                        //     'active_keys',this.state.active_private_keys
+                        //     );
+                        //     AsyncStorage.setItem(
+                        //         'new_wallet',"1"
+                        //         );
+                        Actions.replace('homepage');
+                    })
+                } else {
+                    this.setState({spinner:false},()=>{
+                        Toast.show("Not Registered try later", Toast.LONG);
+                    })
                 }
-                else {
-                    Toast.show("Not Registered try later", Toast.LONG);
-                }
-
             })
             .catch(error => console.log(error))
     };
+
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
     };
+
     toggleModal2 = () => {
         this.setState({ isModalVisible2: !this.state.isModalVisible2 });
     };
+
     toggleModal3 = () => {
         this.setState({ isModalVisible3: !this.state.isModalVisible3 });
     };
+    
     toggleModal4 = () => {
         this.setState({ isModalVisible4: !this.state.isModalVisible4 });
     };
 
     render() {
-        if (this.state.isLoading) {
-            return (
-                <Loader1 />
-            )
-        }
+        // if (this.state.isLoading) {
+        //     return (
+        //         <Loader1 />
+        //     )
+        // }
         return (
             <View style={styles.container}>
+                <Spinner
+                    visible={this.state.spinner}
+                    textContent={'Loading...'}
+                    textStyle={styles.spinnerTextStyle}
+                />
+
                 <View style={styles.header}>
                     <TouchableOpacity
                         style={{ justifyContent: 'center', alignItems: 'center' }}
@@ -409,7 +401,7 @@ export default class RegisterScreen extends Component {
                                 onPress={() => { this._proceed() }}
                             >
                                 <Text style={{ color: '#fff', fontFamily: 'Montserrat-Bold', fontSize: 15 }}>
-                                Generate keys
+                                    Generate keys
                     </Text>
                             </TouchableOpacity>
                         </View>
@@ -690,15 +682,12 @@ export default class RegisterScreen extends Component {
                                     justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
                                     borderRadius: 20, width: wp('40%'), height: hp('5%'),
                                 }}
-
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal4() }}
                             >
                                 <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Bold', }}>Ok</Text>
                             </TouchableOpacity>
-
                         </View>
-
                     </View>
                 </Modal>
                 {/* Modal 4 End */}
@@ -717,5 +706,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: "#4383fc",
         height: 60,
+    },
+    spinnerTextStyle: {
+        color: '#FFF'
     }
+
 });

@@ -13,6 +13,7 @@ import Icon from '../assets/Icon'
 import Modal from 'react-native-modal';
 import { CameraKitCameraScreen, } from 'react-native-camera-kit';
 import ReactNativePinView from "react-native-pin-view"
+import Spinner from 'react-native-loading-spinner-overlay';
 
 
 class Send_money extends Component {
@@ -31,7 +32,8 @@ class Send_money extends Component {
             opneScanner: false,
             cam: false,
             confirmedpinview: true,
-            pincode: ''
+            pincode: '',
+            spinner: false
 
         }
         this.backAction = this.backAction.bind(this);
@@ -51,9 +53,7 @@ class Send_money extends Component {
             console.log("after getting data", jsonvalue.pin_code)
             this.setState({ pincode: jsonvalue.pin_code })
         })
-
         BackHandler.addEventListener("hardwareBackPress", this.backAction);
-
     }
 
     componentWillUnmount() {
@@ -176,7 +176,7 @@ class Send_money extends Component {
     Create = () => {
         console.log("callin", this.state.pincode, this.state.enteredPin);
         if (this.state.pincode == this.state.enteredPin) {
-            this.setState({ isLoading: true, confirmedpinview: true, })
+            this.setState({ spinner: true, confirmedpinview: true, })
             var to_name = this.state.to_account_name;
             var quantity_ = parseFloat(this.state.quantity).toFixed(4);
             console.log("account name", to_name, quantity_);
@@ -196,7 +196,7 @@ class Send_money extends Component {
             })
                 .then(response => response.json())
                 .then((response) => {
-                    this.setState({ isLoading: false })
+                    this.setState({ spinner: false })
                     console.log("_resp_for_transfer_", response, " TRANSACTION ", response)
                     if (response.success) {
                         var hash = response.transfer.transaction_id;
@@ -233,6 +233,11 @@ class Send_money extends Component {
         if (!this.state.opneScanner) {
             return (
                 <View style={styles.container}>
+                    <Spinner
+                        visible={this.state.spinner}
+                        textContent={'Loading...'}
+                        textStyle={styles.spinnerTextStyle}
+                    />
                     <View style={styles.header}>
                         <TouchableOpacity
                             style={{ justifyContent: 'center', alignItems: 'center', }}
@@ -318,15 +323,15 @@ class Send_money extends Component {
                             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                                 <TouchableOpacity
                                     onPress={() => { this._transfer() }}
-                                    style={{justifyContent: 'center', alignItems: 'center', width: wp('42%'), height: hp('6%'),borderRadius: 15, backgroundColor: '#2dd5c9', marginTop: 20 }} >
+                                    style={{ justifyContent: 'center', alignItems: 'center', width: wp('42%'), height: hp('6%'), borderRadius: 15, backgroundColor: '#2dd5c9', marginTop: 20 }} >
                                     <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Bold' }}>Send</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
-                         :
+                        :
                         <View>
                             <View style={{ marginVertical: hp('7%') }}>
-                                <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold',textAlign:'center' }}>Enter your security pincode</Text>
+                                <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold', textAlign: 'center' }}>Enter your security pincode</Text>
                             </View>
                             <ReactNativePinView
                                 inputSize={32}
@@ -428,7 +433,7 @@ class Send_money extends Component {
                     {/*  start Modal for api response */}
                     <Modal isVisible={this.state.isModalVisible1}
                         // backdropColor='rgba(0,0,0,1)'
-                        style={{backgroundColor: 'white',marginTop: 260, borderRadius: 20, width: wp('92%'), maxHeight: Platform.OS === "ios" ? hp('42%') : hp('40%'), justifyContent: 'center',alignItems: 'center'}}>
+                        style={{ backgroundColor: 'white', marginTop: 260, borderRadius: 20, width: wp('92%'), maxHeight: Platform.OS === "ios" ? hp('42%') : hp('40%'), justifyContent: 'center', alignItems: 'center' }}>
                         <View style={{ height: hp('28%') }}>
                             <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
                                 <Text style={{ fontSize: 18, fontFamily: 'Montserrat-Bold' }}>RIX Sent Successfully</Text>
@@ -437,17 +442,17 @@ class Send_money extends Component {
                                 <Text style={{ fontSize: 13, textAlign: 'center', color: 'blue', fontFamily: 'Montserrat-Regular' }}>Your Transaction Id is {this.state.transaction_hash}</Text>
                             </View>
                             <View style={{ width: wp('90%'), height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                                <View style={{justifyContent: 'space-around', alignItems: 'center',height: hp('8%'), marginTop: hp('5%'), width: wp('90%'), flexDirection: 'row'}}>
+                                <View style={{ justifyContent: 'space-around', alignItems: 'center', height: hp('8%'), marginTop: hp('5%'), width: wp('90%'), flexDirection: 'row' }}>
                                     <TouchableOpacity
-                                        style={{justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",borderRadius: 20, width: wp('45%'), height: hp('5%')}}
-                                        onPress={() => {Linking.openURL("https://data.arisen.network/accounts/" + this.state.to_account_name)}}>
-                                        <Text style={{ fontSize: 12, color: 'white', fontFamily: 'Montserrat-Bold',textAlign:'center' }}>Check Via Arisen Explorer</Text>
+                                        style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: wp('45%'), height: hp('5%') }}
+                                        onPress={() => { Linking.openURL("https://data.arisen.network/accounts/" + this.state.to_account_name) }}>
+                                        <Text style={{ fontSize: 12, color: 'white', fontFamily: 'Montserrat-Bold', textAlign: 'center' }}>Check Via Arisen Explorer</Text>
                                     </TouchableOpacity>
 
                                     <TouchableOpacity
-                                        style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: wp('45%'), height: hp('5%')}}
+                                        style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9", borderRadius: 20, width: wp('45%'), height: hp('5%') }}
                                         onPress={() => { this.toggleModal1() }} >
-                                        <Text style={{ fontSize: 12, color: 'white', fontFamily: 'Montserrat-Bold',textAlign:"center" }}>Cancel</Text>
+                                        <Text style={{ fontSize: 12, color: 'white', fontFamily: 'Montserrat-Bold', textAlign: "center" }}>Cancel</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
@@ -563,5 +568,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#4383fc',
         height: 60,
+    },
+    spinnerTextStyle: {
+        color: '#FFF'
     }
 })

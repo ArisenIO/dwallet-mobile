@@ -9,8 +9,7 @@ import Icons from '../assets/Icon'
 import Toast from 'react-native-simple-toast';
 import Clipboard from '@react-native-community/clipboard'
 import Modal from 'react-native-modal';
-//import { PrivateKey } from '../../node_modules/@arisencore/ecc/lib/api_object'
-
+import Spinner from 'react-native-loading-spinner-overlay';
 const ethers = require('ethers');
 
 
@@ -33,7 +32,8 @@ export default class BackupphraseMnemonics extends Component {
             word10: '',
             word11: '',
             word12: '',
-            AccountName: ''
+            AccountName: '',
+            spinner: false
         };
         console.disableYellowBox = true;
         this.backAction = this.backAction.bind(this);
@@ -41,27 +41,15 @@ export default class BackupphraseMnemonics extends Component {
     }
 
     async componentDidMount() {
-       
         BackHandler.addEventListener("hardwareBackPress", this.backAction);
-
     }
-
 
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.backAction);
     }
 
     backAction = () => {
-        //this.setState({ isModalVisible: !this.state.isModalVisible });
         Actions.pop()
-        // Alert.alert("Hold on!", "Are you sure you want to go back?", [
-        //   {
-        //     text: "Cancel",
-        //     onPress: () => null,
-        //     style: "cancel"
-        //   },
-        //   { text: "YES", onPress: () => BackHandler.exitApp() }
-        // ]);
         return true;
     };
 
@@ -110,99 +98,85 @@ export default class BackupphraseMnemonics extends Component {
             Toast.show('Enter 11th Mnemonics', Toast.SHORT);
         } else if (word12 == "" || word12 == null) {
             Toast.show('Enter 12th Mnemonics', Toast.SHORT);
-        }
-       
-        else {
-
-            let mnemonic_list = word1 + " " + word2 + " " + word3 + " " + word4 + " " + word5 + " " + word6 + " " +word7 + " " + word8 + " " + word9 + " " +word10 + " " + word11 + " " + word12
-
+        } else {
+            let mnemonic_list = word1 + " " + word2 + " " + word3 + " " + word4 + " " + word5 + " " + word6 + " " + word7 + " " + word8 + " " + word9 + " " + word10 + " " + word11 + " " + word12
             this.state.Mnemonicslist = mnemonic_list;
-        console.log("list words",mnemonic_list);
-            
-                fetch("https://dmobileapi.arisen.network/avote/account/pass/phrase", {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        phrase: mnemonic_list
-                    })
+            console.log("list words", mnemonic_list);
+            this.setState({ spinner: true })
+            fetch("https://dmobileapi.arisen.network/avote/account/pass/phrase", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    phrase: mnemonic_list
                 })
-                    .then(response => response.json())
-                    .then((response) => {
-                        console.log("resp_for_check_api====>", response)
-                        if(response.message){
-                            this.setState({ error_msg: response.message })
-                            this.toggleModal3()
-
-                            // Toast.show("Backup phrase did not match any PeepsID. Try again.", Toast.SHORT);
-
-                        }
-                        else{
+            })
+                .then(response => response.json())
+                .then((response) => {
+                    console.log("resp_for_check_api====>", response)
+                    if (response.message) {
+                        this.setState({ error_msg: response.message })
+                        this.toggleModal3()
+                        // Toast.show("Backup phrase did not match any PeepsID. Try again.", Toast.SHORT);
+                    }
+                    else {
                         this.setState({
                             ActivePrivate: response.activePrivate,
                             ActivePublic: response.activePublicKey,
                             OwnerPrivate: response.ownerPrivate,
                             OwnerPublic: response.ownerPublicKey
-
                         }, () => {
-
-
                             fetch("https://dmobileapi.arisen.network/avote/search", {
-                            method: 'POST',
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                text: this.state.ActivePublic
+                                method: 'POST',
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    text: this.state.ActivePublic
+                                })
                             })
-                        })
-                            .then(response => response.json())
-                            .then((response) => {
-
-                                console.log("account name", response.account_names[0]);
-                                if (response.account_names[0]) {
-                                    Toast.show("Imported successfully", Toast.LONG);
-                                   
-                                    var items = {
-                                        'accountName': response.account_names[0],
-                                        'active_keys': this.state.ActivePrivate,
-                                        'active_public_keys': this.state.ActivePublic,
-                                        'new_wallet': "1",
-                                        'mnemonic': JSON.stringify({
-                                            phrase: mnemonic_list
+                                .then(response => response.json())
+                                .then((response) => {
+                                    console.log("account name", response.account_names[0]);
+                                    if (response.account_names[0]) {
+                                        this.setState({ spinner: false }, () => {
+                                            Toast.show("Imported successfully", Toast.LONG);
+                                            var items = {
+                                                'accountName': response.account_names[0],
+                                                'active_keys': this.state.ActivePrivate,
+                                                'active_public_keys': this.state.ActivePublic,
+                                                'new_wallet': "1",
+                                                'mnemonic': JSON.stringify({
+                                                    phrase: mnemonic_list
+                                                })
+                                            }
+                                            AsyncStorage.setItem(
+                                                'items', JSON.stringify({ items })
+                                            );
+                                            Actions.replace('homepage');
                                         })
                                     }
-
-                                    AsyncStorage.setItem(
-                                        'items', JSON.stringify({ items })
-                                    );
-
-                               
-                                    Actions.replace('homepage');
-                                }
-                                else {
-                                    Toast.show("Try later", Toast.LONG);
-                                }
-
-                            })
-
-
+                                    else {
+                                        this.setState({ spinner: false }, () => {
+                                            Toast.show("Try later", Toast.LONG);
+                                        })
+                                    }
+                                })
                         })
                     }
-                    })
-                
-                    .catch(error => {
-                        Toast.show(error, Toast.SHORT)
-                    }) 
-                
-           
+                })
+                .catch(error => {
+                    Toast.show(error, Toast.SHORT)
+                })
+
+
 
         }
 
-     
+
     }
 
 
@@ -212,7 +186,11 @@ export default class BackupphraseMnemonics extends Component {
         return (
             <ScrollView>
                 <View style={styles.container}>
-
+                    <Spinner
+                        visible={this.state.spinner}
+                        textContent={'Loading...'}
+                        textStyle={styles.spinnerTextStyle}
+                    />
                     <View style={styles.header}>
                         <TouchableOpacity
                             style={{ justifyContent: 'center', alignItems: 'center' }}
@@ -514,7 +492,7 @@ export default class BackupphraseMnemonics extends Component {
                                 justifyContent: 'center', alignItems: 'center', borderRadius: 25
                             }}
                         >
-                            <Text style={{ color:'white', fontSize: 17, fontFamily: 'Montserrat-Bold' }}>
+                            <Text style={{ color: 'white', fontSize: 17, fontFamily: 'Montserrat-Bold' }}>
                                 Next
                             </Text>
                         </TouchableOpacity>
@@ -524,8 +502,8 @@ export default class BackupphraseMnemonics extends Component {
                     {/* </View> */}
                 </View>
 
-  {/* Modal Start */}
-  <Modal isVisible={this.state.isModalVisible3}
+                {/* Modal Start */}
+                <Modal isVisible={this.state.isModalVisible3}
                     backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
@@ -577,5 +555,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: "#4383fc",
         height: 60,
+    },
+    spinnerTextStyle: {
+        color: '#FFF'
     }
 });

@@ -9,7 +9,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import Toast from 'react-native-simple-toast';
 import Clipboard from '@react-native-community/clipboard'
 import Modal from 'react-native-modal';
-//import { PrivateKey } from '../../node_modules/@arisencore/ecc/lib/api_object'
+import Spinner from 'react-native-loading-spinner-overlay';
 
 const ethers = require('ethers');
 
@@ -31,7 +31,9 @@ export default class Mnemonics extends Component {
             word9: '',
             word10: '',
             word11: '',
-            word12: ''
+            word12: '',
+            spinner: false,
+
         };
         console.disableYellowBox = true;
         this.backAction = this.backAction.bind(this);
@@ -63,11 +65,12 @@ export default class Mnemonics extends Component {
             word9: array_list[8],
             word10: array_list[9],
             word11: array_list[10],
-            word12: array_list[11]
+            word12: array_list[11],
 
-        },()=>{
-            AsyncStorage.setItem('MnemonicsList',this.state.Mnemonicslist)
-            console.log("string list length", array_list[0],'second item asyncstorage',this.state.Mnemonicslist);
+
+        }, () => {
+            AsyncStorage.setItem('MnemonicsList', this.state.Mnemonicslist)
+            console.log("string list length", array_list[0], 'second item asyncstorage', this.state.Mnemonicslist);
 
         })
 
@@ -105,25 +108,25 @@ export default class Mnemonics extends Component {
 
 
     createBtn = () => {
-      
+
         Actions.replace('ConfirmMnemonics')
     }
 
 
     copyClipboard = async () => {
         var copied_data = {
-            "1- ":this.state.word1,
-            "2- ":this.state.word2,
-            "3- ":this.state.word3,
-            "4- ":this.state.word4,
-            "5- ":this.state.word5,
-            "6- ":this.state.word6,
-            "7- ":this.state.word7,
-            "8- ":this.state.word8,
-            "9- ":this.state.word9,
-            "10- ":this.state.word10,
-            "11- ":this.state.word11,
-            "12- ":this.state.word12
+            "1- ": this.state.word1,
+            "2- ": this.state.word2,
+            "3- ": this.state.word3,
+            "4- ": this.state.word4,
+            "5- ": this.state.word5,
+            "6- ": this.state.word6,
+            "7- ": this.state.word7,
+            "8- ": this.state.word8,
+            "9- ": this.state.word9,
+            "10- ": this.state.word10,
+            "11- ": this.state.word11,
+            "12- ": this.state.word12
         };
         await Clipboard.setString(JSON.stringify(copied_data));
 
@@ -133,18 +136,26 @@ export default class Mnemonics extends Component {
 
     render() {
 
-        // if (this.state.loading) return <ActivityIndicator size="large" />
+        if (this.state.spinner==false){
+            console.log('render')
+        }
 
         return (
             <ScrollView>
                 <View style={styles.container}>
+
+                    <Spinner
+                        visible={this.state.spinner}
+                        textContent={'Loading...'}
+                        textStyle={styles.spinnerTextStyle}
+                    />
 
                     <View style={{ width: wp('100%'), height: Platform.OS === 'ios' ? hp('7%') : hp('5%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('3%') }}>
                         <Text style={{ color: '#505050', fontFamily: 'Montserrat-Bold', fontSize: 22 }}>Your Mnemonic Phrase</Text>
                     </View>
 
                     <View style={{ width: wp('100%'), height: Platform.OS === 'ios' ? hp('7%') : hp('5%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('3%') }}>
-                        <Text style={{ color: '#505050', fontFamily: 'Montserrat-Bold', fontSize: 14,textAlign:'center' }}>Below is your twelve word backup phrase.Please write it down and keep it in a safe place.</Text>
+                        <Text style={{ color: '#505050', fontFamily: 'Montserrat-Bold', fontSize: 14, textAlign: 'center' }}>Below is your twelve word backup phrase.Please write it down and keep it in a safe place.</Text>
                     </View>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('5%'), width: wp('100%') }}>
@@ -320,7 +331,7 @@ export default class Mnemonics extends Component {
                                 }}
                             >
                                 <Text style={{ color: this.state.b_2 ? '#379aff' : 'white', fontSize: 13, fontFamily: 'Montserrat-Bold', }}>
-                                I Wrote It Down
+                                    I Wrote It Down
                             </Text>
                             </TouchableOpacity>
                         </View>
@@ -410,5 +421,8 @@ const styles = StyleSheet.create({
         // justifyContent: 'space-between',
         // marginHorizontal: hp('1%'),
         flexDirection: "row"
-    }
+    },
+    spinnerTextStyle: {
+        color: '#FFF'
+      }
 });

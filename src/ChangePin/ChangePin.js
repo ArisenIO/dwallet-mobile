@@ -73,7 +73,7 @@ class ChangePin extends Component {
                         style={{ width: wp('40%'), height: hp('20%'), }}
                     />
                     <View style={{ marginVertical: hp('5%') }}>
-                        <Text style={{ fontSize: 25 }}>Confirm your security pincode</Text>
+                        <Text style={{ fontSize: 20,fontFamily: 'Montserrat-Bold' }}>Confirm your security pincode</Text>
                     </View>
                     <ReactNativePinView
                         inputSize={32}

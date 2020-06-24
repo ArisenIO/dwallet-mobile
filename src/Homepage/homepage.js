@@ -3,13 +3,15 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, Text,
-    TouchableOpacity, Image, ScrollView, BackHandler, Alert, Platform ,RefreshControl
+    TouchableOpacity, Image, ScrollView, BackHandler, Alert, Platform, RefreshControl
 } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-community/async-storage';
 import Loader1 from '../assets/Loader'
 import Icon from '../assets/Icon'
 import Modal from 'react-native-modal';
+import Spinner from 'react-native-loading-spinner-overlay';
+
 
 
 
@@ -27,10 +29,11 @@ export default class Homepage extends Component {
             owner_public_key: '',
             active_public_key: '',
             isLoading: true,
-            refreshing:false
+            refreshing: false,
+            spinner: false
+
         };
         this.backAction = this.backAction.bind(this);
-
         console.disableYellowBox = true;
     }
     componentDidMount() {
@@ -41,9 +44,9 @@ export default class Homepage extends Component {
     componentWillUnmount() {
         // BackHandler.removeEventListener("hardwareBackPress", this.backAction);
 
-    if (Platform.OS == "android") {
-        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
-  }
+        if (Platform.OS == "android") {
+            BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+        }
     }
     backAction = () => {
         this.setState({ isModalVisible2: !this.state.isModalVisible2 });
@@ -53,12 +56,11 @@ export default class Homepage extends Component {
         try {
             AsyncStorage.getItem('items').then((value) => {
                 var parsed_value = JSON.parse(value);
-
                 var account_name = parsed_value.items.accountName;
-
                 this.setState({
                     AccountName: parsed_value.items.accountName,
-                    active_private_key: parsed_value.items.active_keys
+                    active_private_key: parsed_value.items.active_keys,
+                    spinner:true
                 })
                 fetch("https://dmobileapi.arisen.network/avote/search", {
                     method: 'POST',
@@ -72,8 +74,8 @@ export default class Homepage extends Component {
                 })
                     .then(response => response.json())
                     .then((response) => {
+                        this.setState({ spinner: false })
                         if (response.success == true) {
-                            this.setState({ isLoading: false })
                             if (response.account.core_liquid_balance) {
                                 this.setState({ core_liquid_balance: response.account.core_liquid_balance })
                             }
@@ -85,7 +87,7 @@ export default class Homepage extends Component {
                             var stakedtoself = cpu_weigt + net_weight;
                             this.setState({ staked_to_self: stakedtoself })
                             var totalBalance = stakedtoself + parseFloat(this.state.core_liquid_balance);
-                            this.setState({ total_balance: totalBalance ,refreshing: false})
+                            this.setState({ total_balance: totalBalance, refreshing: false })
 
                         }
                         else {
@@ -102,27 +104,27 @@ export default class Homepage extends Component {
             // Error retrieving data
         }
     };
+
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
     };
+
     _transferFunds = () => {
         Actions.Send_money();
-        // alert("ok")
     }
+
     recieve_RIX = () => {
         Actions.Recieve();
     }
+
     setting = () => {
         Actions.Setting();
     }
 
-    
     _onRefresh = () => {
-        this.setState({refreshing: true});
-        
-            this._retrieveData()
-   
-      }
+        this.setState({ refreshing: true,spinner:false });
+        this._retrieveData()
+    }
 
     render() {
         // if(this.state.isLoading){
@@ -132,24 +134,28 @@ export default class Homepage extends Component {
         //   }
         return (
             <View style={styles.container}>
+                <Spinner
+                    visible={this.state.spinner}
+                    textContent={'Loading...'}
+                    textStyle={styles.spinnerTextStyle}
+                />
                 <View style={styles.header}>
                     {Platform.OS == "ios" ? null :
-                    <TouchableOpacity
-                        onPress={() => { this.backAction() }}
-                        style={{ justifyContent: 'center', width: wp('10%') }}>
-                        <Image source={Icon.Back_icon}
-                        resizeMode="contain"
-                        resizeMethod="resize"
-                            style={{ height: 20, tintColor: 'white', width: 20, alignSelf: 'center', marginLeft: '4%' }} />
-                    </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => { this.backAction() }}
+                            style={{ justifyContent: 'center', width: wp('10%') }}>
+                            <Image source={Icon.Back_icon}
+                                resizeMode="contain"
+                                resizeMethod="resize"
+                                style={{ height: 20, tintColor: 'white', width: 20, alignSelf: 'center', marginLeft: '4%' }} />
+                        </TouchableOpacity>
                     }
 
                     <View style={{ justifyContent: 'center', alignItems: 'center', width: wp('80%') }}>
                         <Text style={{
-                            fontSize: 22, color: 'white', textAlign: 'center', 
+                            fontSize: 22, color: 'white', textAlign: 'center',
                             fontFamily: 'Montserrat-Bold',
-                            
-                            justifyContent: 'center', alignSelf: 'center', marginStart: Platform.OS==="ios" ? "12%" : "2%"
+                            justifyContent: 'center', alignSelf: 'center', marginStart: Platform.OS === "ios" ? "12%" : "2%"
                         }}>Your Account Details</Text>
                     </View>
                     <View style={{ justifyContent: 'center', flexDirection: 'row', alignItems: 'center', width: wp('10%'), }}>
@@ -165,11 +171,11 @@ export default class Homepage extends Component {
                     </View>
                 </View>
                 <ScrollView refreshControl={
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this._onRefresh}
-          />
-        }
+                    <RefreshControl
+                        refreshing={this.state.refreshing}
+                        onRefresh={this._onRefresh}
+                    />
+                }
                 >
                     <View style={{
                         backgroundColor: '#4383fc', height: hp('22%'), width: wp('100%'),
@@ -197,12 +203,12 @@ export default class Homepage extends Component {
                                 }}>
 
                                     <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Regular', }}>Your RIX AccountName</Text>
-                                   <View style={{justifyContent:'center', alignItems:'center',height:Platform.OS==="ios" ? hp('10%') : hp('5%'), marginTop: 15,}}>
-                                   <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Bold', fontSize: 25 }}>
-                                        {/* hfgjdh */}
-                                        {this.state.AccountName}
-                                    </Text>
-                                   </View>
+                                    <View style={{ justifyContent: 'center', alignItems: 'center', height: Platform.OS === "ios" ? hp('10%') : hp('5%'), marginTop: 15, }}>
+                                        <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Bold', fontSize: 25 }}>
+                                            {/* hfgjdh */}
+                                            {this.state.AccountName}
+                                        </Text>
+                                    </View>
                                 </View>
                                 {/* <Text style={{ color: '#ffffff', }}>Balance Statement -></Text> */}
                             </View>
@@ -292,10 +298,10 @@ export default class Homepage extends Component {
                             }}>
                             <View style={{ height: hp('28%') }}>
                                 <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold'  }}>Error?</Text>
+                                    <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold' }}>Error?</Text>
                                 </View>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                                    <Text style={{ fontSize: 18, textAlign: 'center' ,fontFamily: 'Montserrat-Regular' }}>{this.state.error_msg}</Text>
+                                    <Text style={{ fontSize: 18, textAlign: 'center', fontFamily: 'Montserrat-Regular' }}>{this.state.error_msg}</Text>
                                 </View>
                                 <View style={{
                                     justifyContent: 'center', alignItems: 'center',
@@ -310,7 +316,7 @@ export default class Homepage extends Component {
                                         // onPress={() => BackHandler.exitApp()}
                                         onPress={() => { this.toggleModal() }}
                                     >
-                                        <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Bold' }}>Ok</Text>
+                                        <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Bold' }}>Ok</Text>
                                     </TouchableOpacity>
 
                                 </View>
@@ -324,15 +330,15 @@ export default class Homepage extends Component {
                             backdropColor='rgba(0,0,0,1)'
                             style={{
                                 backgroundColor: 'white',
-                                marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: Platform.OS === 'ios' ? hp('33%') : hp('30%'),  justifyContent: 'center',
+                                marginTop: 260, borderRadius: 10, width: wp('90%'), maxHeight: Platform.OS === 'ios' ? hp('33%') : hp('30%'), justifyContent: 'center',
                                 alignItems: 'center'
                             }}>
                             <View style={{ height: hp('28%') }}>
                                 <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={{ fontSize: 20,fontFamily: 'Montserrat-Bold'}}>Exit?</Text>
+                                    <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold' }}>Exit?</Text>
                                 </View>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
-                                    <Text style={{ fontSize: 18, textAlign: 'center',fontFamily: 'Montserrat-Regular'  }}>Are you sure you want exit app?</Text>
+                                    <Text style={{ fontSize: 18, textAlign: 'center', fontFamily: 'Montserrat-Regular' }}>Are you sure you want exit app?</Text>
                                 </View>
                                 <View style={{
                                     flexDirection: 'row',
@@ -347,7 +353,7 @@ export default class Homepage extends Component {
                                         // onPress={() => BackHandler.exitApp()}
                                         onPress={() => { this.setState({ isModalVisible2: false }) }}
                                     >
-                                        <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Bold' }}>No</Text>
+                                        <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Bold' }}>No</Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity
                                         style={{
@@ -358,7 +364,7 @@ export default class Homepage extends Component {
                                         // onPress={() => BackHandler.exitApp()}
                                         onPress={() => { BackHandler.exitApp() }}
                                     >
-                                        <Text style={{ fontSize: 18, color: 'white',fontFamily: 'Montserrat-Bold' }}>Yes</Text>
+                                        <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Bold' }}>Yes</Text>
                                     </TouchableOpacity>
                                 </View>
 
@@ -472,5 +478,8 @@ const styles = StyleSheet.create({
     },
     btn_text: {
         color: "white"
+    },
+    spinnerTextStyle: {
+        color: '#FFF'
     }
 });

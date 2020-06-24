@@ -12,6 +12,7 @@ import Toast from 'react-native-simple-toast';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Icon from '../assets/Icon'
 import Modal from 'react-native-modal';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 export default class ActiveKeys extends Component {
     constructor(props) {
@@ -20,7 +21,8 @@ export default class ActiveKeys extends Component {
             AccountValue: 'RIX',
             showPvtkey: true,
             confirmpvtkey: '',
-            btnState: false
+            btnState: false,
+            spinner:false
         };
         this.backAction = this.backAction.bind(this);
 
@@ -67,6 +69,7 @@ export default class ActiveKeys extends Component {
         console.log('import key screen')
         if (this.state.AccountName_status) {
             if (this.state.txtStatus) {
+                this.setState({spinner:true})
                 fetch("https://dmobileapi.arisen.network/avote/account/info", {
                     method: 'POST',
                     headers: {
@@ -80,6 +83,7 @@ export default class ActiveKeys extends Component {
                 })
                     .then(response => response.json())
                     .then((response) => {
+                        this.setState({spinner:false})
                         if (response.success == true) {
                             var items = {
                                 'accountName': (this.state.account).trim(),
@@ -139,6 +143,11 @@ export default class ActiveKeys extends Component {
         return (
             <ScrollView>
                 <View style={styles.container}>
+                    <Spinner
+                        visible={this.state.spinner}
+                        textContent={'Loading...'}
+                        textStyle={styles.spinnerTextStyle}
+                    />
                     <View style={styles.header}>
                         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                             <TouchableOpacity
@@ -336,5 +345,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#4383fc',
         height: 60,
         // backgroundColor:'red'
+    },
+    spinnerTextStyle: {
+        color: '#FFF'
     }
 });

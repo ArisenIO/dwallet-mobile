@@ -20,20 +20,9 @@ class ConfirmchangePin extends Component {
         };
     }
     componentDidMount() {
-        // AsyncStorage.getItem('pin_code').then(resp => {
-        //   console.log("after getting data", resp)
-        //   if (resp != null) {
-        //     this.setState({ myData: JSON.parse(resp), myData_status: true }, () => {
-        //       console.log("app pin from last page.", this.state.myData.pin_code)
-        //     })
-        //   }
-        //   else {
-        //     this.setState({ myData_status: false }, () => {
-        //       console.log("there is any previous data?", this.state.myData_status)
-        //     })
-        //   }
-        // })
+       
     }
+
     enterValue = (value) => {
         this.setState({ enteredPin: value }, () => {
             if (this.state.enteredPin.length > 0) {
@@ -50,8 +39,8 @@ class ConfirmchangePin extends Component {
             console.log("Ok..", this.state.enteredPin)
         })
     }
+
     confirm = () => {
-        console.log('confirm==========', this.state.enteredPin)
         if (this.state.enteredPin) {
             var pin_code = { "pin_code": this.state.enteredPin }
             AsyncStorage.setItem('pin_code', JSON.stringify(pin_code)).then((resp) => {
@@ -70,6 +59,7 @@ class ConfirmchangePin extends Component {
             Alert.alert("Enter Corrert Pin")
         }
     }
+    
     render() {
         return (
             <>
@@ -83,7 +73,7 @@ class ConfirmchangePin extends Component {
                         style={{ width: wp('40%'), height: hp('20%'), }}
                     />
                     <View style={{ marginVertical: hp('5%') }}>
-                        <Text style={{ fontSize: 25 }}>Change your security pincode</Text>
+                        <Text style={{fontSize: 20,fontFamily: 'Montserrat-Bold' }}>Change your security pincode</Text>
                     </View>
                     <ReactNativePinView
                         inputSize={32}

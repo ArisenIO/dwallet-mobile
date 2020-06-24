@@ -9,7 +9,7 @@ import Icons from '../assets/Icon'
 import Toast from 'react-native-simple-toast';
 import Clipboard from '@react-native-community/clipboard'
 import Modal from 'react-native-modal';
-//import { PrivateKey } from '../../node_modules/@arisencore/ecc/lib/api_object'
+import Spinner from 'react-native-loading-spinner-overlay';
 
 const ethers = require('ethers');
 
@@ -33,7 +33,8 @@ export default class Mnemonics extends Component {
             word10: '',
             word11: '',
             word12: '',
-            AccountName: ''
+            AccountName: '',
+            spinner: false
         };
         console.disableYellowBox = true;
         this.backAction = this.backAction.bind(this);
@@ -41,12 +42,9 @@ export default class Mnemonics extends Component {
     }
 
     async componentDidMount() {
-        // this.generate_mnemonics()
         try {
-
-            var accountname = await AsyncStorage.getItem('accountName')
+            let accountname = await AsyncStorage.getItem('accountName')
             this.setState({ AccountName: JSON.parse(accountname) })
-            console.log('================================accountname', JSON.parse(accountname))
             BackHandler.addEventListener("hardwareBackPress", this.backAction);
             AsyncStorage.getItem('MnemonicsList').then(resp => {
                 if (resp) {
@@ -68,13 +66,11 @@ export default class Mnemonics extends Component {
 
     backAction = () => {
         Actions.pop()
-      
         return true;
     };
 
 
     createBtn = () => {
-        console.log('button clicked', this.state.AccountName)
         let word1 = this.state.word1.trim()
         let word2 = this.state.word2.trim()
         let word3 = this.state.word3.trim()
@@ -118,51 +114,37 @@ export default class Mnemonics extends Component {
         }
         else if (word2 != this.state.list[1]) {
             Toast.show('2nd word is not correct', Toast.SHORT)
-
         }
         else if (word3 != this.state.list[2]) {
             Toast.show('3rd word is not correct', Toast.SHORT)
-
         }
         else if (word4 != this.state.list[3]) {
             Toast.show('4th word is not correct', Toast.SHORT)
-
         }
         else if (word5 != this.state.list[4]) {
             Toast.show('5th word is not correct', Toast.SHORT)
-
         }
         else if (word6 != this.state.list[5]) {
             Toast.show('6th word is not correct', Toast.SHORT)
-
         }
         else if (word7 != this.state.list[6]) {
             Toast.show('7th word is not correct', Toast.SHORT)
-
         }
         else if (word8 != this.state.list[7]) {
             Toast.show('8th word is not correct', Toast.SHORT)
-
         }
         else if (word9 != this.state.list[8]) {
             Toast.show('9th word is not correct', Toast.SHORT)
-
         }
         else if (word10 != this.state.list[9]) {
             Toast.show('10th word is not correct', Toast.SHORT)
-
         }
         else if (word11 != this.state.list[10]) {
             Toast.show('11th word is not correct', Toast.SHORT)
-
         }
         else if (word12 != this.state.list[11]) {
             Toast.show('12th word is not correct', Toast.SHORT)
-
-        }
-
-        else {
-
+        } else {
             this.state.Mnemonicslist.push(word1)
             this.state.Mnemonicslist.push(word2)
             this.state.Mnemonicslist.push(word3)
@@ -175,12 +157,10 @@ export default class Mnemonics extends Component {
             this.state.Mnemonicslist.push(word10)
             this.state.Mnemonicslist.push(word11)
             this.state.Mnemonicslist.push(word12)
-
-            console.log('===========word1', word1, word2, word3, word4, word5, word6, word7, word8, word9, word10, word11, word12,'=====',Mnemonics)
-
+            console.log('===========word1', word1, word2, word3, word4, word5, word6, word7, word8, word9, word10, word11, word12, '=====', Mnemonics)
             if (JSON.stringify(this.state.list) === JSON.stringify(this.state.Mnemonicslist)) {
                 console.log('Mnemonic_List array compare', Mnemonic_List)
-
+                this.setState({ spinner: true })
                 fetch("https://dmobileapi.arisen.network/avote/account/pass/phrase", {
                     method: 'POST',
                     headers: {
@@ -199,10 +179,7 @@ export default class Mnemonics extends Component {
                             ActivePublic: response.activePublicKey,
                             OwnerPrivate: response.ownerPrivate,
                             OwnerPublic: response.ownerPublicKey
-
                         }, () => {
-
-
                             console.log("active key", this.state.ActivePublic)
                         })
                         fetch("https://dmobileapi.arisen.network/avote/register", {
@@ -219,58 +196,46 @@ export default class Mnemonics extends Component {
                         })
                             .then(response => response.json())
                             .then((response) => {
-
-
                                 if (response.success) {
+                                    this.setState({ spinner: false })
                                     Toast.show("Registered successfully on Blockchain", Toast.LONG);
-
-
                                     var items = {
                                         'accountName': this.state.AccountName,
                                         'active_keys': this.state.ActivePrivate,
                                         'active_public_keys': this.state.ActivePublic,
                                         'new_wallet': "1",
-                                        'mnemonic':JSON.stringify({
+                                        'mnemonic': JSON.stringify({
                                             phrase: Mnemonic_List
                                         })
                                     }
-
                                     AsyncStorage.setItem(
                                         'items', JSON.stringify({ items })
                                     );
-
-                            
                                     Actions.replace('homepage');
                                 }
                                 else {
-                                    Toast.show("Not Registered try later", Toast.LONG);
+                                    this.setState({ spinner: false }, () => {
+                                        Toast.show("Not Registered try later", Toast.LONG);
+                                    })
                                 }
-
                             })
-
-
-
                     })
                     .catch(error => console.log(error)) //to catch the errors if any
             } else {
                 Toast.show('Your Mnemonics dont matches,Try again', Toast.SHORT);
-
             }
-
         }
-
     }
 
-
-
-
     render() {
-
-
         return (
             <ScrollView>
                 <View style={styles.container}>
-
+                    <Spinner
+                        visible={this.state.spinner}
+                        textContent={'Loading...'}
+                        textStyle={styles.spinnerTextStyle}
+                    />
                     <View style={styles.header}>
                         <TouchableOpacity
                             style={{ justifyContent: 'center', alignItems: 'center' }}
@@ -596,5 +561,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: "#4383fc",
         height: 60,
+    },
+    spinnerTextStyle: {
+        color: '#FFF'
     }
 });
