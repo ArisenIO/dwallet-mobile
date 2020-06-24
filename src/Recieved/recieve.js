@@ -22,44 +22,30 @@ class Recieve extends Component {
     }
 
     _retrieveData = () => {
-        console.log("retrirve");
         try {
             AsyncStorage.getItem('items').then((value) => {
                 var parsed_value = JSON.parse(value);
-                console.log("async storage data", parsed_value);
-
                 var account_name = parsed_value.items.accountName;
-
-                console.log("Account Name", account_name);
                 this.setState({
                     AccountName: parsed_value.items.accountName,
                 })
-
             }).catch((errr) => {
-                console.log("error in retri", errr);
+                // console.log("error in retri", errr);
             });
         } catch (error) {
-            // Error retrieving data
             console.log("error in retri", error);
-
         }
     };
 
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.backAction);
     }
+
     backAction = () => {
         Actions.pop()
-        // Alert.alert("Hold on!", "Are you sure you want to go back?", [
-        //   {
-        //     text: "Cancel",
-        //     onPress: () => null,
-        //     style: "cancel"
-        //   },
-        //   { text: "YES", onPress: () => BackHandler.exitApp() }
-        // ]);
         return true;
     };
+
     render() {
         return (
             <View style={Styles.container}>
@@ -113,13 +99,11 @@ export default Recieve;
 const Styles = StyleSheet.create({
     container: {
         flex: 1,
-
-
     },
+
     header: {
         flexDirection: 'row',
         backgroundColor: '#4383fc',
         height: 60,
-        // backgroundColor:'red'
     }
 })

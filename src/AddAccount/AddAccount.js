@@ -3,10 +3,9 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, TextInput, TouchableOpacity,
-    Text, ScrollView, Image, BackHandler, Alert, Platform
+    Text, ScrollView, Image, BackHandler,Platform
 } from "react-native";
 import { validation_quantity, validateName } from '../../src/Validation/validation'
-// import { Button, Input, Icon } from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
 import Toast from 'react-native-simple-toast';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -29,7 +28,6 @@ export default class AddAccount extends Component {
 
 
     componentDidMount() {
-        // this._retrieveData();
         BackHandler.addEventListener("hardwareBackPress", this.backAction);
     }
     componentWillUnmount() {
@@ -37,14 +35,6 @@ export default class AddAccount extends Component {
     }
     backAction = () => {
         Actions.pop()
-        // Alert.alert("Hold on!", "Are you sure you want to go back?", [
-        //   {
-        //     text: "Cancel",
-        //     onPress: () => null,
-        //     style: "cancel"
-        //   },
-        //   { text: "YES", onPress: () => BackHandler.exitApp() }
-        // ]);
         return true;
     };
 
@@ -61,86 +51,42 @@ export default class AddAccount extends Component {
         console.log("confirmpvtkey>>>>>", text, this.state.confirmpvtkey);
     }
 
-    activekey=()=>{
+    activekey = () => {
         Actions.replace('ActiveKeys')
     }
 
     nextbtn = () => {
-
         Actions.replace('BackupphraseMnemonics')
-        // if (this.state.AccountName_status) {
-        //     if (this.state.txtStatus) {
-        //         fetch("https://dmobileapi.arisen.network/avote/account/info", {
-        //             method: 'POST',
-        //             headers: {
-        //                 'Accept': 'application/json',
-        //                 'Content-Type': 'application/json'
-        //             },
-        //             body: JSON.stringify({
-        //                 account: (this.state.account).trim(),
-        //                 private_key: (this.state.private_key).trim()
-        //             })
-        //         })
-        //             .then(response => response.json())
-        //             .then((response) => {
-        //                 if (response.success == true) {
-
-        //                     var items = {
-        //                         'accountName': (this.state.account).trim(),
-        //                         'active_keys': (this.state.private_key).trim(),
-        //                         'new_wallet': "0"
-        //                     }
-
-        //                     AsyncStorage.setItem(
-        //                         'items', JSON.stringify({ items })
-        //                     );
-
-
-        //                     Actions.replace('homepage')
-        //                 }
-        //                 else if (response.success == false) {
-        //                     this.setState({ error_msg: response.message })
-        //                     this.toggleModal3()
-        //                     console.log("error_msg_in_addAcount_", response.message)
-        //                 }
-        //             })
-        //             .catch(error => console.log(error)) //to catch the errors if any
-        //     }
-        //     else {
-        //         this.setState({ txtStatus: false })
-        //         // alert("Please enter private key.")
-        //         this.toggleModal2()
-        //     }
-        // }
-        // else {
-        //     this.setState({ AccountName_status: false })
-        //     // alert("Please enter account name.")
-        //     this.toggleModal()
-        // }
     }
+
     set_to_account_name(txt) {
         this.setState({ account: txt });
         this.state.AccountName_error = validateName(txt).error;
         this.state.AccountName_status = validateName(txt).status;
     }
+
     set_to_quantity(txt) {
         this.setState({ private_key: txt });
         this.state.txtErrorMessage = validation_quantity(txt).error;
         this.state.txtStatus = validation_quantity(txt).status;
     }
+
     goback = () => {
         Actions.Createwallet();
-        // alert("ok")
     }
+
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
     };
+
     toggleModal2 = () => {
         this.setState({ isModalVisible2: !this.state.isModalVisible2 });
     };
+
     toggleModal3 = () => {
         this.setState({ isModalVisible3: !this.state.isModalVisible3 });
     };
+
     render() {
         return (
             <ScrollView>
@@ -203,12 +149,12 @@ export default class AddAccount extends Component {
                         <Text style={{ color: 'red', fontFamily: 'Montserrat-Regular', }}>{this.state.txtErrorMessage} </Text>
                     </View> */}
 
-                    <View style={{ height: hp('15%'),justifyContent: 'space-between', marginVertical: hp('30%')}}>
+                    <View style={{ height: hp('15%'), justifyContent: 'space-between', marginVertical: hp('30%') }}>
 
                         <View style={{ width: wp('100%'), height: hp('5%'), justifyContent: 'center', alignItems: 'center' }}>
                             <TouchableOpacity
                                 style={{
-                                    backgroundColor:'#2dd5c9' ,
+                                    backgroundColor: '#2dd5c9',
                                     width: wp('60%'), height: hp('6%'),
                                     justifyContent: 'center', alignItems: 'center', borderRadius: 25
                                 }}
@@ -216,7 +162,7 @@ export default class AddAccount extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.nextbtn() }}
                             >
-                                <Text style={{  color:'white' , fontSize: 16,fontFamily: 'Montserrat-Bold' }}>Import Backup Phrase</Text>
+                                <Text style={{ color: 'white', fontSize: 16, fontFamily: 'Montserrat-Bold' }}>Import Backup Phrase</Text>
                             </TouchableOpacity>
                         </View>
 
@@ -224,7 +170,7 @@ export default class AddAccount extends Component {
 
                             <TouchableOpacity
                                 style={{
-                                    backgroundColor:'#2dd5c9' ,
+                                    backgroundColor: '#2dd5c9',
                                     width: wp('60%'), height: hp('6%'),
                                     justifyContent: 'center', alignItems: 'center', borderRadius: 25
                                 }}
@@ -232,7 +178,7 @@ export default class AddAccount extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.activekey() }}
                             >
-                                <Text style={{  color:'white' , fontSize: 16,fontFamily: 'Montserrat-Bold'}}>Import Active Key</Text>
+                                <Text style={{ color: 'white', fontSize: 16, fontFamily: 'Montserrat-Bold' }}>Import Active Key</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

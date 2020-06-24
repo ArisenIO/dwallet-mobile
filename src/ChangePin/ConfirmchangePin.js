@@ -19,9 +19,6 @@ class ConfirmchangePin extends Component {
             enteredPin: '',
         };
     }
-    componentDidMount() {
-       
-    }
 
     enterValue = (value) => {
         this.setState({ enteredPin: value }, () => {
@@ -49,17 +46,17 @@ class ConfirmchangePin extends Component {
                         Toast.show("Pin code changed successfully", Toast.LONG)
                         Actions.pop();
                     } else {
-                        Toast.show("Pn code not changed Try again ...", Toast.LONG)
+                        Toast.show("Pin code not changed Try again ...", Toast.LONG)
                         Actions.pop();
                     }
                 })
             })
         }
         else {
-            Alert.alert("Enter Corrert Pin")
+            Toast.show("Enter Corrert Pin",Toast.LONG)
         }
     }
-    
+
     render() {
         return (
             <>

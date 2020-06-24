@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { StyleSheet, View, TextInput, Text, Image, TouchableOpacity, Keyboard, BackHandler, Alert, Linking, PermissionsAndroid, Platform, } from "react-native";
+import { StyleSheet, View, TextInput, Text, Image, TouchableOpacity, Keyboard, BackHandler,Linking, PermissionsAndroid, Platform, } from "react-native";
 import Clipboard from '@react-native-community/clipboard'
 import { Button, CheckBox } from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -34,7 +34,6 @@ class Send_money extends Component {
             confirmedpinview: true,
             pincode: '',
             spinner: false
-
         }
         this.backAction = this.backAction.bind(this);
     }
@@ -107,8 +106,6 @@ class Send_money extends Component {
 
     onOpneScanner() {
         var that = this;
-        // this.setState({cam:true})
-        //To Start Scanning
         if (Platform.OS === 'android') {
             async function requestCameraPermission() {
                 try {
@@ -124,13 +121,12 @@ class Send_money extends Component {
                         that.setState({ opneScanner: true, cam: true });
 
                     } else {
-                        // alert("CAMERA permission denied");
                         that.toggleModal2()
                     }
                 } catch (err) {
                     that.setState({ err: err })
                     that.toggleModal3()
-                    alert("Camera permission err", err);
+                    // alert("Camera permission err", err);
                     console.warn(err);
                 }
             }
@@ -208,7 +204,6 @@ class Send_money extends Component {
                     else {
                         var error = JSON.parse(response.error);
                         var err = error.error.details[0].message;
-                        // alert(err)
                         this.setState({ error_msg: err })
                         this.toggleModal()
                     }

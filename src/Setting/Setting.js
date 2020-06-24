@@ -124,7 +124,7 @@ class Setting extends Component {
                     </View>
                 </TouchableOpacity> */}
                 {/* reset modal start */}
-                <Modal isVisible={this.state.isModalVisible}
+                <Modal isVisible={this.state.isModalVisible}    
                     backdropColor='rgba(0,0,0,1)'
                     style={{
                         backgroundColor: 'white',
@@ -139,8 +139,6 @@ class Setting extends Component {
                             <Text style={{ fontSize: 18, textAlign: 'center', fontFamily: 'Montserrat-Regular' }}>Are you sure you want logout your app?</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-
-
                             <View style={{
                                 flexDirection: 'row', width: wp('80%'),
                                 justifyContent: 'space-between', height: hp('5%'), marginTop: hp('4%')
@@ -151,7 +149,6 @@ class Setting extends Component {
                                         borderRadius: 20, width: wp('37%')
                                     }}
 
-                                    // onPress={() => BackHandler.exitApp()}
                                     onPress={() => { this.setState({ isModalVisible: false }) }}
                                 >
                                     <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Bold' }}>No</Text>
@@ -162,7 +159,6 @@ class Setting extends Component {
                                         borderRadius: 20, width: wp('37%')
                                     }}
 
-                                    // onPress={() => BackHandler.exitApp()}
                                     onPress={() => { this.reset_data() }}
                                 >
                                     <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Bold' }}>Yes</Text>

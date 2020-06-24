@@ -3,10 +3,9 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, TextInput, TouchableOpacity,
-    Text, ScrollView, Image, BackHandler, Alert, Platform
+    Text, ScrollView, Image, BackHandler, Platform
 } from "react-native";
 import { validation_quantity, validateName } from '../../src/Validation/validation'
-// import { Button, Input, Icon } from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
 import Toast from 'react-native-simple-toast';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -25,28 +24,19 @@ export default class ActiveKeys extends Component {
             spinner:false
         };
         this.backAction = this.backAction.bind(this);
-
         console.disableYellowBox = true;
     }
 
-
     componentDidMount() {
-        // this._retrieveData();
         BackHandler.addEventListener("hardwareBackPress", this.backAction);
     }
+
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.backAction);
     }
+
     backAction = () => {
         Actions.pop()
-        // Alert.alert("Hold on!", "Are you sure you want to go back?", [
-        //   {
-        //     text: "Cancel",
-        //     onPress: () => null,
-        //     style: "cancel"
-        //   },
-        //   { text: "YES", onPress: () => BackHandler.exitApp() }
-        // ]);
         return true;
     };
 
@@ -60,13 +50,9 @@ export default class ActiveKeys extends Component {
 
     confirmpvtkey = (text) => {
         this.state.confirmpvtkey = text;
-        console.log("confirmpvtkey>>>>>", text, this.state.confirmpvtkey);
     }
 
-
     nextbtn = () => {
-
-        console.log('import key screen')
         if (this.state.AccountName_status) {
             if (this.state.txtStatus) {
                 this.setState({spinner:true})
@@ -101,44 +87,47 @@ export default class ActiveKeys extends Component {
                             console.log("error_msg_in_addAcount_", response.message)
                         }
                     })
-                    .catch(error => console.log(error)) //to catch the errors if any
+                    .catch(error => console.log(error))
             }
             else {
                 this.setState({ txtStatus: false })
-                // alert("Please enter private key.")
                 this.toggleModal2()
             }
         }
         else {
             this.setState({ AccountName_status: false })
-            // alert("Please enter account name.")
             this.toggleModal()
         }
     }
+
     set_to_account_name(txt) {
         this.setState({ account: txt });
         this.state.AccountName_error = validateName(txt).error;
         this.state.AccountName_status = validateName(txt).status;
     }
+
     set_to_quantity(txt) {
         this.setState({ private_key: txt });
         this.state.txtErrorMessage = validation_quantity(txt).error;
         this.state.txtStatus = validation_quantity(txt).status;
     }
+
     goback = () => {
         Actions.Createwallet();
-        // alert("ok")
     }
+
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
     };
+
     toggleModal2 = () => {
         this.setState({ isModalVisible2: !this.state.isModalVisible2 });
     };
+
     toggleModal3 = () => {
-        console.log("pressed ok");
         this.setState({ isModalVisible3: !this.state.isModalVisible3 });
     };
+
     render() {
         return (
             <ScrollView>

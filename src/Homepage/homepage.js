@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, Text,
-    TouchableOpacity, Image, ScrollView, BackHandler, Alert, Platform, RefreshControl
+    TouchableOpacity, Image, ScrollView, BackHandler, Platform, RefreshControl
 } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -36,22 +36,23 @@ export default class Homepage extends Component {
         this.backAction = this.backAction.bind(this);
         console.disableYellowBox = true;
     }
+
     componentDidMount() {
         this._retrieveData();
         BackHandler.addEventListener("hardwareBackPress", this.backAction);
-
     }
-    componentWillUnmount() {
-        // BackHandler.removeEventListener("hardwareBackPress", this.backAction);
 
+    componentWillUnmount() {
         if (Platform.OS == "android") {
             BackHandler.removeEventListener("hardwareBackPress", this.backAction);
         }
     }
+
     backAction = () => {
         this.setState({ isModalVisible2: !this.state.isModalVisible2 });
         return true;
     };
+
     _retrieveData = () => {
         try {
             AsyncStorage.getItem('items').then((value) => {
@@ -88,20 +89,18 @@ export default class Homepage extends Component {
                             this.setState({ staked_to_self: stakedtoself })
                             var totalBalance = stakedtoself + parseFloat(this.state.core_liquid_balance);
                             this.setState({ total_balance: totalBalance, refreshing: false })
-
                         }
                         else {
-                            // alert(response.message)
                             this.setState({ error_msg: response.message })
                             this.toggleModal()
                         }
                     })
-                    .catch(error => console.log(error)) //to catch the errors if any
+                    .catch(error => console.log(error)) 
             }).catch((errr) => {
-                console.log("error in retri", errr);
+                // console.log("error in retri", errr);
             });
         } catch (error) {
-            // Error retrieving data
+                            // console.log("error in retri", error);
         }
     };
 

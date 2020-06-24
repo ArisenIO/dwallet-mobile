@@ -10,7 +10,6 @@ import Toast from 'react-native-simple-toast';
 import Clipboard from '@react-native-community/clipboard'
 import Modal from 'react-native-modal';
 import Spinner from 'react-native-loading-spinner-overlay';
-
 const ethers = require('ethers');
 
 
@@ -33,7 +32,6 @@ export default class Mnemonics extends Component {
             word11: '',
             word12: '',
             spinner: false,
-
         };
         console.disableYellowBox = true;
         this.backAction = this.backAction.bind(this);
@@ -43,9 +41,6 @@ export default class Mnemonics extends Component {
     async componentDidMount() {
         this.generate_mnemonics()
         BackHandler.addEventListener("hardwareBackPress", this.backAction);
-        // AsyncStorage.getItem('items').then(resp => {
-        //     console.log("ij", resp)
-        // })
     }
 
     generate_mnemonics = () => {
@@ -66,49 +61,23 @@ export default class Mnemonics extends Component {
             word10: array_list[9],
             word11: array_list[10],
             word12: array_list[11],
-
-
         }, () => {
             AsyncStorage.setItem('MnemonicsList', this.state.Mnemonicslist)
             console.log("string list length", array_list[0], 'second item asyncstorage', this.state.Mnemonicslist);
-
         })
-
-
         console.log("wallet mnemonic list", Mnemonic_List, ethers.utils.HDNode.isValidMnemonic("shikhar sri"));
-
-
-        // master = PrivateKey.fromSeed(Mnemonic_List)
-        // ownerPrivate = master.getChildKey('owner')
-        // activePrivate = ownerPrivate.getChildKey('active')
-
-
-
-        // console.log(ownerPrivate.toString(), " ", PrivateKey.fromString(ownerPrivate.toWif()).toPublic().toString(), "   ", activePrivate.toString(), PrivateKey.fromString(activePrivate.toWif()).toPublic().toString())
     }
-
 
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.backAction);
     }
 
     backAction = () => {
-        //this.setState({ isModalVisible: !this.state.isModalVisible });
         Actions.pop()
-        // Alert.alert("Hold on!", "Are you sure you want to go back?", [
-        //   {
-        //     text: "Cancel",
-        //     onPress: () => null,
-        //     style: "cancel"
-        //   },
-        //   { text: "YES", onPress: () => BackHandler.exitApp() }
-        // ]);
         return true;
     };
 
-
     createBtn = () => {
-
         Actions.replace('ConfirmMnemonics')
     }
 
@@ -129,27 +98,18 @@ export default class Mnemonics extends Component {
             "12- ": this.state.word12
         };
         await Clipboard.setString(JSON.stringify(copied_data));
-
         Toast.show('Copied', Toast.SHORT);
-        console.log("copy_data====>", copied_data)
     }
 
     render() {
-
-        if (this.state.spinner==false){
-            console.log('render')
-        }
-
         return (
             <ScrollView>
                 <View style={styles.container}>
-
                     <Spinner
                         visible={this.state.spinner}
                         textContent={'Loading...'}
                         textStyle={styles.spinnerTextStyle}
                     />
-
                     <View style={{ width: wp('100%'), height: Platform.OS === 'ios' ? hp('7%') : hp('5%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('3%') }}>
                         <Text style={{ color: '#505050', fontFamily: 'Montserrat-Bold', fontSize: 22 }}>Your Mnemonic Phrase</Text>
                     </View>

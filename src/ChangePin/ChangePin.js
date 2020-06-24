@@ -1,11 +1,12 @@
 import Icon from "react-native-vector-icons/Ionicons"
 import React, { Component, useRef, useState } from "react"
-import { ImageBackground, SafeAreaView, StatusBar, Text, Image, View } from "react-native"
+import { ImageBackground, SafeAreaView, StatusBar, Text, Image, View,TouchableOpacity } from "react-native"
 import ReactNativePinView from "react-native-pin-view"
 import AsyncStorage from '@react-native-community/async-storage';
 import Images from '../assets/Icon'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Actions } from 'react-native-router-flux';
+import Modal from 'react-native-modal';
 
 class ChangePin extends Component {
     constructor(props) {
@@ -34,6 +35,10 @@ class ChangePin extends Component {
         })
     }
 
+    toggleModal3 = () => {
+        this.setState({ isModalVisible3: !this.state.isModalVisible3 });
+      };
+
     enterValue = (value) => {
         this.setState({ enteredPin: value }, () => {
             if (this.state.enteredPin.length > 0) {
@@ -56,7 +61,7 @@ class ChangePin extends Component {
             Actions.replace('ConfirmchangePin');
         }
         else {
-            alert("Pin Mismatched.")
+            this.toggleModal3()
         }
     }
 
@@ -130,6 +135,43 @@ class ChangePin extends Component {
                             /> :
                             undefined}
                     />
+
+ {/* Modal 3 Start */}
+ <Modal isVisible={this.state.isModalVisible3}
+            backdropColor='rgba(0,0,0,1)'
+            style={{
+              backgroundColor: 'white',
+              marginTop: 240, borderRadius: 10, width: wp('90%'), maxHeight: hp('30%'), justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+            <View style={{ height: hp('30%') }}>
+              <View style={{ borderBottomWidth: 1, height: hp('6%'), justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={{ fontSize: 20, fontWeight: '700', fontFamily: 'Montserrat-Bold', }}>Alert!</Text>
+              </View>
+              <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
+                <Text style={{ fontSize: 16, textAlign: 'center', fontFamily: 'Montserrat-Regular', }}>Pin missmatched, Enter correct pin</Text>
+              </View>
+              <View style={{
+                justifyContent: 'center', alignItems: 'center',
+                height: hp('5%'), marginTop: hp('3%'), width: wp('88%')
+              }}>
+                <TouchableOpacity
+                  style={{
+                    justifyContent: 'center', alignItems: 'center', backgroundColor: "#2dd5c9",
+                    borderRadius: 20, width: wp('40%'), height: hp('5%'),
+                  }}
+                  onPress={() => { this.toggleModal3() }}
+                >
+                  <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Regular', }}>Ok</Text>
+                </TouchableOpacity>
+
+              </View>
+
+            </View>
+          </Modal>
+          {/* Modal 3 End */}
+
+
                 </SafeAreaView>
             </>
         );

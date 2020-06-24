@@ -10,6 +10,7 @@ import Modal from 'react-native-modal';
 
 
 class Pin_Code extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -22,6 +23,7 @@ class Pin_Code extends Component {
         }
         this.backAction=this.backAction.bind(this);
     }
+
     async componentDidMount() {
         try {
             this.fetchData()
@@ -30,20 +32,13 @@ class Pin_Code extends Component {
         }
         BackHandler.addEventListener("hardwareBackPress", this.backAction);
     }
+
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.backAction);
       }
+
       backAction = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
-        //   Actions.pop()
-        // Alert.alert("Hold on!", "Are you sure you want to go back?", [
-        //   {
-        //     text: "Cancel",
-        //     onPress: () => null,
-        //     style: "cancel"
-        //   },
-        //   { text: "YES", onPress: () => BackHandler.exitApp() }
-        // ]);
         return true;
       };
 
@@ -60,7 +55,6 @@ class Pin_Code extends Component {
     }
 
     check_pin = () => {
-
         if (this.state.password === this.state.confirm_password) {
             var pin_code = {
                 "pin_code": this.state.confirm_password
@@ -74,7 +68,6 @@ class Pin_Code extends Component {
         else if (this.state.myData_status == true) {
             if (this.state.myData.pin_code === this.state.confirm_password) {
                 Actions.Createwallet();
-                // alert("theek hai")
             }
             else {
                 alert("Please enter correct pin code.")
@@ -84,11 +77,7 @@ class Pin_Code extends Component {
             alert("please enter correct pin code.")
         }
     }
-    //  _removeData =()=>{
-    //     this.setState({ reset_text: true })
-    //     // AsyncStorage.removeItem('pin_code',JSON.stringify(this.state.myData))
-    //          AsyncStorage.removeItem('pin_code',JSON.stringify(this.state.myData),()=>{this.check_pin()})
-    // }
+    
     render() {
         { console.log("__value", this.state.confirm_password) }
         return (

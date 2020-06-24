@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     View, TextInput,
-    Text, Image, TouchableOpacity, Keyboard, BackHandler, Alert
+    Text, Image, TouchableOpacity, Keyboard, BackHandler
 } from "react-native";
 import Clipboard from '@react-native-community/clipboard'
 import { Button, CheckBox } from 'react-native-elements';
@@ -50,10 +50,6 @@ export default class RegisterScreen extends Component {
         return true;
     };
 
-    // goback = () => {
-    //     Actions.Createwallet();
-    //     // alert("ok")
-    // }
     iconpress = () => {
         if (this.state.checked == true) {
             this.setState({ checked: false })
@@ -72,6 +68,7 @@ export default class RegisterScreen extends Component {
             this.toggleModal()
         }
     }
+
     _genrate = () => {
         this.setState({ Proceed: false, spinner: true })
         fetch("https://dmobileapi.arisen.network/avote/random/word", {
@@ -87,7 +84,7 @@ export default class RegisterScreen extends Component {
                     console.log("resp_in_for_account_token========", JSON.stringify(this.state.AccountName))
                 })
             })
-            .catch(error => console.log(error)) //to catch the errors if any
+            .catch(error => console.log(error)) 
     }
 
     _checkloop = () => {
@@ -109,17 +106,14 @@ export default class RegisterScreen extends Component {
                 .then((response) => {
                     console.log("resp_for_check_api", response)
                     if (response.success == true) {
-
                         this.setState({ Proceed: true, spinner: false })
                     }
                     else {
                         this.setState({ Proceed: false, spinner: false, error_msg: response.message })
-                        // alert(response.message)
-                        // this.setState({})
                         this.toggleModal2()
                     }
                 })
-                .catch(error => console.log(error)) //to catch the errors if any
+                .catch(error => console.log(error)) 
         }
         else {
             this.setState({ spinner: false })
@@ -130,40 +124,6 @@ export default class RegisterScreen extends Component {
         this.setState({ spinner: true })
         Actions.replace('Mnemonics')
         this.setState({ spinner: false })
-
-        // this.setState({ isLoading: false })
-        // fetch("https://dmobileapi.arisen.network/avote/account/keys", {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         newAccountName: this.state.AccountName
-        //     })
-        // })
-        //     .then(response => response.json())
-        //     .then((response) => {
-
-        //         if (response.success == true) {
-
-
-        //             this.setState({
-        //                 owner_private_keys: response.owner_private,
-        //                 owner_public_keys: response.owner_public,
-        //                 active_private_keys: response.active_private,
-        //                 active_public_keys: response.active_public,
-        //                 AccountName: response.account,
-        //                 isLoading: false
-        //             })
-        //             Actions.Mnemonics()
-
-        //         }
-        //         else {
-        //             this.toggleModal4()
-        //         }
-        //     })
-        //     .catch(error => console.log(error)) 
     }
 
     alphanumeric(inputtxt) {
@@ -189,13 +149,7 @@ export default class RegisterScreen extends Component {
         this.setState({ spinner: false });
     };
 
-    //   handleCancel = () => {
-    //     this.setState({ dialogVisible: false });
-    //   };
-
     handleCopy = () => {
-        // The user has pressed the "Delete" button, so here you can do your own logic.
-        // ...Your logic
         this.writeToClipboard();
         this.setState({ isModalVisible5: false });
     };
@@ -242,12 +196,6 @@ export default class RegisterScreen extends Component {
                         AsyncStorage.setItem(
                             'items', JSON.stringify({ items })
                         );
-                        //   AsyncStorage.setItem(
-                        //     'active_keys',this.state.active_private_keys
-                        //     );
-                        //     AsyncStorage.setItem(
-                        //         'new_wallet',"1"
-                        //         );
                         Actions.replace('homepage');
                     })
                 } else {
