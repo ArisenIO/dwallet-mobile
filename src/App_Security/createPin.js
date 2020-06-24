@@ -62,7 +62,6 @@ class Create_Pin extends Component {
           }
         }).catch((errr) => {
           console.log("error in retri", errr);
-
         });
       }
       else {
@@ -74,7 +73,7 @@ class Create_Pin extends Component {
         "pin_code": this.state.enteredPin
       }
       AsyncStorage.setItem(
-        'pin_code', JSON.stringify(pin_code)
+        'create_pin_code', JSON.stringify(pin_code)
       );
       Actions.Confirm_Pin();
     }

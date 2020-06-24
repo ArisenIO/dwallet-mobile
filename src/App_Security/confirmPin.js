@@ -18,7 +18,7 @@ class Confirm_Pin extends Component {
     };
   }
   componentDidMount() {
-    AsyncStorage.getItem('pin_code').then(resp => {
+    AsyncStorage.getItem('create_pin_code').then(resp => {
       console.log("after getting data", resp)
       if (resp != null) {
         this.setState({ myData: JSON.parse(resp), myData_status: true }, () => {
@@ -50,6 +50,14 @@ class Confirm_Pin extends Component {
   }
   confirm = () => {
     if (this.state.myData.pin_code == this.state.enteredPin) {
+
+      var pin_code = {
+        "pin_code": this.state.enteredPin
+      }
+      AsyncStorage.setItem(
+        'pin_code', JSON.stringify(pin_code)
+      );
+
       Actions.Createwallet();
     }
     else {
