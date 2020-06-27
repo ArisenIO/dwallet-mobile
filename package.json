@@ -13,6 +13,7 @@
     "@arisencore/ecc": "^1.0.1",
     "@react-native-community/async-storage": "^1.10.0",
     "@react-native-community/clipboard": "^1.2.2",
+    "@react-native-community/netinfo": "^5.9.4",
     "buffer": "^5.0.6",
     "css-select": "^2.1.0",
     "css-tree": "^1.0.0-alpha.39",
