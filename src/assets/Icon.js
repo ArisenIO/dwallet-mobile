@@ -14,14 +14,14 @@ export default Images ={
     QR_code_frame:require('./Image/QRcodeframe.png'),
     Profile_pic:require('./Image/profile.png'),
     loader_gif:require('./Image/gif2.gif'),
-   // Back_icon:require('./Image/backicon.png'),
+    Back_icon:require('./Image/backicon.png'),
     Back_icon:require('./Image/back_white.png'),
     Setting_icon:require('./Image/settingbtnn.png'),
     Reset_icon:require('./Image/reset.png'),
     Backup_icon:require('./Image/backup.png'),
     lOgout_icon:require('./Image/logout.png'),
     Camera_icon:require('./Image/camera.png'),
-    Back_Icn:require('./Image/backIcon.png'),
+    //Back_Icn:require('./Image/backIcon.png'),
     done_Icon:require('./Image/done.png'),
     changepin_icon:require('./Image/changepin.png')
 
