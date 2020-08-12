@@ -101,7 +101,7 @@ export default class Createwallet extends Component {
                             }}
                         >
                             <Text style={{ color: 'white', fontSize: 16, fontFamily: 'Montserrat-Bold', }}>
-                                Create New PeepsID
+                                Create PeepsID
                                 </Text>
                         </TouchableOpacity>
                     </View>

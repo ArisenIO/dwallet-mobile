@@ -84,7 +84,7 @@ export default class RegisterScreen extends Component {
                     console.log("resp_in_for_account_token========", JSON.stringify(this.state.AccountName))
                 })
             })
-            .catch(error => console.log(error)) 
+            .catch(error => console.log(error))
     }
 
     _checkloop = () => {
@@ -113,7 +113,7 @@ export default class RegisterScreen extends Component {
                         this.toggleModal2()
                     }
                 })
-                .catch(error => console.log(error)) 
+                .catch(error => console.log(error))
         }
         else {
             this.setState({ spinner: false })
@@ -182,7 +182,7 @@ export default class RegisterScreen extends Component {
             .then((response) => {
                 this.hideDialog();
                 if (response.success) {
-                    this.setState({spinner:false},()=>{
+                    this.setState({ spinner: false }, () => {
                         Toast.show("Registered successfully on Blockchain", Toast.LONG);
                         // AsyncStorage.setItem(
                         //       'creds',
@@ -199,7 +199,7 @@ export default class RegisterScreen extends Component {
                         Actions.replace('homepage');
                     })
                 } else {
-                    this.setState({spinner:false},()=>{
+                    this.setState({ spinner: false }, () => {
                         Toast.show("Not Registered try later", Toast.LONG);
                     })
                 }
@@ -218,7 +218,7 @@ export default class RegisterScreen extends Component {
     toggleModal3 = () => {
         this.setState({ isModalVisible3: !this.state.isModalVisible3 });
     };
-    
+
     toggleModal4 = () => {
         this.setState({ isModalVisible4: !this.state.isModalVisible4 });
     };
@@ -246,7 +246,7 @@ export default class RegisterScreen extends Component {
                     <Text style={{
                         fontSize: 22, color: 'white', textAlign: 'center',
                         justifyContent: 'center', alignSelf: 'center', marginStart: '2%', fontFamily: 'Montserrat-Bold',
-                    }}>Create New PeepsID</Text>
+                    }}>Create PeepsID</Text>
                 </View>
 
                 <View style={{
@@ -349,7 +349,7 @@ export default class RegisterScreen extends Component {
                                 onPress={() => { this._proceed() }}
                             >
                                 <Text style={{ color: '#fff', fontFamily: 'Montserrat-Bold', fontSize: 15 }}>
-                                    Generate keys
+                                    Generate Keys
                     </Text>
                             </TouchableOpacity>
                         </View>

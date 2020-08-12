@@ -115,7 +115,9 @@ export default class Mnemonics extends Component {
                     </View>
 
                     <View style={{ width: wp('100%'), height: Platform.OS === 'ios' ? hp('7%') : hp('5%'), justifyContent: 'center', alignItems: 'center', marginTop: hp('3%') }}>
-                        <Text style={{ color: '#505050', fontFamily: 'Montserrat-Bold', fontSize: 14, textAlign: 'center' }}>Below is your twelve word backup phrase.Please write it down and keep it in a safe place.</Text>
+                        <Text style={{ color: '#505050', fontFamily: 'Montserrat-Bold', fontSize: 14, textAlign: 'center' }}>Below is your twelve word backup phrase.</Text>
+                        <Text style={{ color: '#505050', fontFamily: 'Montserrat-Bold', fontSize: 14, textAlign: 'center' }}>Please write it down and keep it in a safe place.</Text>
+
                     </View>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: hp('10%'), marginTop: hp('5%'), width: wp('100%') }}>

@@ -201,7 +201,7 @@ export default class Homepage extends Component {
                                     justifyContent: 'center'
                                 }}>
 
-                                    <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Regular', }}>Your RIX AccountName</Text>
+                                    <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Regular', }}>Your PeepsID</Text>
                                     <View style={{ justifyContent: 'center', alignItems: 'center', height: Platform.OS === "ios" ? hp('10%') : hp('5%'), marginTop: 15, }}>
                                         <Text style={{ color: '#ffffff', fontFamily: 'Montserrat-Bold', fontSize: 25 }}>
                                             {/* hfgjdh */}

@@ -58,7 +58,7 @@ class Recieve extends Component {
                     <Text style={{
                         fontSize: 22, color: 'white', textAlign: 'center', 
                         justifyContent: 'center', alignSelf: 'center', marginStart: '2%',fontFamily: 'Montserrat-Bold',
-                    }}>Account Overview</Text>
+                    }}>Receive RIX</Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: hp('5%'), width: wp('100%'), }}>
                     <Text style={{ fontSize: 18, color: '#a8a9ae', textAlign: 'center' ,fontFamily: 'Montserrat-Regular',}}>This QR code can be used by friends to send RIX to your account.</Text>
