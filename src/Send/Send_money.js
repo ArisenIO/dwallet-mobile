@@ -270,7 +270,7 @@ class Send_money extends Component {
                                         :
                                         <TextInput
                                             style={{
-                                                width: wp('70%'), borderBottomWidth: wp('0.1%'), fontSize: 18, backgroundColor: 'red',
+                                                width: wp('70%'), borderBottomWidth: wp('0.1%'), fontSize: 18,
                                                 borderColor: 'gray', height: hp('8%'), color: 'black', fontFamily: 'Montserrat-Regular'
                                             }}
                                             value={this.state.to_account_name}
