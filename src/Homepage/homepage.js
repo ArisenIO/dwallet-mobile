@@ -297,14 +297,14 @@ export default class Homepage extends Component {
                             }}>
                             <View style={{ height: hp('28%') }}>
                                 <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold' }}>Error?</Text>
+                                    <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold' }}>Error</Text>
                                 </View>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
                                     <Text style={{ fontSize: 18, textAlign: 'center', fontFamily: 'Montserrat-Regular' }}>{this.state.error_msg}</Text>
                                 </View>
                                 <View style={{
                                     justifyContent: 'center', alignItems: 'center',
-                                    height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
+                                    height: hp('5%'), marginTop: hp('5%'), width: wp('88%'),paddingBottom:'5%'
                                 }}>
                                     <TouchableOpacity
                                         style={{
@@ -315,7 +315,7 @@ export default class Homepage extends Component {
                                         // onPress={() => BackHandler.exitApp()}
                                         onPress={() => { this.toggleModal() }}
                                     >
-                                        <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Bold' }}>Ok</Text>
+                                        <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Bold',paddingBottom:'2%' }}>Ok</Text>
                                     </TouchableOpacity>
 
                                 </View>

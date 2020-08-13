@@ -222,14 +222,14 @@ export default class ActiveKeys extends Component {
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold', }}>Error?</Text>
+                            <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold', }}>Error</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
                             <Text style={{ fontSize: 18, textAlign: 'center', fontWeight: '100', fontFamily: 'Montserrat-Regular' }}>Please enter your name</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
-                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
+                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%'),paddingBottom:'5%'
                         }}>
                             <TouchableOpacity
                                 style={{
@@ -240,7 +240,7 @@ export default class ActiveKeys extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal() }}
                             >
-                                <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Regular' }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Regular',paddingBottom:'2%' }}>Ok</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -258,14 +258,14 @@ export default class ActiveKeys extends Component {
                     }}>
                     <View style={{ height: hp('28%') }}>
                         <View style={{ borderBottomWidth: 1, height: hp('8%'), justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold', }}>Error?</Text>
+                            <Text style={{ fontSize: 20, fontFamily: 'Montserrat-Bold', }}>Error</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20 }}>
                             <Text style={{ fontSize: 18, textAlign: 'center', fontWeight: '100', fontFamily: 'Montserrat-Regular', }}>Please enter your Active private key</Text>
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
-                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%')
+                            height: hp('5%'), marginTop: hp('5%'), width: wp('88%'),paddingBottom:'5%'
                         }}>
                             <TouchableOpacity
                                 style={{
@@ -276,7 +276,7 @@ export default class ActiveKeys extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal2() }}
                             >
-                                <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Regular', }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Regular', paddingBottom:'2%' }}>Ok</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -301,7 +301,7 @@ export default class ActiveKeys extends Component {
                         </View>
                         <View style={{
                             justifyContent: 'center', alignItems: 'center',
-                            height: hp('5%'), marginTop: hp('3%'), width: wp('88%')
+                            height: hp('5%'), marginTop: hp('3%'), width: wp('88%'),paddingBottom:'5%'
                         }}>
                             <TouchableOpacity
                                 style={{
@@ -312,7 +312,7 @@ export default class ActiveKeys extends Component {
                                 // onPress={() => BackHandler.exitApp()}
                                 onPress={() => { this.toggleModal3() }}
                             >
-                                <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Regular', }}>Ok</Text>
+                                <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Regular',paddingBottom:'2%' }}>Ok</Text>
                             </TouchableOpacity>
 
                         </View>

@@ -159,7 +159,7 @@ class Confirm_Pin extends Component {
               </View>
               <View style={{
                 justifyContent: 'center', alignItems: 'center',
-                height: hp('5%'), marginTop: hp('3%'), width: wp('88%')
+                height: hp('5%'), marginTop: hp('3%'), width: wp('88%'),paddingBottom:'5%'
               }}>
                 <TouchableOpacity
                   style={{
@@ -168,7 +168,7 @@ class Confirm_Pin extends Component {
                   }}
                   onPress={() => { this.toggleModal3() }}
                 >
-                  <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Regular', }}>Ok</Text>
+                  <Text style={{ fontSize: 18, color: 'white', fontFamily: 'Montserrat-Regular',paddingBottom:'2%' }}>Ok</Text>
                 </TouchableOpacity>
 
               </View>

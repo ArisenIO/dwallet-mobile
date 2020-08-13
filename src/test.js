@@ -33,7 +33,7 @@ class createPin extends Component {
       } else {
         this.setState({showCompletedButton:false})
       }
-      console.log("Ok..", this.state.enteredPin)
+      // console.log("Ok..", this.state.enteredPin)
     })
   }
     render() {
